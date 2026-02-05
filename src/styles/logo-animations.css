@@ -1,0 +1,225 @@
+/* src/styles/logo-animations.css */
+
+.logo-container {
+    --anim-duration: 0.8s;
+    --anim-ease: cubic-bezier(0.65, 0, 0.35, 1);
+    width: 100%;
+    max-width: 1200px;
+}
+
+.humanoides-logo {
+    overflow: visible;
+}
+
+/* Base states: stacked in center */
+#iso-outer-left,
+#iso-inner-left,
+#iso-inner-right,
+#iso-outer-right {
+    transform-origin: center;
+    transition: transform var(--anim-duration) var(--anim-ease);
+}
+
+/* Initial hidden state for text */
+#text-top,
+#text-bottom {
+    clip-path: inset(0 100% 0 0);
+    transform: translateX(-50px);
+    transition: transform var(--anim-duration) var(--anim-ease), clip-path var(--anim-duration) var(--anim-ease);
+}
+
+/* Animation sequence */
+.once #iso-inner-left {
+    animation: slide-inner-left var(--anim-duration) var(--anim-ease) forwards;
+}
+
+.once #iso-inner-right {
+    animation: slide-inner-right var(--anim-duration) var(--anim-ease) forwards;
+}
+
+.once #iso-outer-left {
+    animation: slide-outer-left var(--anim-duration) var(--anim-ease) forwards 0.2s;
+}
+
+.once #iso-outer-right {
+    animation: slide-outer-right var(--anim-duration) var(--anim-ease) forwards 0.2s;
+}
+
+.once #text-top {
+    animation: reveal-text var(--anim-duration) var(--anim-ease) forwards 0.6s;
+}
+
+.once #text-bottom {
+    animation: reveal-text var(--anim-duration) var(--anim-ease) forwards 0.8s;
+}
+
+/* Loop mode */
+.loop #iso-inner-left {
+    animation: slide-inner-left-loop 3s var(--anim-ease) infinite;
+}
+
+.loop #iso-inner-right {
+    animation: slide-inner-right-loop 3s var(--anim-ease) infinite;
+}
+
+.loop #iso-outer-left {
+    animation: slide-outer-left-loop 3s var(--anim-ease) infinite;
+}
+
+.loop #iso-outer-right {
+    animation: slide-outer-right-loop 3s var(--anim-ease) infinite;
+}
+
+.loop #text-top {
+    animation: reveal-text-loop 3s var(--anim-ease) infinite;
+}
+
+.loop #text-bottom {
+    animation: reveal-text-loop 3s var(--anim-ease) infinite 0.2s;
+}
+
+@keyframes slide-inner-left {
+    from {
+        transform: translateX(150px);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-inner-right {
+    from {
+        transform: translateX(-150px);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-outer-left {
+    from {
+        transform: translateX(300px);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-outer-right {
+    from {
+        transform: translateX(-300px);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes reveal-text {
+    from {
+        clip-path: inset(0 100% 0 0);
+        transform: translateX(-50px);
+    }
+
+    to {
+        clip-path: inset(0 0% 0 0);
+        transform: translateX(0);
+    }
+}
+
+/* Loop animations with return to center */
+@keyframes slide-inner-left-loop {
+
+    0%,
+    10% {
+        transform: translateX(150px);
+    }
+
+    30%,
+    80% {
+        transform: translateX(0);
+    }
+
+    90%,
+    100% {
+        transform: translateX(150px);
+    }
+}
+
+@keyframes slide-inner-right-loop {
+
+    0%,
+    10% {
+        transform: translateX(-150px);
+    }
+
+    30%,
+    80% {
+        transform: translateX(0);
+    }
+
+    90%,
+    100% {
+        transform: translateX(-150px);
+    }
+}
+
+@keyframes slide-outer-left-loop {
+
+    0%,
+    15% {
+        transform: translateX(300px);
+    }
+
+    35%,
+    75% {
+        transform: translateX(0);
+    }
+
+    95%,
+    100% {
+        transform: translateX(300px);
+    }
+}
+
+@keyframes slide-outer-right-loop {
+
+    0%,
+    15% {
+        transform: translateX(-300px);
+    }
+
+    35%,
+    75% {
+        transform: translateX(0);
+    }
+
+    95%,
+    100% {
+        transform: translateX(-300px);
+    }
+}
+
+@keyframes reveal-text-loop {
+
+    0%,
+    40% {
+        clip-path: inset(0 100% 0 0);
+        transform: translateX(-50px);
+    }
+
+    60%,
+    80% {
+        clip-path: inset(0 0% 0 0);
+        transform: translateX(0);
+    }
+
+    95%,
+    100% {
+        clip-path: inset(0 100% 0 0);
+        transform: translateX(-50px);
+    }
+}

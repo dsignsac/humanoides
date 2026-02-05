@@ -1,0 +1,39 @@
+{
+    "marca": "Humanoides & Asociados",
+    "objetivo": "Mantener consistencia visual bajo una identidad técnica, sofisticada y humana.",
+    "personalidad": {
+        "sensacion": "Ingeniería digital de vanguardia, eficiencia disruptiva, sofisticación técnica",
+        "tono": "Estoico, técnico, basado en datos, humano y experto",
+        "valores": [
+            "Innovación funcional",
+            "Estética técnica de alta precisión",
+            "Automatización inteligente"
+        ],
+        "mision": "Democratizar la tecnología de alto nivel y el diseño de autor para SMEs."
+    },
+    "paleta": {
+        "red": "#FA2A2A",
+        "salmon": "#FFEEDB",
+        "gray": "#D4DAD3",
+        "black": "#2F2F2F",
+        "principal": "#FA2A2A",
+        "fondo": "#D4DAD3",
+        "texto": {
+            "principal": "#2F2F2F",
+            "secundario": "#FA2A2A"
+        }
+    },
+    "tipografia": {
+        "titulares": "Anek Malayalam Bold",
+        "cuerpo": "Anek Malayalam Regular",
+        "acentos": "Kode Mono",
+        "uso": {
+            "titulos": "Anek Malayalam Bold para H1, H2, H3",
+            "parrafos": "Anek Malayalam Regular",
+            "tecnico": "Kode Mono para enlaces, listas y microcopys"
+        }
+    },
+    "formas": {
+        "radio_boton": "20px"
+    }
+}
