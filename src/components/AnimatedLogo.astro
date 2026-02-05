@@ -225,9 +225,21 @@ const { mode = "once", variant = "full", class: className = "" } = Astro.props;
         overflow: visible;
     }
 
-    @media (max-width: 768px) {
+    /* Móvil: solo isotipo centrado */
+    @media (max-width: 639px) {
         .animated-logo-wrapper[data-variant="full"] #logotipo-group {
             display: none;
+        }
+
+        .animated-logo-wrapper[data-variant="full"] #humanoides-logo-svg {
+            /* Recortar viewBox visualmente para mostrar solo el isotipo centrado */
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .animated-logo-wrapper[data-variant="full"] #isotipo-group {
+            /* Mantener isotipo en posición original (x=0) */
+            transform: translateX(0) !important;
         }
     }
 </style>

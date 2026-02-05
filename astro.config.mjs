@@ -8,6 +8,9 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   integrations: [react()],
 
+  // Output directory for Hostinger deployment
+  outDir: './dist',
+
   vite: {
     plugins: [tailwindcss()]
   }
