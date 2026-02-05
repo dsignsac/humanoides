@@ -71,144 +71,150 @@ const { mode = "once", variant = "full", class: className = "" } = Astro.props;
     import { gsap } from "gsap";
 
     document.addEventListener("astro:page-load", () => {
-        const wrapper = document.querySelector(".animated-logo-wrapper");
-        if (!wrapper) return;
+        // Animar CADA wrapper de logo en la página
+        const wrappers = document.querySelectorAll(".animated-logo-wrapper");
 
-        const mode = wrapper.getAttribute("data-mode") || "once";
-        const variant = wrapper.getAttribute("data-variant") || "full";
+        wrappers.forEach((wrapper) => {
+            const mode = wrapper.getAttribute("data-mode") || "once";
+            const variant = wrapper.getAttribute("data-variant") || "full";
 
-        // Elementos
-        const isotipoGroup = document.querySelector("#isotipo-group");
-        const circleOuterLeft = document.querySelector("#circle-outer-left");
-        const circleOuterRight = document.querySelector("#circle-outer-right");
-        const circleInnerLeft = document.querySelector("#circle-inner-left");
-        const circleInnerRight = document.querySelector("#circle-inner-right");
-        const letterA = document.querySelector("#letter-a");
-        const textHumanoides = document.querySelector("#text-humanoides");
-        const textAsociados = document.querySelector("#text-asociados");
+            // Elementos DENTRO de este wrapper específico
+            const isotipoGroup = wrapper.querySelector("#isotipo-group");
+            const circleOuterLeft = wrapper.querySelector("#circle-outer-left");
+            const circleOuterRight = wrapper.querySelector(
+                "#circle-outer-right",
+            );
+            const circleInnerLeft = wrapper.querySelector("#circle-inner-left");
+            const circleInnerRight = wrapper.querySelector(
+                "#circle-inner-right",
+            );
+            const letterA = wrapper.querySelector("#letter-a");
+            const textHumanoides = wrapper.querySelector("#text-humanoides");
+            const textAsociados = wrapper.querySelector("#text-asociados");
 
-        if (!isotipoGroup) return;
+            if (!isotipoGroup) return;
 
-        // Timeline principal
-        const tl = gsap.timeline({
-            defaults: { ease: "power2.inOut" },
-            repeat: mode === "loop" ? -1 : 0,
-            repeatDelay: mode === "loop" ? 2 : 0,
-        });
-
-        // ESTADO INICIAL: círculos juntos en el centro
-        // Círculos exteriores: brecha de 451px, cada uno se mueve 225.5px
-        gsap.set(circleOuterLeft, { x: 225.5 });
-        gsap.set(circleOuterRight, { x: -225.5 });
-
-        // Círculos interiores: empiezan juntos formando un círculo (visibles desde el inicio)
-        gsap.set(circleInnerLeft, { x: 112.5 });
-        gsap.set(circleInnerRight, { x: -112.5 });
-
-        // La A oculta con clip-path (se revelará desde el centro)
-        gsap.set(letterA, { clipPath: "inset(0 50% 0 50%)" });
-
-        // Posición inicial del grupo isotipo (centrado según variant)
-        // Si es iso: centrado en su propio viewBox (x=0)
-        // Si es full: centrado en el viewBox completo (x=480) para luego moverse a la izquierda
-        gsap.set(isotipoGroup, { x: variant === "iso" ? 0 : 480 });
-
-        // Texto con clip-path inicial (oculto desde la derecha)
-        if (variant === "full") {
-            gsap.set(textHumanoides, {
-                clipPath: "inset(0 100% 0 0)", // Oculto desde la derecha
+            // Timeline principal
+            const tl = gsap.timeline({
+                defaults: { ease: "power2.inOut" },
+                repeat: mode === "loop" ? -1 : 0,
+                repeatDelay: mode === "loop" ? 2 : 0,
             });
-            gsap.set(textAsociados, {
-                clipPath: "inset(0 100% 0 0)", // Oculto desde la derecha
-            });
-        }
 
-        // SECUENCIA DE ANIMACIÓN
-        tl
-            // 1. Círculo completo visible (0.8s de pausa inicial)
-            .to({}, { duration: 0.33 })
+            // ESTADO INICIAL: círculos juntos en el centro
+            // Círculos exteriores: brecha de 451px, cada uno se mueve 225.5px
+            gsap.set(circleOuterLeft, { x: 225.5 });
+            gsap.set(circleOuterRight, { x: -225.5 });
 
-            // 2. Primera apertura: exteriores se separan hasta tocar los interiores (±112.5)
-            .to(
-                circleOuterLeft,
-                { x: 112.5, duration: 0.5, ease: "power2.out" },
-                "+=0",
-            )
-            .to(
-                circleOuterRight,
-                { x: -112.5, duration: 0.5, ease: "power2.out" },
-                "<",
-            )
-            // (Los interiores ya son visibles, no necesitan fade-in)
+            // Círculos interiores: empiezan juntos formando un círculo (visibles desde el inicio)
+            gsap.set(circleInnerLeft, { x: 112.5 });
+            gsap.set(circleInnerRight, { x: -112.5 });
 
-            // 3. Segunda apertura: interiores se abren Y A se revela (sincronizado)
-            .to(
-                circleInnerLeft,
-                { x: 0, duration: 0.5, ease: "power2.out" },
-                "-=0.2",
-            )
-            .to(
-                circleInnerRight,
-                { x: 0, duration: 0.5, ease: "power2.out" },
-                "<",
-            )
-            // Los exteriores se mueven junto con los interiores
-            .to(
-                circleOuterLeft,
-                { x: 0, duration: 0.5, ease: "power2.out" },
-                "<",
-            )
-            .to(
-                circleOuterRight,
-                { x: 0, duration: 0.5, ease: "power2.out" },
-                "<",
-            )
-            // Revelar la A con clip-path (sincronizado con apertura de interiores)
-            .to(
-                letterA,
-                {
-                    clipPath: "inset(0 7.5% 0 7.5%)",
-                    duration: 0.5,
-                    ease: "power2.out",
-                },
-                "<", // Al mismo tiempo que se abren los interiores
-            )
+            // La A oculta con clip-path (se revelará desde el centro)
+            gsap.set(letterA, { clipPath: "inset(0 50% 0 50%)" });
 
-            // 4. Pausa antes de mover (para evitar superposición con texto)
-            .to({}, { duration: 0.4 }); // Aumentada de 0.2s a 0.4s
+            // Posición inicial del grupo isotipo (centrado según variant)
+            // Si es iso: centrado en su propio viewBox (x=0)
+            // Si es full: centrado en el viewBox completo (x=480) para luego moverse a la izquierda
+            gsap.set(isotipoGroup, { x: variant === "iso" ? 0 : 480 });
 
-        // 5. Movimiento lateral + revelación de texto (simultáneo, rápido y brusco)
-        if (variant === "full") {
+            // Texto con clip-path inicial (oculto desde la derecha)
+            if (variant === "full") {
+                gsap.set(textHumanoides, {
+                    clipPath: "inset(0 100% 0 0)", // Oculto desde la derecha
+                });
+                gsap.set(textAsociados, {
+                    clipPath: "inset(0 100% 0 0)", // Oculto desde la derecha
+                });
+            }
+
+            // SECUENCIA DE ANIMACIÓN
             tl
-                // Primero: mover isotipo a la izquierda (0.4s, brusco)
+                // 1. Círculo completo visible (0.8s de pausa inicial)
+                .to({}, { duration: 0.33 })
+
+                // 2. Primera apertura: exteriores se separan hasta tocar los interiores (±112.5)
                 .to(
-                    isotipoGroup,
-                    { x: 0, duration: 0.4, ease: "power2.inOut" },
+                    circleOuterLeft,
+                    { x: 112.5, duration: 0.5, ease: "power2.out" },
                     "+=0",
                 )
-
-                // Luego: revelar texto SUPERIOR (de izquierda a derecha, más rápido)
                 .to(
-                    textHumanoides,
+                    circleOuterRight,
+                    { x: -112.5, duration: 0.5, ease: "power2.out" },
+                    "<",
+                )
+                // (Los interiores ya son visibles, no necesitan fade-in)
+
+                // 3. Segunda apertura: interiores se abren Y A se revela (sincronizado)
+                .to(
+                    circleInnerLeft,
+                    { x: 0, duration: 0.5, ease: "power2.out" },
+                    "-=0.2",
+                )
+                .to(
+                    circleInnerRight,
+                    { x: 0, duration: 0.5, ease: "power2.out" },
+                    "<",
+                )
+                // Los exteriores se mueven junto con los interiores
+                .to(
+                    circleOuterLeft,
+                    { x: 0, duration: 0.5, ease: "power2.out" },
+                    "<",
+                )
+                .to(
+                    circleOuterRight,
+                    { x: 0, duration: 0.5, ease: "power2.out" },
+                    "<",
+                )
+                // Revelar la A con clip-path (sincronizado con apertura de interiores)
+                .to(
+                    letterA,
                     {
-                        clipPath: "inset(0 0% 0 0)",
-                        duration: 0.35,
+                        clipPath: "inset(0 7.5% 0 7.5%)",
+                        duration: 0.5,
                         ease: "power2.out",
                     },
-                    "-=0.1", // Empieza cuando el isotipo casi llegó
+                    "<", // Al mismo tiempo que se abren los interiores
                 )
 
-                // Al mismo tiempo: revelar texto INFERIOR (un poco más lento)
-                .to(
-                    textAsociados,
-                    {
-                        clipPath: "inset(0 0% 0 0)",
-                        duration: 0.4,
-                        ease: "power2.out",
-                    },
-                    "<", // Al mismo tiempo que el superior
-                );
-        }
+                // 4. Pausa antes de mover (para evitar superposición con texto)
+                .to({}, { duration: 0.4 }); // Aumentada de 0.2s a 0.4s
+
+            // 5. Movimiento lateral + revelación de texto (simultáneo, rápido y brusco)
+            if (variant === "full") {
+                tl
+                    // Primero: mover isotipo a la izquierda (0.4s, brusco)
+                    .to(
+                        isotipoGroup,
+                        { x: 0, duration: 0.4, ease: "power2.inOut" },
+                        "+=0",
+                    )
+
+                    // Luego: revelar texto SUPERIOR (de izquierda a derecha, más rápido)
+                    .to(
+                        textHumanoides,
+                        {
+                            clipPath: "inset(0 0% 0 0)",
+                            duration: 0.35,
+                            ease: "power2.out",
+                        },
+                        "-=0.1", // Empieza cuando el isotipo casi llegó
+                    )
+
+                    // Al mismo tiempo: revelar texto INFERIOR (un poco más lento)
+                    .to(
+                        textAsociados,
+                        {
+                            clipPath: "inset(0 0% 0 0)",
+                            duration: 0.4,
+                            ease: "power2.out",
+                        },
+                        "<", // Al mismo tiempo que el superior
+                    );
+            }
+        }); // Cierre del forEach
     });
 </script>
 
@@ -223,23 +229,5 @@ const { mode = "once", variant = "full", class: className = "" } = Astro.props;
         width: 100%;
         height: auto;
         overflow: visible;
-    }
-
-    /* Móvil: solo isotipo centrado */
-    @media (max-width: 639px) {
-        .animated-logo-wrapper[data-variant="full"] #logotipo-group {
-            display: none;
-        }
-
-        .animated-logo-wrapper[data-variant="full"] #humanoides-logo-svg {
-            /* Recortar viewBox visualmente para mostrar solo el isotipo centrado */
-            max-width: 300px;
-            margin: 0 auto;
-        }
-
-        .animated-logo-wrapper[data-variant="full"] #isotipo-group {
-            /* Mantener isotipo en posición original (x=0) */
-            transform: translateX(0) !important;
-        }
     }
 </style>
