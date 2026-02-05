@@ -9,18 +9,17 @@ const links = [
 ];
 
 const currentPath = Astro.url.pathname;
-const isBrand = currentPath === "/brand" || currentPath === "/brand/";
 ---
 
 <nav
-    class="w-full bg-brand-gray/80 backdrop-blur-md sticky top-0 z-50 border-b border-black/5"
+    class="w-full bg-brand-gray/90 backdrop-blur-lg sticky top-0 z-50 border-b border-black/5"
 >
     <div
-        class="max-w-[1240px] mx-auto px-8 h-20 flex items-center justify-between"
+        class="max-w-[1240px] mx-auto px-6 md:px-12 h-20 md:h-24 flex items-center justify-between"
     >
         <!-- Logo -->
-        <a href="/" class="flex items-center gap-3 group">
-            <div class="w-48">
+        <a href="/" class="flex items-center group relative z-[60]">
+            <div class="w-32 md:w-56 transition-all duration-300">
                 <AnimatedLogo
                     mode="static"
                     variant="full"
@@ -29,8 +28,8 @@ const isBrand = currentPath === "/brand" || currentPath === "/brand/";
             </div>
         </a>
 
-        <!-- Links -->
-        <div class="flex items-center gap-8">
+        <!-- Desktop Links -->
+        <div class="hidden md:flex items-center gap-10">
             {
                 links.map((link) => {
                     const isActive =
@@ -40,7 +39,7 @@ const isBrand = currentPath === "/brand" || currentPath === "/brand/";
                     return (
                         <a
                             href={link.href}
-                            class={`relative font-sans text-sm font-bold uppercase tracking-wider transition-colors hover:text-brand-red ${
+                            class={`relative font-sans text-xs font-bold uppercase tracking-[0.2em] transition-colors hover:text-brand-red ${
                                 isActive
                                     ? "text-brand-red"
                                     : "text-brand-red/60"
@@ -48,8 +47,45 @@ const isBrand = currentPath === "/brand" || currentPath === "/brand/";
                         >
                             {link.name}
                             {isActive && (
-                                <div class="absolute -bottom-1 left-0 w-full h-[2px] bg-brand-red transform origin-left transition-transform duration-300" />
+                                <div class="absolute -bottom-2 left-0 w-full h-[2.5px] bg-brand-red rounded-full" />
                             )}
+                        </a>
+                    );
+                })
+            }
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button
+            id="menu-toggle"
+            class="md:hidden relative z-[60] w-10 h-10 flex flex-col items-center justify-center gap-1.5 focus:outline-none"
+            aria-label="Toggle Menu"
+        >
+            <span
+                class="w-6 h-0.5 bg-brand-red transition-all duration-300 origin-center"
+                id="bar-1"></span>
+            <span
+                class="w-6 h-0.5 bg-brand-red transition-all duration-300 origin-center"
+                id="bar-2"></span>
+        </button>
+
+        <!-- Mobile Menu Overlay -->
+        <div
+            id="mobile-menu"
+            class="fixed inset-0 bg-brand-gray z-50 flex flex-col items-center justify-center gap-8 translate-x-full transition-transform duration-500 md:hidden"
+        >
+            {
+                links.map((link) => {
+                    const isActive =
+                        currentPath === link.href ||
+                        (link.href !== "/" &&
+                            currentPath.startsWith(link.href));
+                    return (
+                        <a
+                            href={link.href}
+                            class={`text-3xl font-sans font-bold uppercase tracking-wider ${isActive ? "text-brand-red" : "text-brand-red/40"}`}
+                        >
+                            {link.name}
                         </a>
                     );
                 })
@@ -58,9 +94,42 @@ const isBrand = currentPath === "/brand" || currentPath === "/brand/";
     </div>
 </nav>
 
+<script>
+    const toggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("mobile-menu");
+    const bar1 = document.getElementById("bar-1");
+    const bar2 = document.getElementById("bar-2");
+    let isOpen = false;
+
+    toggle?.addEventListener("click", () => {
+        isOpen = !isOpen;
+        if (isOpen) {
+            menu?.classList.remove("translate-x-full");
+            bar1?.classList.add("rotate-45", "translate-y-[4px]");
+            bar2?.classList.add("-rotate-45", "-translate-y-[4px]");
+            document.body.style.overflow = "hidden";
+        } else {
+            menu?.classList.add("translate-x-full");
+            bar1?.classList.remove("rotate-45", "translate-y-[4px]");
+            bar2?.classList.remove("-rotate-45", "-translate-y-[4px]");
+            document.body.style.overflow = "";
+        }
+    });
+
+    // Cerrar al hacer click en un link
+    menu?.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+            isOpen = false;
+            menu?.classList.add("translate-x-full");
+            bar1?.classList.remove("rotate-45", "translate-y-[4px]");
+            bar2?.classList.remove("-rotate-45", "-translate-y-[4px]");
+            document.body.style.overflow = "";
+        });
+    });
+</script>
+
 <style>
-    /* Estilos específicos si el diseño requiere ajustes finos de alineación */
     nav {
-        transition: all 0.3s ease;
+        transition: transform 0.3s ease;
     }
 </style>
