@@ -1,41 +1,25 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import AnimatedLogo from "../components/AnimatedLogo.astro";
-import BrandLoader from "../components/BrandLoader.astro";
 ---
 
-<Layout title="Brand identity | Humanoides & Asociados">
-    <BrandLoader />
+<Layout title="Brand Guidelines | Humanoides & Asociados">
     <main
-        class="min-h-screen bg-brand-gray flex flex-col gap-16 md:gap-24 pt-12 md:pt-20"
+        class="min-h-screen bg-brand-gray flex flex-col gap-16 md:gap-32 pt-24 md:pt-32"
     >
         <!-- Header -->
         <header class="max-w-[1240px] mx-auto w-full px-6 md:px-12">
-            <div class="max-w-4xl">
+            <div class="w-full">
                 <h1
-                    class="text-5xl md:text-8xl font-sans mb-6 tracking-tight text-brand-red"
+                    class="text-6xl md:text-9xl font-sans mb-6 tracking-tighter text-brand-red leading-[0.85]"
                 >
-                    Brand System
+                    Visual Identity
                 </h1>
                 <p
-                    class="text-xl md:text-2xl opacity-80 max-w-2xl text-brand-black leading-tight"
+                    class="text-xl md:text-3xl opacity-90 max-w-3xl text-brand-black leading-tight"
                 >
-                    Visualización de la identidad dinámica y cromática de
-                    Humanoides & Asociados.
-                </p>
-            </div>
-
-            <!-- Manifiesto -->
-            <div
-                class="mt-16 md:mt-24 border-l-4 border-brand-red pl-8 md:pl-12 py-4"
-            >
-                <p
-                    class="text-2xl md:text-5xl font-sans text-brand-black leading-[1.1] max-w-5xl tracking-tight"
-                >
-                    "Somos un Director de Arte y sus agentes. Listos para
-                    planear, diseñar y construir. Estamos aquí para inyectar
-                    eficiencia disruptiva a negocios que buscan sistemas
-                    eficientes y escalables de toda índole digital."
+                    Sistemas visuales, cromáticos y dinámicos que definen la
+                    esencia de Humanoides.
                 </p>
             </div>
         </header>
@@ -43,34 +27,33 @@ import BrandLoader from "../components/BrandLoader.astro";
         <!-- 1. Motion Showcase -->
         <section class="max-w-[1240px] mx-auto w-full px-6 md:px-12">
             <h2
-                class="text-xs uppercase tracking-widest opacity-50 mb-8 font-mono"
+                class="text-xs uppercase tracking-[0.3em] opacity-50 mb-10 font-mono"
             >
                 01. Dynamic Elements
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Loop -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
                 <div
                     class="bg-brand-salmon/30 p-12 rounded-[2.5rem] border border-brand-salmon shadow-sm flex flex-col items-center justify-center aspect-square md:aspect-video"
                 >
                     <AnimatedLogo mode="loop" variant="full" />
                     <span
-                        class="mt-8 text-xs font-mono opacity-40 text-brand-black/60"
+                        class="mt-8 text-xs font-mono opacity-40 text-brand-black/60 tracking-widest"
                         >Loop Sequence</span
                     >
                 </div>
-                <!-- Retractable -->
                 <div
                     class="bg-brand-black p-12 rounded-[2.5rem] flex flex-col items-center justify-center aspect-square md:aspect-video text-brand-salmon"
                 >
-                    <div class="w-full max-w-xs transition-all duration-500">
+                    <div class="w-full max-w-sm transition-all duration-500">
                         <AnimatedLogo
                             mode="retractable"
                             variant="iso"
                             color="var(--color-brand-salmon)"
                         />
                     </div>
-                    <span class="mt-8 text-xs font-mono opacity-40"
-                        >Retractable Isotype (Fluido)</span
+                    <span
+                        class="mt-8 text-xs font-mono opacity-40 tracking-widest"
+                        >Retractable Isotype</span
                     >
                 </div>
             </div>
@@ -79,20 +62,20 @@ import BrandLoader from "../components/BrandLoader.astro";
         <!-- 2. Static Chromatic Variants -->
         <section class="max-w-[1240px] mx-auto w-full px-6 md:px-12">
             <h2
-                class="text-xs uppercase tracking-widest opacity-50 mb-8 font-mono"
+                class="text-xs uppercase tracking-[0.3em] opacity-50 mb-10 font-mono"
             >
-                02. Chromatic Variants (Static)
+                02. Chromatic Variants
             </h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                 <!-- Red on Gray -->
                 <div
-                    class="bg-brand-gray border border-black/5 p-6 md:p-8 rounded-3xl md:rounded-[2rem] flex flex-col items-center gap-4 transition-all hover:bg-white/50"
+                    class="bg-brand-gray border border-black/5 p-8 md:p-12 rounded-3xl md:rounded-[2.5rem] flex flex-col items-center gap-6 transition-all hover:bg-white/50"
                 >
                     <AnimatedLogo
                         mode="static"
                         variant="iso"
                         color="var(--color-brand-red)"
-                        class="pointer-events-none"
+                        class="pointer-events-none w-16 md:w-24"
                     />
                     <span
                         class="text-[10px] font-mono opacity-50 tracking-tighter"
@@ -101,13 +84,13 @@ import BrandLoader from "../components/BrandLoader.astro";
                 </div>
                 <!-- Black on Salmon -->
                 <div
-                    class="bg-brand-salmon p-6 md:p-8 rounded-3xl md:rounded-[2rem] flex flex-col items-center gap-4 text-brand-black transition-all hover:bg-brand-salmon/80"
+                    class="bg-brand-salmon p-8 md:p-12 rounded-3xl md:rounded-[2.5rem] flex flex-col items-center gap-6 text-brand-black transition-all hover:bg-brand-salmon/80"
                 >
                     <AnimatedLogo
                         mode="static"
                         variant="iso"
                         color="currentColor"
-                        class="pointer-events-none"
+                        class="pointer-events-none w-16 md:w-24"
                     />
                     <span
                         class="text-[10px] font-mono opacity-50 tracking-tighter"
@@ -116,13 +99,13 @@ import BrandLoader from "../components/BrandLoader.astro";
                 </div>
                 <!-- White on Red -->
                 <div
-                    class="bg-brand-red p-6 md:p-8 rounded-3xl md:rounded-[2rem] flex flex-col items-center gap-4 text-white transition-all hover:bg-brand-red/90"
+                    class="bg-brand-red p-8 md:p-12 rounded-3xl md:rounded-[2.5rem] flex flex-col items-center gap-6 text-white transition-all hover:bg-brand-red/90"
                 >
                     <AnimatedLogo
                         mode="static"
                         variant="iso"
                         color="currentColor"
-                        class="pointer-events-none"
+                        class="pointer-events-none w-16 md:w-24"
                     />
                     <span
                         class="text-[10px] font-mono opacity-50 tracking-tighter"
@@ -131,13 +114,13 @@ import BrandLoader from "../components/BrandLoader.astro";
                 </div>
                 <!-- Gray on Black -->
                 <div
-                    class="bg-brand-black p-6 md:p-8 rounded-3xl md:rounded-[2rem] flex flex-col items-center gap-4 text-brand-gray transition-all hover:bg-brand-black/90"
+                    class="bg-brand-black p-8 md:p-12 rounded-3xl md:rounded-[2.5rem] flex flex-col items-center gap-6 text-brand-gray transition-all hover:bg-brand-black/90"
                 >
                     <AnimatedLogo
                         mode="static"
                         variant="iso"
                         color="currentColor"
-                        class="pointer-events-none"
+                        class="pointer-events-none w-16 md:w-24"
                     />
                     <span
                         class="text-[10px] font-mono opacity-50 tracking-tighter"
@@ -148,9 +131,9 @@ import BrandLoader from "../components/BrandLoader.astro";
             <!-- Full Logos Static -->
             <div class="mt-8 space-y-4 md:space-y-6">
                 <div
-                    class="bg-white p-8 md:p-12 rounded-[2rem] md:rounded-[2.5rem] border border-black/5 flex justify-center transition-all hover:shadow-lg"
+                    class="bg-white p-12 md:p-20 rounded-[2.5rem] md:rounded-[3rem] border border-black/5 flex justify-center transition-all hover:shadow-lg"
                 >
-                    <div class="w-full max-w-md">
+                    <div class="w-full max-w-xl">
                         <AnimatedLogo
                             mode="static"
                             variant="full"
@@ -159,9 +142,9 @@ import BrandLoader from "../components/BrandLoader.astro";
                     </div>
                 </div>
                 <div
-                    class="bg-brand-black p-8 md:p-12 rounded-[2rem] md:rounded-[2.5rem] flex justify-center text-brand-salmon transition-all hover:shadow-lg"
+                    class="bg-brand-black p-12 md:p-20 rounded-[2.5rem] md:rounded-[3rem] flex justify-center text-brand-salmon transition-all hover:shadow-lg"
                 >
-                    <div class="w-full max-w-md">
+                    <div class="w-full max-w-xl">
                         <AnimatedLogo
                             mode="static"
                             variant="full"
@@ -175,41 +158,39 @@ import BrandLoader from "../components/BrandLoader.astro";
         <!-- 3. Typography -->
         <section class="max-w-[1240px] mx-auto w-full px-6 md:px-12">
             <h2
-                class="text-xs uppercase tracking-widest opacity-50 mb-12 font-mono"
+                class="text-xs uppercase tracking-[0.3em] opacity-50 mb-14 font-mono"
             >
-                03. Typography & Typeface
+                03. Typography
             </h2>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24">
                 <!-- Sans: Anek Malayalam -->
                 <div
-                    class="relative flex flex-col border-b border-black/5 pb-12 lg:border-b-0 lg:pb-0"
+                    class="relative flex flex-col border-b border-black/5 pb-16 lg:border-b-0 lg:pb-0"
                 >
                     <div
-                        class="absolute -top-4 left-6 z-10 transition-transform hover:scale-105"
+                        class="absolute -top-5 left-10 z-10 transition-transform hover:scale-105"
                     >
                         <span
-                            class="text-[10px] md:text-xs font-mono px-4 py-1.5 bg-brand-red text-white rounded-lg shadow-sm font-bold block"
+                            class="text-[10px] md:text-sm font-mono px-5 py-2 bg-brand-red text-white rounded-xl shadow-lg font-bold block"
+                            >Primary: Anek Malayalam</span
                         >
-                            Primary: Anek Malayalam
-                        </span>
                     </div>
-
                     <div
-                        class="bg-white/40 p-8 md:p-12 pt-14 rounded-[2.5rem] border border-black/5 backdrop-blur-sm flex-grow"
+                        class="bg-white/40 p-10 md:p-16 pt-20 rounded-[3rem] border border-black/5 backdrop-blur-sm flex-grow"
                     >
                         <div class="font-sans">
                             <div
-                                class="text-[min(18vw,120px)] font-bold leading-[0.75] mb-8 tracking-tighter overflow-hidden"
+                                class="text-[min(22vw,160px)] font-bold leading-[0.7] mb-12 tracking-tighter"
                             >
                                 AaBbCc
                             </div>
                             <div
-                                class="text-3xl md:text-6xl font-bold leading-none mb-10 opacity-80 text-brand-black"
+                                class="text-4xl md:text-7xl font-bold leading-[0.9] mb-12 opacity-90 text-brand-black"
                             >
                                 Humanoides & Asociados
                             </div>
                             <p
-                                class="text-sm md:text-lg opacity-60 leading-relaxed max-w-sm"
+                                class="text-base md:text-xl opacity-70 leading-relaxed"
                             >
                                 Utilizada para el logotipo y encabezados. Una
                                 tipografía sans-serif con personalidad técnica y
@@ -219,35 +200,32 @@ import BrandLoader from "../components/BrandLoader.astro";
                         </div>
                     </div>
                 </div>
-
                 <!-- Mono: Kode Mono -->
                 <div class="relative flex flex-col">
                     <div
-                        class="absolute -top-4 left-6 z-10 transition-transform hover:scale-105"
+                        class="absolute -top-5 left-10 z-10 transition-transform hover:scale-105"
                     >
                         <span
-                            class="text-[10px] md:text-xs font-mono px-4 py-1.5 bg-brand-black text-brand-salmon rounded-lg shadow-sm font-bold block"
+                            class="text-[10px] md:text-sm font-mono px-5 py-2 bg-brand-black text-brand-salmon rounded-xl shadow-lg font-bold block"
+                            >Secondary: Kode Mono</span
                         >
-                            Secondary: Kode Mono
-                        </span>
                     </div>
-
                     <div
-                        class="bg-white/40 p-8 md:p-12 pt-14 rounded-[2.5rem] border border-black/5 backdrop-blur-sm flex-grow"
+                        class="bg-white/40 p-10 md:p-16 pt-20 rounded-[3rem] border border-black/5 backdrop-blur-sm flex-grow"
                     >
                         <div class="font-mono">
                             <div
-                                class="text-[min(18vw,110px)] font-bold leading-[0.75] mb-8 tracking-tighter overflow-hidden"
+                                class="text-[min(22vw,140px)] font-bold leading-[0.7] mb-12 tracking-tighter"
                             >
                                 012345
                             </div>
                             <div
-                                class="text-3xl md:text-6xl font-bold leading-none mb-10 uppercase opacity-80 text-brand-black"
+                                class="text-4xl md:text-7xl font-bold leading-[0.9] mb-12 uppercase opacity-90 text-brand-black"
                             >
                                 Digital Precision
                             </div>
                             <p
-                                class="text-sm md:text-lg opacity-60 leading-relaxed max-w-sm"
+                                class="text-base md:text-xl opacity-70 leading-relaxed"
                             >
                                 Tipografía monoespaciada para metadatos,
                                 etiquetas y elementos técnicos de la interfaz.
@@ -261,60 +239,60 @@ import BrandLoader from "../components/BrandLoader.astro";
         </section>
 
         <!-- 4. Color Palette Detail -->
-        <section class="max-w-[1240px] mx-auto w-full px-6 md:px-12 mb-32">
+        <section class="max-w-[1240px] mx-auto w-full px-6 md:px-12 mb-40">
             <h2
-                class="text-xs uppercase tracking-widest opacity-50 mb-8 font-mono"
+                class="text-xs uppercase tracking-[0.3em] opacity-50 mb-10 font-mono"
             >
                 04. Color Swatches
             </h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
                 <div class="group">
                     <div
-                        class="h-40 md:h-56 bg-brand-red rounded-2xl md:rounded-[2rem] shadow-sm mb-4 transition-all group-hover:-translate-y-2 group-hover:shadow-xl"
+                        class="h-48 md:h-72 bg-brand-red rounded-3xl md:rounded-[2.5rem] shadow-md mb-6 transition-all group-hover:-translate-y-3 group-hover:shadow-2xl"
                     >
                     </div>
                     <p
-                        class="text-sm font-mono font-bold uppercase text-brand-black"
+                        class="text-base font-mono font-bold uppercase text-brand-black tracking-wider"
                     >
                         Brand Red
                     </p>
-                    <p class="text-xs font-mono opacity-50">#FA2A2A</p>
+                    <p class="text-sm font-mono opacity-50">#FA2A2A</p>
                 </div>
                 <div class="group">
                     <div
-                        class="h-40 md:h-56 bg-brand-salmon rounded-2xl md:rounded-[2rem] shadow-sm border border-black/5 mb-4 transition-all group-hover:-translate-y-2 group-hover:shadow-xl"
+                        class="h-48 md:h-72 bg-brand-salmon rounded-3xl md:rounded-[2.5rem] shadow-md border border-black/5 mb-6 transition-all group-hover:-translate-y-3 group-hover:shadow-2xl"
                     >
                     </div>
                     <p
-                        class="text-sm font-mono font-bold uppercase text-brand-black"
+                        class="text-base font-mono font-bold uppercase text-brand-black tracking-wider"
                     >
                         Soft Salmon
                     </p>
-                    <p class="text-xs font-mono opacity-50">#FFEEDB</p>
+                    <p class="text-sm font-mono opacity-50">#FFEEDB</p>
                 </div>
                 <div class="group">
                     <div
-                        class="h-40 md:h-56 bg-brand-gray rounded-2xl md:rounded-[2rem] shadow-sm border border-black/5 mb-4 transition-all group-hover:-translate-y-2 group-hover:shadow-xl"
+                        class="h-48 md:h-72 bg-brand-gray rounded-3xl md:rounded-[2.5rem] shadow-md border border-black/5 mb-6 transition-all group-hover:-translate-y-3 group-hover:shadow-2xl"
                     >
                     </div>
                     <p
-                        class="text-sm font-mono font-bold uppercase text-brand-black"
+                        class="text-base font-mono font-bold uppercase text-brand-black tracking-wider"
                     >
                         Metric Gray
                     </p>
-                    <p class="text-xs font-mono opacity-50">#D4DAD3</p>
+                    <p class="text-sm font-mono opacity-50">#D4DAD3</p>
                 </div>
                 <div class="group">
                     <div
-                        class="h-40 md:h-56 bg-brand-black rounded-2xl md:rounded-[2rem] shadow-sm mb-4 transition-all group-hover:-translate-y-2 group-hover:shadow-xl"
+                        class="h-48 md:h-72 bg-brand-black rounded-3xl md:rounded-[2.5rem] shadow-md mb-6 transition-all group-hover:-translate-y-3 group-hover:shadow-2xl"
                     >
                     </div>
                     <p
-                        class="text-sm font-mono font-bold uppercase text-brand-black"
+                        class="text-base font-mono font-bold uppercase text-brand-black tracking-wider"
                     >
                         Void Black
                     </p>
-                    <p class="text-xs font-mono opacity-50">#2F2F2F</p>
+                    <p class="text-sm font-mono opacity-50">#2F2F2F</p>
                 </div>
             </div>
         </section>
@@ -322,7 +300,6 @@ import BrandLoader from "../components/BrandLoader.astro";
 </Layout>
 
 <style>
-    /* Desactivar animaciones para los logos estáticos si es necesario */
     .pointer-events-none :global(svg) {
         pointer-events: none;
     }
