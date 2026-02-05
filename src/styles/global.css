@@ -3,7 +3,6 @@
 @theme {
   /* Fonts */
   --font-sans: 'Anek Malayalam', system-ui, sans-serif;
-  --font-brand: 'Anek Malayalam', sans-serif;
   --font-mono: 'Kode Mono', monospace;
 
   /* Colors from Manual */
@@ -36,5 +35,6 @@
   h2,
   h3 {
     font-weight: 700;
+    color: var(--color-primary);
   }
 }
