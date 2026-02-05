@@ -1,0 +1,66 @@
+---
+import AnimatedLogo from "./AnimatedLogo.astro";
+
+const links = [
+    { name: "Brand", href: "/brand" },
+    { name: "Core", href: "/" },
+    { name: "Log", href: "/log" },
+    { name: "Sync", href: "/sync" },
+];
+
+const currentPath = Astro.url.pathname;
+const isBrand = currentPath === "/brand" || currentPath === "/brand/";
+---
+
+<nav
+    class="w-full bg-brand-gray/80 backdrop-blur-md sticky top-0 z-50 border-b border-black/5"
+>
+    <div
+        class="max-w-[1240px] mx-auto px-8 h-20 flex items-center justify-between"
+    >
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-3 group">
+            <div class="w-48">
+                <AnimatedLogo
+                    mode="static"
+                    variant="full"
+                    color="var(--color-brand-red)"
+                />
+            </div>
+        </a>
+
+        <!-- Links -->
+        <div class="flex items-center gap-8">
+            {
+                links.map((link) => {
+                    const isActive =
+                        currentPath === link.href ||
+                        (link.href !== "/" &&
+                            currentPath.startsWith(link.href));
+                    return (
+                        <a
+                            href={link.href}
+                            class={`relative font-sans text-sm font-bold uppercase tracking-wider transition-colors hover:text-brand-red ${
+                                isActive
+                                    ? "text-brand-red"
+                                    : "text-brand-red/60"
+                            }`}
+                        >
+                            {link.name}
+                            {isActive && (
+                                <div class="absolute -bottom-1 left-0 w-full h-[2px] bg-brand-red transform origin-left transition-transform duration-300" />
+                            )}
+                        </a>
+                    );
+                })
+            }
+        </div>
+    </div>
+</nav>
+
+<style>
+    /* Estilos específicos si el diseño requiere ajustes finos de alineación */
+    nav {
+        transition: all 0.3s ease;
+    }
+</style>

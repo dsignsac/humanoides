@@ -6,18 +6,38 @@ import BrandLoader from "../components/BrandLoader.astro";
 
 <Layout title="Brand identity | Humanoides & Asociados">
     <BrandLoader />
-    <main class="min-h-screen bg-brand-gray p-8 md:p-16 flex flex-col gap-16">
+    <main
+        class="min-h-screen bg-brand-gray p-6 md:p-16 flex flex-col gap-16 md:gap-24"
+    >
         <!-- Header -->
-        <header class="max-w-4xl">
-            <h1 class="text-5xl font-sans mb-4">Brand System</h1>
-            <p class="text-xl opacity-80 max-w-2xl text-brand-black">
-                Visualización de la identidad dinámica y cromática de Humanoides
-                & Asociados.
-            </p>
+        <header class="max-w-[1240px] mx-auto w-full">
+            <div class="max-w-4xl">
+                <h1 class="text-5xl md:text-7xl font-sans mb-6">
+                    Brand System
+                </h1>
+                <p
+                    class="text-xl md:text-2xl opacity-80 max-w-2xl text-brand-black leading-tight"
+                >
+                    Visualización de la identidad dinámica y cromática de
+                    Humanoides & Asociados.
+                </p>
+            </div>
+
+            <!-- Manifiesto -->
+            <div class="mt-16 md:mt-24 border-l-4 border-brand-red pl-8 py-4">
+                <p
+                    class="text-2xl md:text-4xl font-sans text-brand-black leading-[1.1] max-w-5xl tracking-tight"
+                >
+                    "Somos un Director de Arte y sus agentes. Listos para
+                    planear, diseñar y construir. Estamos aquí para inyectar
+                    eficiencia disruptiva a negocios que buscan sistemas
+                    eficientes y escalables de toda índole digital."
+                </p>
+            </div>
         </header>
 
         <!-- 1. Motion Showcase -->
-        <section>
+        <section class="max-w-[1240px] mx-auto w-full">
             <h2
                 class="text-xs uppercase tracking-widest opacity-50 mb-8 font-mono"
             >
@@ -52,7 +72,7 @@ import BrandLoader from "../components/BrandLoader.astro";
         </section>
 
         <!-- 2. Static Chromatic Variants -->
-        <section>
+        <section class="max-w-[1240px] mx-auto w-full">
             <h2
                 class="text-xs uppercase tracking-widest opacity-50 mb-8 font-mono"
             >
@@ -144,67 +164,91 @@ import BrandLoader from "../components/BrandLoader.astro";
         </section>
 
         <!-- 3. Typography -->
-        <section>
+        <section class="max-w-[1240px] mx-auto w-full">
             <h2
-                class="text-xs uppercase tracking-widest opacity-50 mb-8 font-mono"
+                class="text-xs uppercase tracking-widest opacity-50 mb-12 font-mono"
             >
                 03. Typography & Typeface
             </h2>
-            <div
-                class="grid grid-cols-1 lg:grid-cols-2 gap-16 bg-white/50 p-12 rounded-[2.5rem] border border-black/5 backdrop-blur-md"
-            >
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24">
                 <!-- Sans: Anek Malayalam -->
-                <div class="space-y-6">
-                    <span
-                        class="text-xs font-mono px-3 py-1 bg-brand-red text-white rounded-full"
-                        >Primary: Anek Malayalam</span
+                <div
+                    class="relative flex flex-col border-b border-black/5 pb-12 lg:border-b-0 lg:pb-0"
+                >
+                    <div class="absolute -top-4 left-6 z-10">
+                        <span
+                            class="text-[10px] md:text-xs font-mono px-4 py-1.5 bg-brand-red text-white rounded-lg shadow-sm font-bold"
+                        >
+                            Primary: Anek Malayalam
+                        </span>
+                    </div>
+
+                    <div
+                        class="bg-white/40 p-10 pt-14 rounded-[2.5rem] border border-black/5 backdrop-blur-sm flex-grow"
                     >
-                    <div class="font-sans">
-                        <div
-                            class="text-8xl font-bold leading-[0.8] mb-4 tracking-tighter"
-                        >
-                            AaBbCc
+                        <div class="font-sans">
+                            <div
+                                class="text-[min(18vw,120px)] font-bold leading-[0.75] mb-8 tracking-tighter overflow-hidden"
+                            >
+                                AaBbCc
+                            </div>
+                            <div
+                                class="text-3xl md:text-5xl font-bold leading-none mb-10 opacity-80"
+                            >
+                                Humanoides & Asociados
+                            </div>
+                            <p
+                                class="text-sm md:text-base opacity-60 leading-relaxed max-w-sm"
+                            >
+                                Utilizada para el logotipo y encabezados. Una
+                                tipografía sans-serif con personalidad técnica y
+                                curvas precisas. Peso Bold (700) para impacto
+                                jerárquico.
+                            </p>
                         </div>
-                        <div
-                            class="text-4xl font-bold leading-none mb-8 opacity-80 mt-8"
-                        >
-                            Humanoides & Asociados
-                        </div>
-                        <p class="text-sm opacity-60 leading-relaxed max-w-sm">
-                            Utilizada para el logotipo y encabezados. Una
-                            tipografía sans-serif con personalidad técnica y
-                            curvas precisas. Peso Bold (700) para impacto
-                            jerárquico.
-                        </p>
                     </div>
                 </div>
+
                 <!-- Mono: Kode Mono -->
-                <div class="space-y-6 lg:border-l lg:border-black/5 lg:pl-16">
-                    <span
-                        class="text-xs font-mono px-3 py-1 bg-brand-black text-brand-salmon rounded-full"
-                        >Secondary: Kode Mono</span
-                    >
-                    <div class="font-mono">
-                        <div
-                            class="text-7xl font-bold leading-[0.8] mb-4 tracking-tighter"
+                <div class="relative flex flex-col">
+                    <div class="absolute -top-4 left-6 z-10">
+                        <span
+                            class="text-[10px] md:text-xs font-mono px-4 py-1.5 bg-brand-black text-brand-salmon rounded-lg shadow-sm font-bold"
                         >
-                            012345
+                            Secondary: Kode Mono
+                        </span>
+                    </div>
+
+                    <div
+                        class="bg-white/40 p-10 pt-14 rounded-[2.5rem] border border-black/5 backdrop-blur-sm flex-grow"
+                    >
+                        <div class="font-mono">
+                            <div
+                                class="text-[min(18vw,110px)] font-bold leading-[0.75] mb-8 tracking-tighter overflow-hidden"
+                            >
+                                012345
+                            </div>
+                            <div
+                                class="text-3xl md:text-5xl font-bold leading-none mb-10 uppercase opacity-80"
+                            >
+                                Digital Precision
+                            </div>
+                            <p
+                                class="text-sm md:text-base opacity-60 leading-relaxed max-w-sm"
+                            >
+                                Tipografía monoespaciada para metadatos,
+                                etiquetas y elementos técnicos de la interfaz.
+                                Refuerza el concepto de "humanoide" y
+                                codificación.
+                            </p>
                         </div>
-                        <div class="text-3xl leading-none mb-8 mt-8 uppercase">
-                            Digital Precision
-                        </div>
-                        <p class="text-sm opacity-60 leading-relaxed max-w-sm">
-                            Tipografía monoespaciada para metadatos, etiquetas y
-                            elementos técnicos de la interfaz. Refuerza el
-                            concepto de "humanoide" y codificación.
-                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- 4. Color Palette Detail -->
-        <section>
+        <section class="max-w-[1240px] mx-auto w-full mb-24">
             <h2
                 class="text-xs uppercase tracking-widest opacity-50 mb-8 font-mono"
             >
@@ -216,7 +260,9 @@ import BrandLoader from "../components/BrandLoader.astro";
                         class="h-40 bg-brand-red rounded-2xl shadow-sm mb-4 transition-transform group-hover:-translate-y-2"
                     >
                     </div>
-                    <p class="text-sm font-mono font-bold uppercase">
+                    <p
+                        class="text-sm font-mono font-bold uppercase text-brand-black"
+                    >
                         Brand Red
                     </p>
                     <p class="text-xs font-mono opacity-50">#FA2A2A</p>
@@ -226,7 +272,9 @@ import BrandLoader from "../components/BrandLoader.astro";
                         class="h-40 bg-brand-salmon rounded-2xl shadow-sm border border-black/5 mb-4 transition-transform group-hover:-translate-y-2"
                     >
                     </div>
-                    <p class="text-sm font-mono font-bold uppercase">
+                    <p
+                        class="text-sm font-mono font-bold uppercase text-brand-black"
+                    >
                         Soft Salmon
                     </p>
                     <p class="text-xs font-mono opacity-50">#FFEEDB</p>
@@ -236,7 +284,9 @@ import BrandLoader from "../components/BrandLoader.astro";
                         class="h-40 bg-brand-gray rounded-2xl shadow-sm border border-black/5 mb-4 transition-transform group-hover:-translate-y-2"
                     >
                     </div>
-                    <p class="text-sm font-mono font-bold uppercase">
+                    <p
+                        class="text-sm font-mono font-bold uppercase text-brand-black"
+                    >
                         Metric Gray
                     </p>
                     <p class="text-xs font-mono opacity-50">#D4DAD3</p>
@@ -246,7 +296,9 @@ import BrandLoader from "../components/BrandLoader.astro";
                         class="h-40 bg-brand-black rounded-2xl shadow-sm mb-4 transition-transform group-hover:-translate-y-2"
                     >
                     </div>
-                    <p class="text-sm font-mono font-bold uppercase">
+                    <p
+                        class="text-sm font-mono font-bold uppercase text-brand-black"
+                    >
                         Void Black
                     </p>
                     <p class="text-xs font-mono opacity-50">#2F2F2F</p>
