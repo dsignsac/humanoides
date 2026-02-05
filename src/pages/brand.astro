@@ -1,0 +1,162 @@
+---
+import Layout from "../layouts/Layout.astro";
+import AnimatedLogo from "../components/AnimatedLogo.astro";
+import BrandLoader from "../components/BrandLoader.astro";
+---
+
+<Layout title="Brand Identity | Humanoides & Asociados">
+    <BrandLoader />
+    <main class="min-h-screen bg-brand-gray p-8 md:p-16 flex flex-col gap-16">
+        <!-- Header -->
+        <header class="max-w-4xl">
+            <h1 class="text-5xl font-sans mb-4">Brand Elements</h1>
+            <p class="text-xl opacity-80 max-w-2xl">
+                Exploración de la identidad visual dinámica. El logotipo no es
+                estático; se expande, se contrae y respira.
+            </p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- 1. Full Logo Loop -->
+            <section
+                class="bg-brand-salmon/20 p-8 rounded-3xl border border-brand-salmon/30 flex flex-col justify-between"
+            >
+                <div>
+                    <span
+                        class="text-xs uppercase tracking-widest opacity-50 mb-2 block"
+                        >Element 01</span
+                    >
+                    <h2 class="text-2xl font-sans mb-6">Logotipo Full Loop</h2>
+                </div>
+                <div class="flex-grow flex items-center justify-center py-12">
+                    <AnimatedLogo mode="loop" variant="full" />
+                </div>
+                <p class="text-sm opacity-60">
+                    Secuencia completa de marca en repetición infinita.
+                </p>
+            </section>
+
+            <!-- 2. Isotipo Retractable -->
+            <section
+                class="bg-brand-black p-8 rounded-3xl border border-brand-black flex flex-col justify-between text-brand-salmon"
+            >
+                <div>
+                    <span
+                        class="text-xs uppercase tracking-widest opacity-50 mb-2 block"
+                        >Element 02</span
+                    >
+                    <h2 class="text-2xl font-sans mb-6">Isotipo Retráctil</h2>
+                </div>
+                <div class="flex-grow flex items-center justify-center py-12">
+                    <div class="w-64">
+                        <AnimatedLogo mode="retractable" variant="iso" />
+                    </div>
+                </div>
+                <p class="text-sm opacity-60">
+                    Efecto ping-pong (abre y cierra). Ideal para iconos
+                    interactivos o firmas.
+                </p>
+            </section>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Proposal: Loading Animation -->
+            <section
+                class="md:col-span-2 bg-brand-red p-8 rounded-3xl text-brand-salmon flex flex-col md:flex-row gap-8 items-center"
+            >
+                <div class="flex-grow">
+                    <span
+                        class="text-xs uppercase tracking-widest opacity-70 mb-2 block"
+                        >Proposal</span
+                    >
+                    <h2 class="text-3xl font-sans mb-4">Loading Sequence</h2>
+                    <p class="opacity-90 mb-6">
+                        Para el loding, proponemos una versión acelerada del
+                        isotipo retráctil. Transmite agilidad y precisión
+                        técnica.
+                    </p>
+                    <div class="flex gap-4">
+                        <div
+                            class="px-6 py-2 bg-brand-salmon text-brand-red rounded-full font-sans text-sm font-bold"
+                        >
+                            Acelerado 0.8s
+                        </div>
+                        <div
+                            class="px-6 py-2 border border-brand-salmon/30 rounded-full font-sans text-sm"
+                        >
+                            Easing: Power4.inOut
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="w-48 h-48 bg-white/10 rounded-2xl flex items-center justify-center p-8 backdrop-blur-sm"
+                >
+                    <!-- Versión loading: pequeña y rápida -->
+                    <AnimatedLogo
+                        mode="retractable"
+                        variant="iso"
+                        class="scale-125"
+                    />
+                </div>
+            </section>
+
+            <!-- UI Integration -->
+            <section
+                class="border-2 border-dashed border-brand-black/20 p-8 rounded-3xl flex flex-col justify-center"
+            >
+                <h3 class="font-sans text-xl mb-4 text-center">
+                    Favicon Animado
+                </h3>
+                <div class="flex justify-center mb-6">
+                    <div
+                        class="w-16 h-16 bg-white rounded-lg shadow-xl flex items-center justify-center p-2"
+                    >
+                        <!-- Simulación del favicon animado -->
+                        <img
+                            src="/favicon-animated.svg"
+                            class="w-full"
+                            alt="Favicon Pulse"
+                        />
+                    </div>
+                </div>
+                <p class="text-xs text-center opacity-70">
+                    Propuesta: Un pulso sutil en la pestaña del navegador para
+                    indicar proceso activo.
+                </p>
+            </section>
+        </div>
+
+        <!-- Typography -->
+        <section class="max-w-4xl border-t border-brand-black/10 pt-16">
+            <h2 class="text-3xl font-sans mb-8">Typography & Colors</h2>
+            <div class="flex flex-wrap gap-12">
+                <div class="flex flex-col gap-2">
+                    <div class="w-24 h-24 bg-brand-red rounded-full shadow-lg">
+                    </div>
+                    <span class="text-sm font-mono mt-2">#FA2A2A</span>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <div
+                        class="w-24 h-24 bg-brand-salmon rounded-full shadow-lg border border-black/5"
+                    >
+                    </div>
+                    <span class="text-sm font-mono mt-2">#FFEEDB</span>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <div
+                        class="w-24 h-24 bg-brand-gray rounded-full shadow-lg border border-black/5"
+                    >
+                    </div>
+                    <span class="text-sm font-mono mt-2">#D4DAD3</span>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <div
+                        class="w-24 h-24 bg-brand-black rounded-full shadow-lg"
+                    >
+                    </div>
+                    <span class="text-sm font-mono mt-2">#2F2F2F</span>
+                </div>
+            </div>
+        </section>
+    </main>
+</Layout>

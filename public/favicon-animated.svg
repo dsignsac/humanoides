@@ -1,0 +1,46 @@
+<svg width="32" height="32" viewBox="0 0 751 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Semicírculos exteriores -->
+  <path d="M0 150C0 67.1573 67.1573 0 150 0V300C67.1573 300 0 232.843 0 150Z" fill="#FA2A2A">
+    <animateTransform 
+      attributeName="transform" 
+      type="translate" 
+      values="112.5 0; 0 0; 112.5 0" 
+      dur="2s" 
+      repeatCount="indefinite" 
+      calcMode="spline" 
+      keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" />
+  </path>
+  <path d="M601 0C683.843 0 751 67.1573 751 150C751 232.843 683.843 300 601 300V0Z" fill="#FA2A2A">
+    <animateTransform 
+      attributeName="transform" 
+      type="translate" 
+      values="-112.5 0; 0 0; -112.5 0" 
+      dur="2s" 
+      repeatCount="indefinite" 
+      calcMode="spline" 
+      keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" />
+  </path>
+
+  <!-- Semicírculos interiores -->
+  <path d="M113 150C113 67.1573 180.157 0 263 0V300C180.157 300 113 232.843 113 150Z" fill="#FA2A2A">
+    <animateTransform 
+      attributeName="transform" 
+      type="translate" 
+      values="0 0; 0 0; 0 0" 
+      dur="2s" 
+      repeatCount="indefinite" />
+  </path>
+  <path d="M488 0C570.843 0 638 67.1573 638 150C638 232.843 570.843 300 488 300V0Z" fill="#FA2A2A">
+    <animateTransform 
+      attributeName="transform" 
+      type="translate" 
+      values="0 0; 0 0; 0 0" 
+      dur="2s" 
+      repeatCount="indefinite" />
+  </path>
+
+  <!-- Letra A central -->
+  <path d="M303.878 300H242.928L329.638 6.05997H421.408L507.888 300H446.938L378.398 45.85H372.878L303.878 300ZM441.648 225.02H308.708V176.95H441.648V225.02Z" fill="#FA2A2A">
+    <animate attributeName="opacity" values="0.2; 1; 0.2" dur="2s" repeatCount="indefinite" />
+  </path>
+</svg>

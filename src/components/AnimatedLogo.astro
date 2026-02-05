@@ -1,6 +1,6 @@
 ---
 interface Props {
-    mode?: "once" | "loop";
+    mode?: "once" | "loop" | "retractable";
     variant?: "full" | "iso";
     class?: string;
 }
@@ -98,8 +98,9 @@ const { mode = "once", variant = "full", class: className = "" } = Astro.props;
             // Timeline principal
             const tl = gsap.timeline({
                 defaults: { ease: "power2.inOut" },
-                repeat: mode === "loop" ? -1 : 0,
-                repeatDelay: mode === "loop" ? 2 : 0,
+                repeat: mode === "loop" || mode === "retractable" ? -1 : 0,
+                repeatDelay: mode === "loop" || mode === "retractable" ? 1 : 0,
+                yoyo: mode === "retractable",
             });
 
             // ESTADO INICIAL: círculos juntos en el centro
