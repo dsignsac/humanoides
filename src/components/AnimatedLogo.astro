@@ -234,13 +234,7 @@ const {
             }
 
             // --- HOVER ANIMATION LOGIC ---
-            // Solo aplicar si no es una animación de intro en curso
             let hoverTl = gsap.timeline({ paused: true });
-
-            // Cerrar hasta ser un punto (punto central aproximado es x=375)
-            // Desplazamiento necesario para que los semicírculos se toquen: centro es 375.5
-            // circleOuterLeft está en x=0 (y su borde derecho es 150) -> necesita ir a 225.5
-            // circleOuterRight está en x=0 (y su borde izquierdo es 601) -> necesita ir a -225.5
 
             hoverTl
                 .to(circleOuterLeft, {
