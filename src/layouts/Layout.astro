@@ -2,6 +2,7 @@
 import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
 import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
 
 interface Props {
 	title?: string;
@@ -103,13 +104,14 @@ const { title = "HA" } = Astro.props;
 
 		<ClientRouter />
 	</head>
-	<body class="min-h-screen">
+	<body class="min-h-screen flex flex-col">
 		<Navbar />
 		<slot />
+		<Footer />
 
-		<script is:inline src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"
-		></script>
-		<script is:inline>
+		<script>
+			import Lenis from "lenis";
+
 			const lenis = new Lenis({
 				duration: 1.2,
 				easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -118,7 +120,7 @@ const { title = "HA" } = Astro.props;
 				smoothMultiplier: 1,
 			});
 
-			function raf(time) {
+			function raf(time: number) {
 				lenis.raf(time);
 				requestAnimationFrame(raf);
 			}
@@ -131,19 +133,29 @@ const { title = "HA" } = Astro.props;
 
 			// Anchor Link Smooth Scroll
 			document.addEventListener("click", (e) => {
-				const anchor = e.target.closest('a[href^="/#"]');
+				const target = e.target as HTMLElement;
+				const anchor = target.closest('a[href^="/#"], a[href^="#"]');
 				if (anchor) {
 					const href = anchor.getAttribute("href");
-					const targetId = href.split("#")[1];
-					const targetElement = document.getElementById(targetId);
-					if (targetElement) {
-						e.preventDefault();
-						lenis.scrollTo(targetElement, {
-							offset: -100, // Offset for fixed navbar
-							duration: 1.5,
-						});
-						// Update URL without jump
-						history.pushState(null, null, href);
+					if (!href) return;
+
+					// Extract ID: correct if it starts with /# or just #
+					const targetId = href.startsWith("/#")
+						? href.split("/#")[1]
+						: href.split("#")[1];
+
+					// If we are on the home page or the link is just a hash on the current page
+					if (targetId) {
+						const targetElement = document.getElementById(targetId);
+						if (targetElement) {
+							e.preventDefault();
+							lenis.scrollTo(targetElement, {
+								offset: -80, // Offset for fixed navbar
+								duration: 1.5,
+							});
+							// Update URL without jump
+							history.pushState(null, null, href);
+						}
 					}
 				}
 			});
