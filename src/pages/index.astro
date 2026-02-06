@@ -122,10 +122,10 @@ import Layout from "../layouts/Layout.astro";
                             >Corporate Structure</span
                         >
                         <h2
-                            class="text-6xl md:text-8xl font-sans font-800 tracking-tighter text-brand-black uppercase leading-[0.85]"
+                            class="text-6xl md:text-8xl font-sans font-800 tracking-tighter text-brand-black leading-[0.85]"
                         >
-                            Humanos &<br /><span class="text-brand-red"
-                                >Agentes</span
+                            Altamente<br /><span class="text-brand-red"
+                                >Inteligentes</span
                             >
                         </h2>
                     </div>
@@ -139,28 +139,23 @@ import Layout from "../layouts/Layout.astro";
                 </div>
 
                 <div
-                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+                    class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8"
                 >
                     <!-- 1. David (CEO) -->
                     <div class="group">
                         <div
-                            class="aspect-[3/4] w-full overflow-hidden bg-white relative mb-6 md:grayscale md:group-hover:grayscale-0 transition-all duration-500 rounded-[2rem]"
+                            class="aspect-[3/4] w-full overflow-hidden bg-white relative mb-6 rounded-[2rem]"
                         >
                             <img
                                 src="/miembros/chad.png"
                                 alt="David Salcedo"
                                 class="w-full h-full object-cover object-top"
                             />
-                            <div
-                                class="absolute bottom-0 left-0 w-full p-4 bg-brand-red text-white text-xs font-mono uppercase tracking-widest opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300"
-                            >
-                                100% Organic
-                            </div>
                         </div>
                         <h3
                             class="text-2xl font-sans font-700 text-brand-black uppercase tracking-tight"
                         >
-                            David Salcedo
+                            David
                         </h3>
                         <p
                             class="text-xs font-mono text-brand-black/50 uppercase tracking-widest mt-1"
@@ -172,18 +167,13 @@ import Layout from "../layouts/Layout.astro";
                     <!-- 2. Chad (Associate) -->
                     <div class="group">
                         <div
-                            class="aspect-[3/4] w-full overflow-hidden bg-white relative mb-6 md:grayscale md:group-hover:grayscale-0 transition-all duration-500 rounded-[2rem]"
+                            class="aspect-[3/4] w-full overflow-hidden bg-white relative mb-6 rounded-[2rem]"
                         >
                             <img
                                 src="/miembros/chad.png"
                                 alt="Chad"
                                 class="w-full h-full object-cover object-top"
                             />
-                            <div
-                                class="absolute bottom-0 left-0 w-full p-4 bg-brand-black text-white text-xs font-mono uppercase tracking-widest opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300"
-                            >
-                                GPT-4 Turbo
-                            </div>
                         </div>
                         <h3
                             class="text-2xl font-sans font-700 text-brand-black uppercase tracking-tight"
@@ -200,18 +190,13 @@ import Layout from "../layouts/Layout.astro";
                     <!-- 3. Gemma (Associate) -->
                     <div class="group">
                         <div
-                            class="aspect-[3/4] w-full overflow-hidden bg-white relative mb-6 md:grayscale md:group-hover:grayscale-0 transition-all duration-500 rounded-[2rem]"
+                            class="aspect-[3/4] w-full overflow-hidden bg-white relative mb-6 rounded-[2rem]"
                         >
                             <img
                                 src="/miembros/gemma.png"
                                 alt="Gemma"
                                 class="w-full h-full object-cover object-top"
                             />
-                            <div
-                                class="absolute bottom-0 left-0 w-full p-4 bg-brand-black text-white text-xs font-mono uppercase tracking-widest opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300"
-                            >
-                                Google Gemini
-                            </div>
                         </div>
                         <h3
                             class="text-2xl font-sans font-700 text-brand-black uppercase tracking-tight"
@@ -228,18 +213,13 @@ import Layout from "../layouts/Layout.astro";
                     <!-- 4. Claudio (Associate) -->
                     <div class="group">
                         <div
-                            class="aspect-[3/4] w-full overflow-hidden bg-white relative mb-6 md:grayscale md:group-hover:grayscale-0 transition-all duration-500 rounded-[2rem]"
+                            class="aspect-[3/4] w-full overflow-hidden bg-white relative mb-6 rounded-[2rem]"
                         >
                             <img
                                 src="/miembros/claudio.png"
                                 alt="Claudio"
                                 class="w-full h-full object-cover object-top"
                             />
-                            <div
-                                class="absolute bottom-0 left-0 w-full p-4 bg-brand-black text-white text-xs font-mono uppercase tracking-widest opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300"
-                            >
-                                Claude 3.5 Sonnet
-                            </div>
                         </div>
                         <h3
                             class="text-2xl font-sans font-700 text-brand-black uppercase tracking-tight"
@@ -252,29 +232,52 @@ import Layout from "../layouts/Layout.astro";
                             Strategic Planning
                         </p>
                     </div>
+
+                    <!-- 5. Connie (Associate) -->
+                    <div class="group">
+                        <div
+                            class="aspect-[3/4] w-full overflow-hidden bg-white relative mb-6 rounded-[2rem]"
+                        >
+                            <img
+                                src="/miembros/connie.png"
+                                alt="Connie"
+                                class="w-full h-full object-cover object-top"
+                            />
+                        </div>
+                        <h3
+                            class="text-2xl font-sans font-700 text-brand-black uppercase tracking-tight"
+                        >
+                            Connie
+                        </h3>
+                        <p
+                            class="text-xs font-mono text-brand-black/50 uppercase tracking-widest mt-1"
+                        >
+                            Design & Art
+                        </p>
+                    </div>
                 </div>
             </div>
+
+            <style>
+                @keyframes marquee {
+                    0% {
+                        transform: translateX(0);
+                    }
+                    100% {
+                        transform: translateX(-33.333%);
+                    }
+                }
+
+                .animate-marquee {
+                    animation: marquee 20s linear infinite;
+                    width: max-content;
+                }
+
+                .logo-gray {
+                    filter: invert(91%) sepia(3%) saturate(143%)
+                        hue-rotate(65deg) brightness(91%) contrast(90%);
+                }
+            </style>
         </section>
-    </main>
-
-    <style>
-        @keyframes marquee {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-33.333%);
-            }
-        }
-
-        .animate-marquee {
-            animation: marquee 20s linear infinite;
-            width: max-content;
-        }
-
-        .logo-gray {
-            filter: invert(91%) sepia(3%) saturate(143%) hue-rotate(65deg)
-                brightness(91%) contrast(90%);
-        }
-    </style>
-</Layout>
+    </main></Layout
+>
