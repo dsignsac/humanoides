@@ -131,34 +131,58 @@ const { title = "HA" } = Astro.props;
 				lenis.scrollTo(0, { immediate: true });
 			});
 
-			// Anchor Link Smooth Scroll
-			document.addEventListener("click", (e) => {
-				const target = e.target as HTMLElement;
-				const anchor = target.closest('a[href^="/#"], a[href^="#"]');
-				if (anchor) {
-					const href = anchor.getAttribute("href");
-					if (!href) return;
+			// GLOBAL SMOOTH SCROLL INTERCEPTOR
+			// Captures clicks on anchor links to enforce smooth scroll for local targets
+			// Uses 'capture: true' and 'stopImmediatePropagation' to bypass Astro ClientRouter logic
+			document.addEventListener(
+				"click",
+				(e) => {
+					const target = e.target as HTMLElement;
+					// Find closest anchor tag
+					const link = target.closest("a");
+					if (!link) return;
 
-					// Extract ID: correct if it starts with /# or just #
-					const targetId = href.startsWith("/#")
-						? href.split("/#")[1]
-						: href.split("#")[1];
+					const href = link.getAttribute("href");
+					if (!href || !href.includes("#")) return;
 
-					// If we are on the home page or the link is just a hash on the current page
-					if (targetId) {
-						const targetElement = document.getElementById(targetId);
-						if (targetElement) {
+					// Split URL into path and hash parts
+					const [pathStr, hashStr] = href.split("#");
+					if (!hashStr) return; // e.g. href="#"
+
+					// Analyze paths to check if it's the same page
+					const currentPath = window.location.pathname;
+					// If pathStr is empty (href="#id"), it implies current page.
+					// If pathStr is "/" and current is "/", it matches.
+					// Normalization: remove trailing slashes for comparison if necessary, but simple usually works.
+
+					const isCurrentPage =
+						pathStr === "" ||
+						pathStr === currentPath ||
+						(pathStr === "/" && currentPath === "/");
+
+					if (isCurrentPage) {
+						const el = document.getElementById(hashStr);
+						if (el) {
+							// Prevent default jump and stop other handlers (Astro Router)
 							e.preventDefault();
-							lenis.scrollTo(targetElement, {
-								offset: -80, // Offset for fixed navbar
+							e.stopPropagation();
+							e.stopImmediatePropagation();
+
+							// Execute smooth scroll
+							lenis.scrollTo(el, {
+								offset: -96, // Navbar height (24 * 4 = 96px) compensation
 								duration: 1.5,
+								easing: (t) =>
+									Math.min(1, 1.001 - Math.pow(2, -10 * t)),
 							});
-							// Update URL without jump
-							history.pushState(null, null, href);
+
+							// Optional: update URL hash silently if desired, but omitting it prevents jumps
+							// history.replaceState(null, null, '#' + hashStr);
 						}
 					}
-				}
-			});
+				},
+				{ capture: true },
+			);
 		</script>
 	</body>
 </html>

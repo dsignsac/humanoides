@@ -1,0 +1,135 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { Image } from "astro:assets";
+
+export function getStaticPaths() {
+    return [
+        {
+            params: { id: "tesla-cybertruck" },
+            props: {
+                project: {
+                    id: "001",
+                    client: "TESLA",
+                    title: "CYBERTRUCK UI",
+                    service: "INTERFACE DESIGN",
+                    year: "2024",
+                    role: "Lead Design Agency",
+                    description: "Redefining the driver-machine interface for the post-apocalyptic era. A robust approach to vehicle control systems that prioritizes raw data and minimal latency.",
+                    images: [
+                        "/projects/tesla.webp", 
+                        "/projects/tesla-1.webp", 
+                        "/projects/tesla-2.webp"
+                    ],
+                    stack: ["Qt", "C++", "Figma", "Protopie"]
+                }
+            }
+        },
+        {
+            params: { id: "nasa-jpl" },
+            props: {
+                project: {
+                    id: "002",
+                    client: "NASA / JPL",
+                    title: "MARS ROVER DASHBOARD",
+                    service: "DATA VISUALIZATION",
+                    year: "2023",
+                    role: "Mission Control UI",
+                    description: "Interfacing with autonomous agents on the Red Planet. High-contrast data streams visualized for rapid decision making under latency constraints.",
+                    images: ["/projects/mars.jpg"],
+                     stack: ["WebGL", "D3.js", "Rust"]
+                }
+            }
+        }
+    ];
+}
+
+const { project } = Astro.props;
+---
+
+<Layout title={`${project.client} // ${project.title}`}>
+    <main class="min-h-screen bg-brand-salmon text-brand-black pb-0 selection:bg-brand-red selection:text-white">
+        
+        <div class="max-w-[1440px] mx-auto w-full px-6 md:px-6 pt-32 md:pt-48">
+            
+            <!-- HEADER -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 pb-8 border-b border-brand-black/10 gap-8">
+                <div>
+                    <span class="block text-xs font-mono tracking-[0.3em] mb-4 text-brand-red uppercase">Project // {project.id}</span>
+                    <h1 class="text-6xl md:text-8xl lg:text-9xl font-sans font-800 uppercase leading-[0.85] tracking-tighter text-brand-black">
+                        {project.client}<br/>
+                        <span class="text-brand-red">{project.title}</span>
+                    </h1>
+                </div>
+            </div>
+
+            <!-- PROJECT DATA & DESCRIPTION -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-24">
+                <!-- META DATA COLUMNS -->
+                <div class="md:col-span-4 grid grid-cols-2 gap-y-8 gap-x-4 content-start">
+                    <div>
+                         <h3 class="text-[10px] font-mono uppercase opacity-40 tracking-widest mb-2">Client</h3>
+                         <p class="font-sans text-lg font-500">{project.client}</p>
+                    </div>
+                    <div>
+                        <h3 class="text-[10px] font-mono uppercase opacity-40 tracking-widest mb-2">Service</h3>
+                        <p class="font-sans text-lg font-500">{project.service}</p>
+                   </div>
+                   <div>
+                        <h3 class="text-[10px] font-mono uppercase opacity-40 tracking-widest mb-2">Year</h3>
+                        <p class="font-sans text-lg font-500">{project.year}</p>
+                   </div>
+                   <div>
+                        <h3 class="text-[10px] font-mono uppercase opacity-40 tracking-widest mb-2">Role</h3>
+                        <p class="font-sans text-lg font-500">{project.role}</p>
+                   </div>
+                </div>
+
+                <!-- DESCRIPTION -->
+                <div class="md:col-span-8">
+                    <p class="text-2xl md:text-4xl font-sans font-300 leading-tight text-brand-black mb-12">
+                        {project.description}
+                    </p>
+                    
+                    <div class="flex gap-3 flex-wrap">
+                        {project.stack.map(tech => (
+                            <span class="px-4 py-2 border border-brand-black/20 rounded-full text-xs font-sans font-bold uppercase tracking-wider hover:bg-brand-black hover:text-white transition-colors cursor-default">
+                                {tech}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            <!-- GALLERY (Vertical Stack) -->
+            <section class="flex flex-col gap-8 md:gap-16 w-full">
+                {project.images.map((img, index) => (
+                    <div class="w-full bg-brand-gray/10 p-1 md:p-2 rounded-lg overflow-hidden">
+                         <div class="relative w-full overflow-hidden bg-brand-black/5">
+                             <!-- Placeholder handling for demo -->
+                             <img 
+                                src={img} 
+                                class="w-full h-auto object-cover block grayscale hover:grayscale-0 transition-all duration-700"
+                                alt={`${project.title} - View ${index + 1}`}
+                                loading="lazy"
+                             />
+                         </div>
+                    </div>
+                ))}
+            </section>
+
+        </div>
+
+        <!-- FOOTER NAVIGATION (Full Width) -->
+        <div class="w-full border-t border-brand-black/10 mt-32">
+             <div class="max-w-[1440px] mx-auto w-full px-6 md:px-6 py-12 flex justify-between items-center group cursor-pointer hover:text-brand-red transition-colors duration-300">
+                <div>
+                     <span class="block text-xs font-mono tracking-[0.2em] mb-2 uppercase opacity-40">Next Project</span>
+                     <h2 class="text-4xl md:text-6xl font-sans font-800 uppercase tracking-tight">Hilton App</h2>
+                </div>
+                <div class="text-4xl md:text-6xl transition-colors duration-300">
+                    →
+                </div>
+            </div>
+        </div>
+    </main>
+</Layout>

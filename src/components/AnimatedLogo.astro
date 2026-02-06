@@ -4,6 +4,7 @@ interface Props {
     variant?: "full" | "iso";
     class?: string;
     color?: string;
+    align?: "left" | "center" | "right";
 }
 
 const {
@@ -11,6 +12,7 @@ const {
     variant = "full",
     class: className = "",
     color = "var(--color-brand-red)",
+    align = "center",
 } = Astro.props;
 ---
 
@@ -18,6 +20,7 @@ const {
     class={`animated-logo-wrapper ${className}`}
     data-mode={mode}
     data-variant={variant}
+    data-align={align}
     style={{ color }}
 >
     <svg
@@ -85,6 +88,7 @@ const {
         wrappers.forEach((wrapper) => {
             const mode = wrapper.getAttribute("data-mode") || "once";
             const variant = wrapper.getAttribute("data-variant") || "full";
+            const align = wrapper.getAttribute("data-align") || "center";
 
             // Elementos DENTRO de este wrapper específico
             const isotipoGroup = wrapper.querySelector("#isotipo-group");
@@ -236,31 +240,48 @@ const {
             // --- HOVER ANIMATION LOGIC ---
             let hoverTl = gsap.timeline({ paused: true });
 
+            let alignShift = 0;
+            if (align === "left") alignShift = -225.5;
+            else if (align === "right") alignShift = 225.5;
+
             hoverTl
-                .to(circleOuterLeft, {
-                    x: 225.5,
-                    duration: 0.4,
-                    ease: "power3.inOut",
-                })
+                .to(
+                    isotipoGroup,
+                    { x: alignShift, duration: 0.4, ease: "power3.inOut" },
+                    0,
+                )
+                .to(
+                    circleOuterLeft,
+                    {
+                        x: 225.5,
+                        duration: 0.4,
+                        ease: "power3.inOut",
+                    },
+                    0,
+                )
                 .to(
                     circleOuterRight,
                     { x: -225.5, duration: 0.4, ease: "power3.inOut" },
-                    "<",
+                    0,
                 )
                 .to(
                     circleInnerLeft,
                     { x: 112.5, duration: 0.4, ease: "power3.inOut" },
-                    "<",
+                    0,
                 )
                 .to(
                     circleInnerRight,
                     { x: -112.5, duration: 0.4, ease: "power3.inOut" },
-                    "<",
+                    0,
                 )
                 .to(
                     logotipoGroup,
-                    { x: -225.5, duration: 0.4, ease: "power3.inOut" },
-                    "<",
+                    {
+                        x: -225.5 + alignShift,
+                        duration: 0.4,
+                        ease: "power3.inOut",
+                    },
+                    0,
                 )
                 .to(
                     letterA,

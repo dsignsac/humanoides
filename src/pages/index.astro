@@ -2,16 +2,16 @@
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import heroImage from "../assets/hero_studio.png";
+import PortfolioSection from "../components/PortfolioSection.astro";
 ---
 
 <Layout title="Humanoides & Asociados | Eficiencia Disruptiva">
     <main class="w-full bg-brand-gray text-brand-black">
-        <!-- Hero Section with Background Image -->
+        <!-- Hero Section -->
         <section
             id="hero"
             class="relative w-full h-screen flex flex-col mt-0 bg-brand-black"
         >
-            <!-- Background Image -->
             <div class="absolute inset-0 z-0">
                 <Image
                     src={heroImage}
@@ -22,20 +22,17 @@ import heroImage from "../assets/hero_studio.png";
                     format="webp"
                 />
             </div>
-
-            <!-- Horizontal Gradient Overlay for Text Readability -->
             <div
                 class="absolute inset-0 z-[5] hidden md:block bg-gradient-to-r from-transparent via-brand-black/50 to-brand-black/95"
             >
             </div>
 
-            <!-- Main Content Container -->
+            <!-- Content -->
             <div
-                id="core"
-                class="relative z-10 flex-1 flex flex-col justify-center items-center pt-20 md:pt-28 lg:pt-32 xl:pt-56 pb-8 md:pb-12 xl:pb-24"
+                class="relative z-10 flex-1 flex flex-col justify-center items-center pt-32 md:pt-48 lg:pt-56 xl:pt-64 pb-8 md:pb-12 xl:pb-24"
             >
                 <div
-                    class="max-w-[1440px] w-full text-center md:text-right px-6 md:px-0"
+                    class="max-w-[1440px] w-full text-center md:text-right px-6"
                 >
                     <h1
                         class="font-sans font-bold text-brand-red mb-6 md:mb-12"
@@ -49,12 +46,11 @@ import heroImage from "../assets/hero_studio.png";
                         Somos un profesional y sus agentes, listos para producir
                         tu próximo éxito digital.
                     </p>
-
                     <div
                         class="flex justify-center md:justify-end mb-12 md:mb-0"
                     >
                         <a
-                            href="#team"
+                            href="#core"
                             class="group relative inline-flex items-center px-8 py-4 bg-transparent border border-brand-gray text-brand-gray font-sans font-800 uppercase tracking-widest text-sm transition-all duration-300 hover:border-brand-red hover:bg-brand-red hover:text-brand-gray overflow-hidden rounded-full"
                         >
                             <span class="relative z-10">Ver Asociados</span>
@@ -63,7 +59,7 @@ import heroImage from "../assets/hero_studio.png";
                 </div>
             </div>
 
-            <!-- Brand Logos Marquee - Red Background -->
+            <!-- Header Marquee -->
             <div
                 class="relative z-10 w-full bg-brand-red py-6 md:py-8 border-t border-white/10 overflow-hidden"
             >
@@ -103,151 +99,206 @@ import heroImage from "../assets/hero_studio.png";
             </div>
         </section>
 
-        <!-- Team Section -->
-        <section id="team" class="relative w-full py-32">
-            <div class="max-w-[1440px] mx-auto w-full px-6 md:px-0">
+        <!-- TEAM SECTION (CORE) -->
+        <section
+            id="core"
+            class="relative w-full bg-brand-gray text-brand-black py-24 border-t border-brand-black/10"
+        >
+            <div class="max-w-[1440px] mx-auto w-full px-6 relative">
+                <!-- Header (Divider Line Here) -->
                 <div
-                    class="flex flex-col md:flex-row justify-between items-end mb-24 gap-8"
+                    class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 pb-8 border-b border-brand-black/10"
                 >
                     <div>
                         <span
                             class="text-xs font-mono uppercase tracking-[0.3em] text-brand-red mb-4 block"
-                            >Corporate Structure</span
+                            >// INDEX_01</span
                         >
                         <h2
-                            class="text-6xl md:text-8xl font-sans font-800 tracking-tighter text-brand-black leading-[0.85]"
+                            class="text-5xl md:text-8xl font-sans font-800 tracking-tighter text-brand-black leading-[0.9] md:leading-[0.85]"
                         >
-                            Altamente<br /><span class="text-brand-red"
-                                >Inteligentes</span
+                            Core<br /><span class="text-brand-red"
+                                >Personnel</span
                             >
                         </h2>
                     </div>
-                    <p
-                        class="text-brand-black/60 max-w-md text-lg leading-relaxed font-300"
-                    >
-                        Una fuerza laboral híbrida optimizada para la
-                        eficiencia, el sarcasmo corporativo y resultados
-                        disruptivos.
-                    </p>
+                    <div class="hidden md:block text-right">
+                        <p
+                            class="text-[10px] font-mono uppercase tracking-widest opacity-60"
+                        >
+                            Human Resources Div.
+                        </p>
+                        <p
+                            class="text-[10px] font-mono uppercase tracking-widest opacity-60"
+                        >
+                            System: v.1.0 (1998)
+                        </p>
+                    </div>
                 </div>
 
+                <!-- MEMBERS GRID (Simple Hover) -->
                 <div
-                    class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8"
+                    class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 border-t border-l border-brand-black/10"
                 >
-                    <!-- 1. David (CEO) -->
-                    <div class="group">
+                    {/* 1. David */}
+                    <article
+                        class="group relative border-r border-b border-brand-black/10 p-6 hover:bg-brand-salmon transition-colors duration-300"
+                    >
+                        <div class="flex justify-between items-start mb-4">
+                            <span
+                                class="font-mono text-[10px] text-brand-red opacity-60"
+                                >REF: 001</span
+                            >
+                        </div>
                         <div
-                            class="aspect-[3/4] w-full overflow-hidden bg-white relative mb-6 rounded-[2rem]"
+                            class="aspect-[3/4] w-full overflow-hidden mb-6 rounded-[1.5rem] bg-brand-black/5"
                         >
                             <img
                                 src="/miembros/chad.png"
-                                alt="David Salcedo"
+                                alt="David"
                                 class="w-full h-full object-cover object-top"
+                                loading="lazy"
                             />
                         </div>
                         <h3
-                            class="text-2xl font-sans font-700 text-brand-black uppercase tracking-tight"
+                            class="text-lg font-sans font-bold uppercase text-brand-black"
                         >
                             David
                         </h3>
                         <p
-                            class="text-xs font-mono text-brand-black/50 uppercase tracking-widest mt-1"
+                            class="text-[10px] font-mono uppercase tracking-widest opacity-60"
                         >
                             Founder & CEO
                         </p>
-                    </div>
+                    </article>
 
-                    <!-- 2. Chad (Associate) -->
-                    <div class="group">
+                    {/* 2. Chad */}
+                    <article
+                        class="group relative border-r border-b border-brand-black/10 p-6 hover:bg-brand-salmon transition-colors duration-300"
+                    >
+                        <div class="flex justify-between items-start mb-4">
+                            <span
+                                class="font-mono text-[10px] text-brand-red opacity-60"
+                                >REF: 002</span
+                            >
+                        </div>
                         <div
-                            class="aspect-[3/4] w-full overflow-hidden bg-white relative mb-6 rounded-[2rem]"
+                            class="aspect-[3/4] w-full overflow-hidden mb-6 rounded-[1.5rem] bg-brand-black/5"
                         >
                             <img
                                 src="/miembros/chad.png"
                                 alt="Chad"
                                 class="w-full h-full object-cover object-top"
+                                loading="lazy"
                             />
                         </div>
                         <h3
-                            class="text-2xl font-sans font-700 text-brand-black uppercase tracking-tight"
+                            class="text-lg font-sans font-bold uppercase text-brand-black"
                         >
                             Chad
                         </h3>
                         <p
-                            class="text-xs font-mono text-brand-black/50 uppercase tracking-widest mt-1"
+                            class="text-[10px] font-mono uppercase tracking-widest opacity-60"
                         >
                             Senior Associate
                         </p>
-                    </div>
+                    </article>
 
-                    <!-- 3. Gemma (Associate) -->
-                    <div class="group">
+                    {/* 3. Gemma */}
+                    <article
+                        class="group relative border-r border-b border-brand-black/10 p-6 hover:bg-brand-salmon transition-colors duration-300"
+                    >
+                        <div class="flex justify-between items-start mb-4">
+                            <span
+                                class="font-mono text-[10px] text-brand-red opacity-60"
+                                >REF: 003</span
+                            >
+                        </div>
                         <div
-                            class="aspect-[3/4] w-full overflow-hidden bg-white relative mb-6 rounded-[2rem]"
+                            class="aspect-[3/4] w-full overflow-hidden mb-6 rounded-[1.5rem] bg-brand-black/5"
                         >
                             <img
                                 src="/miembros/gemma.png"
                                 alt="Gemma"
                                 class="w-full h-full object-cover object-top"
+                                loading="lazy"
                             />
                         </div>
                         <h3
-                            class="text-2xl font-sans font-700 text-brand-black uppercase tracking-tight"
+                            class="text-lg font-sans font-bold uppercase text-brand-black"
                         >
                             Gemma
                         </h3>
                         <p
-                            class="text-xs font-mono text-brand-black/50 uppercase tracking-widest mt-1"
+                            class="text-[10px] font-mono uppercase tracking-widest opacity-60"
                         >
                             Operations
                         </p>
-                    </div>
+                    </article>
 
-                    <!-- 4. Claudio (Associate) -->
-                    <div class="group">
+                    {/* 4. Claudio */}
+                    <article
+                        class="group relative border-r border-b border-brand-black/10 p-6 hover:bg-brand-salmon transition-colors duration-300"
+                    >
+                        <div class="flex justify-between items-start mb-4">
+                            <span
+                                class="font-mono text-[10px] text-brand-red opacity-60"
+                                >REF: 004</span
+                            >
+                        </div>
                         <div
-                            class="aspect-[3/4] w-full overflow-hidden bg-white relative mb-6 rounded-[2rem]"
+                            class="aspect-[3/4] w-full overflow-hidden mb-6 rounded-[1.5rem] bg-brand-black/5"
                         >
                             <img
                                 src="/miembros/claudio.png"
                                 alt="Claudio"
                                 class="w-full h-full object-cover object-top"
+                                loading="lazy"
                             />
                         </div>
                         <h3
-                            class="text-2xl font-sans font-700 text-brand-black uppercase tracking-tight"
+                            class="text-lg font-sans font-bold uppercase text-brand-black"
                         >
                             Claudio
                         </h3>
                         <p
-                            class="text-xs font-mono text-brand-black/50 uppercase tracking-widest mt-1"
+                            class="text-[10px] font-mono uppercase tracking-widest opacity-60"
                         >
                             Strategic Planning
                         </p>
-                    </div>
+                    </article>
 
-                    <!-- 5. Connie (Associate) -->
-                    <div class="group">
+                    {/* 5. Connie */}
+                    <article
+                        class="group relative border-r border-b border-brand-black/10 p-6 hover:bg-brand-salmon transition-colors duration-300"
+                    >
+                        <div class="flex justify-between items-start mb-4">
+                            <span
+                                class="font-mono text-[10px] text-brand-red opacity-60"
+                                >REF: 005</span
+                            >
+                        </div>
                         <div
-                            class="aspect-[3/4] w-full overflow-hidden bg-white relative mb-6 rounded-[2rem]"
+                            class="aspect-[3/4] w-full overflow-hidden mb-6 rounded-[1.5rem] bg-brand-black/5"
                         >
                             <img
                                 src="/miembros/connie.png"
                                 alt="Connie"
                                 class="w-full h-full object-cover object-top"
+                                loading="lazy"
                             />
                         </div>
                         <h3
-                            class="text-2xl font-sans font-700 text-brand-black uppercase tracking-tight"
+                            class="text-lg font-sans font-bold uppercase text-brand-black"
                         >
                             Connie
                         </h3>
                         <p
-                            class="text-xs font-mono text-brand-black/50 uppercase tracking-widest mt-1"
+                            class="text-[10px] font-mono uppercase tracking-widest opacity-60"
                         >
                             Design & Art
                         </p>
-                    </div>
+                    </article>
                 </div>
             </div>
 
@@ -260,17 +311,18 @@ import heroImage from "../assets/hero_studio.png";
                         transform: translateX(-33.333%);
                     }
                 }
-
                 .animate-marquee {
                     animation: marquee 20s linear infinite;
                     width: max-content;
                 }
-
                 .logo-gray {
                     filter: invert(91%) sepia(3%) saturate(143%)
                         hue-rotate(65deg) brightness(91%) contrast(90%);
                 }
             </style>
         </section>
-    </main></Layout
->
+
+        <!-- PORTFOLIO / LOG SECTION -->
+        <PortfolioSection />
+    </main>
+</Layout>

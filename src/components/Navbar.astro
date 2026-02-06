@@ -3,6 +3,7 @@ import AnimatedLogo from "./AnimatedLogo.astro";
 
 const links = [
     { name: "Core", href: "/#core" },
+    { name: "Log", href: "/#log" },
     {
         name: "Sync",
         href: "https://calendly.com/humanoidesyasociados/sync",
@@ -18,7 +19,7 @@ const currentPath = Astro.url.pathname;
     class="fixed top-0 left-0 w-full bg-brand-gray z-50 border-b-[3px] border-brand-red h-20 md:h-24 flex items-center"
 >
     <div
-        class="max-w-[1440px] mx-auto w-full flex items-center justify-between px-6 md:px-0"
+        class="max-w-[1440px] mx-auto w-full flex items-center justify-between px-6"
     >
         <!-- Brand Identity Section -->
         <a href="/" class="flex items-center group relative z-[60]">
@@ -39,6 +40,7 @@ const currentPath = Astro.url.pathname;
                         mode="static"
                         variant="full"
                         color="var(--color-brand-red)"
+                        align="left"
                     />
                 </div>
             </div>
@@ -47,30 +49,18 @@ const currentPath = Astro.url.pathname;
         <!-- Main Navigation -->
         <div class="flex items-center gap-6 md:gap-10">
             {
-                links.map((link) => {
-                    // Check if this link is active
-                    const isActive =
-                        link.href === currentPath ||
-                        (link.href === "/#core" && currentPath === "/");
-
-                    return (
-                        <a
-                            href={link.href}
-                            target={link.external ? "_blank" : undefined}
-                            rel={
-                                link.external
-                                    ? "noopener noreferrer"
-                                    : undefined
-                            }
-                            class="nav-link group relative font-sans text-sm md:text-[18px] uppercase tracking-[0.2em] font-500 text-brand-red"
-                        >
-                            {link.name}
-                            <div
-                                class={`nav-underline absolute -bottom-2 left-0 h-[3px] bg-brand-red transition-all duration-300 ${isActive ? "w-full" : "w-0 group-hover:w-full"}`}
-                            />
-                        </a>
-                    );
-                })
+                links.map((link) => (
+                    <a
+                        href={link.href}
+                        target={link.external ? "_blank" : undefined}
+                        rel={link.external ? "noopener noreferrer" : undefined}
+                        class="nav-link group relative font-sans text-sm md:text-[18px] uppercase tracking-[0.2em] font-500 text-brand-red"
+                        data-target={link.href.replace("/#", "")}
+                    >
+                        {link.name}
+                        <div class="nav-underline absolute -bottom-2 left-0 h-[3px] bg-brand-red transition-all duration-300 w-0 group-hover:w-full" />
+                    </a>
+                ))
             }
         </div>
     </div>
@@ -80,4 +70,37 @@ const currentPath = Astro.url.pathname;
     nav {
         transition: all 0.3s ease;
     }
+    .nav-link.active .nav-underline {
+        width: 100% !important;
+    }
 </style>
+
+<script>
+    // ScrollSpy Logic
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    const observerOptions = {
+        root: null,
+        rootMargin: "-50% 0px -50% 0px", // Trigger when section is in middle of viewport
+        threshold: 0,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute("id");
+                if (!id) return;
+
+                navLinks.forEach((link) => {
+                    link.classList.remove("active");
+                    if (link.getAttribute("data-target") === id) {
+                        link.classList.add("active");
+                    }
+                });
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach((section) => observer.observe(section));
+</script>
