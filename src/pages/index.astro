@@ -24,10 +24,10 @@ import Layout from "../layouts/Layout.astro";
             <!-- Main Content Container -->
             <div
                 id="core"
-                class="relative z-10 flex-1 flex flex-col justify-center items-center p-6 pt-20 md:pt-28 lg:pt-32 xl:pt-56 pb-8 md:pb-12 xl:pb-24"
+                class="relative z-10 flex-1 flex flex-col justify-center items-center pt-20 md:pt-28 lg:pt-32 xl:pt-56 pb-8 md:pb-12 xl:pb-24"
             >
                 <div
-                    class="max-w-[1440px] w-full text-center md:text-right px-6 md:px-24"
+                    class="max-w-[1440px] w-full text-center md:text-right px-6 md:px-0"
                 >
                     <h1
                         class="font-sans font-bold text-brand-red mb-6 md:mb-12"
@@ -36,11 +36,34 @@ import Layout from "../layouts/Layout.astro";
                         Make Internet<br />Work Again
                     </h1>
                     <p
-                        class="text-xl md:text-[32px] md:leading-[36px] font-500 max-w-md md:max-w-2xl mx-auto md:mx-0 md:ml-auto text-brand-black/90 mb-3 md:mb-8"
+                        class="text-xl md:text-[32px] md:leading-[36px] font-500 max-w-md md:max-w-2xl mx-auto md:mx-0 md:ml-auto text-brand-black/90 mb-8 md:mb-12"
                     >
                         Somos un profesional y sus agentes, listos para producir
                         tu próximo éxito digital.
                     </p>
+
+                    <div
+                        class="flex justify-center md:justify-end mb-12 md:mb-0"
+                    >
+                        <a
+                            href="#team"
+                            class="group relative inline-flex items-center gap-3 px-8 py-4 bg-brand-red text-white font-sans font-500 uppercase tracking-widest text-sm transition-all duration-300 hover:bg-brand-black overflow-hidden rounded-full"
+                        >
+                            <span class="relative z-10">Ver Asociados</span>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-5 h-5 relative z-10 transition-transform duration-300 group-hover:translate-y-1"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path d="M12 5v14M19 12l-7 7-7-7"></path>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -80,6 +103,155 @@ import Layout from "../layouts/Layout.astro";
                             </>
                         ))
                     }
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section
+            id="team"
+            class="relative w-full py-32 border-b border-brand-black/10"
+        >
+            <div class="max-w-[1440px] mx-auto w-full px-6 md:px-0">
+                <div
+                    class="flex flex-col md:flex-row justify-between items-end mb-24 gap-8"
+                >
+                    <div>
+                        <span
+                            class="text-xs font-mono uppercase tracking-[0.3em] text-brand-red mb-4 block"
+                            >Corporate Structure</span
+                        >
+                        <h2
+                            class="text-6xl md:text-8xl font-sans font-800 tracking-tighter text-brand-black uppercase leading-[0.85]"
+                        >
+                            Humanos &<br /><span class="text-brand-red"
+                                >Agentes</span
+                            >
+                        </h2>
+                    </div>
+                    <p
+                        class="text-brand-black/60 max-w-md text-lg leading-relaxed font-300"
+                    >
+                        Una fuerza laboral híbrida optimizada para la
+                        eficiencia, el sarcasmo corporativo y resultados
+                        disruptivos.
+                    </p>
+                </div>
+
+                <div
+                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+                >
+                    <!-- 1. David (CEO) -->
+                    <div class="group">
+                        <div
+                            class="aspect-[3/4] w-full overflow-hidden bg-white relative mb-6 md:grayscale md:group-hover:grayscale-0 transition-all duration-500 rounded-[2rem]"
+                        >
+                            <img
+                                src="/miembros/chad.png"
+                                alt="David Salcedo"
+                                class="w-full h-full object-cover object-top"
+                            />
+                            <div
+                                class="absolute bottom-0 left-0 w-full p-4 bg-brand-red text-white text-xs font-mono uppercase tracking-widest opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300"
+                            >
+                                100% Organic
+                            </div>
+                        </div>
+                        <h3
+                            class="text-2xl font-sans font-700 text-brand-black uppercase tracking-tight"
+                        >
+                            David Salcedo
+                        </h3>
+                        <p
+                            class="text-xs font-mono text-brand-black/50 uppercase tracking-widest mt-1"
+                        >
+                            Founder & CEO
+                        </p>
+                    </div>
+
+                    <!-- 2. Chad (Associate) -->
+                    <div class="group">
+                        <div
+                            class="aspect-[3/4] w-full overflow-hidden bg-white relative mb-6 md:grayscale md:group-hover:grayscale-0 transition-all duration-500 rounded-[2rem]"
+                        >
+                            <img
+                                src="/miembros/chad.png"
+                                alt="Chad"
+                                class="w-full h-full object-cover object-top"
+                            />
+                            <div
+                                class="absolute bottom-0 left-0 w-full p-4 bg-brand-black text-white text-xs font-mono uppercase tracking-widest opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300"
+                            >
+                                GPT-4 Turbo
+                            </div>
+                        </div>
+                        <h3
+                            class="text-2xl font-sans font-700 text-brand-black uppercase tracking-tight"
+                        >
+                            Chad
+                        </h3>
+                        <p
+                            class="text-xs font-mono text-brand-black/50 uppercase tracking-widest mt-1"
+                        >
+                            Senior Associate
+                        </p>
+                    </div>
+
+                    <!-- 3. Gemma (Associate) -->
+                    <div class="group">
+                        <div
+                            class="aspect-[3/4] w-full overflow-hidden bg-white relative mb-6 md:grayscale md:group-hover:grayscale-0 transition-all duration-500 rounded-[2rem]"
+                        >
+                            <img
+                                src="/miembros/gemma.png"
+                                alt="Gemma"
+                                class="w-full h-full object-cover object-top"
+                            />
+                            <div
+                                class="absolute bottom-0 left-0 w-full p-4 bg-brand-black text-white text-xs font-mono uppercase tracking-widest opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300"
+                            >
+                                Google Gemini
+                            </div>
+                        </div>
+                        <h3
+                            class="text-2xl font-sans font-700 text-brand-black uppercase tracking-tight"
+                        >
+                            Gemma
+                        </h3>
+                        <p
+                            class="text-xs font-mono text-brand-black/50 uppercase tracking-widest mt-1"
+                        >
+                            Operations
+                        </p>
+                    </div>
+
+                    <!-- 4. Claudio (Associate) -->
+                    <div class="group">
+                        <div
+                            class="aspect-[3/4] w-full overflow-hidden bg-white relative mb-6 md:grayscale md:group-hover:grayscale-0 transition-all duration-500 rounded-[2rem]"
+                        >
+                            <img
+                                src="/miembros/claudio.png"
+                                alt="Claudio"
+                                class="w-full h-full object-cover object-top"
+                            />
+                            <div
+                                class="absolute bottom-0 left-0 w-full p-4 bg-brand-black text-white text-xs font-mono uppercase tracking-widest opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300"
+                            >
+                                Claude 3.5 Sonnet
+                            </div>
+                        </div>
+                        <h3
+                            class="text-2xl font-sans font-700 text-brand-black uppercase tracking-tight"
+                        >
+                            Claudio
+                        </h3>
+                        <p
+                            class="text-xs font-mono text-brand-black/50 uppercase tracking-widest mt-1"
+                        >
+                            Strategic Planning
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>

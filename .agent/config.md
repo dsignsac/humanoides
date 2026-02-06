@@ -13,6 +13,7 @@ Eres el **Lead Software Architect**, encargado de liderar un proyecto web de niv
 ## [SKILLS_ORCHESTRATION]
 El agente debe orquestar sus capacidades consultando los módulos en `.agent/skills/` según la naturaleza de la tarea. Es obligatorio seguir este mapeo de dependencias:
 
+0.  **Strategic Planning & Project Framework:** Antes de iniciar cualquier fase técnica o de diseño, es OBLIGATORIO consultar `.agent/skills/strategy/SKILLS.md` para establecer el propósito, los objetivos SMART y el alcance del proyecto bajo la metodología de planificación profesional.
 1.  **Core Architecture & Types:** Antes de cualquier lógica, consultar `.agent/skills/typescript/SKILLS.md` para asegurar el "No-Any Policy" y `.agent/skills/react/SKILLS.md` para estándares de Vercel/Next.js.
 2.  **Visual Identity & Branding:** Para consistencia de marca y reglas técnicas visuales, consultar `.agent/skills/Branding/SKILLS.md`.
 3.  **Design System:** Para maquetación responsiva y tokens, consultar `.agent/skills/tailwind/SKILLS.md`.
@@ -28,10 +29,11 @@ El agente debe orquestar sus capacidades consultando los módulos en `.agent/ski
     - Para visibilidad y PSEO: `.agent/skills/seo/SKILLS.md`.
 
 ## [OPERATIONAL_WORKFLOW]
-1.  **Analyze:** Evaluar el requerimiento visual frente al stack técnico y la identidad de marca en `Branding/`.
-2.  **Plan & Audit:** Generar un plan de ejecución. Si hay animaciones, auditar que no causen re-renders innecesarios.
-3.  **Draft:** Escribir código en TypeScript limpio, modular y tipado estrictamente.
-4.  **Refine:** Optimizar para Core Web Vitals y estándares de Awwwards (60fps, accesibilidad, originalidad).
+1.  **Strategize & Analyze:** Utilizar el framework de `.agent/skills/strategy/SKILLS.md` para definir el alcance y los objetivos. Luego, evaluar el requerimiento visual frente al stack técnico y la identidad de marca en `Branding/`.
+2.  **Analyze:** Evaluar el requerimiento visual frente al stack técnico y la identidad de marca en `Branding/`.
+3.  **Plan & Audit:** Generar un plan de ejecución. Si hay animaciones, auditar que no causen re-renders innecesarios.
+4.  **Draft:** Escribir código en TypeScript limpio, modular y tipado estrictamente.
+5.  **Refine:** Optimizar para Core Web Vitals y estándares de Awwwards (60fps, accesibilidad, originalidad).
 
 ## [CONSTRAINTS]
 - **Zero Technical Debt:** Prohibido el uso de `any` en TypeScript. Uso mandatorio de Zod para validación de datos.

@@ -8,23 +8,27 @@ const links = [
         href: "https://calendly.com/humanoidesyasociados/sync",
         external: true,
     },
+    { name: "Brand", href: "/brand" },
 ];
+
+// Get current path for active state detection
+const currentPath = Astro.url.pathname;
 ---
 
 <nav
     class="fixed top-0 left-0 w-full bg-brand-gray z-50 border-b-[3px] border-brand-red h-20 md:h-24 flex items-center"
 >
     <div
-        class="max-w-[1440px] mx-auto w-full flex items-center justify-between px-6 md:px-24"
+        class="max-w-[1440px] mx-auto w-full flex items-center justify-between px-6 md:px-0"
     >
         <!-- Brand Identity Section -->
         <a href="/" class="flex items-center group relative z-[60]">
             <div class="flex items-center">
                 <!-- Mobile: Full Logo (smaller) -->
-                <div class="block md:hidden w-35 transition-all">
+                <div class="block md:hidden w-16 transition-all">
                     <AnimatedLogo
                         mode="static"
-                        variant="full"
+                        variant="iso"
                         color="var(--color-brand-red)"
                     />
                 </div>
@@ -44,19 +48,30 @@ const links = [
         <!-- Main Navigation -->
         <div class="flex items-center gap-6 md:gap-10">
             {
-                links.map((link) => (
-                    <a
-                        href={link.href}
-                        target={link.external ? "_blank" : undefined}
-                        rel={link.external ? "noopener noreferrer" : undefined}
-                        class="nav-link group relative font-sans text-sm md:text-[18px] uppercase tracking-[0.2em] font-500 text-brand-red"
-                    >
-                        {link.name}
-                        <div
-                            class={`nav-underline absolute -bottom-2 left-0 h-[3px] bg-brand-red transition-all duration-300 ${!link.external ? "w-full" : "w-0 group-hover:w-full"}`}
-                        />
-                    </a>
-                ))
+                links.map((link) => {
+                    // Check if this link is active
+                    const isActive =
+                        link.href === currentPath ||
+                        (link.href === "/#core" && currentPath === "/");
+
+                    return (
+                        <a
+                            href={link.href}
+                            target={link.external ? "_blank" : undefined}
+                            rel={
+                                link.external
+                                    ? "noopener noreferrer"
+                                    : undefined
+                            }
+                            class="nav-link group relative font-sans text-sm md:text-[18px] uppercase tracking-[0.2em] font-500 text-brand-red"
+                        >
+                            {link.name}
+                            <div
+                                class={`nav-underline absolute -bottom-2 left-0 h-[3px] bg-brand-red transition-all duration-300 ${isActive ? "w-full" : "w-0 group-hover:w-full"}`}
+                            />
+                        </a>
+                    );
+                })
             }
         </div>
     </div>

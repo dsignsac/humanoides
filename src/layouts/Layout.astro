@@ -18,6 +18,80 @@ const { title = "HA" } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon-animated.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<meta
+			name="description"
+			content="Somos un profesional y sus agentes (IAs), listos para producir tu próximo éxito digital. Eficiencia disruptiva en diseño y desarrollo web."
+		/>
+		<meta name="author" content="Humanoides & Asociados" />
+		<link rel="canonical" href={Astro.url} />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={Astro.url} />
+		<meta property="og:title" content={title} />
+		<meta
+			property="og:description"
+			content="Somos un profesional y sus agentes, listos para producir tu próximo éxito digital."
+		/>
+		<meta property="og:image" content="/open-graph-card.png" />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={Astro.url} />
+		<meta property="twitter:title" content={title} />
+		<meta
+			property="twitter:description"
+			content="Somos un profesional y sus agentes, listos para producir tu próximo éxito digital."
+		/>
+		<meta property="twitter:image" content="/open-graph-card.png" />
+
+		<!-- Theme Color -->
+		<meta name="theme-color" content="#FA2A2A" />
+		<meta name="msapplication-navbutton-color" content="#FA2A2A" />
+		<meta
+			name="apple-mobile-web-app-status-bar-style"
+			content="black-translucent"
+		/>
+
+		<!-- Schema.org JSON-LD -->
+		<script type="application/ld+json" is:inline>
+			{
+				"@context": "https://schema.org",
+				"@graph": [
+					{
+						"@type": "Person",
+						"@id": "https://humanoidesyasociados.com/#david",
+						"name": "David Salcedo",
+						"jobTitle": "Creative Director & Founder",
+						"url": "https://humanoidesyasociados.com",
+						"sameAs": [
+							"https://instagram.com/humanoidesyasociados"
+						],
+						"nationality": "Peruvian"
+					},
+					{
+						"@type": "ProfessionalService",
+						"@id": "https://humanoidesyasociados.com/#organization",
+						"name": "Humanoides & Asociados",
+						"url": "https://humanoidesyasociados.com",
+						"logo": "https://humanoidesyasociados.com/humanoides-logo.svg",
+						"email": "hola@humanoidesyasociados.com",
+						"address": {
+							"@type": "PostalAddress",
+							"addressCountry": "PE"
+						},
+						"founder": {
+							"@id": "https://humanoidesyasociados.com/#david"
+						},
+						"brand": {
+							"@id": "https://humanoidesyasociados.com/#organization"
+						},
+						"priceRange": "$$$",
+						"description": "Somos un profesional y sus agentes (IAs), listos para producir tu próximo éxito digital. Eficiencia disruptiva en diseño y desarrollo web."
+					}
+				]
+			}
+		</script>
 
 		<!-- Google Fonts: Inter & Anek Malayalam -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
