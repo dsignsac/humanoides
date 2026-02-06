@@ -1,29 +1,113 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import AnimatedLogo from "../components/AnimatedLogo.astro";
 ---
 
-<Layout title="Humanoides & Asociados">
-    <main
-        class="w-full h-screen flex flex-col justify-center items-center p-12 overflow-hidden"
-    >
-        <div class="w-full max-w-4xl">
-            <!-- Móvil: solo isotipo -->
-            <div class="block sm:hidden">
-                <AnimatedLogo mode="once" variant="iso" />
-                <h1
-                    id="mobile-title"
-                    style="line-height: 0.9em;"
-                    class="text-center mt-5 text-4xl font-sans opacity-0"
-                >
-                    Humanoides & Asociados
-                </h1>
+<Layout title="Humanoides & Asociados | Eficiencia Disruptiva">
+    <main class="w-full bg-brand-gray text-brand-black">
+        <!-- Hero Section with Background Image -->
+        <section
+            id="hero"
+            class="relative w-full h-[100dvh] md:h-screen flex flex-col mt-0"
+        >
+            <!-- Background Image -->
+            <div class="absolute inset-0 z-0">
+                <img
+                    src="/hero_studio.png"
+                    alt="Industrial Creative Studio"
+                    class="w-full h-full object-cover opacity-30"
+                />
             </div>
 
-            <!-- Tablet/Desktop: logo completo -->
-            <div class="hidden sm:block">
-                <AnimatedLogo mode="once" variant="full" />
+            <!-- Light Overlay for Text Readability -->
+            <div class="absolute inset-0 z-[5] bg-brand-gray/40"></div>
+
+            <!-- Main Content Container -->
+            <div
+                id="core"
+                class="relative z-10 flex-1 flex flex-col justify-center items-center p-6 pt-20 md:pt-28 lg:pt-32 xl:pt-56 pb-8 md:pb-12 xl:pb-24"
+            >
+                <div
+                    class="max-w-[1240px] w-full text-center md:text-right px-6 md:px-12"
+                >
+                    <h1
+                        class="font-sans font-bold leading-[0.85] md:leading-[0.85] tracking-tighter mb-4 md:mb-8 lg:mb-12 text-brand-red"
+                        style="font-size: clamp(3rem, 10vw, 12rem);"
+                    >
+                        Make Internet<br />Work Again
+                    </h1>
+                    <p
+                        class="text-xl md:text-2xl lg:text-3xl font-bold max-w-md mx-auto md:mx-0 md:ml-auto leading-snug md:leading-tight text-brand-black/90 mb-4 md:mb-6"
+                    >
+                        Somos un profesional y sus agentes, listos para producir
+                        tu próximo éxito digital.
+                    </p>
+                    <p
+                        class="text-base md:text-xl lg:text-2xl text-brand-black/80 font-bold"
+                    >
+                        David Salcedo
+                    </p>
+                </div>
             </div>
-        </div>
+
+            <!-- Brand Logos Marquee - Red Background -->
+            <div
+                class="relative z-10 w-full bg-brand-red py-6 md:py-8 border-t border-white/10 overflow-hidden"
+            >
+                <div class="flex animate-marquee whitespace-nowrap">
+                    {
+                        [...Array(3)].map(() => (
+                            <>
+                                <img
+                                    src="/marcas/dataStream.svg"
+                                    alt="DataStream"
+                                    class="h-8 md:h-10 w-auto mx-8 md:mx-12 logo-gray"
+                                />
+                                <img
+                                    src="/marcas/hilton.svg"
+                                    alt="Hilton Garden Inn"
+                                    class="h-8 md:h-10 w-auto mx-8 md:mx-12 logo-gray"
+                                />
+                                <img
+                                    src="/marcas/ELA.svg"
+                                    alt="ELA"
+                                    class="h-8 md:h-10 w-auto mx-8 md:mx-12 logo-gray"
+                                />
+                                <img
+                                    src="/marcas/logo.svg"
+                                    alt="Los Mirlos"
+                                    class="h-8 md:h-10 w-auto mx-8 md:mx-12 logo-gray"
+                                />
+                                <img
+                                    src="/marcas/monsterlink.svg"
+                                    alt="Monster Link"
+                                    class="h-8 md:h-10 w-auto mx-8 md:mx-12 logo-gray"
+                                />
+                            </>
+                        ))
+                    }
+                </div>
+            </div>
+        </section>
     </main>
+
+    <style>
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-33.333%);
+            }
+        }
+
+        .animate-marquee {
+            animation: marquee 20s linear infinite;
+            width: max-content;
+        }
+
+        .logo-gray {
+            filter: invert(91%) sepia(3%) saturate(143%) hue-rotate(65deg)
+                brightness(91%) contrast(90%);
+        }
+    </style>
 </Layout>

@@ -78,8 +78,9 @@ const {
     import { gsap } from "gsap";
 
     document.addEventListener("astro:page-load", () => {
-        // Animar CADA wrapper de logo en la página
         const wrappers = document.querySelectorAll(".animated-logo-wrapper");
+        const hasAnimatedThisSession =
+            sessionStorage.getItem("ha-logo-animated");
 
         wrappers.forEach((wrapper) => {
             const mode = wrapper.getAttribute("data-mode") || "once";
@@ -98,143 +99,195 @@ const {
             const letterA = wrapper.querySelector("#letter-a");
             const textHumanoides = wrapper.querySelector("#text-humanoides");
             const textAsociados = wrapper.querySelector("#text-asociados");
+            const logotipoGroup = wrapper.querySelector("#logotipo-group");
             const mobileTitle = document.querySelector("#mobile-title");
 
             if (!isotipoGroup) return;
 
-            if (mode === "static") {
-                // Estado final abierto inmediato
+            // --- INTRO ANIMATION LOGIC ---
+
+            const setFinalState = () => {
                 gsap.set(circleOuterLeft, { x: 0 });
                 gsap.set(circleOuterRight, { x: 0 });
                 gsap.set(circleInnerLeft, { x: 0 });
                 gsap.set(circleInnerRight, { x: 0 });
-                gsap.set(letterA, { clipPath: "inset(0 7.5% 0 7.5%)" });
+                gsap.set(letterA, {
+                    clipPath: "inset(0 7.5% 0 7.5%)",
+                    scale: 1,
+                    transformOrigin: "center",
+                });
                 gsap.set(isotipoGroup, { x: 0 });
                 if (variant === "full") {
+                    gsap.set(logotipoGroup, { x: 0 });
                     gsap.set(textHumanoides, { clipPath: "inset(0 0% 0 0)" });
                     gsap.set(textAsociados, { clipPath: "inset(0 0% 0 0)" });
                 }
-                return;
+                if (variant === "iso" && mobileTitle) {
+                    gsap.set(mobileTitle, { opacity: 1, y: 0 });
+                }
+            };
+
+            if (
+                mode === "static" ||
+                (mode === "once" && hasAnimatedThisSession)
+            ) {
+                setFinalState();
+            } else {
+                // Intro Timeline
+                const tl = gsap.timeline({
+                    defaults: { ease: "power2.inOut" },
+                    repeat: mode === "loop" || mode === "retractable" ? -1 : 0,
+                    repeatDelay: mode === "retractable" ? 0.2 : 1,
+                    yoyo: mode === "retractable",
+                    onComplete: () => {
+                        if (mode === "once")
+                            sessionStorage.setItem("ha-logo-animated", "true");
+                    },
+                });
+
+                gsap.set(isotipoGroup, { x: variant === "iso" ? 0 : 480 });
+                if (variant === "full") {
+                    gsap.set(logotipoGroup, { x: 0 });
+                    gsap.set(textHumanoides, { clipPath: "inset(0 100% 0 0)" });
+                    gsap.set(textAsociados, { clipPath: "inset(0 100% 0 0)" });
+                }
+
+                tl.to({}, { duration: 0.2 })
+                    .fromTo(
+                        circleOuterLeft,
+                        { x: 225.5 },
+                        { x: 112.5, duration: 0.5, ease: "power2.out" },
+                    )
+                    .fromTo(
+                        circleOuterRight,
+                        { x: -225.5 },
+                        { x: -112.5, duration: 0.5, ease: "power2.out" },
+                        "<",
+                    )
+                    .fromTo(
+                        circleInnerLeft,
+                        { x: 112.5 },
+                        { x: 0, duration: 0.5, ease: "power2.out" },
+                        "-=0.2",
+                    )
+                    .fromTo(
+                        circleInnerRight,
+                        { x: -112.5 },
+                        { x: 0, duration: 0.5, ease: "power2.out" },
+                        "<",
+                    )
+                    .to(
+                        circleOuterLeft,
+                        { x: 0, duration: 0.5, ease: "power2.out" },
+                        "<",
+                    )
+                    .to(
+                        circleOuterRight,
+                        { x: 0, duration: 0.5, ease: "power2.out" },
+                        "<",
+                    )
+                    .fromTo(
+                        letterA,
+                        { clipPath: "inset(0 50% 0 50%)" },
+                        {
+                            clipPath: "inset(0 7.5% 0 7.5%)",
+                            duration: 0.5,
+                            ease: "power2.out",
+                        },
+                        "<",
+                    )
+                    .to({}, { duration: 0.1 });
+
+                if (variant === "full") {
+                    tl.to(isotipoGroup, {
+                        x: 0,
+                        duration: 0.4,
+                        ease: "power2.inOut",
+                    })
+                        .to(
+                            textHumanoides,
+                            {
+                                clipPath: "inset(0 0% 0 0)",
+                                duration: 0.35,
+                                ease: "power2.out",
+                            },
+                            "-=0.1",
+                        )
+                        .to(
+                            textAsociados,
+                            {
+                                clipPath: "inset(0 0% 0 0)",
+                                duration: 0.4,
+                                ease: "power2.out",
+                            },
+                            "<",
+                        );
+                }
+                if (variant === "iso" && mobileTitle) {
+                    tl.fromTo(
+                        mobileTitle,
+                        { opacity: 0, y: -11 },
+                        { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" },
+                        "-=0.2",
+                    );
+                }
             }
 
-            // Timeline principal
-            const tl = gsap.timeline({
-                defaults: { ease: "power2.inOut" },
-                repeat: mode === "loop" || mode === "retractable" ? -1 : 0,
-                repeatDelay: mode === "retractable" ? 0.2 : 1,
-                yoyo: mode === "retractable",
-            });
+            // --- HOVER ANIMATION LOGIC ---
+            // Solo aplicar si no es una animación de intro en curso
+            let hoverTl = gsap.timeline({ paused: true });
 
-            // ESTADO INICIAL (usaremos fromTo en la secuencia para mayor control en loops)
-            // Posición inicial del grupo isotipo (centrado según variant)
-            gsap.set(isotipoGroup, { x: variant === "iso" ? 0 : 480 });
+            // Cerrar hasta ser un punto (punto central aproximado es x=375)
+            // Desplazamiento necesario para que los semicírculos se toquen: centro es 375.5
+            // circleOuterLeft está en x=0 (y su borde derecho es 150) -> necesita ir a 225.5
+            // circleOuterRight está en x=0 (y su borde izquierdo es 601) -> necesita ir a -225.5
 
-            if (variant === "full") {
-                gsap.set(textHumanoides, { clipPath: "inset(0 100% 0 0)" });
-                gsap.set(textAsociados, { clipPath: "inset(0 100% 0 0)" });
-            }
-
-            // SECUENCIA DE ANIMACIÓN
-            tl
-                // 1. Pausa inicial sutil
-                .to({}, { duration: 0.2 })
-
-                // 2. Primera apertura: exteriores se separan (desde el centro)
-                .fromTo(
-                    circleOuterLeft,
-                    { x: 225.5 },
-                    { x: 112.5, duration: 0.5, ease: "power2.out" },
-                )
-                .fromTo(
+            hoverTl
+                .to(circleOuterLeft, {
+                    x: 225.5,
+                    duration: 0.4,
+                    ease: "power3.inOut",
+                })
+                .to(
                     circleOuterRight,
-                    { x: -225.5 },
-                    { x: -112.5, duration: 0.5, ease: "power2.out" },
+                    { x: -225.5, duration: 0.4, ease: "power3.inOut" },
                     "<",
                 )
-
-                // 3. Segunda apertura: interiores se abren Y A se revela (sincronizado)
-                .fromTo(
+                .to(
                     circleInnerLeft,
-                    { x: 112.5 },
-                    { x: 0, duration: 0.5, ease: "power2.out" },
-                    "-=0.2",
+                    { x: 112.5, duration: 0.4, ease: "power3.inOut" },
+                    "<",
                 )
-                .fromTo(
+                .to(
                     circleInnerRight,
-                    { x: -112.5 },
-                    { x: 0, duration: 0.5, ease: "power2.out" },
-                    "<",
-                )
-                // Los exteriores siguen el movimiento
-                .to(
-                    circleOuterLeft,
-                    { x: 0, duration: 0.5, ease: "power2.out" },
+                    { x: -112.5, duration: 0.4, ease: "power3.inOut" },
                     "<",
                 )
                 .to(
-                    circleOuterRight,
-                    { x: 0, duration: 0.5, ease: "power2.out" },
+                    logotipoGroup,
+                    { x: -225.5, duration: 0.4, ease: "power3.inOut" },
                     "<",
                 )
-
-                // Revelar la A con clip-path (fromTo para evitar cortes)
-                .fromTo(
+                .to(
                     letterA,
-                    { clipPath: "inset(0 50% 0 50%)" },
                     {
-                        clipPath: "inset(0 7.5% 0 7.5%)",
-                        duration: 0.5,
-                        ease: "power2.out",
+                        clipPath: "inset(0 50% 0 50%)",
+                        scale: 0,
+                        transformOrigin: "center",
+                        duration: 0.3,
+                        ease: "power3.in",
                     },
                     "<",
-                )
-
-                // 4. Pausa intermedia
-                .to({}, { duration: 0.1 }); // Aumentada de 0.2s a 0.4s
-
-            // 5. Movimiento lateral + revelación de texto (simultáneo, rápido y brusco)
-            if (variant === "full") {
-                tl
-                    // Primero: mover isotipo a la izquierda (0.4s, brusco)
-                    .to(
-                        isotipoGroup,
-                        { x: 0, duration: 0.4, ease: "power2.inOut" },
-                        "+=0",
-                    )
-
-                    // Luego: revelar texto SUPERIOR (de izquierda a derecha, más rápido)
-                    .to(
-                        textHumanoides,
-                        {
-                            clipPath: "inset(0 0% 0 0)",
-                            duration: 0.35,
-                            ease: "power2.out",
-                        },
-                        "-=0.1", // Empieza cuando el isotipo casi llegó
-                    )
-
-                    // Al mismo tiempo: revelar texto INFERIOR (un poco más lento)
-                    .to(
-                        textAsociados,
-                        {
-                            clipPath: "inset(0 0% 0 0)",
-                            duration: 0.4,
-                            ease: "power2.out",
-                        },
-                        "<", // Al mismo tiempo que el superior
-                    );
-            }
-
-            // 6. Título móvil (solo si existe y estamos en modo iso)
-            if (variant === "iso" && mobileTitle) {
-                tl.fromTo(
-                    mobileTitle,
-                    { opacity: 0, y: -11 },
-                    { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" },
-                    "-=0.2", // Empieza un poco antes de que termine el logo
                 );
-            }
-        }); // Cierre del forEach
+
+            wrapper.addEventListener("mouseenter", () => {
+                hoverTl.play();
+            });
+
+            wrapper.addEventListener("mouseleave", () => {
+                hoverTl.reverse();
+            });
+        });
     });
 </script>
 
@@ -243,6 +296,7 @@ const {
         width: 100%;
         max-width: 1200px;
         margin: 0 auto;
+        cursor: pointer;
     }
 
     #humanoides-logo-svg {

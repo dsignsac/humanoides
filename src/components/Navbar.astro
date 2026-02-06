@@ -2,37 +2,35 @@
 import AnimatedLogo from "./AnimatedLogo.astro";
 
 const links = [
-    { name: "Core", href: "/core" },
-    { name: "Brand", href: "/brand" },
-    { name: "Log", href: "/log" },
-    { name: "Sync", href: "/sync" },
+    { name: "Core", href: "/#core" },
+    {
+        name: "Sync",
+        href: "https://calendly.com/humanoidesyasociados/sync",
+        external: true,
+    },
 ];
-
-const currentPath = Astro.url.pathname;
 ---
 
 <nav
-    class="fixed top-0 left-0 w-full bg-brand-gray/95 backdrop-blur-xl z-50 border-b border-black/5 h-20 md:h-24 flex items-center"
+    class="fixed top-0 left-0 w-full bg-brand-gray z-50 border-b-[3px] border-brand-red h-20 md:h-24 flex items-center"
 >
     <div
-        class="max-w-[1240px] mx-auto w-full px-6 md:px-12 flex items-center justify-between"
+        class="max-w-[1240px] mx-auto w-full flex items-center justify-between px-6 md:px-12"
     >
         <!-- Brand Identity Section -->
         <a href="/" class="flex items-center group relative z-[60]">
             <div class="flex items-center">
-                <!-- Mobile: Isotype -->
-                <div
-                    class="block md:hidden w-12 group-hover:scale-105 transition-transform"
-                >
+                <!-- Mobile: Full Logo (smaller) -->
+                <div class="block md:hidden w-32 transition-all">
                     <AnimatedLogo
                         mode="static"
-                        variant="iso"
+                        variant="full"
                         color="var(--color-brand-red)"
                     />
                 </div>
                 <!-- Tablet/Desktop: Full Logo -->
                 <div
-                    class="hidden md:block w-48 lg:w-56 group-hover:scale-[1.02] transition-transform duration-300"
+                    class="hidden md:block w-32 lg:w-48 transition-all duration-300"
                 >
                     <AnimatedLogo
                         mode="static"
@@ -46,36 +44,23 @@ const currentPath = Astro.url.pathname;
         <!-- Main Navigation -->
         <div class="flex items-center gap-6 md:gap-12">
             {
-                links.map((link) => {
-                    const isActive =
-                        currentPath === link.href ||
-                        (link.href !== "/" &&
-                            currentPath.startsWith(link.href));
-                    return (
-                        <a
-                            href={link.href}
-                            class={`relative font-sans text-xs md:text-base font-bold uppercase tracking-[0.15em] transition-colors hover:text-brand-red ${
-                                isActive
-                                    ? "text-brand-red"
-                                    : "text-brand-red/50"
-                            }`}
-                        >
-                            {link.name}
-                            {isActive && (
-                                <div class="absolute -bottom-2 left-0 w-full h-[3px] bg-brand-red rounded-full" />
-                            )}
-                        </a>
-                    );
-                })
+                links.map((link) => (
+                    <a
+                        href={link.href}
+                        target={link.external ? "_blank" : undefined}
+                        rel={link.external ? "noopener noreferrer" : undefined}
+                        class="nav-link group relative font-sans text-base md:text-lg uppercase tracking-[0.15em] text-brand-red"
+                    >
+                        {link.name}
+                        <div
+                            class={`nav-underline absolute -bottom-2 left-0 h-[3px] bg-brand-red transition-all duration-300 ${!link.external ? "w-full" : "w-0 group-hover:w-full"}`}
+                        />
+                    </a>
+                ))
             }
         </div>
     </div>
 </nav>
-
-<script>
-    // Logic for mobile interaction if needed in the future,
-    // but keeping it simple as inline menu is preferred.
-</script>
 
 <style>
     nav {

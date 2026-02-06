@@ -5,7 +5,7 @@ import AnimatedLogo from "../components/AnimatedLogo.astro";
 
 <Layout title="Brand Guidelines | Humanoides & Asociados">
     <main
-        class="min-h-screen bg-brand-gray flex flex-col gap-16 md:gap-32 pt-24 md:pt-32"
+        class="min-h-screen bg-brand-black flex flex-col gap-16 md:gap-32 pt-24 md:pt-32 text-brand-gray"
     >
         <!-- Header -->
         <header class="max-w-[1240px] mx-auto w-full px-6 md:px-12">
@@ -16,7 +16,7 @@ import AnimatedLogo from "../components/AnimatedLogo.astro";
                     Visual Identity
                 </h1>
                 <p
-                    class="text-xl md:text-3xl opacity-90 max-w-3xl text-brand-black leading-tight"
+                    class="text-xl md:text-3xl opacity-90 max-w-3xl text-brand-gray leading-tight"
                 >
                     Sistemas visuales, cromáticos y dinámicos que definen la
                     esencia de Humanoides.
@@ -69,7 +69,7 @@ import AnimatedLogo from "../components/AnimatedLogo.astro";
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                 <!-- Red on Gray -->
                 <div
-                    class="bg-brand-gray border border-black/5 p-8 md:p-12 rounded-3xl md:rounded-[2.5rem] flex flex-col items-center gap-6 transition-all hover:bg-white/50"
+                    class="bg-brand-gray/5 border border-white/5 p-8 md:p-12 rounded-3xl md:rounded-[2.5rem] flex flex-col items-center gap-6 transition-all hover:bg-white/10"
                 >
                     <AnimatedLogo
                         mode="static"
@@ -131,13 +131,13 @@ import AnimatedLogo from "../components/AnimatedLogo.astro";
             <!-- Full Logos Static -->
             <div class="mt-8 space-y-4 md:space-y-6">
                 <div
-                    class="bg-white p-12 md:p-20 rounded-[2.5rem] md:rounded-[3rem] border border-black/5 flex justify-center transition-all hover:shadow-lg"
+                    class="bg-brand-gray/5 p-12 md:p-20 rounded-[2.5rem] md:rounded-[3rem] border border-white/5 flex justify-center transition-all hover:shadow-lg"
                 >
                     <div class="w-full max-w-xl">
                         <AnimatedLogo
                             mode="static"
                             variant="full"
-                            color="var(--color-brand-black)"
+                            color="var(--color-brand-gray)"
                         />
                     </div>
                 </div>
@@ -165,7 +165,7 @@ import AnimatedLogo from "../components/AnimatedLogo.astro";
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24">
                 <!-- Sans: Anek Malayalam -->
                 <div
-                    class="relative flex flex-col border-b border-black/5 pb-16 lg:border-b-0 lg:pb-0"
+                    class="relative flex flex-col border-b border-white/5 pb-16 lg:border-b-0 lg:pb-0"
                 >
                     <div
                         class="absolute -top-5 left-10 z-10 transition-transform hover:scale-105"
@@ -176,7 +176,7 @@ import AnimatedLogo from "../components/AnimatedLogo.astro";
                         >
                     </div>
                     <div
-                        class="bg-white/40 p-10 md:p-16 pt-20 rounded-[3rem] border border-black/5 backdrop-blur-sm flex-grow"
+                        class="bg-brand-gray/5 p-10 md:p-16 pt-20 rounded-[3rem] border border-white/5 backdrop-blur-sm flex-grow"
                     >
                         <div class="font-sans">
                             <div
@@ -185,7 +185,7 @@ import AnimatedLogo from "../components/AnimatedLogo.astro";
                                 AaBbCc
                             </div>
                             <div
-                                class="text-4xl md:text-7xl font-bold leading-[0.9] mb-12 opacity-90 text-brand-black"
+                                class="text-4xl md:text-7xl font-bold leading-[0.9] mb-12 opacity-90 text-brand-gray"
                             >
                                 Humanoides & Asociados
                             </div>
@@ -211,7 +211,7 @@ import AnimatedLogo from "../components/AnimatedLogo.astro";
                         >
                     </div>
                     <div
-                        class="bg-white/40 p-10 md:p-16 pt-20 rounded-[3rem] border border-black/5 backdrop-blur-sm flex-grow"
+                        class="bg-brand-gray/5 p-10 md:p-16 pt-20 rounded-[3rem] border border-white/5 backdrop-blur-sm flex-grow"
                     >
                         <div class="font-mono">
                             <div
@@ -220,7 +220,7 @@ import AnimatedLogo from "../components/AnimatedLogo.astro";
                                 012345
                             </div>
                             <div
-                                class="text-4xl md:text-7xl font-bold leading-[0.9] mb-12 uppercase opacity-90 text-brand-black"
+                                class="text-4xl md:text-7xl font-bold leading-[0.9] mb-12 uppercase opacity-90 text-brand-gray"
                             >
                                 Digital Precision
                             </div>
@@ -252,7 +252,7 @@ import AnimatedLogo from "../components/AnimatedLogo.astro";
                     >
                     </div>
                     <p
-                        class="text-base font-mono font-bold uppercase text-brand-black tracking-wider"
+                        class="text-base font-mono font-bold uppercase text-brand-gray tracking-wider"
                     >
                         Brand Red
                     </p>
@@ -264,7 +264,7 @@ import AnimatedLogo from "../components/AnimatedLogo.astro";
                     >
                     </div>
                     <p
-                        class="text-base font-mono font-bold uppercase text-brand-black tracking-wider"
+                        class="text-base font-mono font-bold uppercase text-brand-gray tracking-wider"
                     >
                         Soft Salmon
                     </p>
@@ -276,7 +276,7 @@ import AnimatedLogo from "../components/AnimatedLogo.astro";
                     >
                     </div>
                     <p
-                        class="text-base font-mono font-bold uppercase text-brand-black tracking-wider"
+                        class="text-base font-mono font-bold uppercase text-brand-gray tracking-wider"
                     >
                         Metric Gray
                     </p>
@@ -288,7 +288,7 @@ import AnimatedLogo from "../components/AnimatedLogo.astro";
                     >
                     </div>
                     <p
-                        class="text-base font-mono font-bold uppercase text-brand-black tracking-wider"
+                        class="text-base font-mono font-bold uppercase text-brand-gray tracking-wider"
                     >
                         Void Black
                     </p>
