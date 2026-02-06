@@ -18,8 +18,11 @@ import Layout from "../layouts/Layout.astro";
                 />
             </div>
 
-            <!-- Light Overlay for Text Readability -->
-            <div class="absolute inset-0 z-[5] bg-brand-gray/40"></div>
+            <!-- Gradient Overlay for Industrial Depth (Matching Figma Atmosphere) -->
+            <div
+                class="absolute inset-0 z-[5] bg-gradient-to-tr from-brand-gray/20 via-brand-gray/40 to-brand-gray/90 opacity-90"
+            >
+            </div>
 
             <!-- Main Content Container -->
             <div
@@ -27,25 +30,27 @@ import Layout from "../layouts/Layout.astro";
                 class="relative z-10 flex-1 flex flex-col justify-center items-center p-6 pt-20 md:pt-28 lg:pt-32 xl:pt-56 pb-8 md:pb-12 xl:pb-24"
             >
                 <div
-                    class="max-w-[1240px] w-full text-center md:text-right px-6 md:px-12"
+                    class="max-w-[1440px] w-full text-center md:text-right px-6 md:px-24"
                 >
                     <h1
-                        class="font-sans font-bold leading-[0.85] md:leading-[0.85] tracking-tighter mb-4 md:mb-8 lg:mb-12 text-brand-red"
-                        style="font-size: clamp(3rem, 10vw, 12rem);"
+                        class="font-sans font-bold text-brand-red mb-8 md:mb-12"
+                        style="font-size: clamp(4rem, 14.5vw, 130px); line-height: 0.9; letter-spacing: -0.05em;"
                     >
                         Make Internet<br />Work Again
                     </h1>
                     <p
-                        class="text-xl md:text-2xl lg:text-3xl font-bold max-w-md mx-auto md:mx-0 md:ml-auto leading-snug md:leading-tight text-brand-black/90 mb-4 md:mb-6"
+                        class="text-xl md:text-[32px] md:leading-[36px] font-bold max-w-md md:max-w-2xl mx-auto md:mx-0 md:ml-auto text-brand-black/90 mb-6 md:mb-8"
                     >
                         Somos un profesional y sus agentes, listos para producir
                         tu próximo éxito digital.
                     </p>
-                    <p
-                        class="text-base md:text-xl lg:text-2xl text-brand-black/80 font-bold"
-                    >
-                        David Salcedo
-                    </p>
+                    <div class="md:flex md:justify-end">
+                        <p
+                            class="text-lg md:text-[26px] md:leading-[22px] text-brand-black/80 font-bold"
+                        >
+                            David Salcedo
+                        </p>
+                    </div>
                 </div>
             </div>
 
@@ -60,27 +65,27 @@ import Layout from "../layouts/Layout.astro";
                                 <img
                                     src="/marcas/dataStream.svg"
                                     alt="DataStream"
-                                    class="h-8 md:h-10 w-auto mx-8 md:mx-12 logo-gray"
+                                    class="h-8 md:h-12 w-auto mx-8 md:mx-[45px] logo-gray"
                                 />
                                 <img
                                     src="/marcas/hilton.svg"
                                     alt="Hilton Garden Inn"
-                                    class="h-8 md:h-10 w-auto mx-8 md:mx-12 logo-gray"
+                                    class="h-8 md:h-12 w-auto mx-8 md:mx-[45px] logo-gray"
                                 />
                                 <img
                                     src="/marcas/ELA.svg"
                                     alt="ELA"
-                                    class="h-8 md:h-10 w-auto mx-8 md:mx-12 logo-gray"
+                                    class="h-8 md:h-12 w-auto mx-8 md:mx-[45px] logo-gray"
                                 />
                                 <img
                                     src="/marcas/logo.svg"
                                     alt="Los Mirlos"
-                                    class="h-8 md:h-10 w-auto mx-8 md:mx-12 logo-gray"
+                                    class="h-8 md:h-12 w-auto mx-8 md:mx-[45px] logo-gray"
                                 />
                                 <img
                                     src="/marcas/monsterlink.svg"
                                     alt="Monster Link"
-                                    class="h-8 md:h-10 w-auto mx-8 md:mx-12 logo-gray"
+                                    class="h-8 md:h-12 w-auto mx-8 md:mx-[45px] logo-gray"
                                 />
                             </>
                         ))
