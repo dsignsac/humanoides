@@ -38,15 +38,13 @@ const nextProject = {
     title: nextProjectData.title,
 };
 
-// Default Palette (Melbourne style)
-const defaultPalette = {
+// Forced Global Palette (Melbourne style)
+const palette = {
     base: "#1A1A1A",
     contraste: "#FF3E00",
     textos: "#D4DAD3",
     logos: "#FF3E00",
 };
-
-const palette = { ...defaultPalette, ...project.palette };
 ---
 
 <Layout title={`${project.client} // ${project.title}`}>
