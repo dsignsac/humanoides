@@ -9,7 +9,7 @@
     "country": "Perú",
     "description": "Una selección curada de marcas e identidades visuales desarrolladas para diversos clientes. Enfocado en la eficiencia disruptiva y la simplicidad técnica.",
     "thumbnail": "01.svg",
-    "logoColor": "#00FF00",
+    "logoColor": "#FFFFFF",
     "gallery": [
         {
             "type": "logo",
@@ -26,7 +26,7 @@
             "type": "logo",
             "src": "03.svg",
             "context": "/proyectos/tranke/03.webp",
-            "color": "original"
+            "//color": "original"
         },
         {
             "type": "logo",
