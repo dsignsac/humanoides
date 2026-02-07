@@ -37,6 +37,16 @@ const nextProject = {
     slug: nextProjectData.id,
     title: nextProjectData.title,
 };
+
+// Default Palette (Melbourne style)
+const defaultPalette = {
+    base: "#1A1A1A",
+    contraste: "#FF3E00",
+    textos: "#D4DAD3",
+    logos: "#FF3E00",
+};
+
+const palette = { ...defaultPalette, ...project.palette };
 ---
 
 <Layout title={`${project.client} // ${project.title}`}>
@@ -47,11 +57,11 @@ const nextProject = {
         <div
             class="project-area w-full transition-colors duration-700"
             style={`
-                background-color: ${project.palette.base}; 
-                color: ${project.palette.textos};
-                --p-contraste: ${project.palette.contraste};
-                --p-textos: ${project.palette.textos};
-                --p-logos: ${project.palette.logos || project.palette.contraste};
+                background-color: ${palette.base}; 
+                color: ${palette.textos};
+                --p-contraste: ${palette.contraste};
+                --p-textos: ${palette.textos};
+                --p-logos: ${palette.logos || palette.contraste};
             `}
         >
             <div
