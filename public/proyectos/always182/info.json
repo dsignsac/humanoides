@@ -1,0 +1,23 @@
+{
+    "id": "always182",
+    "projectNumber": "183",
+    "client": "Always",
+    "title": "182 Vision",
+    "service": "Brand Strategy / Visuals",
+    "year": "2024",
+    "role": "Lead Creative",
+    "country": "Global",
+    "description": "Exploración visual basada en la estética punk-industrial. Una experimentación técnica que busca romper con los estándares limpios del diseño convencional para abrazar la eficiencia disruptiva.",
+    "thumbnail": "01.webp",
+    "gallery": [
+        {
+            "type": "image",
+            "src": "01.webp"
+        }
+    ],
+    "stack": [
+        "Visual Identity",
+        "Art Direction",
+        "Experimental Design"
+    ]
+}
