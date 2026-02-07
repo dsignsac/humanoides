@@ -64,7 +64,7 @@ const nextProject = {
                     <div>
                         <span
                             class="block text-xs font-mono font-bold tracking-[0.3em] mb-4 text-[var(--p-contraste)] uppercase"
-                            >Proyecto // {project.id}</span
+                            >{project.id}</span
                         >
                         <h1
                             class="text-6xl md:text-8xl lg:text-9xl font-sans font-800 uppercase leading-[0.85] tracking-tighter text-[var(--p-textos)]"
@@ -150,11 +150,21 @@ const nextProject = {
                             <div class="w-full">
                                 {project.gallery.map(
                                     (item: any, index: number) => {
+                                        const getPath = (src: string) => {
+                                            if (!src) return "";
+                                            if (
+                                                src.startsWith("/") ||
+                                                src.startsWith("http")
+                                            )
+                                                return src;
+                                            return `/proyectos/${project.id}/${src}`;
+                                        };
+
                                         if (item.type === "image") {
                                             return (
                                                 <div class="w-full overflow-hidden">
                                                     <img
-                                                        src={item.src}
+                                                        src={getPath(item.src)}
                                                         class="w-full h-auto object-cover block"
                                                         alt={`${project.title} - ${index}`}
                                                         loading="lazy"
@@ -164,7 +174,6 @@ const nextProject = {
                                         }
 
                                         if (item.type === "video") {
-                                            // Detect if it's a Vimeo/YouTube ID or a full URL
                                             const isVimeo =
                                                 item.src.includes("vimeo") ||
                                                 /^\d+$/.test(item.src);
@@ -185,8 +194,11 @@ const nextProject = {
                                         }
 
                                         if (item.type === "logo") {
-                                            const isSVG =
-                                                item.src.endsWith(".svg");
+                                            const src = getPath(item.src);
+                                            const context = getPath(
+                                                item.context,
+                                            );
+                                            const isSVG = src.endsWith(".svg");
                                             const useOriginal =
                                                 item.color === "original";
                                             const logoColor =
@@ -196,28 +208,40 @@ const nextProject = {
                                                     : "var(--p-logos)";
 
                                             return (
-                                                <div class="w-full aspect-video md:aspect-[21/9] p-12 md:p-32 border-b border-[var(--p-contraste)]/10 flex items-center justify-center">
-                                                    <div class="w-full h-full max-w-[400px] md:max-w-[600px] flex items-center justify-center">
+                                                <div class="group relative w-full aspect-video md:aspect-[21/9] border-b border-[var(--p-contraste)]/10 flex items-center justify-center overflow-hidden cursor-pointer">
+                                                    {/* Context Background Image */}
+                                                    {context && (
+                                                        <div class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-700 ease-out">
+                                                            <img
+                                                                src={context}
+                                                                class="w-full h-full object-cover scale-110 group-hover:scale-100 group-active:scale-100 transition-transform duration-1000"
+                                                                alt="Contexto"
+                                                            />
+                                                            <div class="absolute inset-0 bg-black/40 mix-blend-multiply" />
+                                                        </div>
+                                                    )}
+
+                                                    <div class="relative z-10 w-full h-full max-w-[320px] md:max-w-[800px] p-8 md:p-32 flex items-center justify-center transition-transform duration-500 group-hover:scale-110 group-active:scale-110">
                                                         {isSVG &&
                                                         !useOriginal ? (
                                                             <div
-                                                                class="w-full h-full transition-colors duration-500"
+                                                                class="w-full h-full"
                                                                 style={`
-                                                                    background-color: ${logoColor};
-                                                                    mask-image: url(${item.src});
-                                                                    -webkit-mask-image: url(${item.src});
-                                                                    mask-size: contain;
-                                                                    -webkit-mask-size: contain;
-                                                                    mask-repeat: no-repeat;
-                                                                    -webkit-mask-repeat: no-repeat;
-                                                                    mask-position: center;
-                                                                    -webkit-mask-position: center;
-                                                                `}
+                                                                background-color: ${logoColor};
+                                                                mask-image: url(${src});
+                                                                -webkit-mask-image: url(${src});
+                                                                mask-size: contain;
+                                                                -webkit-mask-size: contain;
+                                                                mask-repeat: no-repeat;
+                                                                -webkit-mask-repeat: no-repeat;
+                                                                mask-position: center;
+                                                                -webkit-mask-position: center;
+                                                            `}
                                                             />
                                                         ) : (
                                                             <img
-                                                                src={item.src}
-                                                                class={`max-w-full max-h-full object-contain ${!useOriginal ? "grayscale brightness-0 invert opacity-80" : ""}`}
+                                                                src={src}
+                                                                class={`max-w-full max-h-full object-contain transition-all duration-500 ${!useOriginal ? "grayscale brightness-0 invert opacity-80 group-hover:opacity-100 group-active:opacity-100 group-hover:brightness-200 group-active:brightness-200" : ""}`}
                                                                 alt="Logo"
                                                                 loading="lazy"
                                                             />

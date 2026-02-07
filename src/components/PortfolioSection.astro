@@ -34,19 +34,27 @@ const projectsData = projectFolders
   .sort((a, b) => parseInt(a.projectNumber) - parseInt(b.projectNumber));
 
 // Map scanned data to Project interface
-const projects = projectsData.map(p => ({
-  id: p.projectNumber,
-  client: p.client,
-  project: p.title,
-  service: p.service,
-  year: p.year,
-  country: p.country || "GLOBAL",
-  image: p.thumbnail || (p.gallery && p.gallery[0]?.src) || (p.images && p.images[0]),
-  url: `/projects/${p.id}`
-}));
+const projects = projectsData.map(p => {
+  const getImagePath = (src: string) => {
+    if (!src) return "";
+    if (src.startsWith("/") || src.startsWith("http")) return src;
+    return `/proyectos/${p.id}/${src}`;
+  };
+
+  return {
+    id: p.projectNumber,
+    client: p.client,
+    project: p.title,
+    service: p.service,
+    year: p.year,
+    country: p.country || "GLOBAL",
+    image: getImagePath(p.thumbnail || (p.gallery && p.gallery[0]?.src) || (p.images && p.images[0])),
+    url: `/projects/${p.id}`
+  };
+});
 ---
 
-<section id="log" class="w-full bg-brand-gray text-brand-black pb-24 border-t border-brand-black/10">
+<section id="log" class="w-full bg-brand-gray text-brand-black pb-0">
   
   <div class="w-full max-w-[1440px] mx-auto px-6 py-24">
     <!-- Big Headline -->
@@ -147,8 +155,4 @@ const projects = projectsData.map(p => ({
     ))}
   </div>
   
-  <!-- Mobile Disclaimer -->
-  <div class="md:hidden px-6 py-8 border-b border-brand-black/10 text-center">
-    <p class="text-[10px] font-mono opacity-50 uppercase">Toca el proyecto para ver detalles</p>
-  </div>
 </section>

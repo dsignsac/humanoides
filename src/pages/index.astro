@@ -26,9 +26,25 @@ import PortfolioSection from "../components/PortfolioSection.astro";
             <!-- Overlay: 70% brand-black (#2F2F2F) -->
             <div class="absolute inset-0 z-[5] bg-[#2F2F2F]/70"></div>
 
+            <!-- CRT Effect Layer -->
+            <div
+                class="absolute inset-0 z-[6] pointer-events-none overflow-hidden opacity-30"
+            >
+                <!-- Scanlines -->
+                <div
+                    class="absolute inset-0 w-full h-full bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_4px,3px_100%]"
+                >
+                </div>
+                <!-- Flicker -->
+                <div
+                    class="absolute inset-0 w-full h-full bg-transparent animate-flicker pointer-events-none"
+                >
+                </div>
+            </div>
+
             <!-- Content -->
             <div
-                class="relative z-10 flex-1 flex flex-col justify-center items-center pt-32 md:pt-48 lg:pt-56 xl:pt-64 pb-8 md:pb-12 xl:pb-24"
+                class="relative z-10 flex-1 flex flex-col justify-center items-center pt-32 md:pt-48 lg:pt-56 xl:pt-64 pb-32 md:pb-48"
             >
                 <div
                     class="max-w-[1440px] w-full text-center md:text-right px-6"
@@ -264,23 +280,74 @@ import PortfolioSection from "../components/PortfolioSection.astro";
                     </article>
                 </div>
             </div>
-
             <style>
-                @keyframes marquee {
+                @keyframes flicker {
                     0% {
-                        transform: translateX(0);
+                        opacity: 0.27861;
+                    }
+                    5% {
+                        opacity: 0.34769;
+                    }
+                    10% {
+                        opacity: 0.23604;
+                    }
+                    15% {
+                        opacity: 0.90626;
+                    }
+                    20% {
+                        opacity: 0.18128;
+                    }
+                    25% {
+                        opacity: 0.83891;
+                    }
+                    30% {
+                        opacity: 0.65583;
+                    }
+                    35% {
+                        opacity: 0.57807;
+                    }
+                    40% {
+                        opacity: 0.26593;
+                    }
+                    45% {
+                        opacity: 0.84623;
+                    }
+                    50% {
+                        opacity: 0.96019;
+                    }
+                    55% {
+                        opacity: 0.08594;
+                    }
+                    60% {
+                        opacity: 0.20313;
+                    }
+                    65% {
+                        opacity: 0.71988;
+                    }
+                    70% {
+                        opacity: 0.53455;
+                    }
+                    75% {
+                        opacity: 0.37288;
+                    }
+                    80% {
+                        opacity: 0.71428;
+                    }
+                    85% {
+                        opacity: 0.70419;
+                    }
+                    90% {
+                        opacity: 0.7003;
+                    }
+                    95% {
+                        opacity: 0.36108;
                     }
                     100% {
-                        transform: translateX(-33.333%);
+                        opacity: 0.24387;
                     }
                 }
-                .animate-marquee {
-                    animation: marquee 20s linear infinite;
-                    width: max-content;
-                }
-                .logo-gray {
-                    filter: invert(91%) sepia(3%) saturate(143%)
-                        hue-rotate(65deg) brightness(91%) contrast(90%);
+                .animate-flicker {
+                    animation: flicker 0.15s infinite;
                 }
             </style>
         </section>

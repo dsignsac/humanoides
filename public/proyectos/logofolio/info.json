@@ -8,23 +8,27 @@
     "role": "Art Direction",
     "country": "Perú",
     "description": "Una selección curada de marcas e identidades visuales desarrolladas para diversos clientes. Enfocado en la eficiencia disruptiva y la simplicidad técnica.",
-    "thumbnail": "/proyectos/logofolio/01.svg",
+    "thumbnail": "01.svg",
     "gallery": [
         {
             "type": "logo",
-            "src": "/proyectos/logofolio/01.svg"
+            "src": "01.svg",
+            "context": "01-bg.webp"
         },
         {
             "type": "logo",
-            "src": "/proyectos/logofolio/02.svg"
+            "src": "02.svg",
+            "context": "02-bg.webp"
         },
         {
             "type": "logo",
-            "src": "/proyectos/logofolio/03.svg"
+            "src": "03.svg",
+            "context": "03-bg.webp"
         },
         {
             "type": "logo",
-            "src": "/proyectos/logofolio/04.svg"
+            "src": "04.svg",
+            "context": "04-bg.webp"
         }
     ],
     "stack": [
