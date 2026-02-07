@@ -1,0 +1,60 @@
+{
+    "id": "melbourne",
+    "projectNumber": "182",
+    "client": "Melbourne",
+    "title": "Industrial Strategy",
+    "service": "Brand Identity / Motion",
+    "year": "2023",
+    "role": "Lead Designer",
+    "country": "Australia",
+    "description": "Melbourne representa la intersección entre la robustez industrial y la elegancia técnica. Una identidad visual construida para perdurar en entornos de alta exigencia, complementada con piezas de motion graphics que enfatizan la precisión mecánica.",
+    "thumbnail": "01.webp",
+    "gallery": [
+        {
+            "type": "image",
+            "src": "01.webp"
+        },
+        {
+            "type": "video",
+            "src": "https://player.vimeo.com/video/779012594?h=1219c32f8b"
+        },
+        {
+            "type": "image",
+            "src": "02.webp"
+        },
+        {
+            "type": "video",
+            "src": "https://player.vimeo.com/video/779011006?h=f71225fe9c"
+        },
+        {
+            "type": "image",
+            "src": "05.webp"
+        },
+        {
+            "type": "image",
+            "src": "06.webp"
+        },
+        {
+            "type": "image",
+            "src": "07.webp"
+        },
+        {
+            "type": "image",
+            "src": "08.webp"
+        },
+        {
+            "type": "image",
+            "src": "09.webp"
+        }
+    ],
+    "stack": [
+        "Brand Strategy",
+        "Motion Design",
+        "Art Direction"
+    ],
+    "palette": {
+        "base": "#1A1A1A",
+        "contraste": "#FF3E00",
+        "textos": "#FFFFFF"
+    }
+}
