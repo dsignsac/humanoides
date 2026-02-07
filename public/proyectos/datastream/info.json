@@ -1,0 +1,23 @@
+{
+    "id": "datastream",
+    "projectNumber": "184",
+    "client": "DataStream",
+    "title": "Flux Infrastructure",
+    "service": "Visual systems",
+    "year": "2024",
+    "role": "Art Direction",
+    "country": "USA",
+    "description": "Arquitectura de datos visualizada bajo una estética industrial y técnica. DataStream se enfoca en la visualización de flujos complejos mediante un sistema de diseño rígido y eficiente.",
+    "thumbnail": "01.webp",
+    "gallery": [
+        {
+            "type": "image",
+            "src": "01.webp"
+        }
+    ],
+    "stack": [
+        "Data Visualization",
+        "System Design",
+        "Technical Art"
+    ]
+}

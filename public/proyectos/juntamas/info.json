@@ -1,0 +1,23 @@
+{
+    "id": "juntamas",
+    "projectNumber": "185",
+    "client": "JuntaMas",
+    "title": "Community Framework",
+    "service": "Brand Identity",
+    "year": "2024",
+    "role": "Designer",
+    "country": "Perú",
+    "description": "Un ecosistema visual diseñado para la colaboración. JuntaMas utiliza una estructura modular para representar la fuerza de la colectividad bajo una estética industrial limpia.",
+    "thumbnail": "01.webp",
+    "gallery": [
+        {
+            "type": "image",
+            "src": "01.webp"
+        }
+    ],
+    "stack": [
+        "Brand Identity",
+        "Modular Design",
+        "Core UX"
+    ]
+}
