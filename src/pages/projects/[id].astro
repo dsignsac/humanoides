@@ -38,13 +38,17 @@ const nextProject = {
     title: nextProjectData.title,
 };
 
-// Forced Global Palette (Melbourne style)
-const palette = {
+// Forced Global UI Palette (Melbourne style)
+const uiPalette = {
     base: "#1A1A1A",
     contraste: "#FF3E00",
     textos: "#D4DAD3",
     logos: "#FF3E00",
 };
+
+// Logo specific logic: Project Global > Default
+const projectLogoColor =
+    project.logoColor || project.palette?.logos || uiPalette.logos;
 ---
 
 <Layout title={`${project.client} // ${project.title}`}>
@@ -55,11 +59,11 @@ const palette = {
         <div
             class="project-area w-full transition-colors duration-700"
             style={`
-                background-color: ${palette.base}; 
-                color: ${palette.textos};
-                --p-contraste: ${palette.contraste};
-                --p-textos: ${palette.textos};
-                --p-logos: ${palette.logos || palette.contraste};
+                background-color: ${uiPalette.base}; 
+                color: ${uiPalette.textos};
+                --p-contraste: ${uiPalette.contraste};
+                --p-textos: ${uiPalette.textos};
+                --p-logos: ${projectLogoColor};
             `}
         >
             <div
