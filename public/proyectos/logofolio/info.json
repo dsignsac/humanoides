@@ -31,7 +31,7 @@
         {
             "type": "logo",
             "src": "04.svg",
-            "context": "/proyectos/tranke/04.webp"
+            "context": "04-bg.webp"
         }
     ],
     "stack": [

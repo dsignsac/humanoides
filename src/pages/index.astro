@@ -3,6 +3,14 @@ import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import heroImage from "../assets/hero_studio.png";
 import PortfolioSection from "../components/PortfolioSection.astro";
+
+const logos = [
+    { src: "/marcas/ELA.svg", alt: "ELA" },
+    { src: "/marcas/dataStream.svg", alt: "Data Stream" },
+    { src: "/marcas/hilton.svg", alt: "Hilton" },
+    { src: "/marcas/logo.svg", alt: "Logo" },
+    { src: "/marcas/monsterlink.svg", alt: "Monsterlink" },
+];
 ---
 
 <Layout title="Humanoides & Asociados | Eficiencia Disruptiva">
@@ -70,6 +78,53 @@ import PortfolioSection from "../components/PortfolioSection.astro";
                         >
                             <span class="relative z-10">Ver Proyectos</span>
                         </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logo Marquee Banner -->
+            <div
+                class="absolute bottom-0 left-0 w-full bg-brand-red py-4 md:py-6 z-20 overflow-hidden border-t border-white/10"
+            >
+                <div class="flex marquee-container">
+                    <div
+                        class="flex items-center gap-12 md:gap-24 animate-marquee whitespace-nowrap px-6"
+                    >
+                        {
+                            [...logos, ...logos, ...logos].map((logo) => (
+                                <div class="h-8 md:h-12 w-24 md:w-32 flex-shrink-0 flex items-center justify-center">
+                                    <div
+                                        class="w-full h-full bg-[#D4DAD3]"
+                                        style={`
+                                            mask: url(${logo.src}) no-repeat center;
+                                            -webkit-mask: url(${logo.src}) no-repeat center;
+                                            mask-size: contain;
+                                            -webkit-mask-size: contain;
+                                        `}
+                                    />
+                                </div>
+                            ))
+                        }
+                    </div>
+                    <div
+                        class="flex items-center gap-12 md:gap-24 animate-marquee whitespace-nowrap px-6"
+                        aria-hidden="true"
+                    >
+                        {
+                            [...logos, ...logos, ...logos].map((logo) => (
+                                <div class="h-8 md:h-12 w-24 md:w-32 flex-shrink-0 flex items-center justify-center">
+                                    <div
+                                        class="w-full h-full bg-[#D4DAD3]"
+                                        style={`
+                                            mask: url(${logo.src}) no-repeat center;
+                                            -webkit-mask: url(${logo.src}) no-repeat center;
+                                            mask-size: contain;
+                                            -webkit-mask-size: contain;
+                                        `}
+                                    />
+                                </div>
+                            ))
+                        }
                     </div>
                 </div>
             </div>
@@ -348,6 +403,21 @@ import PortfolioSection from "../components/PortfolioSection.astro";
                 }
                 .animate-flicker {
                     animation: flicker 0.15s infinite;
+                }
+
+                @keyframes marquee {
+                    0% {
+                        transform: translateX(0);
+                    }
+                    100% {
+                        transform: translateX(-100%);
+                    }
+                }
+                .animate-marquee {
+                    animation: marquee 30s linear infinite;
+                }
+                .marquee-container {
+                    width: max-content;
                 }
             </style>
         </section>
