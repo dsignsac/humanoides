@@ -8,11 +8,23 @@
     "role": "Designer",
     "country": "Perú",
     "description": "Un ecosistema visual diseñado para la colaboración. JuntaMas utiliza una estructura modular para representar la fuerza de la colectividad bajo una estética industrial limpia.",
-    "thumbnail": "01.webp",
+    "thumbnail": "00.webp",
     "gallery": [
         {
             "type": "image",
             "src": "01.webp"
+        },
+        {
+            "type": "image",
+            "src": "02.webp"
+        },
+        {
+            "type": "image",
+            "src": "03..webp"
+        },
+        {
+            "type": "image",
+            "src": "04.webp"
         }
     ],
     "stack": [

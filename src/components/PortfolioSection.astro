@@ -86,19 +86,26 @@ const projects = projectsData.map(p => {
 
     <!-- Project Rows -->
     {projects.map((project) => (
-      <article class="article-row group relative border-b border-brand-black/10 transition-colors duration-300 hover:bg-brand-salmon overflow-hidden">
-        <!-- Background Image (Mobile: Always Visible / Desktop: On Hover) -->
-        <div class="absolute top-0 right-0 h-full w-full md:w-[60%] opacity-20 md:opacity-0 md:group-hover:opacity-40 transition-opacity duration-500 pointer-events-none mix-blend-multiply z-0">
+      <article 
+        class="article-row group relative border-b border-brand-black/10 transition-[background-color] duration-300 hover:bg-brand-salmon overflow-hidden" 
+        style="will-change: background-color; transform: translateZ(0);"
+      >
+        <!-- Background Image Container -->
+        <div 
+          class="absolute top-0 right-0 h-full w-full md:w-[60%] opacity-20 md:opacity-0 md:group-hover:opacity-40 transition-opacity duration-500 pointer-events-none z-0"
+          style="will-change: opacity; transform: translateZ(0); mix-blend-mode: multiply; -webkit-mask-image: linear-gradient(to right, transparent 0%, black 30%, black 100%); mask-image: linear-gradient(to right, transparent 0%, black 30%, black 100%);"
+        >
             <img 
                 src={project.image} 
                 alt="" 
                 class="w-full h-full object-cover grayscale"
-                style="mask-image: linear-gradient(to right, transparent 0%, black 30%, black 100%); -webkit-mask-image: linear-gradient(to right, transparent 0%, black 30%, black 100%);"
+                loading="lazy"
+                style="backface-visibility: hidden; transform: translateZ(0);"
             />
         </div>
 
         <!-- Link Wrapper -->
-        <a href={project.url} class="block w-full h-full">
+        <a href={project.url} class="block w-full h-full relative z-10">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-4 px-6 py-8 md:py-12 items-center">
             
             <!-- ID -->
@@ -108,7 +115,7 @@ const projects = projectsData.map(p => {
 
             <!-- Client & Project -->
             <div class="col-span-11 md:col-span-3 mb-4 md:mb-0">
-                <h3 class="text-2xl md:text-3xl font-sans font-bold leading-none uppercase text-brand-black group-hover:text-brand-red transition-colors duration-300">
+                <h3 class="text-2xl md:text-3xl font-sans font-bold leading-none uppercase text-brand-black group-hover:text-brand-red transition-colors duration-300" style="will-change: color;">
                 {project.client}
                 </h3>
                 <p class="text-sm font-sans font-medium opacity-60 mt-1 uppercase tracking-wide">
@@ -122,12 +129,12 @@ const projects = projectsData.map(p => {
             </div>
 
             <!-- Year (Desktop) -->
-            <div class="hidden md:block col-span-1 font-mono text-xs opacity-60 group-hover:opacity-0 transition-opacity duration-300">
+            <div class="hidden md:block col-span-1 font-mono text-xs opacity-60 group-hover:opacity-0 transition-opacity duration-300" style="will-change: opacity;">
                 '{project.year.slice(2)}
             </div>
 
             <!-- Status -> País -->
-            <div class="hidden md:flex col-span-2 items-center gap-2 font-mono text-[10px] uppercase tracking-widest z-20 relative group-hover:opacity-0 transition-opacity duration-300">
+            <div class="hidden md:flex col-span-2 items-center gap-2 font-mono text-[10px] uppercase tracking-widest z-20 relative group-hover:opacity-0 transition-opacity duration-300" style="will-change: opacity;">
                 <span class="w-1.5 h-1.5 rounded-full bg-brand-red"></span>
                 {project.country}
             </div>
@@ -143,7 +150,7 @@ const projects = projectsData.map(p => {
 
             <!-- Arrow (Desktop) -->
             <div class="hidden md:flex col-span-2 justify-end">
-                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-brand-red group-hover:text-brand-black transition-colors duration-300">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-brand-red group-hover:text-brand-black transition-colors duration-300" style="will-change: color;">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
                  </svg>

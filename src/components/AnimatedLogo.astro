@@ -141,7 +141,7 @@ const {
                 const tl = gsap.timeline({
                     defaults: { ease: "power2.inOut" },
                     repeat: mode === "loop" || mode === "retractable" ? -1 : 0,
-                    repeatDelay: mode === "retractable" ? 0.2 : 1,
+                    repeatDelay: mode === "retractable" ? 0.2 : 0.4,
                     yoyo: mode === "retractable",
                     onComplete: () => {
                         if (mode === "once")
