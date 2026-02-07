@@ -18,17 +18,17 @@
         {
             "type": "logo",
             "src": "02.svg",
-            "context": "02-bg.webp"
+            "context": "/proyectos/tranke/02.webp"
         },
         {
             "type": "logo",
             "src": "03.svg",
-            "context": "03-bg.webp"
+            "context": "/proyectos/tranke/03.webp"
         },
         {
             "type": "logo",
             "src": "04.svg",
-            "context": "04-bg.webp"
+            "context": "/proyectos/tranke/04.webp"
         }
     ],
     "stack": [
