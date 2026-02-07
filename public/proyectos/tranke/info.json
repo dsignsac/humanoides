@@ -1,0 +1,53 @@
+{
+    "id": "tranke",
+    "projectNumber": "001",
+    "client": "Tranke",
+    "title": "Deutsches Weißbier",
+    "service": "Branding",
+    "year": "2023",
+    "role": "Dirección Creativa",
+    "country": "Argentina",
+    "description": "Experiencia digital inmersiva para Tranke. Un enfoque robusto y técnico que traslada la esencia de la montaña al entorno digital.",
+    "thumbnail": "/proyectos/tranke/01.webp",
+    "gallery": [
+        {
+            "type": "image",
+            "src": "/proyectos/tranke/01.webp"
+        },
+        {
+            "type": "image",
+            "src": "/proyectos/tranke/02.webp"
+        },
+        {
+            "type": "image",
+            "src": "/proyectos/tranke/03.webp"
+        },
+        {
+            "type": "image",
+            "src": "/proyectos/tranke/04.webp"
+        },
+        {
+            "type": "image",
+            "src": "/proyectos/tranke/05.webp"
+        },
+        {
+            "type": "image",
+            "src": "/proyectos/tranke/06.webp"
+        },
+        {
+            "type": "image",
+            "src": "/proyectos/tranke/07.webp"
+        }
+    ],
+    "stack": [
+        "Blender 3D",
+        "Procreate",
+        "Adobe Suite",
+        "Ai-Agents"
+    ],
+    "palette": {
+        "base": "#FF9EEA",
+        "contraste": "#FFFF00",
+        "textos": "#434371"
+    }
+}

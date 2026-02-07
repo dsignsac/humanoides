@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1070 397" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,0,-0.034899)">
+        <g transform="matrix(1,0,0,1,-640.5825,-740.635833)">
+            <g transform="matrix(4.166874,0,0,4.166874,-4939.840235,-2974.125191)">
+                <g transform="matrix(1,0,0,1,1397.7835,933.283783)">
+                    <path d="M0,10.822L0,-1.966L-27.423,-1.966L-27.423,-18.809L-40.211,-25.02L-40.211,35.842L-27.423,29.632L-27.423,10.822L0,10.822Z" style="fill-rule:nonzero;"/>
+                </g>
+                <g transform="matrix(1,0,0,1,1352.0237,908.629583)">
+                    <path d="M0,-4.335L67.066,-4.335L67.066,-17.123L-12.789,-17.123L-12.789,12.788L0,12.788L0,-4.335Z" style="fill-rule:nonzero;"/>
+                </g>
+                <g transform="matrix(1,0,0,1,1339.2351,955.918083)">
+                    <path d="M0,30.847L79.854,30.847L79.854,18.059L12.789,18.059L12.789,0L0,0L0,30.847Z" style="fill-rule:nonzero;"/>
+                </g>
+                <g transform="matrix(1,0,0,1,1450.4438,961.124983)">
+                    <path d="M0,13.424L12.789,19.48L12.789,6.732L75.516,6.732L75.516,-6.056L0,-6.056L0,13.424Z" style="fill-rule:nonzero;"/>
+                </g>
+                <g transform="matrix(-0.002568,0.999997,0.999997,0.002568,1477.406432,917.1539)">
+                    <path d="M-14.116,-26.878L32.997,-26.878L32.964,-14.118L-20.304,-14.079L-14.116,-26.878Z" style="fill-rule:nonzero;"/>
+                </g>
+                <g transform="matrix(1,0,0,1,1572.6209,933.194883)">
+                    <path d="M0,-20.349L-15.765,8.847L-31.392,-20.349L0,-20.349ZM-25.545,17.136L-5.955,17.136L23.401,-37.449L9.047,-37.449L6.821,-33.137L-38.072,-33.137L-40.553,-37.485L-54.724,-37.485L-25.545,17.136Z" style="fill-rule:nonzero;"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

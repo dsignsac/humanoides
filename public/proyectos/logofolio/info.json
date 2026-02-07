@@ -1,0 +1,41 @@
+{
+    "id": "logofolio",
+    "projectNumber": "175",
+    "client": "Various",
+    "title": "Colección de Identidades",
+    "service": "Brand Design",
+    "year": "2023",
+    "role": "Art Direction",
+    "country": "Perú",
+    "description": "Una selección curada de marcas e identidades visuales desarrolladas para diversos clientes. Enfocado en la eficiencia disruptiva y la simplicidad técnica.",
+    "thumbnail": "/proyectos/logofolio/01.svg",
+    "gallery": [
+        {
+            "type": "logo",
+            "src": "/proyectos/logofolio/01.svg"
+        },
+        {
+            "type": "logo",
+            "src": "/proyectos/logofolio/02.svg"
+        },
+        {
+            "type": "logo",
+            "src": "/proyectos/logofolio/03.svg"
+        },
+        {
+            "type": "logo",
+            "src": "/proyectos/logofolio/04.svg"
+        }
+    ],
+    "stack": [
+        "Illustrator",
+        "Brand Strategy",
+        "Typography"
+    ],
+    "palette": {
+        "base": "#2F2F2F",
+        "contraste": "#FA2A2A",
+        "textos": "#D4DAD3",
+        "logos": "#D4DAD3"
+    }
+}

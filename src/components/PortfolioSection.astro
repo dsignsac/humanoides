@@ -11,44 +11,39 @@ interface Project {
   project: string;
   service: string;
   year: string;
-  status: string;
+  country: string;
   image: string; // URL for now, later WP Media Item
   url: string;
 }
 
-// SIMULATED DATA (Replace with API fetch later)
-const projects: Project[] = [
-  {
-    id: "001",
-    client: "TESLA",
-    project: "CYBERTRUCK UI",
-    service: "INTERFACE DESIGN",
-    year: "2024",
-    status: "SHIPPED",
-    image: "https://images.unsplash.com/photo-1699313277983-f366113824ee?q=80&w=2540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Tech/Car placeholder
-    url: "/projects/tesla-cybertruck"
-  },
-  {
-    id: "002",
-    client: "NASA / JPL",
-    project: "MARS ROVER DASHBOARD",
-    service: "DATA VISUALIZATION",
-    year: "2023",
-    status: "ARCHIVED",
-    image: "https://images.unsplash.com/photo-1541873676-a18131494184?q=80&w=2518&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Space placeholder
-    url: "/projects/nasa-jpl"
-  },
-  {
-    id: "003",
-    client: "BRAUN",
-    project: "E-COMMERCE SYSTEM",
-    service: "FULL STACK DEV",
-    year: "2025",
-    status: "IN PROGRESS",
-    image: "https://images.unsplash.com/photo-1526659547046-d725d1902263?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Minimal product placeholder
-    url: "#"
-  }
-];
+import fs from "node:fs";
+import path from "node:path";
+
+const projectsDir = path.resolve("./public/proyectos");
+const projectFolders = fs.readdirSync(projectsDir);
+
+const projectsData = projectFolders
+  .map(folder => {
+    const infoPath = path.join(projectsDir, folder, "info.json");
+    if (fs.existsSync(infoPath)) {
+      return JSON.parse(fs.readFileSync(infoPath, "utf-8"));
+    }
+    return null;
+  })
+  .filter(Boolean)
+  .sort((a, b) => parseInt(a.projectNumber) - parseInt(b.projectNumber));
+
+// Map scanned data to Project interface
+const projects = projectsData.map(p => ({
+  id: p.projectNumber,
+  client: p.client,
+  project: p.title,
+  service: p.service,
+  year: p.year,
+  country: p.country || "GLOBAL",
+  image: p.thumbnail || (p.gallery && p.gallery[0]?.src) || (p.images && p.images[0]),
+  url: `/projects/${p.id}`
+}));
 ---
 
 <section id="log" class="w-full bg-brand-gray text-brand-black pb-24 border-t border-brand-black/10">
@@ -57,14 +52,14 @@ const projects: Project[] = [
     <!-- Big Headline -->
     <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 md:mb-16 pb-8 border-b border-brand-black/10 gap-8">
         <div>
-            <span class="text-xs font-mono uppercase tracking-[0.3em] text-brand-red mb-4 block">// INDEX_02</span>
+            <span class="text-xs font-mono uppercase tracking-[0.3em] text-brand-red mb-4 block">// INDEX_01</span>
             <h2 class="text-5xl md:text-8xl font-sans font-800 tracking-tighter text-brand-black leading-[0.9] md:leading-[0.85]">
-                Mission<br /><span class="text-brand-red">Log</span>
+                Registro<br /><span class="text-brand-red">Proyectos</span>
             </h2>
         </div>
         <div class="hidden md:block text-right">
-           <span class="text-[10px] font-mono tracking-widest block opacity-60">STATUS: ONLINE</span>
-           <span class="text-[10px] font-mono tracking-widest block opacity-60">SYSTEM: EFFICIENT</span>
+           <span class="text-[10px] font-mono tracking-widest block opacity-60">ESTADO: EN LÍNEA</span>
+           <span class="text-[10px] font-mono tracking-widest block opacity-60">SISTEMA: EFICIENTE</span>
         </div>
     </div>
 
@@ -74,16 +69,16 @@ const projects: Project[] = [
     <!-- Table Header (Desktop Only) -->
     <div class="hidden md:grid grid-cols-12 gap-4 px-6 pb-4 pt-4 mt-8 border-y border-brand-black/10 text-[10px] font-mono font-bold tracking-widest uppercase opacity-40">
       <div class="col-span-1">ID</div>
-      <div class="col-span-3">CLIENT / PROJECT</div>
-      <div class="col-span-3">SERVICE</div>
-      <div class="col-span-1">YEAR</div>
-      <div class="col-span-2">STATUS</div>
-      <div class="col-span-2 text-right">ACTION</div>
+      <div class="col-span-3">CLIENTE / PROYECTO</div>
+      <div class="col-span-3">SERVICIO</div>
+      <div class="col-span-1">AÑO</div>
+      <div class="col-span-2">PAÍS</div>
+      <div class="col-span-2 text-right">ACCIÓN</div>
     </div>
 
     <!-- Project Rows -->
     {projects.map((project) => (
-      <article class="group relative border-b border-brand-black/10 transition-colors duration-300 hover:bg-brand-salmon overflow-hidden">
+      <article class="article-row group relative border-b border-brand-black/10 transition-colors duration-300 hover:bg-brand-salmon overflow-hidden">
         <!-- Background Image (Mobile: Always Visible / Desktop: On Hover) -->
         <div class="absolute top-0 right-0 h-full w-full md:w-[60%] opacity-20 md:opacity-0 md:group-hover:opacity-40 transition-opacity duration-500 pointer-events-none mix-blend-multiply z-0">
             <img 
@@ -119,14 +114,14 @@ const projects: Project[] = [
             </div>
 
             <!-- Year (Desktop) -->
-            <div class="hidden md:block col-span-1 font-mono text-xs opacity-60">
+            <div class="hidden md:block col-span-1 font-mono text-xs opacity-60 group-hover:opacity-0 transition-opacity duration-300">
                 '{project.year.slice(2)}
             </div>
 
-            <!-- Status -->
-            <div class="hidden md:flex col-span-2 items-center gap-2 font-mono text-[10px] uppercase tracking-widest z-20 relative">
-                <span class={`w-2 h-2 rounded-full ${project.status === 'IN PROGRESS' ? 'bg-brand-red animate-pulse' : 'bg-brand-black'}`}></span>
-                {project.status}
+            <!-- Status -> País -->
+            <div class="hidden md:flex col-span-2 items-center gap-2 font-mono text-[10px] uppercase tracking-widest z-20 relative group-hover:opacity-0 transition-opacity duration-300">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-red"></span>
+                {project.country}
             </div>
 
             <!-- Mobile: Combined Meta -->
@@ -134,6 +129,8 @@ const projects: Project[] = [
                 <span>{project.service}</span>
                 <span>//</span>
                 <span>{project.year}</span>
+                <span>//</span>
+                <span>{project.country}</span>
             </div>
 
             <!-- Arrow (Desktop) -->
@@ -145,10 +142,6 @@ const projects: Project[] = [
             </div>
 
             </div>
-            
-            <!-- Hover Image Reveal (Desktop Only) -->
-            <!-- Using a fixed aspect ratio container that appears on hover/focus -->
-
         </a>
       </article>
     ))}
@@ -156,6 +149,6 @@ const projects: Project[] = [
   
   <!-- Mobile Disclaimer -->
   <div class="md:hidden px-6 py-8 border-b border-brand-black/10 text-center">
-    <p class="text-[10px] font-mono opacity-50 uppercase">Tap project to view case details</p>
+    <p class="text-[10px] font-mono opacity-50 uppercase">Toca el proyecto para ver detalles</p>
   </div>
 </section>

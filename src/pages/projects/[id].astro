@@ -1,135 +1,286 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { Image } from "astro:assets";
+import fs from "node:fs";
+import path from "node:path";
 
-export function getStaticPaths() {
-    return [
-        {
-            params: { id: "tesla-cybertruck" },
-            props: {
-                project: {
-                    id: "001",
-                    client: "TESLA",
-                    title: "CYBERTRUCK UI",
-                    service: "INTERFACE DESIGN",
-                    year: "2024",
-                    role: "Lead Design Agency",
-                    description: "Redefining the driver-machine interface for the post-apocalyptic era. A robust approach to vehicle control systems that prioritizes raw data and minimal latency.",
-                    images: [
-                        "/projects/tesla.webp", 
-                        "/projects/tesla-1.webp", 
-                        "/projects/tesla-2.webp"
-                    ],
-                    stack: ["Qt", "C++", "Figma", "Protopie"]
-                }
+export function getProjects() {
+    const projectsDir = path.resolve("./public/proyectos");
+    const projectFolders = fs.readdirSync(projectsDir);
+
+    return projectFolders
+        .map((folder) => {
+            const infoPath = path.join(projectsDir, folder, "info.json");
+            if (fs.existsSync(infoPath)) {
+                return JSON.parse(fs.readFileSync(infoPath, "utf-8"));
             }
-        },
-        {
-            params: { id: "nasa-jpl" },
-            props: {
-                project: {
-                    id: "002",
-                    client: "NASA / JPL",
-                    title: "MARS ROVER DASHBOARD",
-                    service: "DATA VISUALIZATION",
-                    year: "2023",
-                    role: "Mission Control UI",
-                    description: "Interfacing with autonomous agents on the Red Planet. High-contrast data streams visualized for rapid decision making under latency constraints.",
-                    images: ["/projects/mars.jpg"],
-                     stack: ["WebGL", "D3.js", "Rust"]
-                }
-            }
-        }
-    ];
+            return null;
+        })
+        .filter(Boolean)
+        .sort((a, b) => parseInt(a.projectNumber) - parseInt(b.projectNumber));
 }
 
-const { project } = Astro.props;
+export function getStaticPaths() {
+    const projectsData = getProjects();
+    return projectsData.map((project) => ({
+        params: { id: project.id },
+        props: { project, projectsData },
+    }));
+}
+
+const { project, projectsData } = Astro.props;
+
+// Basic next project logic
+const currentIndex = projectsData.findIndex((p) => p.id === project.id);
+const nextProjectData = projectsData[(currentIndex + 1) % projectsData.length];
+const nextProject = {
+    slug: nextProjectData.id,
+    title: nextProjectData.title,
+};
 ---
 
 <Layout title={`${project.client} // ${project.title}`}>
-    <main class="min-h-screen bg-brand-salmon text-brand-black pb-0 selection:bg-brand-red selection:text-white">
-        
-        <div class="max-w-[1440px] mx-auto w-full px-6 md:px-6 pt-32 md:pt-48">
-            
-            <!-- HEADER -->
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 pb-8 border-b border-brand-black/10 gap-8">
-                <div>
-                    <span class="block text-xs font-mono tracking-[0.3em] mb-4 text-brand-red uppercase">Project // {project.id}</span>
-                    <h1 class="text-6xl md:text-8xl lg:text-9xl font-sans font-800 uppercase leading-[0.85] tracking-tighter text-brand-black">
-                        {project.client}<br/>
-                        <span class="text-brand-red">{project.title}</span>
-                    </h1>
-                </div>
-            </div>
-
-            <!-- PROJECT DATA & DESCRIPTION -->
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-24">
-                <!-- META DATA COLUMNS -->
-                <div class="md:col-span-4 grid grid-cols-2 gap-y-8 gap-x-4 content-start">
+    <main
+        class="min-h-screen bg-brand-salmon text-brand-black pb-0 selection:bg-brand-red selection:text-white"
+    >
+        <!-- PROJECT THEMED AREA -->
+        <div
+            class="project-area w-full transition-colors duration-700"
+            style={`
+                background-color: ${project.palette.base}; 
+                color: ${project.palette.textos};
+                --p-contraste: ${project.palette.contraste};
+                --p-textos: ${project.palette.textos};
+                --p-logos: ${project.palette.logos || project.palette.contraste};
+            `}
+        >
+            <div
+                class="max-w-[1440px] mx-auto w-full px-6 md:px-6 pt-32 md:pt-48"
+            >
+                <!-- HEADER -->
+                <div
+                    class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 pb-8 border-b border-[var(--p-contraste)] gap-8"
+                >
                     <div>
-                         <h3 class="text-[10px] font-mono uppercase opacity-40 tracking-widest mb-2">Client</h3>
-                         <p class="font-sans text-lg font-500">{project.client}</p>
+                        <span
+                            class="block text-xs font-mono font-bold tracking-[0.3em] mb-4 text-[var(--p-contraste)] uppercase"
+                            >Proyecto // {project.id}</span
+                        >
+                        <h1
+                            class="text-6xl md:text-8xl lg:text-9xl font-sans font-800 uppercase leading-[0.85] tracking-tighter text-[var(--p-textos)]"
+                        >
+                            {project.client}<br />
+                            {project.title}
+                        </h1>
                     </div>
-                    <div>
-                        <h3 class="text-[10px] font-mono uppercase opacity-40 tracking-widest mb-2">Service</h3>
-                        <p class="font-sans text-lg font-500">{project.service}</p>
-                   </div>
-                   <div>
-                        <h3 class="text-[10px] font-mono uppercase opacity-40 tracking-widest mb-2">Year</h3>
-                        <p class="font-sans text-lg font-500">{project.year}</p>
-                   </div>
-                   <div>
-                        <h3 class="text-[10px] font-mono uppercase opacity-40 tracking-widest mb-2">Role</h3>
-                        <p class="font-sans text-lg font-500">{project.role}</p>
-                   </div>
                 </div>
 
-                <!-- DESCRIPTION -->
-                <div class="md:col-span-8">
-                    <p class="text-2xl md:text-4xl font-sans font-300 leading-tight text-brand-black mb-12">
-                        {project.description}
-                    </p>
-                    
-                    <div class="flex gap-3 flex-wrap">
-                        {project.stack.map(tech => (
-                            <span class="px-4 py-2 border border-brand-black/20 rounded-full text-xs font-sans font-bold uppercase tracking-wider hover:bg-brand-black hover:text-white transition-colors cursor-default">
-                                {tech}
-                            </span>
-                        ))}
+                <!-- PROJECT DATA & DESCRIPTION -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-24">
+                    <!-- META DATA COLUMNS -->
+                    <div
+                        class="md:col-span-4 grid grid-cols-2 gap-y-8 gap-x-4 content-start"
+                    >
+                        <div>
+                            <h3
+                                class="text-[10px] font-mono uppercase tracking-widest mb-2 text-[var(--p-contraste)]"
+                            >
+                                Cliente
+                            </h3>
+                            <p class="font-sans text-lg font-500">
+                                {project.client}
+                            </p>
+                        </div>
+                        <div>
+                            <h3
+                                class="text-[10px] font-mono uppercase tracking-widest mb-2 text-[var(--p-contraste)]"
+                            >
+                                Servicio
+                            </h3>
+                            <p class="font-sans text-lg font-500">
+                                {project.service}
+                            </p>
+                        </div>
+                        <div>
+                            <h3
+                                class="text-[10px] font-mono uppercase tracking-widest mb-2 text-[var(--p-contraste)]"
+                            >
+                                Año
+                            </h3>
+                            <p class="font-sans text-lg font-500">
+                                {project.year}
+                            </p>
+                        </div>
+                        <div>
+                            <h3
+                                class="text-[10px] font-mono uppercase tracking-widest mb-2 text-[var(--p-contraste)]"
+                            >
+                                Rol
+                            </h3>
+                            <p class="font-sans text-lg font-500">
+                                {project.role}
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- DESCRIPTION -->
+                    <div class="md:col-span-8">
+                        <p
+                            class="text-2xl md:text-4xl font-sans font-300 leading-tight mb-12"
+                        >
+                            {project.description}
+                        </p>
+
+                        <div class="flex gap-3 flex-wrap">
+                            {
+                                project.stack.map((tech: string) => (
+                                    <span class="px-4 py-2 bg-[var(--p-contraste)] text-[var(--p-textos)] rounded-full text-xs font-sans font-bold uppercase tracking-wider cursor-default">
+                                        {tech}
+                                    </span>
+                                ))
+                            }
+                        </div>
                     </div>
                 </div>
+
+                <!-- GALLERY -->
+                <section class="flex flex-col w-full">
+                    {
+                        project.gallery ? (
+                            <div class="w-full">
+                                {project.gallery.map(
+                                    (item: any, index: number) => {
+                                        if (item.type === "image") {
+                                            return (
+                                                <div class="w-full overflow-hidden">
+                                                    <img
+                                                        src={item.src}
+                                                        class="w-full h-auto object-cover block"
+                                                        alt={`${project.title} - ${index}`}
+                                                        loading="lazy"
+                                                    />
+                                                </div>
+                                            );
+                                        }
+
+                                        if (item.type === "video") {
+                                            // Detect if it's a Vimeo/YouTube ID or a full URL
+                                            const isVimeo =
+                                                item.src.includes("vimeo") ||
+                                                /^\d+$/.test(item.src);
+                                            const videoSrc = isVimeo
+                                                ? `https://player.vimeo.com/video/${item.src.replace("https://vimeo.com/", "")}?background=1&autoplay=1&loop=1&muted=1`
+                                                : item.src;
+
+                                            return (
+                                                <div class="w-full aspect-video bg-black/10">
+                                                    <iframe
+                                                        src={videoSrc}
+                                                        class="w-full h-full"
+                                                        allow="autoplay; fullscreen; picture-in-picture"
+                                                        allowfullscreen
+                                                    />
+                                                </div>
+                                            );
+                                        }
+
+                                        if (item.type === "logo") {
+                                            const isSVG =
+                                                item.src.endsWith(".svg");
+                                            const useOriginal =
+                                                item.color === "original";
+                                            const logoColor =
+                                                item.color &&
+                                                item.color !== "original"
+                                                    ? item.color
+                                                    : "var(--p-logos)";
+
+                                            return (
+                                                <div class="w-full aspect-video md:aspect-[21/9] p-12 md:p-32 border-b border-[var(--p-contraste)]/10 flex items-center justify-center">
+                                                    <div class="w-full h-full max-w-[400px] md:max-w-[600px] flex items-center justify-center">
+                                                        {isSVG &&
+                                                        !useOriginal ? (
+                                                            <div
+                                                                class="w-full h-full transition-colors duration-500"
+                                                                style={`
+                                                                    background-color: ${logoColor};
+                                                                    mask-image: url(${item.src});
+                                                                    -webkit-mask-image: url(${item.src});
+                                                                    mask-size: contain;
+                                                                    -webkit-mask-size: contain;
+                                                                    mask-repeat: no-repeat;
+                                                                    -webkit-mask-repeat: no-repeat;
+                                                                    mask-position: center;
+                                                                    -webkit-mask-position: center;
+                                                                `}
+                                                            />
+                                                        ) : (
+                                                            <img
+                                                                src={item.src}
+                                                                class={`max-w-full max-h-full object-contain ${!useOriginal ? "grayscale brightness-0 invert opacity-80" : ""}`}
+                                                                alt="Logo"
+                                                                loading="lazy"
+                                                            />
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            );
+                                        }
+                                        return null;
+                                    },
+                                )}
+                            </div>
+                        ) : (
+                            project.images?.map(
+                                (img: string, index: number) => (
+                                    <div class="w-full overflow-hidden">
+                                        <img
+                                            src={img}
+                                            class="w-full h-auto object-cover block transition-all duration-700"
+                                            alt={`${project.title} - Vista ${index + 1}`}
+                                            loading="lazy"
+                                        />
+                                    </div>
+                                ),
+                            )
+                        )
+                    }
+                </section>
             </div>
-
-            <!-- GALLERY (Vertical Stack) -->
-            <section class="flex flex-col gap-8 md:gap-16 w-full">
-                {project.images.map((img, index) => (
-                    <div class="w-full bg-brand-gray/10 p-1 md:p-2 rounded-lg overflow-hidden">
-                         <div class="relative w-full overflow-hidden bg-brand-black/5">
-                             <!-- Placeholder handling for demo -->
-                             <img 
-                                src={img} 
-                                class="w-full h-auto object-cover block grayscale hover:grayscale-0 transition-all duration-700"
-                                alt={`${project.title} - View ${index + 1}`}
-                                loading="lazy"
-                             />
-                         </div>
-                    </div>
-                ))}
-            </section>
-
         </div>
 
-        <!-- FOOTER NAVIGATION (Full Width) -->
-        <div class="w-full border-t border-brand-black/10 mt-32">
-             <div class="max-w-[1440px] mx-auto w-full px-6 md:px-6 py-12 flex justify-between items-center group cursor-pointer hover:text-brand-red transition-colors duration-300">
+        <!-- FOOTER NAVIGATION (Outside project-area to keep original brand colors) -->
+        <a
+            href={`/projects/${nextProject.slug}`}
+            class="block w-full border-t border-brand-red/20 mt-0 bg-brand-black hover:bg-brand-red transition-all duration-500 group relative overflow-hidden"
+        >
+            <!-- Subtle glow effect from brand guidelines section 05 -->
+            <div
+                class="absolute top-0 right-0 w-64 h-64 bg-brand-red blur-[100px] opacity-10 group-hover:opacity-30 transition-opacity duration-500"
+            >
+            </div>
+
+            <div
+                class="max-w-[1440px] mx-auto w-full px-6 md:px-6 py-16 md:py-24 flex justify-between items-center relative z-10"
+            >
                 <div>
-                     <span class="block text-xs font-mono tracking-[0.2em] mb-2 uppercase opacity-40">Next Project</span>
-                     <h2 class="text-4xl md:text-6xl font-sans font-800 uppercase tracking-tight">Hilton App</h2>
+                    <span
+                        class="block text-[10px] font-bold bg-brand-red/10 text-brand-red px-3 py-1 rounded-full uppercase tracking-wider mb-4 inline-block group-hover:bg-black/10 group-hover:text-brand-black transition-colors duration-500"
+                    >
+                        Siguiente Proyecto
+                    </span>
+                    <h2
+                        class="text-5xl md:text-8xl font-sans font-800 uppercase tracking-tighter text-brand-red group-hover:text-brand-black transition-colors duration-500 leading-none"
+                    >
+                        {nextProject.title}
+                    </h2>
                 </div>
-                <div class="text-4xl md:text-6xl transition-colors duration-300">
+                <div
+                    class="text-5xl md:text-8xl text-brand-red group-hover:text-brand-black group-hover:translate-x-6 transition-all duration-500"
+                >
                     →
                 </div>
             </div>
-        </div>
+        </a>
     </main>
 </Layout>

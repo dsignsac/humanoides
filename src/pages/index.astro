@@ -12,17 +12,16 @@ import PortfolioSection from "../components/PortfolioSection.astro";
             id="hero"
             class="relative w-full h-screen flex flex-col mt-0 bg-brand-black"
         >
-            <!-- Background Video -->
+            <!-- Background Image -->
             <div class="absolute inset-0 z-0">
-                <video
-                    autoplay
-                    muted
-                    loop
-                    playsinline
+                <Image
+                    src={heroImage}
+                    alt="Industrial Creative Studio"
                     class="w-full h-full object-cover opacity-80 grayscale"
-                >
-                    <source src="/hero.mp4" type="video/mp4" />
-                </video>
+                    loading="eager"
+                    quality={80}
+                    format="webp"
+                />
             </div>
             <!-- Overlay: 70% brand-black (#2F2F2F) -->
             <div class="absolute inset-0 z-[5] bg-[#2F2F2F]/70"></div>
@@ -50,54 +49,18 @@ import PortfolioSection from "../components/PortfolioSection.astro";
                         class="flex justify-center md:justify-end mb-12 md:mb-0"
                     >
                         <a
-                            href="#core"
+                            href="#log"
                             class="group relative inline-flex items-center px-8 py-4 bg-transparent border border-brand-gray text-brand-gray font-sans font-800 uppercase tracking-widest text-sm transition-all duration-300 hover:border-brand-red hover:bg-brand-red hover:text-brand-gray overflow-hidden rounded-full"
                         >
-                            <span class="relative z-10">Ver Asociados</span>
+                            <span class="relative z-10">Ver Proyectos</span>
                         </a>
                     </div>
                 </div>
             </div>
-
-            <!-- Header Marquee -->
-            <div
-                class="relative z-10 w-full bg-brand-red py-6 md:py-8 border-t border-white/10 overflow-hidden"
-            >
-                <div class="flex animate-marquee whitespace-nowrap">
-                    {
-                        [...Array(3)].map(() => (
-                            <>
-                                <img
-                                    src="/marcas/dataStream.svg"
-                                    alt="DataStream"
-                                    class="h-6 md:h-8 lg:h-[30px] w-auto mx-8 md:mx-[45px] logo-gray"
-                                />
-                                <img
-                                    src="/marcas/hilton.svg"
-                                    alt="Hilton Garden Inn"
-                                    class="h-6 md:h-8 lg:h-[30px] w-auto mx-8 md:mx-[45px] logo-gray"
-                                />
-                                <img
-                                    src="/marcas/ELA.svg"
-                                    alt="ELA"
-                                    class="h-6 md:h-8 lg:h-[30px] w-auto mx-8 md:mx-[45px] logo-gray"
-                                />
-                                <img
-                                    src="/marcas/logo.svg"
-                                    alt="Los Mirlos"
-                                    class="h-6 md:h-8 lg:h-[30px] w-auto mx-8 md:mx-[45px] logo-gray"
-                                />
-                                <img
-                                    src="/marcas/monsterlink.svg"
-                                    alt="Monster Link"
-                                    class="h-6 md:h-8 lg:h-[30px] w-auto mx-8 md:mx-[45px] logo-gray"
-                                />
-                            </>
-                        ))
-                    }
-                </div>
-            </div>
         </section>
+
+        <!-- PORTFOLIO / LOG SECTION -->
+        <PortfolioSection />
 
         <!-- TEAM SECTION (CORE) -->
         <section
@@ -112,13 +75,13 @@ import PortfolioSection from "../components/PortfolioSection.astro";
                     <div>
                         <span
                             class="text-xs font-mono uppercase tracking-[0.3em] text-brand-red mb-4 block"
-                            >// INDEX_01</span
+                            >// INDEX_02</span
                         >
                         <h2
                             class="text-5xl md:text-8xl font-sans font-800 tracking-tighter text-brand-black leading-[0.9] md:leading-[0.85]"
                         >
-                            Core<br /><span class="text-brand-red"
-                                >Personnel</span
+                            Equipo<br /><span class="text-brand-red"
+                                >Principal</span
                             >
                         </h2>
                     </div>
@@ -321,8 +284,5 @@ import PortfolioSection from "../components/PortfolioSection.astro";
                 }
             </style>
         </section>
-
-        <!-- PORTFOLIO / LOG SECTION -->
-        <PortfolioSection />
     </main>
 </Layout>
