@@ -56,31 +56,27 @@ const projects = projectsData.map(p => {
 
 <section id="log" class="w-full bg-brand-gray text-brand-black pb-0">
   
-  <div class="w-full max-w-[1440px] mx-auto px-6 py-24">
+  <div class="w-full max-w-[1440px] mx-auto px-6 pt-24">
     <!-- Big Headline -->
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 md:mb-16 pb-8 border-b border-brand-black/10 gap-8">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8">
         <div>
-            <span class="text-xs font-mono uppercase tracking-[0.3em] text-brand-red mb-4 block">// INDEX_01</span>
-            <h2 class="text-5xl md:text-8xl font-sans font-800 tracking-tighter text-brand-black leading-[0.9] md:leading-[0.85]">
-                Registro<br /><span class="text-brand-red">Proyectos</span>
-            </h2>
+            <span class="text-sm font-sans uppercase tracking-[0.2em] text-brand-red mb-2 block font-bold">Project Archive</span>
         </div>
         <div class="hidden md:block text-right">
-           <span class="text-[10px] font-mono tracking-widest block opacity-60">ESTADO: EN LÍNEA</span>
-           <span class="text-[10px] font-mono tracking-widest block opacity-60">SISTEMA: EFICIENTE</span>
+           <span class="text-xs font-sans tracking-widest block text-brand-black font-bold">STATUS: OPERATIONAL</span>
+           <span class="text-xs font-sans tracking-widest block text-brand-black font-bold">METRIC: EFFICIENT</span>
         </div>
     </div>
 
   <!-- Projects Grid / List -->
-  <div class="w-full max-w-[1440px] mx-auto">
+  <div class="w-full max-w-[1440px] mx-auto flex flex-col gap-12 md:gap-0">
     
     <!-- Table Header (Desktop Only) -->
-    <div class="hidden md:grid grid-cols-12 gap-4 px-6 pb-4 pt-4 mt-8 border-y border-brand-black/10 text-[10px] font-mono font-bold tracking-widest uppercase opacity-40">
-      <div class="col-span-1">ID</div>
-      <div class="col-span-3">CLIENTE / PROYECTO</div>
-      <div class="col-span-3">SERVICIO</div>
+    <div class="hidden md:grid grid-cols-12 gap-4 px-6 pb-4 pt-4 border-y border-brand-black text-xs font-sans font-900 tracking-widest uppercase text-brand-black">
       <div class="col-span-1">AÑO</div>
-      <div class="col-span-2">PAÍS</div>
+      <div class="col-span-2">LOCALIZACIÓN</div>
+      <div class="col-span-4">CLIENTE / PROYECTO</div>
+      <div class="col-span-3">SERVICIO</div>
       <div class="col-span-2 text-right">ACCIÓN</div>
     </div>
 
@@ -108,49 +104,41 @@ const projects = projectsData.map(p => {
         <a href={project.url} class="block w-full h-full relative z-10">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-4 px-6 py-8 md:py-12 items-center">
             
-            <!-- ID -->
-            <div class="col-span-1 font-mono text-xs text-brand-red opacity-60 md:opacity-100 mb-2 md:mb-0">
-                {project.id}
+            <!-- YEAR -->
+            <div class="col-span-1 font-sans text-xs text-brand-red font-900 mb-2 md:mb-0">
+                {project.year}
+            </div>
+
+            <!-- COUNTRY (Replacing ID) -->
+            <div class="hidden md:block col-span-2 font-sans text-xs text-brand-black font-bold uppercase tracking-wider">
+                {project.country}
             </div>
 
             <!-- Client & Project -->
-            <div class="col-span-11 md:col-span-3 mb-4 md:mb-0">
+            <div class="col-span-11 md:col-span-4 mb-4 md:mb-0">
                 <h3 class="text-2xl md:text-3xl font-sans font-bold leading-none uppercase text-brand-black group-hover:text-brand-red transition-colors duration-300" style="will-change: color;">
                 {project.client}
                 </h3>
-                <p class="text-sm font-sans font-medium opacity-60 mt-1 uppercase tracking-wide">
+                <p class="text-sm font-sans font-semibold text-brand-black mt-1 uppercase tracking-wide">
                 {project.project}
                 </p>
             </div>
 
             <!-- Service (Desktop) -->
-            <div class="hidden md:block col-span-3 font-mono text-xs uppercase tracking-wider opacity-70">
-                [{project.service}]
-            </div>
-
-            <!-- Year (Desktop) -->
-            <div class="hidden md:block col-span-1 font-mono text-xs opacity-60 group-hover:opacity-0 transition-opacity duration-300" style="will-change: opacity;">
-                '{project.year.slice(2)}
-            </div>
-
-            <!-- Status -> País -->
-            <div class="hidden md:flex col-span-2 items-center gap-2 font-mono text-[10px] uppercase tracking-widest z-20 relative group-hover:opacity-0 transition-opacity duration-300" style="will-change: opacity;">
-                <span class="w-1.5 h-1.5 rounded-full bg-brand-red"></span>
-                {project.country}
+            <div class="hidden md:block col-span-3 font-sans text-xs uppercase tracking-wider text-brand-black font-bold group-hover:opacity-0 transition-opacity duration-300" style="will-change: opacity;">
+                {project.service}
             </div>
 
             <!-- Mobile: Combined Meta -->
-            <div class="md:hidden col-span-11 flex flex-wrap gap-4 text-[10px] font-mono uppercase opacity-60 mt-2">
+            <div class="md:hidden col-span-11 flex flex-wrap gap-4 text-xs font-sans uppercase text-brand-black font-bold mt-2">
                 <span>{project.service}</span>
-                <span>//</span>
-                <span>{project.year}</span>
-                <span>//</span>
+                <span class="text-brand-red">|</span>
                 <span>{project.country}</span>
             </div>
 
             <!-- Arrow (Desktop) -->
             <div class="hidden md:flex col-span-2 justify-end">
-                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-brand-red group-hover:text-brand-black transition-colors duration-300" style="will-change: color;">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-brand-black group-hover:text-brand-gray transition-colors duration-300" style="will-change: color;">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
                  </svg>

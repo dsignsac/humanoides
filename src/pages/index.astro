@@ -11,6 +11,18 @@ const logos = [
     { src: "/marcas/logo.svg", alt: "Logo" },
     { src: "/marcas/monsterlink.svg", alt: "Monsterlink" },
 ];
+
+const team = [
+    { type: 'HUMAN', ref: '01', name: 'David', role: 'Founder & Lead Operator', spec: 'Dirección Estratégica & Creativa', availability: 'ON-SITE', img: '/miembros/chad.png', cv: '#david-cv' },
+    { type: 'HUMAN', ref: '02', name: 'Eyner', role: 'Technical Director', spec: 'Arquitectura de Sistemas & Lógica', availability: 'ON-SITE', img: '/miembros/chad.png', cv: '#eyner-cv' },
+    { type: 'AI', ref: 'S1', name: 'Chad', role: 'Development Agent', spec: 'Síntesis de Código & Debugging', availability: 'SYNCED', img: '/miembros/chad.png', desc: 'Sintetiza arquitecturas complejas y optimiza código en tiempo real.' },
+    { type: 'AI', ref: 'S2', name: 'Gemma', role: 'Operations Agent', spec: 'Optimización de Procesos', availability: 'SYNCED', img: '/miembros/gemma.png', desc: 'Coordina flujos de trabajo masivos garantizando entregas impecables.' },
+    { type: 'AI', ref: 'S3', name: 'Claudio', role: 'Planning Agent', spec: 'Análisis Predictivo de Datos', availability: 'SYNCED', img: '/miembros/claudio.png', desc: 'Proyecta escenarios futuros mediante el análisis de patrones ocultos.' },
+    { type: 'AI', ref: 'S4', name: 'Connie', role: 'Visual Agent', spec: 'Generación Dinámica de Activos', availability: 'SYNCED', img: '/miembros/connie.png', desc: 'Materializa visiones abstractas en activos visuales de alto impacto.' },
+];
+
+const humans = [...team.filter(m => m.type === 'HUMAN')].reverse(); // Revertir para el scroll hacia la derecha
+const agents = team.filter(m => m.type === 'AI');
 ---
 
 <Layout title="Humanoides & Asociados | Eficiencia Disruptiva">
@@ -33,24 +45,6 @@ const logos = [
             </div>
             <!-- Overlay: 70% brand-black (#2F2F2F) -->
             <div class="absolute inset-0 z-[5] bg-[#2F2F2F]/70"></div>
-
-            <!-- CRT Effect Layer -->
-            <div
-                class="absolute inset-0 z-[6] pointer-events-none overflow-hidden opacity-30"
-            >
-                <!-- Scanlines -->
-                <div
-                    class="absolute inset-0 w-full h-full bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_4px,3px_100%]"
-                    style="transform: translateZ(0);"
-                >
-                </div>
-                <!-- Flicker -->
-                <div
-                    class="absolute inset-0 w-full h-full bg-transparent animate-flicker pointer-events-none"
-                    style="transform: translateZ(0);"
-                >
-                </div>
-            </div>
 
             <!-- Content -->
             <div
@@ -138,204 +132,222 @@ const logos = [
         <!-- TEAM SECTION (CORE) -->
         <section
             id="core"
-            class="relative w-full bg-brand-gray text-brand-black py-24 border-t border-brand-black/10"
+            class="relative w-full bg-brand-gray text-brand-black pt-24"
         >
             <div class="max-w-[1440px] mx-auto w-full px-6 relative">
                 <!-- Header (Divider Line Here) -->
                 <div
-                    class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 pb-8 border-b border-brand-black/10"
+                    class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8"
                 >
                     <div>
                         <span
-                            class="text-xs font-mono uppercase tracking-[0.3em] text-brand-red mb-4 block"
-                            >// INDEX_02</span
+                            class="text-sm font-sans uppercase tracking-[0.2em] text-brand-red mb-2 block font-bold"
+                            >Corporative Overview</span
                         >
-                        <h2
-                            class="text-5xl md:text-8xl font-sans font-800 tracking-tighter text-brand-black leading-[0.9] md:leading-[0.85]"
-                        >
-                            Equipo<br /><span class="text-brand-red"
-                                >Principal</span
-                            >
-                        </h2>
                     </div>
                     <div class="hidden md:block text-right">
-                        <p
-                            class="text-[10px] font-mono uppercase tracking-widest opacity-60"
+                        <span
+                            class="text-xs font-sans tracking-widest block text-brand-black font-bold"
+                            >STATUS: OPERATIONAL</span
                         >
-                            Human Resources Div.
-                        </p>
-                        <p
-                            class="text-[10px] font-mono uppercase tracking-widest opacity-60"
+                        <span
+                            class="text-xs font-sans tracking-widest block text-brand-black font-bold"
+                            >METRIC: EFFICIENT</span
                         >
-                            System: v.1.0 (1998)
-                        </p>
                     </div>
                 </div>
 
-                <!-- MEMBERS GRID (Simple Hover) -->
-                <div
-                    class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 border-t border-l border-brand-black/10"
-                >
-                    {/* 1. David */}
-                    <article
-                        class="group relative border-r border-b border-brand-black/10 p-6 hover:bg-brand-salmon transition-colors duration-300"
-                    >
-                        <div class="flex justify-between items-start mb-4">
-                            <span
-                                class="font-mono text-[10px] text-brand-red opacity-60"
-                                >REF: 001</span
-                            >
-                        </div>
-                        <div
-                            class="aspect-[3/4] w-full overflow-hidden mb-6 rounded-[1.5rem] bg-brand-black/5"
-                        >
-                            <img
-                                src="/miembros/chad.png"
-                                alt="David"
-                                class="w-full h-full object-cover object-top"
-                                loading="lazy"
-                            />
-                        </div>
-                        <h3
-                            class="text-lg font-sans font-bold uppercase text-brand-black"
-                        >
-                            David
-                        </h3>
-                        <p
-                            class="text-[10px] font-mono uppercase tracking-widest opacity-60"
-                        >
-                            Founder & CEO
-                        </p>
-                    </article>
-
-                    {/* 2. Chad */}
-                    <article
-                        class="group relative border-r border-b border-brand-black/10 p-6 hover:bg-brand-salmon transition-colors duration-300"
-                    >
-                        <div class="flex justify-between items-start mb-4">
-                            <span
-                                class="font-mono text-[10px] text-brand-red opacity-60"
-                                >REF: 002</span
-                            >
-                        </div>
-                        <div
-                            class="aspect-[3/4] w-full overflow-hidden mb-6 rounded-[1.5rem] bg-brand-black/5"
-                        >
-                            <img
-                                src="/miembros/chad.png"
-                                alt="Chad"
-                                class="w-full h-full object-cover object-top"
-                                loading="lazy"
-                            />
-                        </div>
-                        <h3
-                            class="text-lg font-sans font-bold uppercase text-brand-black"
-                        >
-                            Chad
-                        </h3>
-                        <p
-                            class="text-[10px] font-mono uppercase tracking-widest opacity-60"
-                        >
-                            Senior Associate
-                        </p>
-                    </article>
-
-                    {/* 3. Gemma */}
-                    <article
-                        class="group relative border-r border-b border-brand-black/10 p-6 hover:bg-brand-salmon transition-colors duration-300"
-                    >
-                        <div class="flex justify-between items-start mb-4">
-                            <span
-                                class="font-mono text-[10px] text-brand-red opacity-60"
-                                >REF: 003</span
-                            >
-                        </div>
-                        <div
-                            class="aspect-[3/4] w-full overflow-hidden mb-6 rounded-[1.5rem] bg-brand-black/5"
-                        >
-                            <img
-                                src="/miembros/gemma.png"
-                                alt="Gemma"
-                                class="w-full h-full object-cover object-top"
-                                loading="lazy"
-                            />
-                        </div>
-                        <h3
-                            class="text-lg font-sans font-bold uppercase text-brand-black"
-                        >
-                            Gemma
-                        </h3>
-                        <p
-                            class="text-[10px] font-mono uppercase tracking-widest opacity-60"
-                        >
-                            Operations
-                        </p>
-                    </article>
-
-                    {/* 4. Claudio */}
-                    <article
-                        class="group relative border-r border-b border-brand-black/10 p-6 hover:bg-brand-salmon transition-colors duration-300"
-                    >
-                        <div class="flex justify-between items-start mb-4">
-                            <span
-                                class="font-mono text-[10px] text-brand-red opacity-60"
-                                >REF: 004</span
-                            >
-                        </div>
-                        <div
-                            class="aspect-[3/4] w-full overflow-hidden mb-6 rounded-[1.5rem] bg-brand-black/5"
-                        >
-                            <img
-                                src="/miembros/claudio.png"
-                                alt="Claudio"
-                                class="w-full h-full object-cover object-top"
-                                loading="lazy"
-                            />
-                        </div>
-                        <h3
-                            class="text-lg font-sans font-bold uppercase text-brand-black"
-                        >
-                            Claudio
-                        </h3>
-                        <p
-                            class="text-[10px] font-mono uppercase tracking-widest opacity-60"
-                        >
-                            Strategic Planning
-                        </p>
-                    </article>
-
-                    {/* 5. Connie */}
-                    <article
-                        class="group relative border-r border-b border-brand-black/10 p-6 hover:bg-brand-salmon transition-colors duration-300"
-                    >
-                        <div class="flex justify-between items-start mb-4">
-                            <span
-                                class="font-mono text-[10px] text-brand-red opacity-60"
-                                >REF: 005</span
-                            >
-                        </div>
-                        <div
-                            class="aspect-[3/4] w-full overflow-hidden mb-6 rounded-[1.5rem] bg-brand-black/5"
-                        >
-                            <img
-                                src="/miembros/connie.png"
-                                alt="Connie"
-                                class="w-full h-full object-cover object-top"
-                                loading="lazy"
-                            />
-                        </div>
-                        <h3
-                            class="text-lg font-sans font-bold uppercase text-brand-black"
-                        >
-                            Connie
-                        </h3>
-                        <p
-                            class="text-[10px] font-mono uppercase tracking-widest opacity-60"
-                        >
-                            Design & Art
-                        </p>
-                    </article>
+                <!-- TABLE HEADER (Desktop Only) -->
+                <div class="hidden md:grid grid-cols-12 gap-4 px-6 pb-4 pt-4 mt-8 border-y border-brand-black text-xs font-sans font-900 tracking-widest uppercase text-brand-black">
+                    <div class="col-span-2">ARCHIVO</div>
+                    <div class="col-span-1">TIPO</div>
+                    <div class="col-span-4">NODOS CORPORATIVOS</div>
+                    <div class="col-span-3">ESPECIFICACIÓN TÉCNICA</div>
+                    <div class="col-span-2 text-right">ESTADO</div>
                 </div>
+
+                <!-- MIRROR CAROUSEL TEAM SYSTEM (Infinite Drag & Sync) -->
+                <div id="team-mirror-system" class="w-full flex flex-col gap-0 select-none cursor-grab active:cursor-grabbing">
+                    
+                    <!-- 1. LEADERS CAROUSEL (Sliding RIGHT) -->
+                    <div id="human-carousel" class="relative w-full overflow-hidden border-b border-brand-black">
+                        <!-- Track x6 items for infinite loop (Set 1, Set 2 [Start], Set 3) -->
+                        <div class="carousel-track flex" style="width: 600%;">
+                            {[...humans, ...humans, ...humans].map((member) => (
+                                <article class="flex-shrink-0 w-1/6 border-r border-[#C5CAC2] py-8 md:py-12 px-0 group transition-colors duration-300 hover:bg-brand-salmon relative pointer-events-none">
+                                    <div class="flex flex-col md:grid md:grid-cols-12 gap-6 md:gap-8 items-start md:items-center relative z-10">
+                                        <!-- Photo -->
+                                        <div class="md:col-span-2">
+                                            <div class="w-24 h-24 md:w-36 md:h-36 bg-brand-gray border border-brand-black overflow-hidden">
+                                                <img src={member.img} alt={member.name} class="w-full h-full object-cover object-top" loading="lazy" />
+                                            </div>
+                                        </div>
+                                        <!-- Info -->
+                                        <div class="md:col-span-5">
+                                            <h3 class="font-sans font-900 uppercase leading-none text-brand-black group-hover:text-brand-red transition-colors" style="font-size: clamp(2rem, 6vw, 3.5rem);">
+                                                {member.name}
+                                            </h3>
+                                            <p class="text-xs font-sans mt-2 uppercase tracking-wide font-bold text-brand-black">
+                                                {member.role}
+                                            </p>
+                                        </div>
+                                        <!-- Spec -->
+                                        <div class="hidden md:block md:col-span-3 font-sans text-sm uppercase tracking-wider text-brand-black font-bold">
+                                            {member.spec}
+                                        </div>
+                                        <!-- Actions -->
+                                        <div class="w-full md:col-span-2 flex flex-row md:flex-col justify-between md:items-end items-center gap-4 pointer-events-auto">
+                                            <div class="flex items-center gap-2 font-sans text-[10px] font-900 tracking-widest">
+                                                <span class="w-2 h-2 rounded-full bg-brand-red"></span>
+                                                {member.availability}
+                                            </div>
+                                            <a href={member.cv} class="inline-flex items-center px-4 py-2 bg-brand-black text-[#D4DAD3] text-[10px] font-900 uppercase tracking-widest hover:bg-brand-red transition-colors z-20 whitespace-nowrap">
+                                                Ver Hoja de Vida
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!-- Node Index -->
+                                    <span class="absolute top-4 right-6 font-sans text-[10px] font-900 text-brand-red uppercase tracking-widest">
+                                        [NODE_{member.ref}]
+                                    </span>
+                                </article>
+                            ))}
+                        </div>
+                    </div>
+
+                    <!-- 2. AGENTS CAROUSEL (Sliding LEFT) -->
+                    <div id="agent-carousel" class="relative w-full overflow-hidden bg-brand-gray">
+                        <div class="carousel-track flex" style="width: 600%;">
+                            {[...agents, ...agents, ...agents].map((member) => (
+                                <article class="flex-shrink-0 w-1/12 border-r border-[#C5CAC2] py-6 md:py-8 px-0 group transition-colors duration-300 hover:bg-brand-salmon relative pointer-events-none">
+                                    <div class="grid grid-cols-1 gap-4 items-start">
+                                        <div class="flex items-center gap-4">
+                                            <div class="w-16 h-16 md:w-20 md:h-20 flex-shrink-0 bg-brand-gray border border-brand-black overflow-hidden">
+                                                <img src={member.img} alt={member.name} class="w-full h-full object-cover object-top" loading="lazy" />
+                                            </div>
+                                            <div>
+                                                <h3 class="font-sans font-700 text-lg md:text-xl uppercase leading-none text-brand-black group-hover:text-brand-red transition-colors">
+                                                    {member.name}
+                                                </h3>
+                                                <span class="text-[9px] font-sans font-900 text-brand-gray uppercase tracking-widest block mt-1">
+                                                    {member.type}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="min-h-[60px]">
+                                            <p class="text-[10px] font-sans font-semibold uppercase text-brand-gray mb-1">
+                                                {member.role}
+                                            </p>
+                                            <p class="text-[11px] font-sans text-brand-black font-medium leading-tight">
+                                                {member.desc}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    import { gsap } from 'gsap';
+
+                    function initMirrorSystem() {
+                        const system = document.getElementById('team-mirror-system');
+                        const humanTrack = document.querySelector('#human-carousel .carousel-track') as HTMLElement;
+                        const agentTrack = document.querySelector('#agent-carousel .carousel-track') as HTMLElement;
+                        if (!system || !humanTrack || !agentTrack) return;
+
+                        // Configuration
+                        const totalSlides = 6;
+                        const segmentWidth = 100 / 3; // 33.333% (One full set of unique items)
+                        const stepSize = 100 / totalSlides; // 16.666% (One slide)
+                        
+                        // State
+                        let virtualX = 0; // Coordinate in steps (0 to 2 for David/Eyner cycle)
+                        let isDragging = false;
+                        let startX = 0;
+                        let startVirtualX = 0;
+                        let autoTimer: any;
+
+                        const wrap = gsap.utils.wrap(0, 2); // Wrapper for 2 steps (David & Eyner)
+
+                        function update(immediate = false) {
+                            const p = wrap(virtualX); // Normalized progress within one cycle
+                            
+                            // Human: Slides right. Baseline -33.33 (Set 2). 
+                            // When p increases, humanX becomes less negative -> moves right.
+                            const humanX = -33.3333 + (p * stepSize);
+                            
+                            // Agent: Slides left. Baseline -33.33.
+                            // When p increases, agentX becomes more negative -> moves left.
+                            const agentX = -33.3333 - (p * stepSize);
+
+                            gsap.to(humanTrack, {
+                                xPercent: humanX,
+                                duration: immediate ? 0 : 1.2,
+                                ease: immediate ? "none" : "power3.out"
+                            });
+                            gsap.to(agentTrack, {
+                                xPercent: agentX,
+                                duration: immediate ? 0 : 1.2,
+                                ease: immediate ? "none" : "power3.out"
+                            });
+                        }
+
+                        // Initialize
+                        update(true);
+
+                        function onDragStart(e: any) {
+                            isDragging = true;
+                            startX = (e.type === 'touchstart') ? e.touches[0].clientX : e.clientX;
+                            startVirtualX = virtualX;
+                            clearInterval(autoTimer);
+                            system?.classList.add('cursor-grabbing');
+                        }
+
+                        function onDrag(e: any) {
+                            if (!isDragging) return;
+                            const x = (e.type === 'touchmove') ? e.touches[0].clientX : e.clientX;
+                            // Sensitivity: 500px to move one full slide
+                            const delta = (x - startX) / 500;
+                            virtualX = startVirtualX + delta;
+                            update(true);
+                        }
+
+                        function onDragEnd() {
+                            if (!isDragging) return;
+                            isDragging = false;
+                            system?.classList.remove('cursor-grabbing');
+                            
+                            // Snap virtualX to nearest integer
+                            virtualX = Math.round(virtualX);
+                            update();
+                            startAuto();
+                        }
+
+                        system.addEventListener('mousedown', onDragStart);
+                        window.addEventListener('mousemove', onDrag);
+                        window.addEventListener('mouseup', onDragEnd);
+                        
+                        system.addEventListener('touchstart', onDragStart, { passive: true });
+                        window.addEventListener('touchmove', onDrag, { passive: false });
+                        window.addEventListener('touchend', onDragEnd);
+
+                        function startAuto() {
+                            clearInterval(autoTimer);
+                            autoTimer = setInterval(() => {
+                                virtualX += 1; // Move to next item
+                                update();
+                            }, 5000);
+                        }
+
+                        startAuto();
+                    }
+
+                    document.addEventListener('astro:page-load', initMirrorSystem);
+                    if (document.readyState === 'complete') initMirrorSystem();
+                </script>
             </div>
             <style>
                 @keyframes flicker {
@@ -406,21 +418,6 @@ const logos = [
                 .animate-flicker {
                     animation: flicker 0.15s infinite;
                     will-change: opacity;
-                }
-
-                @keyframes marquee {
-                    0% {
-                        transform: translateX(0);
-                    }
-                    100% {
-                        transform: translateX(-100%);
-                    }
-                }
-                .animate-marquee {
-                    animation: marquee 30s linear infinite;
-                }
-                .marquee-container {
-                    width: max-content;
                 }
             </style>
         </section>
