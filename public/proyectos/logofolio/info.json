@@ -35,11 +35,5 @@
         "Illustrator",
         "Brand Strategy",
         "Typography"
-    ],
-    "palette": {
-        "base": "#2F2F2F",
-        "contraste": "#FA2A2A",
-        "textos": "#D4DAD3",
-        "logos": "#D4DAD3"
-    }
+    ]
 }

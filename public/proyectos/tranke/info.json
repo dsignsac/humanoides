@@ -44,10 +44,5 @@
         "Procreate",
         "Adobe Suite",
         "Ai-Agents"
-    ],
-    "palette": {
-        "base": "#FF9EEA",
-        "contraste": "#FFFF00",
-        "textos": "#434371"
-    }
+    ]
 }
