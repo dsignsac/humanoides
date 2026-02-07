@@ -174,18 +174,58 @@ const nextProject = {
                                         }
 
                                         if (item.type === "video") {
-                                            const isVimeo =
-                                                item.src.includes("vimeo") ||
-                                                /^\d+$/.test(item.src);
-                                            const videoSrc = isVimeo
-                                                ? `https://player.vimeo.com/video/${item.src.replace("https://vimeo.com/", "")}?background=1&autoplay=1&loop=1&muted=1`
-                                                : item.src;
+                                            let videoSrc = item.src;
+
+                                            if (
+                                                videoSrc.includes("vimeo") ||
+                                                /^\d+$/.test(videoSrc)
+                                            ) {
+                                                // Extract ID and Hash if present
+                                                let vimeoId = videoSrc
+                                                    .replace(
+                                                        "https://vimeo.com/",
+                                                        "",
+                                                    )
+                                                    .replace(
+                                                        "https://player.vimeo.com/video/",
+                                                        "",
+                                                    )
+                                                    .split("?")[0];
+                                                // Keep hash if it exists in the original URL
+                                                const urlParams =
+                                                    new URLSearchParams(
+                                                        videoSrc.includes("?")
+                                                            ? videoSrc.split(
+                                                                  "?",
+                                                              )[1]
+                                                            : "",
+                                                    );
+                                                const hash = urlParams.get("h");
+
+                                                videoSrc = `https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=1&muted=1${hash ? `&h=${hash}` : ""}`;
+                                            } else if (
+                                                videoSrc.includes("youtube") ||
+                                                videoSrc.includes("youtu.be")
+                                            ) {
+                                                const ytId = videoSrc.includes(
+                                                    "watch?v=",
+                                                )
+                                                    ? videoSrc
+                                                          .split("v=")[1]
+                                                          .split("&")[0]
+                                                    : videoSrc
+                                                          .split("/")
+                                                          .pop()
+                                                          ?.split("?")[0];
+                                                videoSrc = `https://www.youtube.com/embed/${ytId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${ytId}&rel=0`;
+                                            }
 
                                             return (
-                                                <div class="w-full aspect-video bg-black/10">
+                                                <div class="w-full aspect-video bg-black/10 overflow-hidden">
                                                     <iframe
                                                         src={videoSrc}
-                                                        class="w-full h-full"
+                                                        class="w-full h-full scale-105 pointer-events-none"
+                                                        style="width: 100%; height: 100%;"
                                                         allow="autoplay; fullscreen; picture-in-picture"
                                                         allowfullscreen
                                                     />
