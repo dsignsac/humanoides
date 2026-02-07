@@ -6,9 +6,11 @@ import Footer from "../components/Footer.astro";
 
 interface Props {
 	title?: string;
+	showNavbar?: boolean;
+	showFooter?: boolean;
 }
 
-const { title = "HA" } = Astro.props;
+const { title = "HA", showNavbar = true, showFooter = true } = Astro.props;
 ---
 
 <!doctype html>
@@ -104,21 +106,15 @@ const { title = "HA" } = Astro.props;
 
 		<ClientRouter />
 	</head>
-	<body class="min-h-screen flex flex-col">
-		<Navbar />
+	<body class="min-h-screen flex flex-col font-sans">
+		{showNavbar && <Navbar />}
 		<slot />
-		<Footer />
+		{showFooter && <Footer />}
 
 		<script>
 			import Lenis from "lenis";
 
-			const lenis = new Lenis({
-				duration: 1.2,
-				easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-				direction: "vertical",
-				gestureDirection: "vertical",
-				smoothMultiplier: 1,
-			});
+			const lenis = new Lenis();
 
 			function raf(time: number) {
 				lenis.raf(time);
