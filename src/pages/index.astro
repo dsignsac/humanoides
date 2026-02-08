@@ -13,8 +13,8 @@ const logos = [
 ];
 
 const team = [
-    { type: 'HUMAN', ref: '01', name: 'David', role: 'Founder & Lead Operator', spec: 'Dirección Estratégica & Creativa', availability: 'ON-SITE', img: '/miembros/chad.png', cv: '#david-cv' },
-    { type: 'HUMAN', ref: '02', name: 'Eyner', role: 'Technical Director', spec: 'Arquitectura de Sistemas & Lógica', availability: 'ON-SITE', img: '/miembros/chad.png', cv: '#eyner-cv' },
+    { type: 'HUMAN', ref: '01', name: 'David', role: 'Founder & Lead Operator', spec: 'Dirección Estratégica & Creativa', availability: 'ON-SITE', img: '/miembros/chad.png', cv: '#david-cv', desc: 'Lidera la visión del estudio fusionando creatividad humana con potencia artificial.' },
+    { type: 'HUMAN', ref: '02', name: 'Eyner', role: 'Technical Director', spec: 'Arquitectura de Sistemas & Lógica', availability: 'ON-SITE', img: '/miembros/chad.png', cv: '#eyner-cv', desc: 'Arquitecto de soluciones complejas y guardián de la integridad técnica.' },
     { type: 'AI', ref: 'S1', name: 'Chad', role: 'Development Agent', spec: 'Síntesis de Código & Debugging', availability: 'SYNCED', img: '/miembros/chad.png', desc: 'Sintetiza arquitecturas complejas y optimiza código en tiempo real.' },
     { type: 'AI', ref: 'S2', name: 'Gemma', role: 'Operations Agent', spec: 'Optimización de Procesos', availability: 'SYNCED', img: '/miembros/gemma.png', desc: 'Coordina flujos de trabajo masivos garantizando entregas impecables.' },
     { type: 'AI', ref: 'S3', name: 'Claudio', role: 'Planning Agent', spec: 'Análisis Predictivo de Datos', availability: 'SYNCED', img: '/miembros/claudio.png', desc: 'Proyecta escenarios futuros mediante el análisis de patrones ocultos.' },
@@ -171,26 +171,27 @@ const agents = team.filter(m => m.type === 'AI');
                                     <div class="flex flex-col md:grid md:grid-cols-12 gap-6 md:gap-8 items-start md:items-center relative z-10 px-6">
                                         <!-- Photo -->
                                         <div class="md:col-span-2">
-                                            <div class="w-24 h-24 md:w-36 md:h-36 bg-brand-gray border border-brand-black overflow-hidden">
+                                            <div class="w-48 h-48 md:w-36 md:h-36 bg-brand-gray border border-brand-black overflow-hidden mx-0">
                                                 <img src={member.img} alt={member.name} class="w-full h-full object-cover object-top" loading="lazy" />
                                             </div>
                                         </div>
                                         <!-- Info -->
                                         <div class="md:col-span-4">
-                                            <h3 class="font-sans font-900 uppercase leading-none text-brand-black group-hover:text-brand-red transition-colors" style="font-size: clamp(2rem, 6vw, 3.5rem);">
+                                            <h3 class="font-sans font-900 uppercase leading-none text-brand-black group-hover:text-brand-red transition-colors" style="font-size: clamp(2.5rem, 8vw, 3.5rem);">
                                                 {member.name}
                                             </h3>
-                                            <p class="text-xs font-sans mt-2 uppercase tracking-wide font-bold text-brand-black">
+                                            <p class="text-sm md:text-xs font-sans mt-2 uppercase tracking-wide font-bold text-brand-black">
                                                 {member.role}
                                             </p>
                                         </div>
                                         <!-- Spec -->
-                                        <div class="hidden md:block md:col-span-4 font-sans text-sm uppercase tracking-wider text-brand-black font-bold">
-                                            {member.spec}
+                                        <div class="md:col-span-4 font-sans text-base md:text-sm uppercase tracking-wider text-brand-black font-bold">
+                                            <p>{member.spec}</p>
+                                            <p class="text-xs md:text-[11px] font-medium mt-2 normal-case tracking-normal max-w-sm">{member.desc}</p>
                                         </div>
                                         <!-- Actions -->
-                                        <div class="w-full md:col-span-2 flex flex-row md:flex-col justify-end items-center md:items-end gap-4 pointer-events-auto">
-                                            <a href={member.cv} class="inline-flex items-center px-8 py-4 bg-brand-black text-[#D4DAD3] text-sm font-900 uppercase tracking-widest hover:bg-brand-red transition-colors z-20 whitespace-nowrap">
+                                        <div class="w-full md:col-span-2 flex flex-row md:flex-col justify-end items-center md:items-end gap-4 pointer-events-auto mt-4 md:mt-0">
+                                            <a href={member.cv} class="inline-flex items-center px-6 py-3 md:px-8 md:py-4 bg-brand-black text-[#D4DAD3] text-xs md:text-sm font-900 uppercase tracking-widest hover:bg-brand-red transition-colors z-20 whitespace-nowrap">
                                                 Ver Hoja de Vida
                                             </a>
                                         </div>
@@ -207,23 +208,23 @@ const agents = team.filter(m => m.type === 'AI');
                                 <article class="flex-shrink-0 w-1/12 py-6 md:py-8 px-0 group transition-colors duration-300 hover:bg-brand-salmon relative pointer-events-none">
                                     <div class="grid grid-cols-1 gap-4 items-start px-6">
                                         <div class="flex items-center gap-4">
-                                            <div class="w-16 h-16 md:w-20 md:h-20 flex-shrink-0 bg-brand-gray border border-brand-black overflow-hidden">
+                                            <div class="w-24 h-24 md:w-20 md:h-20 flex-shrink-0 bg-brand-gray border border-brand-black overflow-hidden">
                                                 <img src={member.img} alt={member.name} class="w-full h-full object-cover object-top" loading="lazy" />
                                             </div>
                                             <div>
-                                                <h3 class="font-sans font-700 text-lg md:text-xl uppercase leading-none text-brand-black group-hover:text-brand-red transition-colors">
+                                                <h3 class="font-sans font-700 text-xl md:text-xl uppercase leading-none text-brand-black group-hover:text-brand-red transition-colors">
                                                     {member.name}
                                                 </h3>
-                                                <span class="text-[9px] font-sans font-900 text-brand-black uppercase tracking-widest block mt-1">
+                                                <span class="text-[10px] md:text-[9px] font-sans font-900 text-brand-black uppercase tracking-widest block mt-1">
                                                     {member.type}
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="min-h-[60px]">
-                                            <p class="text-[10px] font-sans font-semibold uppercase text-brand-black/60">
+                                        <div class="min-h-[80px] md:min-h-[60px]">
+                                            <p class="text-[11px] md:text-[10px] font-sans font-semibold uppercase text-brand-black/60">
                                                 {member.role}
                                             </p>
-                                            <p class="text-[11px] font-sans text-brand-black font-medium px-0">
+                                            <p class="text-[12px] md:text-[11px] font-sans text-brand-black font-medium px-0 leading-tight">
                                                 {member.desc}
                                             </p>
                                         </div>
