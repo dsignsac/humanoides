@@ -92,4 +92,27 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #e02525;
   }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Scroll margin for fixed navbar */
+  section {
+    scroll-margin-top: 5rem;
+    /* 80px for mobile navbar h-20 */
+  }
+
+  @media (min-width: 768px) {
+    section {
+      scroll-margin-top: 6rem;
+      /* 96px for desktop navbar h-24 */
+    }
+  }
 }
