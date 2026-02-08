@@ -168,10 +168,10 @@ const agents = team.filter(m => m.type === 'AI');
                         <div class="carousel-track flex" style="width: 600%;">
                             {[...humans, ...humans, ...humans].map((member) => (
                                 <article class="flex-shrink-0 w-1/6 py-8 md:py-12 px-0 group transition-colors duration-300 hover:bg-brand-salmon relative pointer-events-none">
-                                    <div class="flex flex-col md:grid md:grid-cols-12 gap-6 md:gap-8 items-start md:items-center relative z-10 px-6">
+                                    <div class="flex flex-col md:grid md:grid-cols-12 gap-6 md:gap-8 items-start md:items-center relative z-10">
                                         <!-- Photo -->
-                                        <div class="md:col-span-2">
-                                            <div class="w-48 h-48 md:w-36 md:h-36 bg-brand-gray border border-brand-black overflow-hidden mx-0">
+                                        <div class="w-full md:col-span-2">
+                                            <div class="w-full aspect-square md:w-36 md:h-36 bg-brand-gray border border-brand-black overflow-hidden mx-0">
                                                 <img src={member.img} alt={member.name} class="w-full h-full object-cover object-top" loading="lazy" />
                                             </div>
                                         </div>
@@ -190,7 +190,7 @@ const agents = team.filter(m => m.type === 'AI');
                                             <p class="text-xs md:text-[11px] font-medium mt-2 normal-case tracking-normal max-w-sm">{member.desc}</p>
                                         </div>
                                         <!-- Actions -->
-                                        <div class="w-full md:col-span-2 flex flex-row md:flex-col justify-end items-center md:items-end gap-4 pointer-events-auto mt-4 md:mt-0">
+                                        <div class="w-full md:col-span-2 flex flex-row md:flex-col justify-start items-start gap-4 pointer-events-auto mt-4 md:mt-0">
                                             <a href={member.cv} class="inline-flex items-center px-6 py-3 md:px-8 md:py-4 bg-brand-black text-[#D4DAD3] text-xs md:text-sm font-900 uppercase tracking-widest hover:bg-brand-red transition-colors z-20 whitespace-nowrap">
                                                 Ver Hoja de Vida
                                             </a>
