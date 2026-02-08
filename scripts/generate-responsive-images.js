@@ -19,7 +19,10 @@ async function generateResponsiveImages() {
         if (!stat.isDirectory()) continue;
 
         const files = await fs.readdir(folderPath);
-        const images = files.filter(f => /\.(jpg|jpeg|png|webp)$/i.test(f));
+        const images = files.filter(f =>
+            /\.(jpg|jpeg|png|webp)$/i.test(f) &&
+            !/-(small|medium|large)\.webp$/i.test(f)
+        );
 
         for (const image of images) {
             const imagePath = path.join(folderPath, image);
