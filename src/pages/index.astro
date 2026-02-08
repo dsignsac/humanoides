@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import heroImage from "../assets/hero_studio.png";
 import PortfolioSection from "../components/PortfolioSection.astro";
+import SyncForm from "../components/SyncForm.astro";
 
 const logos = [
     { src: "/marcas/ELA.svg", alt: "ELA" },
@@ -293,50 +294,152 @@ const agents = team;
             </div>
         </section>
 
-        <!-- CTA SECTION (PROTOCOL) -->
+        <!-- SYNC SECTION -->
         <section
-            id="cta"
-            class="relative w-full bg-brand-red py-16 md:py-24 overflow-hidden border-t border-brand-black/10"
+            id="sync"
+            class="relative w-full bg-brand-gray text-brand-black mb-16 md:mb-24 overflow-hidden"
         >
             <div
-                class="max-w-[1440px] mx-auto px-6 relative z-10 text-center md:text-left"
+                class="max-w-[1440px] mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center border-t border-brand-black/10 pt-12"
             >
-                <div
-                    class="flex flex-col md:flex-row justify-between items-center md:items-end mb-10 border-b border-brand-black/20 pb-6"
-                >
-                    <div>
-                        <span
-                            class="text-xs font-sans uppercase tracking-[0.2em] text-brand-black mb-1 block font-bold"
-                            >Terminal Phase</span
-                        >
+                <!-- Full Width Header Area (Header + Social Strip) -->
+                <div class="col-span-1 md:col-span-2 w-full">
+                    <!-- Section Title -->
+                    <div
+                        class="flex flex-col md:flex-row justify-between items-start md:items-end pb-8"
+                    >
+                        <div>
+                            <h2
+                                class="text-sm font-sans uppercase tracking-[0.2em] text-brand-red mb-2 block font-bold"
+                            >
+                                Terminal Phase
+                            </h2>
+                        </div>
+                        <div class="hidden md:block text-right">
+                            <span
+                                class="text-xs font-sans tracking-widest block text-brand-black font-bold"
+                                >SYNC: ACTIVE</span
+                            >
+                        </div>
                     </div>
-                    <div class="hidden md:block text-right">
-                        <span
-                            class="text-[10px] font-sans tracking-widest block text-brand-black font-bold uppercase opacity-60"
-                            >SYNC: ACTIVE</span
-                        >
+
+                    <!-- Decorative Strip / Social Links (Double Line visuals) -->
+                    <div
+                        class="w-full border-y border-brand-black py-3 flex justify-between items-center text-xs font-sans font-bold tracking-widest uppercase text-brand-black mb-12"
+                    >
+                        <span class="opacity-60">Communication Channels</span>
+                        <div class="flex gap-8">
+                            <a
+                                href="https://instagram.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="group flex items-center gap-1 hover:text-brand-red transition-colors"
+                            >
+                                Instagram
+                                <svg
+                                    class="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M7 17L17 7M17 7H7M17 7V17"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                            </a>
+                            <a
+                                href="https://linkedin.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="group flex items-center gap-1 hover:text-brand-red transition-colors"
+                            >
+                                LinkedIn
+                                <svg
+                                    class="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M7 17L17 7M17 7H7M17 7V17"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="max-w-4xl mx-auto md:mx-0">
-                    <h2
-                        class="font-sans font-900 leading-[0.9] text-brand-black mb-8 uppercase"
-                        style="font-size: clamp(2.5rem, 8vw, 80px); letter-spacing: -0.04em;"
-                    >
-                        Initiate<br />Digital Protocol
-                    </h2>
-                    <p
-                        class="text-base md:text-xl font-sans font-medium text-brand-black/80 mb-10 max-w-xl leading-tight"
-                    >
-                        Despliega un equipo híbrido de humanos y agentes IA.
-                        Optimiza, escala y domina tu mercado.
-                    </p>
-                    <a
-                        href="mailto:hello@humanoides.as"
-                        class="inline-flex items-center px-8 py-4 bg-brand-black text-brand-gray text-xs md:text-sm font-900 uppercase tracking-widest hover:bg-white hover:text-brand-red transition-all duration-300 rounded-full"
-                    >
-                        Empezar Colaboración
-                    </a>
+                <!-- Left Column: Main Visual/Text -->
+                <div class="text-center md:text-left relative z-20">
+                    <div class="max-w-xl mx-auto md:mx-0">
+                        <h2
+                            class="font-sans font-900 leading-[0.9] text-brand-black mb-8 uppercase"
+                            style="font-size: clamp(2.5rem, 8vw, 80px); letter-spacing: -0.04em;"
+                        >
+                            Initiate<br />Digital Protocol
+                        </h2>
+                        <p
+                            class="text-base md:text-xl font-sans font-medium text-brand-black/80 mb-10 max-w-xl leading-tight"
+                        >
+                            Despliega un equipo híbrido de humanos y agentes IA.
+                            Optimiza, escala y domina tu mercado.
+                        </p>
+                        <a
+                            href="https://calendly.com/humanoides"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center gap-3 px-8 py-4 bg-brand-black text-brand-gray text-xs md:text-sm font-900 uppercase tracking-widest hover:bg-brand-red hover:text-white transition-all duration-300 rounded-full group"
+                        >
+                            <svg
+                                class="w-4 h-4 text-brand-gray group-hover:text-white transition-colors"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M19 4H5C3.89543 4 3 4.89543 3 6V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V6C21 4.89543 20.1046 4 19 4Z"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <path
+                                    d="M16 2V6"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <path
+                                    d="M8 2V6"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <path
+                                    d="M3 10H21"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                            </svg>
+                            <span>Empezar Colaboración</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column: Visual + Form -->
+                <div
+                    class="relative w-full flex items-center justify-center md:justify-end"
+                >
+                    <!-- Form Container (No border, clean) -->
+                    <div class="relative z-20 w-full max-w-md">
+                        <SyncForm />
+                    </div>
                 </div>
             </div>
         </section>

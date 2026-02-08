@@ -4,11 +4,7 @@ import AnimatedLogo from "./AnimatedLogo.astro";
 const links = [
     { name: "Log", href: "/#log" },
     { name: "Core", href: "/#core" },
-    {
-        name: "Sync",
-        href: "https://calendly.com/humanoidesyasociados/sync",
-        external: true,
-    },
+    { name: "Sync", href: "/#sync" },
 ];
 
 // Get current path for active state detection
@@ -56,8 +52,6 @@ const currentPath = Astro.url.pathname;
                 links.map((link) => (
                     <a
                         href={link.href}
-                        target={link.external ? "_blank" : undefined}
-                        rel={link.external ? "noopener noreferrer" : undefined}
                         class="nav-link group relative font-sans text-sm md:text-[18px] uppercase tracking-[0.2em] font-500 text-brand-red"
                         data-target={link.href.replace("/#", "")}
                     >
