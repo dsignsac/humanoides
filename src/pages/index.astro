@@ -154,11 +154,11 @@ const agents = team.filter(m => m.type === 'AI');
                 </div>
 
                 <!-- TABLE HEADER (Desktop Only) -->
-                <div class="hidden md:grid grid-cols-12 gap-6 md:gap-8 px-6 pb-4 pt-4 mt-8 text-xs font-sans font-900 tracking-widest uppercase text-brand-black">
-                    <div class="col-span-2">FOTOGRAFÍA</div>
-                    <div class="col-span-4">NOMBRE Y CARGO</div>
-                    <div class="col-span-4">AREA</div>
-                    <div class="col-span-2 text-right">HOJA DE VIDA</div>
+                <div class="hidden md:grid grid-cols-12 gap-8 px-6 pb-4 pt-4 mt-8 border-y border-brand-black text-xs font-sans font-900 tracking-widest uppercase text-brand-black">
+                    <div class="col-span-4">FOTOGRAFÍA</div>
+                    <div class="col-span-3">NOMBRE Y CARGO</div>
+                    <div class="col-span-2">AREA</div>
+                    <div class="col-span-3 text-right">HOJA DE VIDA</div>
                 </div>
 
                 <!-- MIRROR CAROUSEL TEAM SYSTEM (Infinite Drag & Sync) -->
@@ -167,8 +167,8 @@ const agents = team.filter(m => m.type === 'AI');
                     <div id="human-carousel" class="relative w-full overflow-hidden">
                         <div class="carousel-track flex" style="width: 600%;">
                             {[...humans, ...humans, ...humans].map((member) => (
-                                <article class="flex-shrink-0 w-1/6 px-0 relative pointer-events-none">
-                                    <div class="flex flex-col md:grid md:grid-cols-12 gap-8 md:gap-12 items-start md:items-center relative z-10 px-6">
+                                <article class="flex-shrink-0 w-1/6 py-8 md:py-16 px-0 relative pointer-events-none border-b border-brand-black/10">
+                                    <div class="flex flex-col md:grid md:grid-cols-12 gap-8 items-start md:items-center relative z-10 px-6">
                                         <!-- Photo -->
                                         <div class="w-full md:col-span-4">
                                             <div class="w-full aspect-video bg-brand-gray overflow-hidden mx-0 rounded-[2rem]">
@@ -177,7 +177,7 @@ const agents = team.filter(m => m.type === 'AI');
                                         </div>
                                         <!-- Info -->
                                         <div class="md:col-span-3">
-                                            <h3 class="font-sans font-900 uppercase leading-none text-brand-black" style="font-size: clamp(3.5rem, 10vw, 5.5rem);">
+                                            <h3 class="font-sans font-900 uppercase leading-none text-brand-black" style="font-size: clamp(3.2rem, 8vw, 5rem);">
                                                 {member.name}
                                             </h3>
                                             <p class="text-lg md:text-xl font-sans mt-3 uppercase tracking-wide font-bold text-brand-black/70">
@@ -185,13 +185,13 @@ const agents = team.filter(m => m.type === 'AI');
                                             </p>
                                         </div>
                                         <!-- Spec -->
-                                        <div class="md:col-span-3 font-sans text-xl md:text-2xl uppercase tracking-wider text-brand-black font-bold">
+                                        <div class="md:col-span-2 font-sans text-lg md:text-xl uppercase tracking-wider text-brand-black font-bold">
                                             <p>{member.spec}</p>
                                             <p class="text-sm md:text-base font-medium mt-3 normal-case tracking-normal max-w-sm text-brand-black/60">{member.desc}</p>
                                         </div>
                                         <!-- Actions -->
-                                        <div class="w-full md:col-span-2 flex flex-row md:flex-col justify-start items-start gap-4 pointer-events-auto mt-4 md:mt-0">
-                                            <a href={member.cv} class="inline-flex items-center px-10 py-5 bg-brand-black text-[#D4DAD3] text-sm md:text-base font-900 uppercase tracking-widest hover:bg-brand-red transition-colors z-20 whitespace-nowrap rounded-full">
+                                        <div class="w-full md:col-span-3 flex flex-row md:flex-col justify-start md:justify-end items-start md:items-center gap-4 pointer-events-auto mt-4 md:mt-0">
+                                            <a href={member.cv} class="inline-flex items-center px-8 py-4 bg-brand-black text-[#D4DAD3] text-xs md:text-sm font-900 uppercase tracking-widest hover:bg-brand-red transition-colors z-20 whitespace-nowrap rounded-full">
                                                 Ver Hoja de Vida
                                             </a>
                                         </div>
@@ -365,6 +365,41 @@ const agents = team.filter(m => m.type === 'AI');
                     -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
                 }
             </style>
+        </section>
+
+        <!-- CTA SECTION (PROTOCOL) -->
+        <section id="cta" class="relative w-full bg-brand-red py-32 md:py-48 overflow-hidden">
+            <div class="max-w-[1440px] mx-auto px-6 relative z-10">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 border-b border-brand-black/20 pb-8">
+                    <div>
+                        <span class="text-sm font-sans uppercase tracking-[0.2em] text-brand-black mb-2 block font-bold">Terminal Phase</span>
+                        <h2 class="text-xs font-sans tracking-[0.3em] text-brand-black/60 font-black">READY TO EXECUTE?</h2>
+                    </div>
+                    <div class="hidden md:block text-right">
+                        <span class="text-xs font-sans tracking-widest block text-brand-black font-bold">LATENCY: NULL</span>
+                        <span class="text-xs font-sans tracking-widest block text-brand-black font-bold">SYNC: ACTIVE</span>
+                    </div>
+                </div>
+
+                <div class="max-w-4xl">
+                    <h2 class="font-sans font-900 leading-[0.85] text-brand-black mb-12 uppercase" style="font-size: clamp(3.5rem, 12vw, 150px); letter-spacing: -0.04em;">
+                        Initiate<br />Digital<br />Protocol
+                    </h2>
+                    <p class="text-xl md:text-3xl font-sans font-medium text-brand-black/80 mb-16 max-w-2xl leading-tight">
+                        Despliega un equipo híbrido de humanos y agentes IA. Optimiza, escala y domina tu mercado.
+                    </p>
+                    <a href="mailto:hello@humanoides.as" class="inline-flex items-center px-12 py-6 bg-brand-black text-brand-gray text-base md:text-xl font-900 uppercase tracking-widest hover:bg-white hover:text-brand-red transition-all duration-300 rounded-full">
+                        Empezar Colaboración
+                    </a>
+                </div>
+            </div>
+
+            <!-- Background Decoration (Industrial Text) -->
+            <div class="absolute top-1/2 -right-20 -translate-y-1/2 rotate-90 hidden lg:block opacity-10 pointer-events-none">
+                <span class="text-[200px] font-900 font-sans text-brand-black leading-none uppercase whitespace-nowrap">
+                    HUMANOIDES & ASOCIADOS
+                </span>
+            </div>
         </section>
     </main>
 </Layout>
