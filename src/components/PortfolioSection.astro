@@ -13,6 +13,7 @@ interface Project {
   year: string;
   country: string;
   image: string; // URL for now, later WP Media Item
+  srcset: string;
   url: string;
 }
 
@@ -41,6 +42,16 @@ const projects = projectsData.map(p => {
     return `/proyectos/${p.id}/${src}`;
   };
 
+  const getSrcSet = (imagePath: string) => {
+    if (!imagePath) return "";
+    const ext = imagePath.substring(imagePath.lastIndexOf('.'));
+    const base = imagePath.substring(0, imagePath.lastIndexOf('.'));
+    
+    return `${base}-small.webp 400w, ${base}-medium.webp 800w, ${base}-large.webp 1200w, ${imagePath} 2000w`;
+  };
+
+  const imagePath = getImagePath(p.thumbnail || (p.gallery && p.gallery[0]?.src) || (p.images && p.images[0]));
+
   return {
     id: p.projectNumber,
     client: p.client,
@@ -48,7 +59,8 @@ const projects = projectsData.map(p => {
     service: p.service,
     year: p.year,
     country: p.country || "GLOBAL",
-    image: getImagePath(p.thumbnail || (p.gallery && p.gallery[0]?.src) || (p.images && p.images[0])),
+    image: imagePath,
+    srcset: getSrcSet(imagePath),
     url: `/projects/${p.id}`
   };
 });
@@ -92,7 +104,9 @@ const projects = projectsData.map(p => {
           style="will-change: opacity; transform: translateZ(0); mix-blend-mode: multiply; -webkit-mask-image: linear-gradient(to right, transparent 0%, black 30%, black 100%); mask-image: linear-gradient(to right, transparent 0%, black 30%, black 100%);"
         >
             <img 
-                src={project.image} 
+                src={project.image}
+                srcset={project.srcset}
+                sizes="(max-width: 768px) 100vw, 60vw"
                 alt="" 
                 class="w-full h-full object-cover grayscale"
                 loading="lazy"

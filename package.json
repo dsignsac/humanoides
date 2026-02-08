@@ -24,5 +24,8 @@
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.18",
     "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.5"
   }
 }

@@ -97,12 +97,7 @@ const { title = "HA", showNavbar = true, showFooter = true } = Astro.props;
 			}
 		</script>
 
-		<!-- DNS Prefetch & Preconnect for Performance -->
-		<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-		<link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
+		<!-- Preload Critical Resources -->
 		<!-- Preload Hero Image for LCP -->
 		<link
 			rel="preload"
@@ -112,10 +107,13 @@ const { title = "HA", showNavbar = true, showFooter = true } = Astro.props;
 			fetchpriority="high"
 		/>
 
-		<!-- Google Fonts: Anek Malayalam with font-display swap -->
+		<!-- Preload Self-Hosted Font -->
 		<link
-			href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@100;200;300;400;500;600;700;800&display=swap"
-			rel="stylesheet"
+			rel="preload"
+			as="font"
+			type="font/woff2"
+			href="/fonts/anek-malayalam-100-800.woff2"
+			crossorigin
 		/>
 
 		<ClientRouter />
