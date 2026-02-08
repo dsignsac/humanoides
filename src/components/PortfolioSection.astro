@@ -88,50 +88,30 @@ const projects = projectsData.map(p => {
     <div class="hidden md:grid grid-cols-12 gap-4 px-6 pb-4 pt-4 border-y border-brand-black text-xs font-sans font-900 tracking-widest uppercase text-brand-black">
       <div class="col-span-1">AÑO</div>
       <div class="col-span-2">LOCALIZACIÓN</div>
-      <div class="col-span-4">CLIENTE / PROYECTO</div>
+      <div class="col-span-6">CLIENTE / PROYECTO</div>
       <div class="col-span-3">SERVICIO</div>
-      <div class="col-span-2 text-right">ACCIÓN</div>
     </div>
 
     <!-- Project Rows -->
     {projects.map((project) => (
-      <article 
-        class="article-row group relative border-b border-brand-black/10 transition-[background-color] duration-300 hover:bg-brand-salmon overflow-hidden" 
-        style="will-change: background-color; transform: translateZ(0);"
-      >
-        <!-- Background Image Container -->
-        <div 
-          class="absolute top-0 right-0 h-full w-full md:w-[60%] opacity-20 md:opacity-0 md:group-hover:opacity-40 transition-opacity duration-500 pointer-events-none z-0"
-          style="will-change: opacity; transform: translateZ(0); mix-blend-mode: multiply; -webkit-mask-image: linear-gradient(to right, transparent 0%, black 30%, black 100%); mask-image: linear-gradient(to right, transparent 0%, black 30%, black 100%);"
-        >
-            <img 
-                src={project.image}
-                srcset={project.srcset}
-                sizes="(max-width: 768px) 100vw, 60vw"
-                alt="" 
-                class="w-full h-full object-cover grayscale"
-                loading="lazy"
-                decoding="async"
-                style="backface-visibility: hidden; transform: translateZ(0);"
-            />
-        </div>
-
+      <article class="article-row group relative border-b border-brand-black/10 transition-colors duration-300 hover:bg-brand-salmon overflow-hidden">
         <!-- Link Wrapper -->
         <a href={project.url} class="block w-full h-full relative z-10">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-4 px-6 py-8 md:py-12 items-center">
             
             <!-- YEAR -->
-            <div class="col-span-1 font-sans text-xs text-brand-red font-900 mb-2 md:mb-0">
-                {project.year}
+            <div class="col-span-1 font-mono text-xs opacity-60 transition-opacity duration-300">
+                '{project.year.slice(2)}
             </div>
 
-            <!-- COUNTRY (Replacing ID) -->
-            <div class="hidden md:block col-span-2 font-sans text-xs text-brand-black font-bold uppercase tracking-wider">
+            <!-- LOCALIZACIÓN -->
+            <div class="hidden md:flex col-span-2 items-center gap-2 font-mono text-[10px] uppercase tracking-widest z-20 relative transition-opacity duration-300">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-red"></span>
                 {project.country}
             </div>
 
             <!-- Client & Project -->
-            <div class="col-span-11 md:col-span-4 mb-4 md:mb-0">
+            <div class="col-span-11 md:col-span-6 mb-4 md:mb-0">
                 <h3 class="text-2xl md:text-3xl font-sans font-bold leading-none capitalize text-brand-black group-hover:text-brand-red transition-colors duration-300" style="will-change: color;">
                 {project.client}
                 </h3>
@@ -141,8 +121,8 @@ const projects = projectsData.map(p => {
             </div>
 
             <!-- Service (Desktop) -->
-            <div class="hidden md:block col-span-3 font-sans text-xs uppercase tracking-wider text-brand-black font-bold group-hover:opacity-0 transition-opacity duration-300" style="will-change: opacity;">
-                {project.service}
+            <div class="hidden md:block col-span-3 font-mono text-xs uppercase tracking-wider opacity-70">
+                [{project.service}]
             </div>
 
             <!-- Mobile: Combined Meta -->
@@ -150,14 +130,6 @@ const projects = projectsData.map(p => {
                 <span>{project.service}</span>
                 <span class="text-brand-red">|</span>
                 <span>{project.country}</span>
-            </div>
-
-            <!-- Arrow (Desktop) -->
-            <div class="hidden md:flex col-span-2 justify-end">
-                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-brand-black group-hover:text-brand-gray transition-colors duration-300" style="will-change: color;">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                 </svg>
             </div>
 
             </div>
