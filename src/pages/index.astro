@@ -92,7 +92,8 @@ const agents = team;
                     alt="Industrial Creative Studio"
                     class="w-full h-full object-cover opacity-80 grayscale"
                     loading="eager"
-                    quality={80}
+                    fetchpriority="high"
+                    quality={65}
                     format="webp"
                 />
             </div>
@@ -235,6 +236,7 @@ const agents = team;
                                                     alt={member.name}
                                                     class="w-full h-full object-cover object-top"
                                                     loading="lazy"
+                                                    decoding="async"
                                                 />
                                             </div>
                                             <div class="flex-grow">
@@ -266,6 +268,7 @@ const agents = team;
                                                     alt={member.name}
                                                     class="w-full h-full object-cover object-top"
                                                     loading="lazy"
+                                                    decoding="async"
                                                 />
                                             </div>
                                             <div class="flex-grow">
