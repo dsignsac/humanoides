@@ -190,7 +190,7 @@ const agents = team;
         >
             <div class="max-w-[1440px] mx-auto w-full px-6 relative">
                 <div
-                    class="flex flex-col md:flex-row justify-between items-start md:items-end"
+                    class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 border-b border-brand-black pb-4"
                 >
                     <div>
                         <h2
@@ -213,11 +213,11 @@ const agents = team;
 
                 <!-- TABLE HEADER (Desktop Only) -->
                 <div
-                    class="hidden md:grid grid-cols-3 gap-8 px-6 pb-4 pt-4 mt-8 border-y border-brand-black text-xs font-sans font-900 tracking-widest uppercase text-brand-black"
+                    class="hidden md:grid grid-cols-3 gap-0 px-8 pb-4 pt-4 border-y border-brand-black text-xs font-sans font-900 tracking-widest uppercase text-brand-black"
                 >
-                    <div>Agente</div>
-                    <div>Humano</div>
-                    <div>Agente</div>
+                    <div class="pl-8">Agente</div>
+                    <div class="pl-8">Humano</div>
+                    <div class="pl-8">Agente</div>
                 </div>
 
                 <!-- TEAM GRID (Static Agents Only) -->
@@ -230,7 +230,7 @@ const agents = team;
                         >
                             {
                                 agents.map((member) => (
-                                    <article class="flex-shrink-0 w-[85%] snap-center py-8">
+                                    <article class="flex-shrink-0 w-[85%] snap-center p-6 border border-brand-black/20 mr-4 last:mr-0 bg-brand-gray/50">
                                         <div class="flex flex-col gap-6">
                                             <div class="w-full aspect-video flex-shrink-0 bg-brand-gray overflow-hidden rounded-2xl">
                                                 <img
@@ -242,7 +242,7 @@ const agents = team;
                                                 />
                                             </div>
                                             <div class="flex-grow">
-                                                <h3 class="font-sans font-900 text-3xl uppercase leading-none text-brand-black mb-4">
+                                                <h3 class="font-sans font-900 text-3xl capitalize leading-none text-brand-black mb-4">
                                                     {member.name}
                                                 </h3>
                                                 <p class="text-sm font-sans font-semibold uppercase text-brand-black/60 mb-4">
@@ -258,11 +258,13 @@ const agents = team;
                             }
                         </div>
 
-                        <!-- Desktop: 3-Column Grid (2 rows) -->
-                        <div class="hidden md:grid grid-cols-3 gap-x-8 gap-y-4">
+                        <!-- Desktop: 3-Column Grid (Internal Borders Only) -->
+                        <div
+                            class="hidden md:grid grid-cols-3 gap-px bg-brand-black/20"
+                        >
                             {
                                 agents.map((member) => (
-                                    <article class="w-full relative pt-8">
+                                    <article class="w-full relative p-8 bg-brand-gray">
                                         <div class="flex flex-col gap-6">
                                             <div class="w-full aspect-video flex-shrink-0 bg-brand-gray overflow-hidden rounded-2xl">
                                                 <img
@@ -274,7 +276,7 @@ const agents = team;
                                                 />
                                             </div>
                                             <div class="flex-grow">
-                                                <h3 class="font-sans font-900 text-3xl md:text-5xl uppercase leading-none text-brand-black mb-4">
+                                                <h3 class="font-sans font-900 text-3xl md:text-5xl capitalize leading-none text-brand-black mb-4">
                                                     {member.name}
                                                 </h3>
                                                 <p class="text-sm md:text-lg font-sans font-semibold uppercase text-brand-black/60 mb-4">
@@ -379,7 +381,7 @@ const agents = team;
                 <div class="text-center md:text-left relative z-20">
                     <div class="max-w-xl mx-auto md:mx-0">
                         <h2
-                            class="font-sans font-900 leading-[0.9] text-brand-black mb-8 uppercase"
+                            class="font-sans font-900 leading-[0.9] text-brand-black mb-8"
                             style="font-size: clamp(2.5rem, 8vw, 80px); letter-spacing: -0.04em;"
                         >
                             Initiate<br />Digital Protocol
