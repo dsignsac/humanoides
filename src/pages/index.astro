@@ -43,8 +43,7 @@ const agents = team.filter(m => m.type === 'AI');
                     format="webp"
                 />
             </div>
-            <!-- Overlay: 70% brand-black (#2F2F2F) -->
-            <div class="absolute inset-0 z-[5] bg-[#2F2F2F]/70"></div>
+            <div class="absolute inset-0 z-[5] bg-brand-black/70"></div>
 
             <!-- Content -->
             <div
@@ -135,10 +134,7 @@ const agents = team.filter(m => m.type === 'AI');
             class="relative w-full bg-brand-gray text-brand-black pt-24"
         >
             <div class="max-w-[1440px] mx-auto w-full px-6 relative">
-                <!-- Header (Divider Line Here) -->
-                <div
-                    class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8"
-                >
+                <div class="flex flex-col md:grid md:grid-cols-12 gap-8 items-end mb-8">
                     <div>
                         <span
                             class="text-sm font-sans uppercase tracking-[0.2em] text-brand-red mb-2 block font-bold"
@@ -158,24 +154,21 @@ const agents = team.filter(m => m.type === 'AI');
                 </div>
 
                 <!-- TABLE HEADER (Desktop Only) -->
-                <div class="hidden md:grid grid-cols-12 gap-4 px-6 pb-4 pt-4 mt-8 border-y border-brand-black text-xs font-sans font-900 tracking-widest uppercase text-brand-black">
-                    <div class="col-span-2">ARCHIVO</div>
-                    <div class="col-span-1">TIPO</div>
-                    <div class="col-span-4">NODOS CORPORATIVOS</div>
-                    <div class="col-span-3">ESPECIFICACIÓN TÉCNICA</div>
-                    <div class="col-span-2 text-right">ESTADO</div>
+                <div class="hidden md:grid grid-cols-12 gap-6 md:gap-8 px-6 pb-4 pt-4 mt-8 border-y border-brand-black text-xs font-sans font-900 tracking-widest uppercase text-brand-black">
+                    <div class="col-span-2">FOTOGRAFÍA</div>
+                    <div class="col-span-4">NOMBRE Y CARGO</div>
+                    <div class="col-span-4">AREA</div>
+                    <div class="col-span-2 text-right">HOJA DE VIDA</div>
                 </div>
 
                 <!-- MIRROR CAROUSEL TEAM SYSTEM (Infinite Drag & Sync) -->
                 <div id="team-mirror-system" class="w-full flex flex-col gap-0 select-none cursor-grab active:cursor-grabbing">
                     
-                    <!-- 1. LEADERS CAROUSEL (Sliding RIGHT) -->
                     <div id="human-carousel" class="relative w-full overflow-hidden border-b border-brand-black">
-                        <!-- Track x6 items for infinite loop (Set 1, Set 2 [Start], Set 3) -->
                         <div class="carousel-track flex" style="width: 600%;">
                             {[...humans, ...humans, ...humans].map((member) => (
-                                <article class="flex-shrink-0 w-1/6 border-r border-[#C5CAC2] py-8 md:py-12 px-0 group transition-colors duration-300 hover:bg-brand-salmon relative pointer-events-none">
-                                    <div class="flex flex-col md:grid md:grid-cols-12 gap-6 md:gap-8 items-start md:items-center relative z-10">
+                                <article class="flex-shrink-0 w-1/6 py-8 md:py-12 px-0 group transition-colors duration-300 hover:bg-brand-salmon relative pointer-events-none">
+                                    <div class="flex flex-col md:grid md:grid-cols-12 gap-6 md:gap-8 items-start md:items-center relative z-10 px-6">
                                         <!-- Photo -->
                                         <div class="md:col-span-2">
                                             <div class="w-24 h-24 md:w-36 md:h-36 bg-brand-gray border border-brand-black overflow-hidden">
@@ -183,7 +176,7 @@ const agents = team.filter(m => m.type === 'AI');
                                             </div>
                                         </div>
                                         <!-- Info -->
-                                        <div class="md:col-span-5">
+                                        <div class="md:col-span-4">
                                             <h3 class="font-sans font-900 uppercase leading-none text-brand-black group-hover:text-brand-red transition-colors" style="font-size: clamp(2rem, 6vw, 3.5rem);">
                                                 {member.name}
                                             </h3>
@@ -192,24 +185,16 @@ const agents = team.filter(m => m.type === 'AI');
                                             </p>
                                         </div>
                                         <!-- Spec -->
-                                        <div class="hidden md:block md:col-span-3 font-sans text-sm uppercase tracking-wider text-brand-black font-bold">
+                                        <div class="hidden md:block md:col-span-4 font-sans text-sm uppercase tracking-wider text-brand-black font-bold">
                                             {member.spec}
                                         </div>
                                         <!-- Actions -->
-                                        <div class="w-full md:col-span-2 flex flex-row md:flex-col justify-between md:items-end items-center gap-4 pointer-events-auto">
-                                            <div class="flex items-center gap-2 font-sans text-[10px] font-900 tracking-widest">
-                                                <span class="w-2 h-2 rounded-full bg-brand-red"></span>
-                                                {member.availability}
-                                            </div>
-                                            <a href={member.cv} class="inline-flex items-center px-4 py-2 bg-brand-black text-[#D4DAD3] text-[10px] font-900 uppercase tracking-widest hover:bg-brand-red transition-colors z-20 whitespace-nowrap">
+                                        <div class="w-full md:col-span-2 flex flex-row md:flex-col justify-end items-center md:items-end gap-4 pointer-events-auto">
+                                            <a href={member.cv} class="inline-flex items-center px-8 py-4 bg-brand-black text-[#D4DAD3] text-sm font-900 uppercase tracking-widest hover:bg-brand-red transition-colors z-20 whitespace-nowrap">
                                                 Ver Hoja de Vida
                                             </a>
                                         </div>
                                     </div>
-                                    <!-- Node Index -->
-                                    <span class="absolute top-4 right-6 font-sans text-[10px] font-900 text-brand-red uppercase tracking-widest">
-                                        [NODE_{member.ref}]
-                                    </span>
                                 </article>
                             ))}
                         </div>
@@ -219,8 +204,8 @@ const agents = team.filter(m => m.type === 'AI');
                     <div id="agent-carousel" class="relative w-full overflow-hidden bg-brand-gray">
                         <div class="carousel-track flex" style="width: 600%;">
                             {[...agents, ...agents, ...agents].map((member) => (
-                                <article class="flex-shrink-0 w-1/12 border-r border-[#C5CAC2] py-6 md:py-8 px-0 group transition-colors duration-300 hover:bg-brand-salmon relative pointer-events-none">
-                                    <div class="grid grid-cols-1 gap-4 items-start">
+                                <article class="flex-shrink-0 w-1/12 py-6 md:py-8 px-0 group transition-colors duration-300 hover:bg-brand-salmon relative pointer-events-none">
+                                    <div class="grid grid-cols-1 gap-4 items-start px-6">
                                         <div class="flex items-center gap-4">
                                             <div class="w-16 h-16 md:w-20 md:h-20 flex-shrink-0 bg-brand-gray border border-brand-black overflow-hidden">
                                                 <img src={member.img} alt={member.name} class="w-full h-full object-cover object-top" loading="lazy" />
@@ -229,16 +214,16 @@ const agents = team.filter(m => m.type === 'AI');
                                                 <h3 class="font-sans font-700 text-lg md:text-xl uppercase leading-none text-brand-black group-hover:text-brand-red transition-colors">
                                                     {member.name}
                                                 </h3>
-                                                <span class="text-[9px] font-sans font-900 text-brand-gray uppercase tracking-widest block mt-1">
+                                                <span class="text-[9px] font-sans font-900 text-brand-black uppercase tracking-widest block mt-1">
                                                     {member.type}
                                                 </span>
                                             </div>
                                         </div>
                                         <div class="min-h-[60px]">
-                                            <p class="text-[10px] font-sans font-semibold uppercase text-brand-gray mb-1">
+                                            <p class="text-[10px] font-sans font-semibold uppercase text-brand-black/60">
                                                 {member.role}
                                             </p>
-                                            <p class="text-[11px] font-sans text-brand-black font-medium leading-tight">
+                                            <p class="text-[11px] font-sans text-brand-black font-medium px-0">
                                                 {member.desc}
                                             </p>
                                         </div>
@@ -259,29 +244,22 @@ const agents = team.filter(m => m.type === 'AI');
                         if (!system || !humanTrack || !agentTrack) return;
 
                         // Configuration
-                        const totalSlides = 6;
-                        const segmentWidth = 100 / 3; // 33.333% (One full set of unique items)
-                        const stepSize = 100 / totalSlides; // 16.666% (One slide)
+                        const cycleSize = 100 / 3; // 33.333% (One full set of unique items)
+                        const humanSlideSize = cycleSize / 2; // 2 items per set
+                        const agentSlideSize = cycleSize / 4; // 4 items per set
                         
                         // State
-                        let virtualX = 0; // Coordinate in steps (0 to 2 for David/Eyner cycle)
+                        let virtualX = 0; // Coordinate in PERCENTAGE
                         let isDragging = false;
                         let startX = 0;
                         let startVirtualX = 0;
                         let autoTimer: any;
 
-                        const wrap = gsap.utils.wrap(0, 2); // Wrapper for 2 steps (David & Eyner)
-
                         function update(immediate = false) {
-                            const p = wrap(virtualX); // Normalized progress within one cycle
+                            const wrappedX = gsap.utils.wrap(-cycleSize, 0, virtualX);
                             
-                            // Human: Slides right. Baseline -33.33 (Set 2). 
-                            // When p increases, humanX becomes less negative -> moves right.
-                            const humanX = -33.3333 + (p * stepSize);
-                            
-                            // Agent: Slides left. Baseline -33.33.
-                            // When p increases, agentX becomes more negative -> moves left.
-                            const agentX = -33.3333 - (p * stepSize);
+                            const humanX = -33.3333 + wrappedX;
+                            const agentX = -33.3333 - wrappedX;
 
                             gsap.to(humanTrack, {
                                 xPercent: humanX,
@@ -309,8 +287,9 @@ const agents = team.filter(m => m.type === 'AI');
                         function onDrag(e: any) {
                             if (!isDragging) return;
                             const x = (e.type === 'touchmove') ? e.touches[0].clientX : e.clientX;
-                            // Sensitivity: 500px to move one full slide
-                            const delta = (x - startX) / 500;
+                            // Sensitivity: How many pixels move the carousel by 1%?
+                            // Let's say 30px = 1%
+                            const delta = (x - startX) / 30;
                             virtualX = startVirtualX + delta;
                             update(true);
                         }
@@ -320,8 +299,10 @@ const agents = team.filter(m => m.type === 'AI');
                             isDragging = false;
                             system?.classList.remove('cursor-grabbing');
                             
-                            // Snap virtualX to nearest integer
-                            virtualX = Math.round(virtualX);
+                            // Snap to nearest human slide to keep David aligned
+                            const snap = humanSlideSize;
+                            virtualX = Math.round(virtualX / snap) * snap;
+                            
                             update();
                             startAuto();
                         }
@@ -337,7 +318,7 @@ const agents = team.filter(m => m.type === 'AI');
                         function startAuto() {
                             clearInterval(autoTimer);
                             autoTimer = setInterval(() => {
-                                virtualX += 1; // Move to next item
+                                virtualX -= humanSlideSize; // Move forward (items slide left relative to world)
                                 update();
                             }, 5000);
                         }
@@ -350,74 +331,9 @@ const agents = team.filter(m => m.type === 'AI');
                 </script>
             </div>
             <style>
-                @keyframes flicker {
-                    0% {
-                        opacity: 0.27861;
-                    }
-                    5% {
-                        opacity: 0.34769;
-                    }
-                    10% {
-                        opacity: 0.23604;
-                    }
-                    15% {
-                        opacity: 0.90626;
-                    }
-                    20% {
-                        opacity: 0.18128;
-                    }
-                    25% {
-                        opacity: 0.83891;
-                    }
-                    30% {
-                        opacity: 0.65583;
-                    }
-                    35% {
-                        opacity: 0.57807;
-                    }
-                    40% {
-                        opacity: 0.26593;
-                    }
-                    45% {
-                        opacity: 0.84623;
-                    }
-                    50% {
-                        opacity: 0.96019;
-                    }
-                    55% {
-                        opacity: 0.08594;
-                    }
-                    60% {
-                        opacity: 0.20313;
-                    }
-                    65% {
-                        opacity: 0.71988;
-                    }
-                    70% {
-                        opacity: 0.53455;
-                    }
-                    75% {
-                        opacity: 0.37288;
-                    }
-                    80% {
-                        opacity: 0.71428;
-                    }
-                    85% {
-                        opacity: 0.70419;
-                    }
-                    90% {
-                        opacity: 0.7003;
-                    }
-                    95% {
-                        opacity: 0.36108;
-                    }
-                    100% {
-                        opacity: 0.24387;
-                    }
-                }
-                .animate-flicker {
-                    animation: flicker 0.15s infinite;
-                    will-change: opacity;
+                .marquee-container {
+                    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+                    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
                 }
             </style>
         </section>
