@@ -5,29 +5,7 @@
  * Redesigned for Premium Card Experience with Dynamic Toggle.
  */
 
-const pricingData = {
-    programs: [
-        {
-            name: "Programa Presencia",
-            scope: "Estabilidad y mejora continua. Soporte técnico prioritario, actualizaciones de seguridad y optimización de velocidad constante.",
-            monthly: "$1,500",
-            annual: "$15,000",
-        },
-        {
-            name: "Programa Marca",
-            scope: "Rediseño estratégico: evolución de identidad visual con arquitectura web de alto impacto para aumentar la conversión.",
-            monthly: "$3,800",
-            annual: "$38,000",
-            recommended: true,
-        },
-        {
-            name: "Programa Lanzamiento",
-            scope: "MVP funcional en tiempo récord con UX avanzado y métricas de validación listas para salir al mercado.",
-            monthly: "$5,500",
-            annual: "$55,000",
-        },
-    ],
-};
+import pricingData from "../data/pricing.json";
 
 const programs = pricingData.programs;
 const mobilePrograms = [...programs].sort(
@@ -99,6 +77,7 @@ const mobilePrograms = [...programs].sort(
             {
                 mobilePrograms.map((item, idx) => (
                     <article
+                        data-program-id={item.id}
                         class={`flex-shrink-0 w-[calc(100vw-48px)] snap-center relative flex flex-col bg-brand-salmon p-6 transition-all duration-500 group active:scale-[0.98] rounded-3xl ${item.recommended ? "border-brand-red/20" : "border-brand-black/5"}`}
                     >
                         {item.recommended && (
@@ -107,31 +86,46 @@ const mobilePrograms = [...programs].sort(
                             </div>
                         )}
 
-                        <div class="mb-4 mt-8">
+                        <div class="mt-8 mb-4">
                             <h4 class="text-xs font-sans font-900 text-brand-red uppercase tracking-[0.2em] mb-4">
                                 — {item.name}
                             </h4>
 
-                            <div class="price-container mb-6">
+                            <!-- Level Selector -->
+                            <div class="flex bg-brand-black/5 rounded-xl p-1 mb-8 level-selector" data-program={item.id}>
+                                {["Basic", "Medium", "Pro"].map((level) => (
+                                    <button
+                                        data-level={level}
+                                        class={`flex-1 py-3 text-[10px] font-sans font-900 uppercase tracking-widest rounded-lg transition-all duration-300 ${level === "Medium" ? "bg-white text-brand-black shadow-sm" : "text-brand-black/40 hover:text-brand-black/60"}`}
+                                    >
+                                        {level}
+                                    </button>
+                                ))}
+                            </div>
+                            
+                            <div class="price-container mb-2">
                                 <div class="price-monthly block">
-                                    <span class="text-5xl font-sans font-999 text-brand-black lowercase tracking-tighter">
-                                        {item.monthly}
+                                    <span class="text-5xl font-sans font-999 text-brand-black lowercase tracking-tighter price-value">
+                                        {item.levels.Medium.price}
                                     </span>
                                     <span class="text-[11px] font-sans font-900 text-brand-black/50 uppercase tracking-[0.2em] ml-2">
                                         / mes
                                     </span>
                                 </div>
                             </div>
+                            <div class="text-[10px] font-sans font-bold text-brand-black/40 uppercase tracking-widest mb-6">
+                                IVA INCLUIDO (DÉBITO AUTOMÁTICO)
+                            </div>
 
-                            <p class="text-lg font-sans font-medium text-brand-black/90 leading-tight mb-8">
-                                {item.scope}
+                            <p class="text-lg font-sans font-medium text-brand-black/90 leading-tight mb-8 description-text h-24 overflow-hidden">
+                                {item.levels.Medium.description}
                             </p>
                         </div>
 
                         <div class="mt-auto">
                             <a
-                                href={`/#sync?subject=${encodeURIComponent(item.name)}`}
-                                class={`inline-flex items-center justify-center gap-3 w-full py-5 rounded-full text-[11px] font-sans font-900 uppercase tracking-[0.2em] transition-all duration-300 ${item.recommended ? "bg-brand-red text-white hover:bg-brand-black" : "bg-brand-black text-white hover:bg-brand-red"}`}
+                                href={`/#sync?subject=${encodeURIComponent(`${item.name} - Medium`)}`}
+                                class={`cta-button inline-flex items-center justify-center gap-3 w-full py-5 rounded-full text-[11px] font-sans font-900 uppercase tracking-[0.2em] transition-all duration-300 ${item.recommended ? "bg-brand-red text-white hover:bg-brand-black" : "bg-brand-black text-white hover:bg-brand-red"}`}
                             >
                                 Solicitar activación
                                 <svg
@@ -168,7 +162,7 @@ const mobilePrograms = [...programs].sort(
                                 — {item.name}
                             </h4>
                             <p class="text-lg md:text-xl font-sans font-medium text-brand-black leading-tight opacity-90">
-                                {item.scope}
+                                {item.levels.Medium.description}
                             </p>
                         </div>
 
@@ -177,17 +171,17 @@ const mobilePrograms = [...programs].sort(
                                 <div class="price-container">
                                     <div class="price-monthly block">
                                         <span class="text-5xl font-sans font-900 text-brand-black lowercase tracking-tighter">
-                                            {item.monthly}
+                                            {item.levels.Medium.price}
                                         </span>
                                         <span class="text-[10px] font-sans font-bold text-brand-black/40 uppercase tracking-widest ml-1">
-                                            / mes
+                                            / mes (IVA INCL.)
                                         </span>
                                     </div>
                                 </div>
                             </div>
 
                             <a
-                                href={`/#sync?subject=${encodeURIComponent(item.name)}`}
+                                href={`/#sync?subject=${encodeURIComponent(`${item.name} - Medium`)}`}
                                 class={`inline-flex items-center justify-center gap-3 w-full py-5 rounded-full text-xs font-sans font-900 uppercase tracking-widest transition-all duration-300 after:absolute after:inset-0 z-20 ${item.recommended ? "bg-brand-red text-white hover:bg-brand-black" : "bg-brand-black text-white hover:bg-brand-red"}`}
                             >
                                 Solicitar activación
@@ -285,4 +279,65 @@ const mobilePrograms = [...programs].sort(
             });
         });
     }
+
+    // Level Switcher Logic
+    import pricingData from "../data/pricing.json";
+    const pricingDataRef = pricingData;
+
+    document.querySelectorAll(".level-selector").forEach((selector) => {
+        const programId = selector.getAttribute("data-program");
+        const article = selector.closest("article");
+        const priceValue = article?.querySelector(
+            ".price-value",
+        ) as HTMLElement;
+        const descriptionText = article?.querySelector(
+            ".description-text",
+        ) as HTMLElement;
+        const ctaButton = article?.querySelector(
+            ".cta-button",
+        ) as HTMLAnchorElement;
+        const buttons = selector.querySelectorAll("button");
+
+        const programData = pricingDataRef.programs.find(
+            (p: any) => p.id === programId,
+        );
+
+        buttons.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                const level = btn.getAttribute("data-level") as string;
+
+                // Update UI state
+                buttons.forEach((b) => {
+                    b.classList.remove(
+                        "bg-white",
+                        "text-brand-black",
+                        "shadow-sm",
+                    );
+                    b.classList.add("text-brand-black/40");
+                });
+                btn.classList.add("bg-white", "text-brand-black", "shadow-sm");
+                btn.classList.remove("text-brand-black/40");
+
+                // Update content with fade effect
+                if (priceValue && descriptionText && programData) {
+                    const levelData = (programData.levels as any)[level];
+
+                    priceValue.style.opacity = "0";
+                    descriptionText.style.opacity = "0";
+
+                    setTimeout(() => {
+                        priceValue.innerText = levelData.price;
+                        descriptionText.innerText = levelData.description;
+                        priceValue.style.opacity = "1";
+                        descriptionText.style.opacity = "1";
+
+                        // Update CTA link
+                        if (ctaButton) {
+                            ctaButton.href = `/#sync?subject=${encodeURIComponent(`${programData.name} - ${level}`)}`;
+                        }
+                    }, 200);
+                }
+            });
+        });
+    });
 </script>
