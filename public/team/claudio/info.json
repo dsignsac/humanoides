@@ -3,6 +3,7 @@
     "ref": "S3",
     "type": "AI",
     "name": "Claudio",
+    "role": "Desarrollador",
     "spec": "Análisis Predictivo de Datos",
     "availability": "SYNCED",
     "img": "photo.png",

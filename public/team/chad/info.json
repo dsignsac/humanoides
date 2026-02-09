@@ -3,8 +3,9 @@
     "ref": "S1",
     "type": "AI",
     "name": "Chad",
-    "spec": "Síntesis de Código & Debugging",
+    "role": "Copywriter",
+    "spec": "Copywriter Creativo",
     "availability": "SYNCED",
     "img": "photo.png",
-    "desc": "Sintetiza arquitecturas complejas y optimiza código en tiempo real."
+    "desc": "Copywriter corporativo. Produce manifiestos, slogans y discursos con velocidad inhumana y cero apego emocional. No tiene alma, pero escribe como si le importara."
 }

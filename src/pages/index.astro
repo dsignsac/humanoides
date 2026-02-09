@@ -195,7 +195,7 @@ const agents = team;
         >
             <div class="max-w-[1440px] mx-auto w-full px-6 relative">
                 <div
-                    class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 border-b border-brand-black pb-4"
+                    class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 pb-4"
                 >
                     <div>
                         <h2
@@ -203,16 +203,6 @@ const agents = team;
                         >
                             Vista Corporativa
                         </h2>
-                    </div>
-                    <div class="hidden md:block text-right">
-                        <span
-                            class="text-xs font-sans tracking-widest block text-brand-black font-bold"
-                            >ESTADO: OPERATIVO</span
-                        >
-                        <span
-                            class="text-xs font-sans tracking-widest block text-brand-black font-bold"
-                            >MÉTRICA: EFICIENTE</span
-                        >
                     </div>
                 </div>
 
@@ -268,10 +258,15 @@ const agents = team;
                                             </div>
                                             <div class="flex-grow px-2">
                                                 <div class="flex justify-between items-start mb-4">
-                                                    <h3 class="font-sans font-900 text-4xl capitalize leading-none text-brand-black">
-                                                        {member.name}
-                                                    </h3>
-                                                    <span class="text-[10px] font-mono font-bold text-brand-red border border-brand-red/30 px-2 py-1 rounded">
+                                                    <div class="flex flex-col">
+                                                        <h3 class="font-sans font-900 text-4xl capitalize leading-none text-brand-black">
+                                                            {member.name}
+                                                        </h3>
+                                                        <span class="text-xs font-mono uppercase tracking-widest text-brand-red font-bold mt-1">
+                                                            {member.role}
+                                                        </span>
+                                                    </div>
+                                                    <span class="text-[10px] font-mono font-bold text-brand-red border border-brand-red/30 px-2 py-1 rounded h-fit">
                                                         {member.ref}
                                                     </span>
                                                 </div>
@@ -324,11 +319,16 @@ const agents = team;
                                             </div>
                                             <div class="flex-grow">
                                                 <div class="flex justify-between items-start mb-4">
-                                                    <h3 class="font-sans font-900 text-3xl xl:text-4xl capitalize leading-none text-brand-black">
-                                                        {member.name}
-                                                    </h3>
+                                                    <div class="flex flex-col">
+                                                        <h3 class="font-sans font-900 text-3xl xl:text-4xl capitalize leading-none text-brand-black">
+                                                            {member.name}
+                                                        </h3>
+                                                        <span class="text-[10px] font-mono uppercase tracking-widest text-brand-red font-bold mt-1">
+                                                            {member.role}
+                                                        </span>
+                                                    </div>
                                                     <span
-                                                        class={`text-[10px] font-mono font-bold border px-2 py-1 rounded ${member.isLeader ? "text-brand-red border-brand-red/30" : "text-brand-black/40 border-brand-black/10"}`}
+                                                        class={`text-[10px] font-mono font-bold border px-2 py-1 rounded h-fit ${member.isLeader ? "text-brand-red border-brand-red/30" : "text-brand-black/40 border-brand-black/10"}`}
                                                     >
                                                         {member.ref}
                                                     </span>

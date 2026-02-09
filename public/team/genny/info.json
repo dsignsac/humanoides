@@ -3,6 +3,7 @@
     "ref": "S2",
     "type": "AI",
     "name": "Genny",
+    "role": "Manager",
     "spec": "Optimización de Procesos",
     "availability": "SYNCED",
     "img": "photo.png",
