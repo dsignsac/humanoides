@@ -9,9 +9,15 @@ interface Props {
 	title?: string;
 	showNavbar?: boolean;
 	showFooter?: boolean;
+	showPreloader?: boolean;
 }
 
-const { title = "HA", showNavbar = true, showFooter = true } = Astro.props;
+const {
+	title = "HA",
+	showNavbar = true,
+	showFooter = true,
+	showPreloader = true,
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -138,7 +144,7 @@ const { title = "HA", showNavbar = true, showFooter = true } = Astro.props;
 		</script>
 	</head>
 	<body class="min-h-screen flex flex-col font-sans">
-		<Preloader />
+		{showPreloader && <Preloader />}
 		{showNavbar && <Navbar />}
 		<slot />
 		{showFooter && <Footer />}
