@@ -1,0 +1,574 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import heroImage from "../assets/hero_studio.png";
+import PortfolioSection from "../components/PortfolioSection.astro";
+import SyncForm from "../components/SyncForm.astro";
+
+import fs from "node:fs";
+import path from "node:path";
+
+// Helper for dynamic data folder reading
+const getDataFromFolders = (dirPath: string) => {
+    const fullPath = path.resolve(dirPath);
+    if (!fs.existsSync(fullPath)) return [];
+
+    const folders = fs.readdirSync(fullPath);
+    return folders
+        .map((folder) => {
+            const infoPath = path.join(fullPath, folder, "info.json");
+            if (fs.existsSync(infoPath)) {
+                try {
+                    const data = JSON.parse(fs.readFileSync(infoPath, "utf-8"));
+                    return { ...data, folder };
+                } catch (e) {
+                    console.error(`Error parsing JSON in ${infoPath}`, e);
+                    return null;
+                }
+            }
+            return null;
+        })
+        .filter(Boolean)
+        .sort((a, b) => (a.order || 99) - (b.order || 99));
+};
+
+// Fetch Logos Data
+const rawLogos = getDataFromFolders("./public/marcas");
+const logos = rawLogos.map((l) => ({
+    src: `/marcas/${l.folder}/${l.logo}`,
+    alt: l.name,
+    href: l.href,
+}));
+
+// Fetch Team Data
+const rawTeam = getDataFromFolders("./public/team");
+const team = rawTeam.map((t) => ({
+    ...t,
+    img: `/team/${t.folder}/${t.img}`,
+}));
+
+const agents = team;
+---
+
+<Layout title="Humanoides & Asociados | Eficiencia Disruptiva">
+    <main class="w-full bg-brand-gray text-brand-black">
+        <!-- Hero Section -->
+        <section
+            id="hero"
+            class="relative w-full h-screen flex flex-col mt-0 bg-brand-black"
+        >
+            <!-- Background Image -->
+            <div class="absolute inset-0 z-0">
+                <Image
+                    src={heroImage}
+                    alt="Industrial Creative Studio"
+                    class="w-full h-full object-cover opacity-80 grayscale"
+                    loading="eager"
+                    fetchpriority="high"
+                    quality={65}
+                    format="webp"
+                />
+            </div>
+            <div class="absolute inset-0 z-[5] bg-brand-black/70"></div>
+
+            <!-- Content -->
+            <div
+                class="relative z-10 flex-1 flex flex-col justify-center items-center pt-32 md:pt-48 lg:pt-56 xl:pt-64 pb-32 md:pb-48"
+            >
+                <div
+                    class="max-w-[1440px] w-full text-center md:text-right px-6"
+                >
+                    <h1
+                        class="font-sans font-bold text-brand-red mb-6 md:mb-12"
+                        style="font-size: clamp(3.5rem, 12vw, 180px); line-height: .9; letter-spacing: -0.04em;"
+                    >
+                        Make Internet<br />Work Again
+                    </h1>
+                    <p
+                        class="text-xl md:text-[32px] md:leading-[36px] font-500 max-w-md md:max-w-2xl mx-auto md:mx-0 md:ml-auto text-brand-gray mb-8 md:mb-12"
+                    >
+                        Somos un Profesional y sus Ai-gentes, listos para
+                        producir tu próximo éxito digital.
+                    </p>
+                    <div
+                        class="flex justify-center md:justify-end mb-12 md:mb-0"
+                    >
+                        <a
+                            href="#log"
+                            class="group relative inline-flex items-center px-8 py-4 bg-transparent border border-brand-gray text-brand-gray font-sans font-800 uppercase tracking-widest text-sm transition-all duration-300 hover:border-brand-red hover:bg-brand-red hover:text-brand-gray overflow-hidden rounded-full"
+                        >
+                            <span class="relative z-10">Ver Proyectos</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logo Marquee Banner -->
+            <div
+                class="absolute bottom-0 left-0 w-full bg-brand-red py-4 md:py-6 z-20 overflow-hidden border-t border-white/10"
+            >
+                <div class="flex marquee-container">
+                    <div
+                        class="flex items-center gap-12 md:gap-24 animate-marquee whitespace-nowrap px-6"
+                    >
+                        {
+                            [...logos, ...logos, ...logos].map((logo) => (
+                                <div class="h-8 md:h-12 w-24 md:w-32 flex-shrink-0 flex items-center justify-center">
+                                    {logo.href ? (
+                                        <a
+                                            href={logo.href}
+                                            class="w-full h-full block"
+                                        >
+                                            <div
+                                                class="w-full h-full bg-[#D4DAD3]"
+                                                style={`
+                                                    mask: url(${logo.src}) no-repeat center;
+                                                    -webkit-mask: url(${logo.src}) no-repeat center;
+                                                    mask-size: contain;
+                                                    -webkit-mask-size: contain;
+                                                `}
+                                            />
+                                        </a>
+                                    ) : (
+                                        <div
+                                            class="w-full h-full bg-[#D4DAD3]"
+                                            style={`
+                                                mask: url(${logo.src}) no-repeat center;
+                                                -webkit-mask: url(${logo.src}) no-repeat center;
+                                                mask-size: contain;
+                                                -webkit-mask-size: contain;
+                                            `}
+                                        />
+                                    )}
+                                </div>
+                            ))
+                        }
+                    </div>
+                    <div
+                        class="flex items-center gap-12 md:gap-24 animate-marquee whitespace-nowrap px-6"
+                        aria-hidden="true"
+                    >
+                        {
+                            [...logos, ...logos, ...logos].map((logo) => (
+                                <div class="h-8 md:h-12 w-24 md:w-32 flex-shrink-0 flex items-center justify-center">
+                                    {logo.href ? (
+                                        <a
+                                            href={logo.href}
+                                            class="w-full h-full block"
+                                        >
+                                            <div
+                                                class="w-full h-full bg-[#D4DAD3]"
+                                                style={`
+                                                    mask: url(${logo.src}) no-repeat center;
+                                                    -webkit-mask: url(${logo.src}) no-repeat center;
+                                                    mask-size: contain;
+                                                    -webkit-mask-size: contain;
+                                                `}
+                                            />
+                                        </a>
+                                    ) : (
+                                        <div
+                                            class="w-full h-full bg-[#D4DAD3]"
+                                            style={`
+                                                mask: url(${logo.src}) no-repeat center;
+                                                -webkit-mask: url(${logo.src}) no-repeat center;
+                                                mask-size: contain;
+                                                -webkit-mask-size: contain;
+                                            `}
+                                        />
+                                    )}
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PORTFOLIO / LOG SECTION -->
+        <PortfolioSection />
+
+        <!-- TEAM SECTION (CORE) -->
+        <section
+            id="core"
+            class="relative w-full bg-brand-gray text-brand-black py-24"
+        >
+            <div class="max-w-[1440px] mx-auto w-full px-6 relative">
+                <div
+                    class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 border-b border-brand-black pb-4"
+                >
+                    <div>
+                        <h2
+                            class="text-sm font-sans uppercase tracking-[0.2em] text-brand-red mb-2 block font-bold"
+                        >
+                            Vista Corporativa
+                        </h2>
+                    </div>
+                    <div class="hidden md:block text-right">
+                        <span
+                            class="text-xs font-sans tracking-widest block text-brand-black font-bold"
+                            >ESTADO: OPERATIVO</span
+                        >
+                        <span
+                            class="text-xs font-sans tracking-widest block text-brand-black font-bold"
+                            >MÉTRICA: EFICIENTE</span
+                        >
+                    </div>
+                </div>
+
+                <!-- TABLE HEADER (Desktop Only) -->
+                <div
+                    class="hidden md:grid grid-cols-4 gap-0 px-8 pb-4 pt-4 border-y border-brand-black text-[10px] font-sans font-900 tracking-widest uppercase text-brand-black"
+                >
+                    <div class="pl-8">Agente</div>
+                    <div class="pl-8">Agente</div>
+                    <div class="pl-8">Agente</div>
+                    <div class="pl-8 text-brand-red">Líder Humano</div>
+                </div>
+
+                <!-- TEAM GRID (Static Agents Only) -->
+                <div class="w-full">
+                    <!-- Mobile Strip Visibility -->
+                    <div
+                        class="w-full border-y border-brand-black py-3 flex md:hidden justify-between items-center text-[10px] font-sans font-bold tracking-[0.2em] uppercase text-brand-black mb-8 px-0"
+                    >
+                        <span id="member-type-label">AI</span>
+                        <div class="flex gap-2" id="member-dots">
+                            {
+                                agents.map((_, i) => (
+                                    <div
+                                        class={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${i === 0 ? "bg-brand-red" : "bg-brand-black/20"}`}
+                                    />
+                                ))
+                            }
+                        </div>
+                    </div>
+
+                    <!-- AGENTS GRID (Static) -->
+                    <div class="relative w-full bg-brand-gray py-2">
+                        <!-- Mobile: Horizontal Scrollable Carousel -->
+                        <div
+                            class="flex md:hidden overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-0 px-0 team-carousel"
+                        >
+                            {
+                                agents.map((member) => (
+                                    <article
+                                        data-type={member.type}
+                                        class={`flex-shrink-0 w-full snap-center p-4 border-r border-brand-black/10 ${member.isLeader ? "bg-brand-salmon" : "bg-brand-gray/50"}`}
+                                    >
+                                        <div class="flex flex-col gap-8">
+                                            <div class="w-full aspect-[4/5] flex-shrink-0 bg-brand-gray overflow-hidden rounded-2xl">
+                                                <img
+                                                    src={member.img}
+                                                    alt={member.name}
+                                                    class="w-full h-full object-cover object-top"
+                                                    loading="lazy"
+                                                    decoding="async"
+                                                />
+                                            </div>
+                                            <div class="flex-grow px-2">
+                                                <div class="flex justify-between items-start mb-4">
+                                                    <h3 class="font-sans font-900 text-4xl capitalize leading-none text-brand-black">
+                                                        {member.name}
+                                                    </h3>
+                                                    <span class="text-[10px] font-mono font-bold text-brand-red border border-brand-red/30 px-2 py-1 rounded">
+                                                        {member.ref}
+                                                    </span>
+                                                </div>
+                                                <p class="text-lg font-sans text-brand-black font-medium leading-tight">
+                                                    {member.desc}
+                                                </p>
+                                                {member.isLeader && (
+                                                    <a
+                                                        href="/team/david/david-salcedo-cv.pdf"
+                                                        download
+                                                        class="mt-8 inline-flex items-center gap-2 px-6 py-3 bg-brand-red text-white text-[10px] font-bold uppercase tracking-widest rounded-full hover:bg-brand-black transition-colors"
+                                                    >
+                                                        Ver CV
+                                                        <svg
+                                                            class="w-3 h-3"
+                                                            viewBox="0 0 24 24"
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            stroke-width="3"
+                                                        >
+                                                            <path d="M7 17L17 7M17 7H7M17 7V17" />
+                                                        </svg>
+                                                    </a>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </article>
+                                ))
+                            }
+                        </div>
+
+                        <!-- Desktop: 4-Column Grid -->
+                        <div
+                            class="hidden md:grid grid-cols-4 gap-px bg-brand-black/20"
+                        >
+                            {
+                                agents.map((member) => (
+                                    <article
+                                        class={`w-full relative p-8 transition-all duration-500 overflow-hidden group/member ${member.isLeader ? "bg-brand-salmon" : "bg-brand-gray"}`}
+                                    >
+                                        <div class="flex flex-col gap-6 relative z-10">
+                                            <div class="w-full aspect-[3/4] flex-shrink-0 bg-brand-secondary overflow-hidden rounded-2xl relative">
+                                                <img
+                                                    src={member.img}
+                                                    alt={member.name}
+                                                    class={`w-full h-full object-cover object-top transition-transform duration-700 ${member.isLeader ? "group-hover/member:scale-105" : ""}`}
+                                                    loading="lazy"
+                                                    decoding="async"
+                                                />
+                                            </div>
+                                            <div class="flex-grow">
+                                                <div class="flex justify-between items-start mb-4">
+                                                    <h3 class="font-sans font-900 text-3xl xl:text-4xl capitalize leading-none text-brand-black">
+                                                        {member.name}
+                                                    </h3>
+                                                    <span
+                                                        class={`text-[10px] font-mono font-bold border px-2 py-1 rounded ${member.isLeader ? "text-brand-red border-brand-red/30" : "text-brand-black/40 border-brand-black/10"}`}
+                                                    >
+                                                        {member.ref}
+                                                    </span>
+                                                </div>
+                                                <p class="text-base font-sans text-brand-black font-medium leading-tight px-0 opacity-80">
+                                                    {member.desc}
+                                                </p>
+
+                                                {member.isLeader && (
+                                                    <a
+                                                        href="/team/david/david-salcedo-cv.pdf"
+                                                        download
+                                                        class="mt-8 inline-flex items-center gap-2 px-6 py-3 bg-brand-black text-white text-[10px] font-bold uppercase tracking-widest rounded-full hover:bg-brand-red transition-all duration-300"
+                                                    >
+                                                        Descargar CV
+                                                        <svg
+                                                            class="w-3 h-3"
+                                                            viewBox="0 0 24 24"
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            stroke-width="3"
+                                                        >
+                                                            <path d="M7 17L17 7M17 7H7M17 7V17" />
+                                                        </svg>
+                                                    </a>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </article>
+                                ))
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SYNC SECTION -->
+        <section
+            id="sync"
+            class="relative w-full bg-brand-gray text-brand-black mb-16 md:mb-24 overflow-hidden"
+        >
+            <div
+                class="max-w-[1440px] mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center border-t border-brand-black/10 pt-12"
+            >
+                <!-- Full Width Header Area (Header + Social Strip) -->
+                <div class="col-span-1 md:col-span-2 w-full">
+                    <!-- Section Title -->
+                    <div
+                        class="flex flex-col md:flex-row justify-between items-start md:items-end pb-8"
+                    >
+                        <div>
+                            <h2
+                                class="text-sm font-sans uppercase tracking-[0.2em] text-brand-red mb-2 block font-bold"
+                            >
+                                Fase Terminal
+                            </h2>
+                        </div>
+                        <div class="hidden md:block text-right">
+                            <span
+                                class="text-xs font-sans tracking-widest block text-brand-black font-bold"
+                                >SINCRO: ACTIVA</span
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Decorative Strip / Social Links (Double Line visuals) -->
+                    <div
+                        class="w-full border-y border-brand-black py-3 flex justify-between items-center text-xs font-sans font-bold tracking-widest uppercase text-brand-black mb-12"
+                    >
+                        <span class="opacity-60">Canales de Comunicación</span>
+                        <div class="flex gap-8">
+                            <a
+                                href="https://instagram.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="group flex items-center gap-1 hover:text-brand-red transition-colors"
+                            >
+                                Instagram
+                                <svg
+                                    class="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M7 17L17 7M17 7H7M17 7V17"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                            </a>
+                            <a
+                                href="https://linkedin.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="group flex items-center gap-1 hover:text-brand-red transition-colors"
+                            >
+                                LinkedIn
+                                <svg
+                                    class="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M7 17L17 7M17 7H7M17 7V17"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Left Column: Main Visual/Text -->
+                <div class="text-center md:text-left relative z-20">
+                    <div class="max-w-xl mx-auto md:mx-0">
+                        <h2
+                            class="font-sans font-900 leading-[0.9] text-brand-black mb-8"
+                            style="font-size: clamp(2.5rem, 8vw, 80px); letter-spacing: -0.04em;"
+                        >
+                            Iniciar<br />Protocolo Digital
+                        </h2>
+                        <p
+                            class="text-base md:text-xl font-sans font-medium text-brand-black/80 mb-10 max-w-xl leading-tight"
+                        >
+                            Despliega un equipo híbrido de humanos y agentes IA.
+                            Optimiza, escala y domina tu mercado.
+                        </p>
+                        <a
+                            href="https://calendly.com/humanoides"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center gap-3 px-8 py-4 bg-brand-black text-brand-gray text-xs md:text-sm font-900 uppercase tracking-widest hover:bg-brand-red hover:text-white transition-all duration-300 rounded-full group"
+                        >
+                            <svg
+                                class="w-4 h-4 text-brand-gray group-hover:text-white transition-colors"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M19 4H5C3.89543 4 3 4.89543 3 6V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V6C21 4.89543 20.1046 4 19 4Z"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <path
+                                    d="M16 2V6"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <path
+                                    d="M8 2V6"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <path
+                                    d="M3 10H21"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                            </svg>
+                            <span>Empezar Colaboración</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column: Visual + Form -->
+                <div
+                    class="relative w-full flex items-center justify-center md:justify-end"
+                >
+                    <!-- Form Container (No border, clean) -->
+                    <div class="relative z-20 w-full max-w-md">
+                        <SyncForm />
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <style is:global>
+        /* Marquee Animation */
+        .marquee-container {
+            mask-image: linear-gradient(
+                to right,
+                transparent,
+                black 10%,
+                black 90%,
+                transparent
+            );
+            -webkit-mask-image: linear-gradient(
+                to right,
+                transparent,
+                black 10%,
+                black 90%,
+                transparent
+            );
+        }
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        .animate-marquee {
+            animation: marquee 25s linear infinite;
+        }
+    </style>
+</Layout>
+
+<script>
+    // Team Carousel Logic
+    const carousel = document.querySelector(".team-carousel");
+    const label = document.querySelector("#member-type-label");
+    const dots = document.querySelectorAll("#member-dots div");
+    const articles = document.querySelectorAll(".team-carousel article");
+
+    if (carousel instanceof HTMLElement && articles.length > 0) {
+        carousel.addEventListener("scroll", () => {
+            const index = Math.round(
+                carousel.scrollLeft / carousel.clientWidth,
+            );
+            const activeArticle = articles[index];
+            if (activeArticle && label) {
+                label.textContent = activeArticle.getAttribute("data-type");
+            }
+            dots.forEach((dot, i) => {
+                dot.classList.toggle("bg-brand-red", i === index);
+                dot.classList.toggle("bg-brand-black/20", i !== index);
+            });
+        });
+    }
+</script>
