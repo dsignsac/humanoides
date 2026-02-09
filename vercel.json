@@ -1,0 +1,14 @@
+{
+    "redirects": [
+        {
+            "source": "/projects/(.*)",
+            "destination": "/",
+            "permanent": false
+        },
+        {
+            "source": "/brand",
+            "destination": "/",
+            "permanent": false
+        }
+    ]
+}
