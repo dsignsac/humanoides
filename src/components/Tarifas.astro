@@ -283,6 +283,8 @@ const mobilePrograms = [...programs].sort(
 
     // Level Switcher Logic
     import pricingData from "../data/pricing.json";
+    import { gsap } from "gsap";
+
     const pricingDataRef = pricingData;
 
     document.querySelectorAll(".level-selector").forEach((selector) => {
@@ -317,27 +319,41 @@ const mobilePrograms = [...programs].sort(
                 btn.classList.add("bg-brand-gray", "text-brand-black");
                 btn.classList.remove("text-brand-black/60");
 
-                // Update content with fade effect
+                // Update content with GSAP animation
                 if (priceValue && descriptionText && programData && pricePeriod) {
                     const levelData = (programData.levels as any)[level];
+                    const elementsToAnimate = [priceValue, pricePeriod, descriptionText];
 
-                    priceValue.style.opacity = "0";
-                    pricePeriod.style.opacity = "0";
-                    descriptionText.style.opacity = "0";
+                    // Phase 1: Fade out and slide up
+                    gsap.to(elementsToAnimate, {
+                        opacity: 0,
+                        y: -10,
+                        duration: 0.2,
+                        ease: "power2.in",
+                        stagger: 0.02,
+                        onComplete: () => {
+                            // Update content
+                            priceValue.innerText = levelData.price;
+                            pricePeriod.innerText = levelData.billing_period;
+                            descriptionText.innerText = levelData.description;
 
-                    setTimeout(() => {
-                        priceValue.innerText = levelData.price;
-                        pricePeriod.innerText = levelData.billing_period;
-                        descriptionText.innerText = levelData.description;
-                        priceValue.style.opacity = "1";
-                        pricePeriod.style.opacity = "1";
-                        descriptionText.style.opacity = "1";
+                            if (ctaButton) {
+                                ctaButton.href = `/#sync?subject=${encodeURIComponent(`${programData.name} - ${level}`)}`;
+                            }
 
-                        // Update CTA link
-                        if (ctaButton) {
-                            ctaButton.href = `/#sync?subject=${encodeURIComponent(`${programData.name} - ${level}`)}`;
+                            // Phase 2: Fade in and slide up from below
+                            gsap.fromTo(elementsToAnimate, 
+                                { opacity: 0, y: 10 },
+                                {
+                                    opacity: 1,
+                                    y: 0,
+                                    duration: 0.3,
+                                    ease: "power2.out",
+                                    stagger: 0.02
+                                }
+                            );
                         }
-                    }, 200);
+                    });
                 }
             });
         });
