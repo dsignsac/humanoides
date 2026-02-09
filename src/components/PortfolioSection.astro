@@ -83,7 +83,7 @@ const projects = projectsData
   </div>
 
   <!-- Projects Grid / List -->
-  <div class="w-full max-w-[1440px] mx-auto flex flex-col gap-12 md:gap-0">
+  <div class="w-full max-w-[1440px] mx-auto flex flex-col">
     
     <!-- Table Header (Desktop Only) -->
     <div class="hidden md:grid grid-cols-12 gap-4 px-6 pb-4 pt-4 border-y border-brand-black text-xs font-sans font-900 tracking-widest uppercase text-brand-black">
@@ -96,16 +96,6 @@ const projects = projectsData
     <!-- Project Rows -->
     {projects.map((project) => (
       <article class="article-row group relative border-b border-brand-black/10 transition-colors duration-300 hover:bg-brand-salmon overflow-hidden">
-        <!-- Project Background Image (Fade effect) -->
-        <div class="absolute inset-0 z-0 opacity-0 group-hover:opacity-20 transition-opacity duration-700 pointer-events-none">
-            <img 
-              src={project.image} 
-              alt={`${project.client} - ${project.project}`} 
-              class="w-full h-full object-cover grayscale scale-110 group-hover:scale-100 transition-transform duration-1000"
-              loading="lazy"
-              decoding="async"
-            />
-        </div>
 
         <!-- Link Wrapper -->
         <a href={project.url} class="block w-full h-full relative z-10">
