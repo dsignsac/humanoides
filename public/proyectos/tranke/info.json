@@ -6,27 +6,27 @@
     "year": "2023",
     "country": "Alemania",
     "description": "Tranke Bier es una marca de cerveza artesanal alemana que celebra la identidad LGBTQ+ bajo el concepto \"Prost mit Dankbarkeit\" (Brinda con gratitud). El diseño fusiona activismo y estética urbana, transformando el packaging en un símbolo de orgullo que honra la amistad y la diversidad de la \"familia elegida\" a través de un brindis lleno de reconocimiento.",
-    "thumbnail": "/proyectos/tranke/04.webp",
+    "thumbnail": "03.webp",
     "gallery": [
         {
             "type": "image",
-            "src": "/proyectos/tranke/01.webp"
+            "src": "01.webp"
         },
         {
             "type": "image",
-            "src": "/proyectos/tranke/03.webp"
+            "src": "03.webp"
         },
         {
             "type": "image",
-            "src": "/proyectos/tranke/04.webp"
+            "src": "04.webp"
         },
         {
             "type": "image",
-            "src": "/proyectos/tranke/05.webp"
+            "src": "05.webp"
         },
         {
             "type": "image",
-            "src": "/proyectos/tranke/06.webp"
+            "src": "06.webp"
         }
     ],
     "stack": [
