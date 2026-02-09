@@ -60,13 +60,13 @@ const currency = pricingData.currency;
         </div>
 
         <div
-            class="flex md:grid md:grid-cols-3 overflow-x-auto md:overflow-visible snap-x md:snap-none scrollbar-hide gap-4 md:gap-6 px-6 md:px-0 pricing-carousel mb-10 md:mb-16"
+            class="flex md:flex lg:grid lg:grid-cols-3 overflow-x-auto lg:overflow-visible snap-x lg:snap-none scrollbar-hide gap-4 md:gap-6 px-6 md:px-8 lg:px-0 pricing-carousel mb-10 md:mb-16"
         >
             {
                 programs.map((item, idx) => (
                     <article
                         data-program-id={item.id}
-                        class={`flex-shrink-0 w-[calc(100vw-48px)] md:w-full snap-center relative flex flex-col bg-brand-salmon p-6 md:p-8 transition-all duration-500 group active:scale-[0.98] md:active:scale-100 rounded-3xl border ${item.recommended ? "border-brand-red" : "border-brand-black"}`}
+                        class={`flex-shrink-0 w-[calc(100vw-48px)] md:w-[45vw] lg:w-full snap-center relative flex flex-col bg-brand-salmon p-6 md:p-8 transition-all duration-500 group active:scale-[0.98] md:active:scale-100 rounded-3xl border ${item.recommended ? "border-brand-red" : "border-brand-black"}`}
                     >
                         {item.recommended && (
                             <div class="absolute top-4 right-6 bg-brand-red text-white text-[11px] font-sans font-900 px-4 py-1.5 uppercase tracking-widest rounded-full z-10">

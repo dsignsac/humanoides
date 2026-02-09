@@ -83,7 +83,7 @@ const projects = projectsData
         >
           CARTERA DE PROYECTOS
         </h2>
-        <div class="mt-4 hidden md:block">
+        <div class="mt-4 hidden lg:block">
           <h3
             class="text-xl md:text-2xl font-sans font-900 text-brand-black uppercase tracking-tight mb-1"
           >
@@ -96,7 +96,7 @@ const projects = projectsData
           </p>
         </div>
       </div>
-      <div class="hidden md:block text-right">
+      <div class="hidden lg:block text-right">
         <span
           class="text-xs font-sans tracking-widest block text-brand-black font-bold"
           >DIVISIÓN EN PRODUCCIÓN</span
@@ -109,7 +109,7 @@ const projects = projectsData
   <div class="w-full max-w-[1440px] mx-auto flex flex-col px-6 md:px-0">
     <!-- Table Header (Desktop Only) -->
     <div
-      class="hidden md:grid grid-cols-12 gap-4 px-0 pb-4 pt-4 border-y border-brand-black mb-4 text-[10px] font-sans font-900 tracking-[0.2em] uppercase text-brand-black/50"
+      class="hidden lg:grid grid-cols-12 gap-4 px-6 lg:px-0 pb-4 pt-4 border-y border-brand-black mb-4 text-[10px] font-sans font-900 tracking-[0.2em] uppercase text-brand-black/50"
     >
       <div class="col-span-1">AÑO</div>
       <div class="col-span-4">CLIENTE</div>
@@ -121,7 +121,7 @@ const projects = projectsData
     <!-- Project Rows -->
     <!-- Mobile Carousel Navigation Strip -->
     <div
-      class="w-full border-y border-brand-black py-3 flex md:hidden justify-between items-center text-[12px] font-sans font-bold tracking-[0.2em] uppercase text-brand-black mb-4 px-6"
+      class="w-full border-y border-brand-black py-3 flex lg:hidden justify-between items-center text-[12px] font-sans font-bold tracking-[0.2em] uppercase text-brand-black mb-4 px-6 md:px-8"
     >
       <span id="mobile-project-country">{projects[0]?.country || "GLOBAL"}</span>
       <div class="flex gap-2" id="projects-dots">
@@ -137,7 +137,7 @@ const projects = projectsData
 
     <!-- Mobile Carousel -->
     <div
-      class="flex md:hidden overflow-x-auto snap-x snap-mandatory scrollbar-hide flex-nowrap projects-carousel h-auto pb-8 relative"
+      class="flex lg:hidden overflow-x-auto snap-x snap-mandatory scrollbar-hide flex-nowrap projects-carousel h-auto pb-8 relative px-6 md:px-8"
     >
       {/* Clone of Last Project */}
       {projects.length > 0 && (
@@ -241,7 +241,7 @@ const projects = projectsData
     </div>
 
     <!-- Desktop List (Hidden on Mobile) -->
-    <div class="hidden md:block">
+    <div class="hidden lg:block px-6 lg:px-0">
       {
         projects.map((project, index) => (
           <a

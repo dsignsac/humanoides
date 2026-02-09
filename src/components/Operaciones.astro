@@ -74,7 +74,7 @@ const agents = team;
 
         <!-- TABLE HEADER (Desktop Only) -->
         <div
-            class="hidden md:grid grid-cols-4 gap-0 px-8 pb-4 pt-4 border-y border-brand-black text-[12px] font-sans font-900 tracking-widest uppercase text-brand-black"
+            class="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-0 px-8 pb-4 pt-4 border-y border-brand-black text-[12px] font-sans font-900 tracking-widest uppercase text-brand-black"
         >
             <div class="pl-8">Agente</div>
             <div class="pl-8">Agente</div>
@@ -163,8 +163,10 @@ const agents = team;
                     }
                 </div>
 
-                <!-- Desktop: 4-Column Grid -->
-                <div class="hidden md:grid grid-cols-4 gap-px bg-brand-black">
+                <!-- Desktop: 2-Column (Tablet) / 4-Column (Desktop) Grid -->
+                <div
+                    class="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-px bg-brand-black"
+                >
                     {
                         agents.map((member) => (
                             <article
