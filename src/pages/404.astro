@@ -6,20 +6,6 @@ import Layout from "../layouts/Layout.astro";
     <main
         class="w-full h-screen bg-brand-red flex flex-col items-center justify-center overflow-hidden"
     >
-        <!-- CRT Effect Layer -->
-        <div
-            class="absolute inset-0 z-[6] pointer-events-none overflow-hidden opacity-20"
-        >
-            <div
-                class="absolute inset-0 w-full h-full bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_4px,3px_100%]"
-            >
-            </div>
-            <div
-                class="absolute inset-0 w-full h-full bg-transparent animate-flicker pointer-events-none"
-            >
-            </div>
-        </div>
-
         <div class="relative z-10 text-center px-6">
             <h1
                 class="text-[clamp(4rem,20vw,240px)] font-sans font-800 text-[#D4DAD3] leading-none tracking-tighter mb-8"
@@ -43,73 +29,4 @@ import Layout from "../layouts/Layout.astro";
     </main>
 </Layout>
 
-<style>
-    @keyframes flicker {
-        0% {
-            opacity: 0.27861;
-        }
-        5% {
-            opacity: 0.34769;
-        }
-        10% {
-            opacity: 0.23604;
-        }
-        15% {
-            opacity: 0.90626;
-        }
-        20% {
-            opacity: 0.18128;
-        }
-        25% {
-            opacity: 0.83891;
-        }
-        30% {
-            opacity: 0.65583;
-        }
-        35% {
-            opacity: 0.57807;
-        }
-        40% {
-            opacity: 0.26593;
-        }
-        45% {
-            opacity: 0.84623;
-        }
-        50% {
-            opacity: 0.96019;
-        }
-        55% {
-            opacity: 0.08594;
-        }
-        60% {
-            opacity: 0.20313;
-        }
-        65% {
-            opacity: 0.71988;
-        }
-        70% {
-            opacity: 0.53455;
-        }
-        75% {
-            opacity: 0.37288;
-        }
-        80% {
-            opacity: 0.71428;
-        }
-        85% {
-            opacity: 0.70419;
-        }
-        90% {
-            opacity: 0.7003;
-        }
-        95% {
-            opacity: 0.36108;
-        }
-        100% {
-            opacity: 0.24387;
-        }
-    }
-    .animate-flicker {
-        animation: flicker 0.15s infinite;
-    }
-</style>
+<style></style>

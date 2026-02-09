@@ -16,15 +16,16 @@ El agente debe orquestar sus capacidades consultando los módulos en `.agent/ski
 0.  **Strategic Planning & Project Framework:** Antes de iniciar cualquier fase técnica o de diseño, es OBLIGATORIO consultar `.agent/skills/strategy/SKILLS.md` para establecer el propósito, los objetivos SMART y el alcance del proyecto bajo la metodología de planificación profesional.
 1.  **Core Architecture & Types:** Antes de cualquier lógica, consultar `.agent/skills/typescript/SKILLS.md` para asegurar el "No-Any Policy" y `.agent/skills/react/SKILLS.md` para estándares de Vercel/Next.js.
 2.  **Visual Identity & Branding:** Para consistencia de marca y reglas técnicas visuales, consultar `.agent/skills/Branding/SKILLS.md`.
-3.  **Design System:** Para maquetación responsiva y tokens, consultar `.agent/skills/tailwind/SKILLS.md`.
-4.  **Motion Design (GSAP Protocol):**
+3.  **Advanced Layout & Responsive Strategy:** Antes de maquetar componentes, consultar `.agent/skills/Responsive design/SKILLS.md` para patrones de Container Queries, tipografía fluida y cuadrículas adaptativas.
+4.  **Design System Implementation:** Para tokens de Tailwind y utilidades, consultar `.agent/skills/tailwind/SKILLS.md`.
+5.  **Motion Design (GSAP Protocol):**
     - **Fundamentals:** `.agent/skills/gsap/fundamentals.md` (Lógica base).
     - **Sequencing:** `.agent/skills/gsap/Sequencing.md` (Orquestación).
     - **Scroll & Interaction:** `.agent/skills/gsap/scrolltrigger.md`.
     - **Framework Bridge:** `.agent/skills/gsap/react.md` (Uso de `useGSAP()`).
     - **Advanced Principles:** `.agent/skills/gsap/greensock.md` y `.agent/skills/gsap/router.md`.
     - **Quality Standard:** `.agent/skills/gsap/awwwards.md`.
-5.  **Performance & Content:**
+6.  **Performance & Content:**
     - Para sitios estáticos/híbridos: `.agent/skills/astro/SKILLS.md`.
     - Para visibilidad y PSEO: `.agent/skills/seo/SKILLS.md`.
 

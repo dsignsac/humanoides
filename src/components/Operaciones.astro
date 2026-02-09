@@ -58,7 +58,7 @@ const agents = team;
                         Planta Ejecutiva de Operación.
                     </h3>
                     <p
-                        class="text-xs md:text-sm font-sans font-medium text-brand-black opacity-90"
+                        class="text-xs md:text-sm font-sans font-medium text-brand-black"
                     >
                         Especialistas en ejecución de sistemas complejos.
                     </p>
@@ -74,7 +74,7 @@ const agents = team;
 
         <!-- TABLE HEADER (Desktop Only) -->
         <div
-            class="hidden md:grid grid-cols-4 gap-0 px-8 pb-4 pt-4 border-y border-brand-black text-[10px] font-sans font-900 tracking-widest uppercase text-brand-black"
+            class="hidden md:grid grid-cols-4 gap-0 px-8 pb-4 pt-4 border-y border-brand-black text-[12px] font-sans font-900 tracking-widest uppercase text-brand-black"
         >
             <div class="pl-8">Agente</div>
             <div class="pl-8">Agente</div>
@@ -86,14 +86,14 @@ const agents = team;
         <div class="w-full">
             <!-- Mobile Strip Visibility -->
             <div
-                class="w-full border-y border-brand-black py-3 flex md:hidden justify-between items-center text-[10px] font-sans font-bold tracking-[0.2em] uppercase text-brand-black mb-6 px-0"
+                class="w-full border-y border-brand-black py-3 flex md:hidden justify-between items-center text-[12px] font-sans font-bold tracking-[0.2em] uppercase text-brand-black mb-6 px-0"
             >
                 <span id="member-type-label">AI</span>
                 <div class="flex gap-2" id="member-dots">
                     {
                         agents.map((_, i) => (
                             <div
-                                class={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${i === 0 ? "bg-brand-red" : "bg-brand-black/20"}`}
+                                class={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${i === 0 ? "bg-brand-red" : "bg-brand-black"}`}
                             />
                         ))
                     }
@@ -109,7 +109,7 @@ const agents = team;
                         agents.map((member) => (
                             <article
                                 data-type={member.type}
-                                class={`flex-shrink-0 w-full snap-center pb-2 rounded-3xl ${member.isLeader ? "bg-brand-salmon" : "bg-brand-gray/50"}`}
+                                class={`flex-shrink-0 w-full snap-center pb-2 rounded-3xl ${member.isLeader ? "bg-brand-salmon" : "bg-brand-gray"}`}
                             >
                                 <div class="flex flex-col gap-4">
                                     <div class="w-full aspect-[4/5] sm:aspect-video flex-shrink-0 bg-brand-gray overflow-hidden rounded-t-[1.5rem]">
@@ -131,7 +131,7 @@ const agents = team;
                                                     {member.role}
                                                 </span>
                                             </div>
-                                            <span class="text-[10px] font-mono font-bold text-brand-red border border-brand-red/30 px-2 py-1 rounded h-fit">
+                                            <span class="text-[12px] font-mono font-bold text-brand-red border border-brand-red px-2 py-1 rounded h-fit">
                                                 {member.ref}
                                             </span>
                                         </div>
@@ -164,9 +164,7 @@ const agents = team;
                 </div>
 
                 <!-- Desktop: 4-Column Grid -->
-                <div
-                    class="hidden md:grid grid-cols-4 gap-px bg-brand-black/20"
-                >
+                <div class="hidden md:grid grid-cols-4 gap-px bg-brand-black">
                     {
                         agents.map((member) => (
                             <article
@@ -188,17 +186,17 @@ const agents = team;
                                                 <h3 class="font-sans font-900 text-3xl xl:text-4xl capitalize leading-none text-brand-black">
                                                     {member.name}
                                                 </h3>
-                                                <span class="text-[10px] font-mono uppercase tracking-widest text-brand-red font-bold mt-1">
+                                                <span class="text-[12px] font-mono uppercase tracking-widest text-brand-red font-bold mt-1">
                                                     {member.role}
                                                 </span>
                                             </div>
                                             <span
-                                                class={`text-[10px] font-mono font-bold border px-2 py-1 rounded h-fit ${member.isLeader ? "text-brand-red border-brand-red/30" : "text-brand-black/40 border-brand-black/10"}`}
+                                                class={`text-[12px] font-mono font-bold border px-2 py-1 rounded h-fit ${member.isLeader ? "text-brand-red border-brand-red" : "text-brand-black border-brand-black"}`}
                                             >
                                                 {member.ref}
                                             </span>
                                         </div>
-                                        <p class="text-lg md:text-xl font-sans text-brand-black font-medium leading-tight px-0 opacity-90">
+                                        <p class="text-lg md:text-xl font-sans text-brand-black font-medium leading-tight px-0">
                                             {member.desc}
                                         </p>
 
@@ -249,7 +247,7 @@ const agents = team;
             }
             dots.forEach((dot, i) => {
                 dot.classList.toggle("bg-brand-red", i === index);
-                dot.classList.toggle("bg-brand-black/20", i !== index);
+                dot.classList.toggle("bg-brand-black", i !== index);
             });
         });
     }

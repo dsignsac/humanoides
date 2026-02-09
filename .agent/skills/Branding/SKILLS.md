@@ -19,7 +19,7 @@ recursos extraídos del manual de marca corporativo.
 - Estilo visual (colores, tipografías, espaciado): resources/visual-style.json (Anek Malayalam, Kode Mono, Red/Salmon/Gray/Black)
 - Forma de escribir (tono, estructura, vocabulario): resources/text.md (Cercano, directo, didáctico)
 - Decisiones técnicas (framework, estilos, librerías): resources/technical-rules.md
-- Recursos como logotipo y favicon en public/humanoides-logo.svg y public/favicon-humanoides.svg
+- Recursos como logotipo en public/humanoides-logo.svg
 
 ## Checklist antes de entregar
 1) ¿Parece de la misma marca que lo anterior (Humanoides & Asociados)?

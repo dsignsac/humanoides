@@ -1,46 +1,47 @@
 {
+    "currency": "$",
     "programs": [
         {
-            "id": "presencia",
-            "name": "Programa Presencia",
+            "id": "marca",
+            "name": "Programa Marca",
             "recommended": false,
             "levels": {
                 "Basic": {
-                    "price": "$800",
-                    "billing_period": "/ mes",
-                    "description": "Estabilidad esencial. Soporte técnico mensual y actualizaciones de seguridad críticas para mantener tu sitio activo."
+                    "price": "149",
+                    "billing_period": "pago único",
+                    "description": "Identidad esencial. Incluye diseño de logotipo y manual de marca básico en PDF para una implementación inmediata."
                 },
                 "Medium": {
-                    "price": "$1,500",
-                    "billing_period": "/ mes",
-                    "description": "Estabilidad y mejora continua. Soporte técnico prioritario, actualizaciones de seguridad y optimización de velocidad constante."
+                    "price": "2,200",
+                    "billing_period": "/ año",
+                    "description": "Evolución de marca. Branding completo, manual interactivo (HTML), logotipo animado y mantenimiento de activos visuales."
                 },
                 "Pro": {
-                    "price": "$2,500",
+                    "price": "650",
                     "billing_period": "/ mes",
-                    "description": "Estabilidad total. Mantenimiento avanzado con auditorías semanales, optimización SEO técnica y soporte 24/7."
+                    "description": "Dirección de arte continua. Gestión total de identidad, diseño de piezas para campañas y actualización constante de activos."
                 }
             }
         },
         {
-            "id": "marca",
-            "name": "Programa Marca",
+            "id": "presencia",
+            "name": "Programa Presencia",
             "recommended": true,
             "levels": {
                 "Basic": {
-                    "price": "$2,200",
+                    "price": "850",
                     "billing_period": "pago único",
-                    "description": "Rediseño estratégico base: evolución de identidad visual enfocada en la legibilidad y estructura moderna."
+                    "description": "Despliegue inicial. Desarrollo de landing page en WordPress, configuración de hosting, dominio y 5 cuentas de correo."
                 },
                 "Medium": {
-                    "price": "$3,800",
-                    "billing_period": "pago único",
-                    "description": "Rediseño estratégico: evolución de identidad visual con arquitectura web de alto impacto para aumentar la conversión."
+                    "price": "4,500",
+                    "billing_period": "/ año",
+                    "description": "Ecosistema digital pro. Web Headless ultra veloz, hasta 50 correos corporativos y optimización SEO técnica anual."
                 },
                 "Pro": {
-                    "price": "$6,500",
-                    "billing_period": "pago único",
-                    "description": "Rediseño de élite: transformación total de marca, arquitectura de conversión extrema y diseño de interfaz exclusivo."
+                    "price": "1,200",
+                    "billing_period": "/ mes",
+                    "description": "Infraestructura crítica. Soporte 24/7, auditorías de seguridad semanales, optimización continua de carga y escalabilidad SaaS."
                 }
             }
         },
@@ -50,19 +51,19 @@
             "recommended": false,
             "levels": {
                 "Basic": {
-                    "price": "$3,500",
-                    "billing_period": "/ mes",
-                    "description": "MVP rápido: lanzamiento de funciones core optimizadas para una validación veloz del mercado inicial."
+                    "price": "3,200",
+                    "billing_period": "pago único",
+                    "description": "MVP de validación. Desarrollo de producto mínimo viable con funciones core y estrategia de lanzamiento base."
                 },
                 "Medium": {
-                    "price": "$5,500",
-                    "billing_period": "/ mes",
-                    "description": "MVP funcional en tiempo récord con UX avanzado y métricas de validación listas para salir al mercado."
+                    "price": "8,900",
+                    "billing_period": "/ año",
+                    "description": "Crecimiento sostenido. Producto full-stack, UX avanzado y gestión de pauta digital (Trading de anuncios) durante el ciclo anual."
                 },
                 "Pro": {
-                    "price": "$9,800",
+                    "price": "15,000",
                     "billing_period": "/ mes",
-                    "description": "Lanzamiento integral: producto escalable con integraciones avanzadas, UX de alto rendimiento y robustez técnica."
+                    "description": "Dominio 360 + IA. Campaña integral, Email Marketing, automatización de mensajes, branding, web ultra veloz y 42 activos IA (30 imágenes / 12 videos)."
                 }
             }
         }

@@ -72,7 +72,7 @@ const projects = projectsData
 ---
 
 <section id="log" class="w-full bg-brand-gray text-brand-black mb-12 md:mb-16">
-  <div class="w-full max-w-[1440px] mx-auto px-6 pt-16 md:pt-24">
+  <div class="w-full max-w-[1440px] mx-auto px-6 md:px-0 pt-16 md:pt-24">
     <!-- Big Headline -->
     <div
       class="flex flex-col md:flex-row justify-between items-start md:items-end mb-6 md:mb-8"
@@ -90,7 +90,7 @@ const projects = projectsData
             Selección de operaciones recientes.
           </h3>
           <p
-            class="text-[10px] font-sans font-bold text-brand-black/40 uppercase tracking-widest"
+            class="text-[12px] font-sans font-bold text-brand-black uppercase tracking-widest"
           >
             Proyectos ejecutados bajo esquema de operación directa.
           </p>
@@ -106,10 +106,10 @@ const projects = projectsData
   </div>
 
   <!-- Projects Grid / List -->
-  <div class="w-full max-w-[1440px] mx-auto flex flex-col">
+  <div class="w-full max-w-[1440px] mx-auto flex flex-col px-6 md:px-0">
     <!-- Table Header (Desktop Only) -->
     <div
-      class="hidden md:grid grid-cols-12 gap-4 px-6 pb-4 pt-4 border-y border-brand-black text-xs font-sans font-900 tracking-widest uppercase text-brand-black"
+      class="hidden md:grid grid-cols-12 gap-4 px-0 pb-4 pt-4 border-y border-brand-black mb-4 text-[10px] font-sans font-900 tracking-[0.2em] uppercase text-brand-black/50"
     >
       <div class="col-span-1">AÑO</div>
       <div class="col-span-4">CLIENTE</div>
@@ -121,14 +121,14 @@ const projects = projectsData
     <!-- Project Rows -->
     <!-- Mobile Carousel Navigation Strip -->
     <div
-      class="w-full border-y border-brand-black py-3 flex md:hidden justify-between items-center text-[10px] font-sans font-bold tracking-[0.2em] uppercase text-brand-black mb-4 px-6"
+      class="w-full border-y border-brand-black py-3 flex md:hidden justify-between items-center text-[12px] font-sans font-bold tracking-[0.2em] uppercase text-brand-black mb-4 px-6"
     >
       <span id="mobile-project-country">{projects[0]?.country || "GLOBAL"}</span>
       <div class="flex gap-2" id="projects-dots">
         {
           projects.map((_, i) => (
             <div
-              class={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${i === 0 ? "bg-brand-red" : "bg-brand-black/20"}`}
+              class={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${i === 0 ? "bg-brand-red" : "bg-brand-black"}`}
             />
           ))
         }
@@ -143,7 +143,7 @@ const projects = projectsData
       {projects.length > 0 && (
         <article 
           data-country={projects[projects.length - 1].country}
-          class="flex-shrink-0 w-[85vw] snap-center relative flex flex-col aspect-[4/5] border border-brand-black/10 rounded-2xl overflow-hidden mr-4 group"
+          class="flex-shrink-0 w-[85vw] snap-center relative flex flex-col aspect-[4/5] border border-brand-black rounded-2xl overflow-hidden mr-4 group"
         >
           <div class="absolute inset-0 z-0">
               <img 
@@ -151,14 +151,14 @@ const projects = projectsData
                 class="w-full h-full object-cover" 
                 loading="lazy"
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-brand-black/20 to-transparent"></div>
+              <div class="absolute inset-0 bg-brand-black opacity-40"></div>
           </div>
           <div class="relative z-10 flex flex-col p-6 flex-grow justify-end">
               <div class="mb-4">
                   <h3 class="text-3xl font-sans font-900 uppercase tracking-tighter leading-none text-white mb-1">{projects[projects.length - 1].client}</h3>
                   <p class="text-lg font-sans font-normal leading-tight text-white/90 lowercase first-letter:uppercase">{projects[projects.length - 1].service}</p>
               </div>
-              <a href={projects[projects.length - 1].url} class="w-full py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest hover:bg-brand-red hover:border-brand-red transition-colors">
+              <a href={projects[projects.length - 1].url} class="w-full py-4 bg-white text-brand-black border border-white rounded-full flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest hover:bg-brand-red hover:text-white hover:border-brand-red transition-colors">
                 Ver Proyecto <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
               </a>
           </div>
@@ -170,7 +170,7 @@ const projects = projectsData
         projects.map((project, index) => (
           <article 
             data-country={project.country}
-            class="flex-shrink-0 w-[85vw] snap-center relative flex flex-col aspect-[4/5] border border-brand-black/10 rounded-2xl overflow-hidden mr-4 group"
+            class="flex-shrink-0 w-[85vw] snap-center relative flex flex-col aspect-[4/5] border border-brand-black rounded-2xl overflow-hidden mr-4 group"
           >
             <!-- Project Thumbnail (Full Cover) -->
             <div class="absolute inset-0 z-0">
@@ -180,7 +180,7 @@ const projects = projectsData
                     class="w-full h-full object-cover"
                     loading="lazy"
                 />
-                <div class="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-brand-black/20 to-transparent"></div>
+                <div class="absolute inset-0 bg-brand-black opacity-40"></div>
             </div>
 
             <div class="relative z-10 flex flex-col p-6 flex-grow justify-end">
@@ -195,7 +195,7 @@ const projects = projectsData
 
                 <a
                   href={project.url}
-                  class="w-full py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest hover:bg-brand-red hover:border-brand-red transition-colors"
+                  class="w-full py-4 bg-white text-brand-black border border-white rounded-full flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest hover:bg-brand-red hover:text-white hover:border-brand-red transition-colors"
                 >
                   Ver Proyecto
                   <svg
@@ -217,7 +217,7 @@ const projects = projectsData
       {projects.length > 0 && (
         <article 
           data-country={projects[0].country}
-          class="flex-shrink-0 w-[85vw] snap-center relative flex flex-col aspect-[4/5] border border-brand-black/10 rounded-2xl overflow-hidden mr-4 group"
+          class="flex-shrink-0 w-[85vw] snap-center relative flex flex-col aspect-[4/5] border border-brand-black rounded-2xl overflow-hidden mr-4 group"
         >
           <div class="absolute inset-0 z-0">
               <img 
@@ -225,14 +225,14 @@ const projects = projectsData
                 class="w-full h-full object-cover" 
                 loading="lazy"
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-brand-black/20 to-transparent"></div>
+              <div class="absolute inset-0 bg-brand-black opacity-40"></div>
           </div>
           <div class="relative z-10 flex flex-col p-6 flex-grow justify-end">
               <div class="mb-4">
                   <h3 class="text-3xl font-sans font-900 uppercase tracking-tighter leading-none text-white mb-1">{projects[0].client}</h3>
                   <p class="text-lg font-sans font-normal leading-tight text-white/90 lowercase first-letter:uppercase">{projects[0].service}</p>
               </div>
-              <a href={projects[0].url} class="w-full py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest hover:bg-brand-red hover:border-brand-red transition-colors">
+              <a href={projects[0].url} class="w-full py-4 bg-white text-brand-black border border-white rounded-full flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest hover:bg-brand-red hover:text-white hover:border-brand-red transition-colors">
                 Ver Proyecto <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
               </a>
           </div>
@@ -246,11 +246,11 @@ const projects = projectsData
         projects.map((project, index) => (
           <a
             href={project.url}
-            class="group relative block w-full border-b border-brand-black/10 py-12 transition-colors duration-300 hover:bg-brand-salmon rounded-2xl px-6 -mx-6"
+            class="group relative block w-full border-b border-brand-black py-10 md:py-12 transition-colors duration-300 hover:bg-brand-salmon px-0"
           >
             <div class="grid grid-cols-12 gap-4 items-center">
               <!-- Año -->
-              <div class="col-span-1 text-xs font-mono opacity-60">
+              <div class="col-span-1 text-xs font-sans italic font-400 text-brand-black tracking-widest">
                 {project.year}
               </div>
 
@@ -263,19 +263,19 @@ const projects = projectsData
 
               <!-- País -->
               <div class="col-span-3">
-                <p class="text-xl font-sans font-normal text-brand-black/90 lowercase first-letter:uppercase">
+                <p class="text-xl font-sans font-normal text-brand-black lowercase first-letter:uppercase">
                   {project.country}
                 </p>
               </div>
 
               <!-- Servicio -->
-              <div class="col-span-3 font-mono text-xs uppercase tracking-widest opacity-60">
+              <div class="col-span-3 font-sans italic text-xs font-400 uppercase tracking-widest text-brand-black">
                 {project.service}
               </div>
 
               <!-- Acción -->
               <div class="col-span-1 flex justify-end">
-                <div class="w-10 h-10 rounded-full border border-brand-black/20 flex items-center justify-center group-hover:bg-brand-black group-hover:text-white transition-all duration-300">
+                <div class="w-10 h-10 rounded-full border border-brand-black flex items-center justify-center group-hover:bg-brand-black group-hover:text-white transition-all duration-300">
                   <svg
                     class="w-4 h-4 transform rotate-45"
                     viewBox="0 0 24 24"
@@ -363,8 +363,8 @@ const projects = projectsData
 
       // Update Dots
       dots.forEach((dot, i) => {
-        dot.classList.remove("bg-brand-red", "bg-brand-black/20");
-        dot.classList.add(i === dotIndex ? "bg-brand-red" : "bg-brand-black/20");
+        dot.classList.remove("bg-brand-red", "bg-brand-black");
+        dot.classList.add(i === dotIndex ? "bg-brand-red" : "bg-brand-black");
       });
 
       // Update Country
