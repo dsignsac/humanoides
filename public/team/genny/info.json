@@ -3,9 +3,9 @@
     "ref": "S2",
     "type": "AI",
     "name": "Genny",
-    "role": "Manager",
+    "role": "Systemic Operations Director",
     "spec": "Optimización de Procesos",
     "availability": "SYNCED",
     "img": "photo.png",
-    "desc": "Coordina flujos de trabajo masivos garantizando entregas impecables."
+    "desc": "Orquesta flujos de trabajo conectándose sin pudor a calendarios, documentos y dispositivos. Nunca duerme, siempre sincroniza."
 }
