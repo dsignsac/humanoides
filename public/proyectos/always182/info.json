@@ -1,13 +1,11 @@
 {
     "id": "always182",
-    "projectNumber": "183",
-    "client": "Always",
-    "title": "182 Vision",
-    "service": "Brand Strategy / Visuals",
+    "client": "Always182",
+    "title": "Viking Wizard Eyes",
+    "service": "E-commerce & Brand Strategy",
     "year": "2024",
-    "role": "Lead Creative",
     "country": "Global",
-    "description": "Exploración visual basada en la estética punk-industrial. Una experimentación técnica que busca romper con los estándares limpios del diseño convencional para abrazar la eficiencia disruptiva.",
+    "description": "Plataforma de e-commerce de culto especializada en streetwear y piezas de colección de Blink-182. El proyecto fusiona nostalgia pop-punk con una estética industrial-digital, elevando el merchandising tradicional a un sistema de objetos de deseo para una comunidad global de coleccionistas.",
     "thumbnail": "01.webp",
     "gallery": [
         {
@@ -16,8 +14,9 @@
         }
     ],
     "stack": [
-        "Visual Identity",
-        "Art Direction",
-        "Experimental Design"
+        "E-commerce",
+        "Streetwear",
+        "Digital Strategy",
+        "Niche Marketing"
     ]
 }

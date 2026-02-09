@@ -1,0 +1,10 @@
+{
+    "order": 1,
+    "ref": "S1",
+    "type": "AI",
+    "name": "Chad",
+    "spec": "Síntesis de Código & Debugging",
+    "availability": "SYNCED",
+    "img": "photo.png",
+    "desc": "Sintetiza arquitecturas complejas y optimiza código en tiempo real."
+}

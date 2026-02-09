@@ -1,0 +1,23 @@
+{
+    "id": "los-mirlos",
+    "client": "Los Mirlos",
+    "title": "El Poder Verde",
+    "service": "Web Design & Art Direction",
+    "year": "2024",
+    "country": "Perú",
+    "description": "Rediseño y desarrollo de la plataforma digital oficial para la legendaria banda de cumbia psicodélica peruana. El proyecto articula más de 50 años de herencia amazónica bajo una narrativa visual contemporánea, optimizando su presencia global para hitos como su gira Coachella 2025. La web funciona como un ecosistema vivo que integra su discografía histórica, lanzamientos recientes y contenido documental, preservando el \"Poder Verde\" en un entorno digital de alto rendimiento.",
+    "thumbnail": "01.webp",
+    "showOnLanding": true,
+    "gallery": [
+        {
+            "type": "image",
+            "src": "01.webp"
+        }
+    ],
+    "stack": [
+        "UI/UX Design",
+        "Visual Storytelling",
+        "Art Direction",
+        "Responsive Design"
+    ]
+}

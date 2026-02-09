@@ -17,7 +17,7 @@ export function getProjects() {
             return null;
         })
         .filter(Boolean)
-        .sort((a, b) => parseInt(a.projectNumber) - parseInt(b.projectNumber));
+        .sort((a, b) => parseInt(b.year) - parseInt(a.year));
 }
 
 export function getStaticPaths() {
@@ -35,7 +35,7 @@ const currentIndex = projectsData.findIndex((p) => p.id === project.id);
 const nextProjectData = projectsData[(currentIndex + 1) % projectsData.length];
 const nextProject = {
     slug: nextProjectData.id,
-    title: nextProjectData.title,
+    title: nextProjectData.client,
 };
 
 // Forced Global UI Palette (Melbourne style)
@@ -75,13 +75,12 @@ const projectLogoColor =
                 >
                     <div>
                         <span
-                            class="block text-xs font-mono font-bold tracking-[0.3em] mb-4 text-[var(--p-contraste)] uppercase"
-                            >{project.id}</span
+                            class="block text-xs font-mono font-bold tracking-[0.3em] mb-4 text-brand-red uppercase"
+                            >{project.client}</span
                         >
                         <h1
                             class="text-6xl md:text-8xl lg:text-9xl font-sans font-800 uppercase leading-[0.85] tracking-tighter text-[var(--p-textos)]"
                         >
-                            {project.client}<br />
                             {project.title}
                         </h1>
                     </div>
@@ -125,16 +124,6 @@ const projectLogoColor =
                                 {project.year}
                             </p>
                         </div>
-                        <div>
-                            <h3
-                                class="text-[10px] font-mono uppercase tracking-widest mb-2 text-[var(--p-contraste)]"
-                            >
-                                Rol
-                            </h3>
-                            <p class="font-sans text-lg font-500">
-                                {project.role}
-                            </p>
-                        </div>
                     </div>
 
                     <!-- DESCRIPTION -->
@@ -142,12 +131,15 @@ const projectLogoColor =
                         <p
                             class="text-2xl md:text-4xl font-sans font-300 leading-tight mb-12"
                         >
-                            {project.description}
+                            {
+                                project.description ||
+                                    "Documentación del proyecto bajo proceso de sincronización."
+                            }
                         </p>
 
                         <div class="flex gap-3 flex-wrap">
                             {
-                                project.stack.map((tech: string) => (
+                                project.stack?.map((tech: string) => (
                                     <span class="px-4 py-2 bg-[var(--p-contraste)] text-[var(--p-textos)] rounded-full text-xs font-sans font-bold uppercase tracking-wider cursor-default">
                                         {tech}
                                     </span>

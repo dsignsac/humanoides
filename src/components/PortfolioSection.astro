@@ -32,10 +32,12 @@ const projectsData = projectFolders
     return null;
   })
   .filter(Boolean)
-  .sort((a, b) => parseInt(a.projectNumber) - parseInt(b.projectNumber));
+  .sort((a, b) => parseInt(b.year) - parseInt(a.year));
 
-// Map scanned data to Project interface
-const projects = projectsData.map(p => {
+// Map scanned data to Project interface and filter by landing visibility
+const projects = projectsData
+  .filter(p => p.showOnLanding !== false) // Default is true, only hide if explicitly false
+  .map(p => {
   const getImagePath = (src: string) => {
     if (!src) return "";
     if (src.startsWith("/") || src.startsWith("http")) return src;
@@ -53,7 +55,7 @@ const projects = projectsData.map(p => {
   const imagePath = getImagePath(p.thumbnail || (p.gallery && p.gallery[0]?.src) || (p.images && p.images[0]));
 
   return {
-    id: p.projectNumber,
+    id: p.id,
     client: p.client,
     project: p.title,
     service: p.service,
@@ -72,11 +74,11 @@ const projects = projectsData.map(p => {
     <!-- Big Headline -->
     <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8">
         <div>
-            <h2 class="text-sm font-sans uppercase tracking-[0.2em] text-brand-red mb-2 block font-bold">Project Archive</h2>
+            <h2 class="text-sm font-sans uppercase tracking-[0.2em] text-brand-red mb-2 block font-bold">Archivo de Proyectos</h2>
         </div>
         <div class="hidden md:block text-right">
-           <span class="text-xs font-sans tracking-widest block text-brand-black font-bold">STATUS: OPERATIONAL</span>
-           <span class="text-xs font-sans tracking-widest block text-brand-black font-bold">METRIC: EFFICIENT</span>
+           <span class="text-xs font-sans tracking-widest block text-brand-black font-bold">ESTADO: OPERATIVO</span>
+           <span class="text-xs font-sans tracking-widest block text-brand-black font-bold">MÉTRICA: EFICIENTE</span>
         </div>
     </div>
   </div>

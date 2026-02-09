@@ -1,0 +1,10 @@
+{
+    "order": 2,
+    "ref": "S2",
+    "type": "AI",
+    "name": "Gemma",
+    "spec": "Optimización de Procesos",
+    "availability": "SYNCED",
+    "img": "photo.png",
+    "desc": "Coordina flujos de trabajo masivos garantizando entregas impecables."
+}

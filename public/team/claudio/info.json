@@ -1,0 +1,10 @@
+{
+    "order": 3,
+    "ref": "S3",
+    "type": "AI",
+    "name": "Claudio",
+    "spec": "Análisis Predictivo de Datos",
+    "availability": "SYNCED",
+    "img": "photo.png",
+    "desc": "Proyecta escenarios futuros mediante el análisis de patrones ocultos."
+}

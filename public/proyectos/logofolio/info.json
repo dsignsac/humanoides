@@ -1,11 +1,9 @@
 {
     "id": "logofolio",
-    "projectNumber": "175",
     "client": "Various",
     "title": "Colección de Identidades",
     "service": "Brand Design",
     "year": "2023",
-    "role": "Art Direction",
     "country": "Perú",
     "description": "Una selección curada de marcas e identidades visuales desarrolladas para diversos clientes. Enfocado en la eficiencia disruptiva y la simplicidad técnica.",
     "thumbnail": "01.svg",
@@ -19,14 +17,8 @@
         },
         {
             "type": "logo",
-            "src": "02.svg",
-            "context": "/proyectos/tranke/02.webp"
-        },
-        {
-            "type": "logo",
-            "src": "03.svg",
-            "context": "/proyectos/tranke/03.webp",
-            "//color": "original"
+            "src": "calificalo.svg",
+            "context": "04-bg.webp"
         },
         {
             "type": "logo",

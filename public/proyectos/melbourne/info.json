@@ -1,13 +1,11 @@
 {
     "id": "melbourne",
-    "projectNumber": "182",
-    "client": "Melbourne",
-    "title": "Industrial Strategy",
-    "service": "Brand Identity / Motion",
+    "client": "Melbourne Pisco",
+    "title": "Exporting Heritage",
+    "service": "360 Design & Content Strategy",
     "year": "2023",
-    "role": "Lead Designer",
     "country": "Australia",
-    "description": "Melbourne representa la intersección entre la robustez industrial y la elegancia técnica. Una identidad visual construida para perdurar en entornos de alta exigencia, complementada con piezas de motion graphics que enfatizan la precisión mecánica.",
+    "description": "Gestión integral de marca para la importación de pisco premium en Australia. El proyecto abarcó desde el diseño web y la estrategia de contenido (copywriting y redes) hasta la dirección de arte en sesiones fotográficas y producción de merchandising, consolidando una identidad visual coherente para el mercado anglo-parlante.",
     "thumbnail": "01.webp",
     "gallery": [
         {
@@ -48,8 +46,10 @@
         }
     ],
     "stack": [
-        "Brand Strategy",
-        "Motion Design",
-        "Art Direction"
+        "Social Media Design",
+        "Copywriting",
+        "Web Design",
+        "Photography Direction",
+        "Merchandising"
     ]
 }

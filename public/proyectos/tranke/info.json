@@ -1,13 +1,11 @@
 {
     "id": "tranke",
-    "projectNumber": "001",
     "client": "Tranke",
     "title": "Deutsches Weißbier",
     "service": "Branding",
     "year": "2023",
-    "role": "Dirección Creativa",
-    "country": "Argentina",
-    "description": "Experiencia digital inmersiva para Tranke. Un enfoque robusto y técnico que traslada la esencia de la montaña al entorno digital.",
+    "country": "Alemania",
+    "description": "Tranke Bier es una marca de cerveza artesanal alemana que celebra la identidad LGBTQ+ bajo el concepto \"Prost mit Dankbarkeit\" (Brinda con gratitud). El diseño fusiona activismo y estética urbana, transformando el packaging en un símbolo de orgullo que honra la amistad y la diversidad de la \"familia elegida\" a través de un brindis lleno de reconocimiento.",
     "thumbnail": "/proyectos/tranke/04.webp",
     "gallery": [
         {
@@ -34,7 +32,6 @@
     "stack": [
         "Blender 3D",
         "Procreate",
-        "Adobe Suite",
-        "Ai-Agents"
+        "Adobe Suite"
     ]
 }

@@ -1,13 +1,11 @@
 {
     "id": "datastream",
-    "projectNumber": "184",
     "client": "DataStream",
-    "title": "Flux Infrastructure",
-    "service": "Visual systems",
-    "year": "2024",
-    "role": "Art Direction",
-    "country": "USA",
-    "description": "Arquitectura de datos visualizada bajo una estética industrial y técnica. DataStream se enfoca en la visualización de flujos complejos mediante un sistema de diseño rígido y eficiente.",
+    "title": "Democratizando Métricas",
+    "service": "UX/UI Design & Product Strategy",
+    "year": "2025",
+    "country": "Perú",
+    "description": "Plataforma de Open Data que democratiza el acceso a métricas de streaming en Perú. El sistema transforma datos de audiencia en tiempo real en una herramienta estratégica de AdTech para optimizar la toma de decisiones y la pauta publicitaria en medios digitales.",
     "thumbnail": "01.webp",
     "gallery": [
         {
@@ -16,8 +14,10 @@
         }
     ],
     "stack": [
+        "Product Design",
         "Data Visualization",
-        "System Design",
-        "Technical Art"
+        "Open Data",
+        "AdTech Strategy",
+        "UX/UI"
     ]
 }
