@@ -1,0 +1,132 @@
+---
+/**
+ * Pricing Section Component
+ * Aesthetic: 80s Corporate, Brutalist, Institutional.
+ */
+
+const services = [
+    {
+        category: "Tarifario corporativo",
+        items: [
+            {
+                name: "Web & Producto",
+                scope: "Desarrollo de ecosistemas digitales complejos.",
+                price: "$3,500",
+            },
+            {
+                name: "Branding",
+                scope: "Identidad visual y sistemas gráficos institucionales.",
+                price: "$2,000",
+            },
+            {
+                name: "Social Media",
+                scope: "Gestión estratégica y producción de contenido IA.",
+                price: "$1,200",
+            },
+        ],
+    },
+    {
+        category: "Paquetes operativos",
+        items: [
+            {
+                name: "Programa Lanzamiento",
+                scope: "MVP y validación de mercado en tiempo récord.",
+                price: "$5,000",
+            },
+            {
+                name: "Programa Marca",
+                scope: "Rediseño completo de identidad y presencia web.",
+                price: "$4,500",
+            },
+            {
+                name: "Programa Presencia",
+                scope: "Mantenimiento y optimización continua de sistemas.",
+                price: "$1,500",
+            },
+        ],
+    },
+];
+---
+
+<section
+    id="tarifas"
+    class="relative w-full bg-brand-gray text-brand-black pt-24 pb-12"
+>
+    <div class="max-w-[1440px] mx-auto px-6 relative z-10">
+        <!-- Section Header -->
+        <div
+            class="flex flex-col md:flex-row justify-between items-start md:items-end pb-8"
+        >
+            <div>
+                <h2
+                    class="text-sm font-sans uppercase tracking-[0.2em] text-brand-red mb-2 block font-bold"
+                >
+                    TARIFARIO CORPORATIVO
+                </h2>
+            </div>
+            <div class="hidden md:block text-right">
+                <span
+                    class="text-xs font-sans tracking-widest block text-brand-black font-bold"
+                >
+                    SEDE CENTRAL
+                </span>
+            </div>
+        </div>
+
+        <!-- Institutional Header Strip (Double Lines) -->
+        <div
+            class="w-full border-y border-brand-black py-3 flex justify-between items-center text-xs font-sans font-bold tracking-widest uppercase text-brand-black mb-12"
+        >
+            <span>SISTEMA DE VALORIZACIÓN V1.0</span>
+            <span class="opacity-60">DPTO. DE OPERACIONES</span>
+        </div>
+
+        <!-- Grid Composition -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-0">
+            {
+                services.map((group, groupIdx) => (
+                    <div
+                        class={`flex flex-col gap-10 ${groupIdx === 0 ? "md:pr-12 md:border-r border-brand-black/10" : "md:pl-12"}`}
+                    >
+                        <h3 class="text-xs font-sans font-900 text-brand-red uppercase tracking-[0.2em]">
+                            — {group.category}
+                        </h3>
+
+                        <div class="flex flex-col gap-12">
+                            {group.items.map((item) => (
+                                <div class="flex flex-col group">
+                                    <div class="flex justify-between items-baseline border-b border-brand-black/10 pb-4 mb-4">
+                                        <h4 class="text-2xl md:text-3xl font-sans font-900 uppercase leading-none tracking-tight">
+                                            {item.name}
+                                        </h4>
+                                        <div class="text-right">
+                                            <div class="text-[9px] font-sans font-bold opacity-40 uppercase tracking-widest mb-1">
+                                                Precio desde
+                                            </div>
+                                            <div class="text-xl md:text-2xl font-sans font-900 text-brand-red">
+                                                {item.price}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text-xs md:text-sm font-sans font-medium text-brand-black/70 uppercase tracking-widest leading-tight">
+                                        {item.scope}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+
+        <!-- Bottom Institutional Note -->
+        <div class="mt-20 pt-8 border-t border-brand-black/10">
+            <p
+                class="text-[10px] font-sans font-bold text-brand-black/40 uppercase tracking-[0.3em]"
+            >
+                * TODOS LOS COSTOS ESTÁN SUJETOS A EVALUACIÓN TÉCNICA Y ALCANCE
+                FINAL DEL PROYECTO.
+            </p>
+        </div>
+    </div>
+</section>

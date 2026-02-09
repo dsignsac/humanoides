@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import heroImage from "../assets/hero_studio.png";
 import PortfolioSection from "../components/PortfolioSection.astro";
+import PricingSection from "../components/PricingSection.astro";
 import SyncForm from "../components/SyncForm.astro";
 
 import fs from "node:fs";
@@ -186,6 +187,9 @@ const agents = team;
                 </div>
             </div>
         </section>
+
+        <!-- PRICING / TARIFARIO SECTION -->
+        <PricingSection />
 
         <!-- PORTFOLIO / LOG SECTION -->
         <PortfolioSection />
