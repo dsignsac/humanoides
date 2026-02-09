@@ -18,7 +18,14 @@ export default defineConfig({
   devToolbar: {
     enabled: false
   },
-  integrations: [react(), sitemap()],
+  integrations: [
+    react(),
+    sitemap({
+      changefreq: 'monthly',
+      priority: 0.7,
+      lastmod: new Date('2026-02-09')
+    })
+  ],
 
   vite: {
     plugins: [tailwindcss()]
