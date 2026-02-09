@@ -59,7 +59,7 @@ const currencySymbol = "$";
         </div>
 
         <div
-            class="flex md:flex lg:grid lg:grid-cols-3 overflow-x-auto lg:overflow-visible snap-x lg:snap-none scrollbar-hide gap-4 md:gap-6 px-6 md:px-8 lg:px-0 pricing-carousel mb-10 md:mb-16"
+            class="flex md:flex lg:grid lg:grid-cols-3 items-start lg:items-stretch overflow-x-auto lg:overflow-visible snap-x lg:snap-none scrollbar-hide gap-4 md:gap-6 px-6 md:px-8 lg:px-0 pricing-carousel mb-10 md:mb-16"
         >
             {
                 programs.map((item, idx) => {
@@ -81,7 +81,7 @@ const currencySymbol = "$";
                             </div>
                         )}
 
-                        <div class="mt-14 mb-4">
+                        <div class="mt-10 mb-4">
                             <h4 class="text-xs font-sans font-900 text-brand-red uppercase tracking-[0.2em] mb-4">
                                 — {item.name}
                             </h4>

@@ -24,7 +24,7 @@
         },
         {
             "id": "producto",
-            "recommended": true,
+            "recommended": false,
             "name": "Programa Producto & Presencia",
             "levels": {
                 "Core": {
