@@ -67,6 +67,29 @@
 
 <script>
   const form = document.getElementById("sync-form") as HTMLFormElement;
+  const descriptionInput = document.getElementById(
+    "description",
+  ) as HTMLTextAreaElement;
+
+  // Handle query parameter for auto-filling description
+  const updateDescriptionFromQuery = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const subject = urlParams.get("subject");
+    if (subject && descriptionInput) {
+      descriptionInput.value = `INTERÉS EN SERVICIO/PROGRAMA: ${subject.toUpperCase()}\n\n`;
+      // Smooth scroll to form if subject is present
+      const formSection = document.getElementById("sync");
+      if (formSection) {
+        formSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
+  // Run on load
+  updateDescriptionFromQuery();
+
+  // Also listen for popstate or other navigation events if needed
+  window.addEventListener("popstate", updateDescriptionFromQuery);
 
   form?.addEventListener("submit", (e) => {
     e.preventDefault();
