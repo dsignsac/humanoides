@@ -92,13 +92,12 @@ const mobilePrograms = [...programs].sort(
                             </h4>
 
                             <!-- Level Selector -->
-                            <div class="relative flex bg-brand-black/5 rounded-xl p-1 mb-8 level-selector" data-program={item.id}>
-                                <div class="absolute inset-y-1 left-1 w-[calc(33.33%-2.66px)] bg-brand-gray rounded-lg transition-transform duration-300 ease-out level-slider translate-x-full"></div>
+                            <div class="flex bg-brand-black/5 rounded-xl p-1 mb-8 level-selector" data-program={item.id}>
                                 {["Basic", "Medium", "Pro"].map((level, lIdx) => (
                                     <button
                                         data-level={level}
                                         data-index={lIdx}
-                                        class={`relative flex-1 py-3 text-[12px] font-sans font-900 uppercase tracking-widest transition-colors duration-300 z-10 ${level === "Medium" ? "text-brand-black" : "text-brand-black/40 hover:text-brand-black/60"}`}
+                                        class={`flex-1 py-3 text-[12px] font-sans font-900 uppercase tracking-widest rounded-lg transition-all duration-300 ${level === "Medium" ? "bg-brand-gray text-brand-black" : "text-brand-black/60 hover:text-brand-black/80"}`}
                                     >
                                         {level}
                                     </button>
@@ -289,7 +288,6 @@ const mobilePrograms = [...programs].sort(
     document.querySelectorAll(".level-selector").forEach((selector) => {
         const programId = selector.getAttribute("data-program");
         const article = selector.closest("article");
-        const slider = selector.querySelector(".level-slider") as HTMLElement;
         const priceValue = article?.querySelector(
             ".price-value",
         ) as HTMLElement;
@@ -311,20 +309,13 @@ const mobilePrograms = [...programs].sort(
         buttons.forEach((btn) => {
             btn.addEventListener("click", () => {
                 const level = btn.getAttribute("data-level") as string;
-                const index = btn.getAttribute("data-index") as string;
-
                 // Update UI state
                 buttons.forEach((b) => {
-                    b.classList.remove("text-brand-black");
-                    b.classList.add("text-brand-black/40");
+                    b.classList.remove("bg-brand-gray", "text-brand-black");
+                    b.classList.add("text-brand-black/60");
                 });
-                btn.classList.add("text-brand-black");
-                btn.classList.remove("text-brand-black/40");
-
-                // Move slider
-                if (slider) {
-                    slider.style.transform = `translateX(${parseInt(index) * 100}%)`;
-                }
+                btn.classList.add("bg-brand-gray", "text-brand-black");
+                btn.classList.remove("text-brand-black/60");
 
                 // Update content with fade effect
                 if (priceValue && descriptionText && programData && pricePeriod) {
