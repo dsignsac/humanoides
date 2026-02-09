@@ -7,7 +7,7 @@
     <label
       for="name"
       class="text-xs font-bold tracking-widest uppercase text-brand-black"
-      >Identidad (Nombre)</label
+      >NOMBRE / EMPRESA</label
     >
     <input
       type="text"
@@ -15,7 +15,7 @@
       name="name"
       required
       class="w-full bg-transparent border-b border-brand-black/40 py-2 text-brand-black focus:outline-none focus:border-brand-red transition-colors text-sm placeholder:text-brand-black/30"
-      placeholder="INGRESAR ID..."
+      placeholder="Ingrese su nombre o razón social"
     />
   </div>
 
@@ -23,7 +23,7 @@
     <label
       for="email"
       class="text-xs font-bold tracking-widest uppercase text-brand-black"
-      >Punto de Contacto (Email)</label
+      >CORREO CORPORATIVO</label
     >
     <input
       type="email"
@@ -31,16 +31,38 @@
       name="email"
       required
       class="w-full bg-transparent border-b border-brand-black/40 py-2 text-brand-black focus:outline-none focus:border-brand-red transition-colors text-sm placeholder:text-brand-black/30"
-      placeholder="INGRESAR FRECUENCIA..."
+      placeholder="Ingrese un email de contacto"
     />
   </div>
 
-  <button
-    type="submit"
-    class="mt-4 w-full md:w-auto self-start inline-flex items-center justify-center px-8 py-3 bg-brand-black text-brand-gray text-xs font-900 uppercase tracking-widest hover:bg-brand-red hover:text-white transition-all duration-300 rounded-full"
-  >
-    Sincronizar Ahora
-  </button>
+  <div class="flex flex-col gap-2">
+    <label
+      for="description"
+      class="text-xs font-bold tracking-widest uppercase text-brand-black"
+      >DESCRIPCIÓN DEL PROYECTO</label
+    >
+    <textarea
+      id="description"
+      name="description"
+      rows="3"
+      required
+      class="w-full bg-transparent border-b border-brand-black/40 py-2 text-brand-black focus:outline-none focus:border-brand-red transition-colors text-sm resize-none placeholder:text-brand-black/30"
+      placeholder="Describa brevemente su necesidad u objetivo"></textarea>
+  </div>
+
+  <div class="flex flex-col gap-4">
+    <button
+      type="submit"
+      class="mt-4 w-full md:w-auto self-start inline-flex items-center justify-center px-8 py-3 bg-brand-black text-brand-gray text-xs font-900 uppercase tracking-widest hover:bg-brand-red hover:text-white transition-all duration-300 rounded-full"
+    >
+      ENVIAR SOLICITUD
+    </button>
+    <p
+      class="text-[10px] font-sans text-brand-black/60 uppercase tracking-wider"
+    >
+      — Un responsable de operaciones revisará su solicitud.
+    </p>
+  </div>
 </form>
 
 <script>
@@ -52,8 +74,9 @@
     const formData = new FormData(form);
     const name = formData.get("name") || "";
     const email = formData.get("email") || "";
+    const description = formData.get("description") || "";
 
-    const text = `hola humanoides & asociados me llamo ${name} y quiero trabajar con ustedes, mi email es:${email}. sALUDOS!`;
+    const text = `hola humanoides & asociados me llamo ${name} y quiero trabajar con ustedes, mi email es:${email}. El proyecto consiste en: ${description}. Saludos!`;
     const encodedText = encodeURIComponent(text);
     const whatsappUrl = `https://api.whatsapp.com/send?phone=34627191859&text=${encodedText}`;
 
