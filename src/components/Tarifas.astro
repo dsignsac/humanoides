@@ -94,15 +94,15 @@ const mobilePrograms = [...programs].sort(
         </div>
 
         <div
-            class="flex md:hidden overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-4 px-0 pricing-carousel mb-10 md:mb-16"
+            class="flex md:hidden overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-0 px-6 pricing-carousel mb-10 md:mb-16"
         >
             {
                 mobilePrograms.map((item, idx) => (
                     <article
-                        class={`flex-shrink-0 w-[85vw] snap-center relative flex flex-col bg-brand-salmon p-6 border-r border-brand-black/10 transition-all duration-500 group active:scale-[0.98] rounded-3xl ${item.recommended ? "border-brand-red/20" : "border-brand-black/5"}`}
+                        class={`flex-shrink-0 w-[calc(100vw-48px)] snap-center relative flex flex-col bg-brand-salmon p-6 transition-all duration-500 group active:scale-[0.98] rounded-3xl ${item.recommended ? "border-brand-red/20" : "border-brand-black/5"}`}
                     >
                         {item.recommended && (
-                            <div class="absolute top-4 right-6 bg-brand-red text-white text-[9px] font-sans font-900 px-4 py-1.5 uppercase tracking-widest rounded-full z-10 shadow-lg shadow-brand-red/20">
+                            <div class="absolute top-4 right-6 bg-brand-red text-white text-[9px] font-sans font-900 px-4 py-1.5 uppercase tracking-widest rounded-full z-10">
                                 Recomendado
                             </div>
                         )}
@@ -131,7 +131,7 @@ const mobilePrograms = [...programs].sort(
                         <div class="mt-auto">
                             <a
                                 href={`/#sync?subject=${encodeURIComponent(item.name)}`}
-                                class={`inline-flex items-center justify-center gap-3 w-full py-5 rounded-full text-[11px] font-sans font-900 uppercase tracking-[0.2em] transition-all duration-300 shadow-xl ${item.recommended ? "bg-brand-red text-white hover:bg-brand-black shadow-brand-red/10" : "bg-brand-black text-white hover:bg-brand-red shadow-brand-black/10"}`}
+                                class={`inline-flex items-center justify-center gap-3 w-full py-5 rounded-full text-[11px] font-sans font-900 uppercase tracking-[0.2em] transition-all duration-300 ${item.recommended ? "bg-brand-red text-white hover:bg-brand-black" : "bg-brand-black text-white hover:bg-brand-red"}`}
                             >
                                 Solicitar activación
                                 <svg
