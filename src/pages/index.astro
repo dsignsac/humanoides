@@ -201,7 +201,7 @@ const agents = team;
         <!-- TEAM SECTION (CORE) -->
         <section
             id="core"
-            class="relative w-full bg-brand-gray text-brand-black pt-12 pb-6 md:py-24"
+            class="relative w-full bg-brand-gray text-brand-black pt-24 pb-12 md:py-24"
         >
             <div class="max-w-[1440px] mx-auto w-full px-6 relative">
                 <div
@@ -213,6 +213,19 @@ const agents = team;
                         >
                             DIRECTORIO CORPORATIVO
                         </h2>
+                        <div class="mt-4">
+                            <h3
+                                class="text-xl md:text-2xl font-sans font-900 text-brand-black uppercase tracking-tight mb-1"
+                            >
+                                Planta Ejecutiva de Operación.
+                            </h3>
+                            <p
+                                class="text-[10px] font-sans font-bold text-brand-black uppercase tracking-widest"
+                            >
+                                Especialistas en ejecución de sistemas
+                                complejos.
+                            </p>
+                        </div>
                     </div>
                     <div class="hidden md:block text-right">
                         <span
@@ -286,14 +299,14 @@ const agents = team;
                                                         {member.ref}
                                                     </span>
                                                 </div>
-                                                <p class="text-lg font-sans text-brand-black font-medium leading-tight opacity-80">
+                                                <p class="text-lg font-sans text-brand-black font-semibold leading-tight">
                                                     {member.desc}
                                                 </p>
                                                 {member.isLeader && (
                                                     <a
                                                         href="/team/david/cv.pdf"
                                                         download
-                                                        class="mt-8 inline-flex items-center gap-3 px-8 py-4 bg-brand-red text-white text-xs md:text-sm font-900 uppercase tracking-widest rounded-full hover:bg-brand-black transition-all duration-300 group"
+                                                        class="mt-8 inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-red text-white text-xs md:text-sm font-900 uppercase tracking-widest rounded-full hover:bg-brand-black transition-all duration-300 group w-full md:w-fit"
                                                     >
                                                         <span>Ver CV</span>
                                                         <svg
@@ -390,7 +403,7 @@ const agents = team;
         <!-- SYNC SECTION -->
         <section
             id="sync"
-            class="relative w-full bg-brand-gray text-brand-black mb-16 md:mb-24 overflow-hidden"
+            class="relative w-full bg-brand-gray text-brand-black mb-24 md:mb-32 overflow-hidden"
         >
             <div
                 class="max-w-[1440px] mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
@@ -478,7 +491,7 @@ const agents = team;
                             Solicitar activación
                         </h2>
                         <p
-                            class="text-base md:text-xl font-sans font-medium text-brand-black/80 mb-6 max-w-xl leading-tight"
+                            class="text-base md:text-xl font-sans font-semibold text-brand-black mb-6 max-w-xl leading-tight"
                         >
                             Inicie contacto con la oficina de operaciones de
                             Humanoides & Asociados. Asignamos un equipo
@@ -502,7 +515,7 @@ const agents = team;
                             href="https://calendly.com/humanoides"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="inline-flex items-center gap-3 px-8 py-4 bg-brand-black text-brand-gray text-xs md:text-sm font-900 uppercase tracking-widest hover:bg-brand-red hover:text-white transition-all duration-300 rounded-full group"
+                            class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-black text-brand-gray text-xs md:text-sm font-900 uppercase tracking-widest hover:bg-brand-red hover:text-white transition-all duration-300 rounded-full group w-full md:w-fit"
                         >
                             <span>SOLICITAR ACTIVACIÓN</span>
                         </a>
