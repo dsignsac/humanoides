@@ -2,19 +2,86 @@
 const today = new Date();
 ---
 
-<footer class="w-full bg-brand-gray mt-auto border-t-[3px] border-brand-red">
-    <div
-        class="max-w-[1440px] mx-auto w-full py-8 px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-sans font-bold text-brand-red uppercase tracking-widest"
-    >
-        <!-- Copyright -->
-        <div class="text-center md:text-left">
-            &copy; {today.getFullYear()} Humanoides & Asociados.
+<footer
+    class="w-full bg-brand-gray mt-auto border-t-[3px] border-brand-red pt-16 pb-8"
+>
+    <div class="max-w-[1440px] mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <!-- Brand Column -->
+            <div class="md:col-span-2">
+                <h3
+                    class="text-xl font-sans font-900 text-brand-red uppercase tracking-wider mb-2"
+                >
+                    Humanoides & Asociados
+                </h3>
+                <p
+                    class="text-sm md:text-base font-sans font-medium text-brand-black/80 max-w-xs leading-tight"
+                >
+                    Consultora de diseño, producto y sistemas digitales.
+                </p>
+            </div>
+
+            <!-- Divisions Column -->
+            <div>
+                <h4
+                    class="text-[10px] font-sans font-900 text-brand-black/40 uppercase tracking-[0.2em] mb-6"
+                >
+                    Divisiones
+                </h4>
+                <nav class="flex flex-col gap-3">
+                    <a
+                        href="/#log"
+                        class="text-xs font-sans font-bold text-brand-black hover:text-brand-red transition-colors uppercase tracking-widest"
+                        >Archivo</a
+                    >
+                    <a
+                        href="/#core"
+                        class="text-xs font-sans font-bold text-brand-black hover:text-brand-red transition-colors uppercase tracking-widest"
+                        >Operaciones</a
+                    >
+                    <a
+                        href="/#core"
+                        class="text-xs font-sans font-bold text-brand-black hover:text-brand-red transition-colors uppercase tracking-widest"
+                        >Directorio</a
+                    >
+                    <a
+                        href="/#sync"
+                        class="text-xs font-sans font-bold text-brand-black hover:text-brand-red transition-colors uppercase tracking-widest"
+                        >Contacto</a
+                    >
+                </nav>
+            </div>
+
+            <!-- Location Column -->
+            <div class="md:text-right">
+                <h4
+                    class="text-[10px] font-sans font-900 text-brand-black/40 uppercase tracking-[0.2em] mb-6"
+                >
+                    Sede corporativa
+                </h4>
+                <p
+                    class="text-xs font-sans font-bold text-brand-black uppercase tracking-widest leading-loose"
+                >
+                    Lima, Perú <br />
+                    · Operación internacional ·
+                </p>
+            </div>
         </div>
 
-        <!-- AI Disclaimer -->
-        <div class="text-center md:text-right max-w-sm">
-            Algunas imágenes fueron generadas artificialmente. <br />
-            Cualquier parecido con la realidad es coincidencia.
+        <!-- Bottom Bar -->
+        <div
+            class="pt-8 border-t border-brand-black/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-sans font-bold text-brand-red uppercase tracking-[0.2em]"
+        >
+            <div
+                class="flex flex-col md:flex-row items-center gap-1 md:gap-2 text-center md:text-left"
+            >
+                <span>&copy; {today.getFullYear()} Humanoides & Asociados</span>
+                <span class="hidden md:inline-block opacity-30">|</span>
+                <span>Todos los derechos reservados.</span>
+            </div>
+            <div class="opacity-60 text-[9px] text-center md:text-right">
+                TECNOLOGÍA HÍBRIDA HUMANO-IA
+            </div>
         </div>
     </div>
 </footer>
