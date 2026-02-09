@@ -1,11 +1,8 @@
 {
     "id": "melbourne",
     "client": "Melbourne Pisco",
-    "title": "Exporting Heritage",
-    "service": "360 Design & Content Strategy",
     "year": "2023",
     "country": "Australia",
-    "description": "Gestión integral de marca para la importación de pisco premium en Australia. El proyecto abarcó desde el diseño web y la estrategia de contenido (copywriting y redes) hasta la dirección de arte en sesiones fotográficas y producción de merchandising, consolidando una identidad visual coherente para el mercado anglo-parlante.",
     "thumbnail": "01.webp",
     "gallery": [
         {
@@ -51,5 +48,8 @@
         "Web Design",
         "Photography Direction",
         "Merchandising"
-    ]
+    ],
+    "title": "Exporting Heritage",
+    "service": "360 Design & Content Strategy",
+    "description": "Gestión integral de marca para la importación de pisco premium en Australia. El proyecto abarcó desde el diseño web y la estrategia de contenido (copywriting y redes) hasta la dirección de arte en sesiones fotográficas y producción de merchandising, consolidando una identidad visual coherente para el mercado anglo-parlante."
 }

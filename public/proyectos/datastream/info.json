@@ -1,11 +1,8 @@
 {
     "id": "datastream",
     "client": "DataStream",
-    "title": "Democratizando Métricas",
-    "service": "UX/UI Design & Product Strategy",
     "year": "2025",
     "country": "Perú",
-    "description": "Plataforma de Open Data que democratiza el acceso a métricas de streaming en Perú. El sistema transforma datos de audiencia en tiempo real en una herramienta estratégica de AdTech para optimizar la toma de decisiones y la pauta publicitaria en medios digitales.",
     "thumbnail": "00.webp",
     "gallery": [
         {
@@ -19,5 +16,8 @@
         "Open Data",
         "AdTech Strategy",
         "UX/UI"
-    ]
+    ],
+    "title": "Democratizando Métricas",
+    "service": "UX/UI Design & Product Strategy",
+    "description": "Plataforma de Open Data que democratiza el acceso a métricas de streaming en Perú. El sistema transforma datos de audiencia en tiempo real en una herramienta estratégica de AdTech para optimizar la toma de decisiones y la pauta publicitaria en medios digitales."
 }

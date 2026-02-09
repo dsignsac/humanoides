@@ -19,7 +19,6 @@ interface Project {
 
 import fs from "node:fs";
 import path from "node:path";
-
 const projectsDir = path.resolve("./public/proyectos");
 const projectFolders = fs.readdirSync(projectsDir);
 
@@ -56,7 +55,7 @@ const projects = projectsData
         (p.gallery && p.gallery[0]?.src) ||
         (p.images && p.images[0]),
     );
-
+    
     return {
       id: p.id,
       client: p.client,
@@ -71,7 +70,7 @@ const projects = projectsData
   });
 ---
 
-<section id="log" class="w-full bg-brand-gray text-brand-black mb-12 md:mb-16">
+<section id="portafolio" class="w-full bg-brand-gray text-brand-black mb-12 md:mb-16">
   <div class="w-full max-w-[1440px] mx-auto px-6 md:pt-24">
     <!-- Big Headline -->
     <div
@@ -81,25 +80,25 @@ const projects = projectsData
         <h2
           class="text-sm font-sans uppercase tracking-[0.2em] text-brand-red mb-2 block font-bold"
         >
-          CARTERA DE PROYECTOS
+          PORTFOLIO
         </h2>
         <div class="mt-4 hidden lg:block">
           <h3
             class="text-xl md:text-2xl font-sans font-900 text-brand-black uppercase tracking-tight mb-1"
           >
-            Selección de operaciones recientes.
+            CASOS DE ESTUDIO
           </h3>
           <p
             class="text-[12px] font-sans font-bold text-brand-black uppercase tracking-widest"
           >
-            Proyectos ejecutados bajo esquema de operación directa.
+            Explora nuestra colección selecta de proyectos.
           </p>
         </div>
       </div>
       <div class="hidden lg:block text-right">
         <span
           class="text-xs font-sans tracking-widest block text-brand-black font-bold"
-          >DIVISIÓN EN PRODUCCIÓN</span
+          >ARCHIVO</span
         >
       </div>
     </div>
@@ -109,7 +108,7 @@ const projects = projectsData
   <div class="w-full max-w-[1440px] mx-auto flex flex-col px-6">
     <!-- Table Header (Desktop Only) -->
     <div
-      class="hidden lg:grid grid-cols-12 gap-4 px-6 lg:px-0 pb-4 pt-4 border-y border-brand-black mb-4 text-[10px] font-sans font-900 tracking-[0.2em] uppercase text-brand-black/50"
+      class="hidden lg:grid grid-cols-12 gap-4 px-6 lg:px-0 py-3 border-y border-brand-black mb-6 md:mb-12 text-xs font-sans font-bold tracking-widest uppercase text-brand-black"
     >
       <div class="col-span-1">AÑO</div>
       <div class="col-span-4">CLIENTE</div>
@@ -121,7 +120,7 @@ const projects = projectsData
     <!-- Project Rows -->
     <!-- Mobile Carousel Navigation Strip -->
     <div
-      class="w-full border-y border-brand-black py-3 flex lg:hidden justify-between items-center text-[12px] font-sans font-bold tracking-[0.2em] uppercase text-brand-black mb-4 px-6 md:px-8"
+      class="w-full border-y border-brand-black py-3 flex lg:hidden justify-between items-center text-xs font-sans font-bold tracking-widest uppercase text-brand-black mb-6 px-0"
     >
       <span id="mobile-project-country">{projects[0]?.country || "GLOBAL"}</span>
       <div class="flex gap-2" id="projects-dots">
@@ -159,7 +158,7 @@ const projects = projectsData
                   <p class="text-lg font-sans font-normal leading-tight text-white/90 lowercase first-letter:uppercase">{projects[projects.length - 1].service}</p>
               </div>
               <a href={projects[projects.length - 1].url} class="w-full py-4 bg-white text-brand-black border border-white rounded-full flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest hover:bg-brand-red hover:text-white hover:border-brand-red transition-colors">
-                Ver Proyecto <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
+                VER PROYECTO <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
               </a>
           </div>
         </article>
@@ -197,7 +196,7 @@ const projects = projectsData
                   href={project.url}
                   class="w-full py-4 bg-white text-brand-black border border-white rounded-full flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest hover:bg-brand-red hover:text-white hover:border-brand-red transition-colors"
                 >
-                  Ver Proyecto
+                  VER PROYECTO
                   <svg
                     class="w-3 h-3"
                     viewBox="0 0 24 24"
@@ -233,7 +232,7 @@ const projects = projectsData
                   <p class="text-lg font-sans font-normal leading-tight text-white/90 lowercase first-letter:uppercase">{projects[0].service}</p>
               </div>
               <a href={projects[0].url} class="w-full py-4 bg-white text-brand-black border border-white rounded-full flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest hover:bg-brand-red hover:text-white hover:border-brand-red transition-colors">
-                Ver Proyecto <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
+                VER PROYECTO <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
               </a>
           </div>
         </article>
@@ -241,12 +240,19 @@ const projects = projectsData
     </div>
 
     <!-- Desktop List (Hidden on Mobile) -->
+    <style>
+      /* Hide next sibling's top border when previous one is hovered */
+      .project-row:hover + .project-row {
+        border-top-color: transparent;
+      }
+    </style>
     <div class="hidden lg:block px-6 lg:px-0">
       {
         projects.map((project, index) => (
           <a
             href={project.url}
-            class="group relative block w-full border-b border-brand-black py-10 md:py-12 transition-colors duration-300 hover:bg-brand-salmon px-0"
+            data-image={project.image}
+            class="project-row group relative block w-full border-t last:border-b border-brand-black py-10 md:py-12 transition-all duration-500 hover:bg-brand-salmon px-0 hover:px-8 hover:rounded-[2.5rem] hover:border-transparent cursor-none"
           >
             <div class="grid grid-cols-12 gap-4 items-center">
               <!-- Año -->
@@ -291,6 +297,31 @@ const projects = projectsData
           </a>
         ))
       }
+    </div>
+  </div>
+
+  <!-- Cursor Follower (Desktop Only) -->
+  <div
+    id="project-cursor-follower"
+    class="fixed top-0 left-0 w-96 h-auto z-50 pointer-events-none opacity-0 hidden lg:flex flex-col bg-brand-gray border border-brand-black p-3 shadow-[4px_4px_0px_0px_#2F2F2F]"
+    style="transform: translate(-50%, -50%);"
+  >
+
+
+    <!-- Image Container with Inner Border -->
+    <div class="relative w-full aspect-[4/3] border border-brand-black bg-white p-1">
+        <img
+          id="follower-image"
+          src=""
+          class="w-full h-full object-cover"
+          alt="Project Preview"
+        />
+    </div>
+
+    <!-- Bottom Meta Line -->
+    <div class="flex justify-between items-center mt-2 border-t border-brand-black/20 pt-1">
+        <span class="text-[9px] font-sans font-bold text-brand-black tracking-widest">HUMANOIDES & ASOCIADOS</span>
+        <span class="text-[9px] font-sans font-bold text-brand-black">::</span>
     </div>
   </div>
 </section>
@@ -373,4 +404,60 @@ const projects = projectsData
       }
     });
   }
+
+
+  // Cursor Follower Logic (Desktop)
+  import { gsap } from "gsap";
+
+  const setupCursorFollower = () => {
+    const follower = document.getElementById("project-cursor-follower");
+    const followerImg = document.getElementById("follower-image") as HTMLImageElement;
+    const projectRows = document.querySelectorAll(".project-row");
+
+    if (!follower || !followerImg || projectRows.length === 0) return;
+
+    // Use GSAP x/y for better performance than top/left
+    gsap.set(follower, { xPercent: -50, yPercent: -50 }); // Center on cursor
+
+    // Shared mouse move listener for the window to track cursor
+    // Only active when a row is hovered to save resources ideally, 
+    // but tracking globally is smoother if we want entrance animations from cursor position.
+    // For now, let's track on the rows to keep it scoped.
+    
+    projectRows.forEach((row) => {
+        row.addEventListener("mouseenter", (e) => {
+            const imgUrl = row.getAttribute("data-image");
+            if (imgUrl) followerImg.src = imgUrl;
+
+            gsap.to(follower, {
+                opacity: 1,
+                scale: 1,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+        });
+
+        row.addEventListener("mouseleave", () => {
+            gsap.to(follower, {
+                opacity: 0,
+                scale: 0.8,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+        });
+
+        row.addEventListener("mousemove", (e) => {
+            const mouseEvent = e as MouseEvent;
+            gsap.to(follower, {
+                x: mouseEvent.clientX,
+                y: mouseEvent.clientY,
+                duration: 0.1, // Slight lag for smooth feeling
+                ease: "power1.out"
+            });
+        });
+    });
+  };
+
+  // Run on load
+  setupCursorFollower();
 </script>

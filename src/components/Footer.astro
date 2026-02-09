@@ -4,94 +4,65 @@ const today = new Date();
 ---
 
 <footer
-    class="w-full bg-brand-gray mt-auto border-t-[3px] border-brand-red pt-12 md:pt-16 pb-6 md:pb-8"
+    class="w-full bg-brand-gray mt-auto border-t-[3px] border-brand-red pt-16 md:pt-24 pb-4 md:pb-6"
 >
     <div class="max-w-[1440px] mx-auto px-6">
         <div
-            class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-12 md:mb-16"
+            class="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-16 mb-16 md:mb-24"
         >
             <!-- Brand Column -->
             <div class="md:col-span-2">
-                <div class="w-48 mb-4 md:mb-6">
+                <div class="w-48 mb-6 md:mb-8">
                     <AnimatedLogo
                         mode="static"
                         variant="full"
-                        color="var(--color-brand-red)"
+                        color="var(--color-brand-black)"
                         align="left"
                     />
                 </div>
                 <p
-                    class="text-sm md:text-base font-sans font-medium text-brand-black max-w-xs leading-tight"
+                    class="text-base md:text-lg font-sans font-medium text-brand-black/80 max-w-lg leading-relaxed"
                 >
-                    Consultora de diseño, producto y sistemas digitales.
+                    Somos un estudio de ingeniería de software y diseño
+                    estratégico que construye productos digitales de alto
+                    rendimiento. Combinamos arquitectura técnica robusta, diseño
+                    centrado en el usuario y estrategias de optimización para
+                    transformar ideas complejas en interfaces disruptivas que
+                    dominan su mercado.
                 </p>
             </div>
 
-            <!-- Divisions Column -->
-            <div>
-                <h4
-                    class="text-[12px] font-sans font-900 text-brand-black uppercase tracking-[0.2em] mb-4 md:mb-6"
-                >
-                    Divisiones
-                </h4>
-                <nav class="flex flex-col gap-3">
-                    <a
-                        href="/#log"
-                        class="text-xs font-sans font-bold text-brand-black hover:text-brand-red transition-colors uppercase tracking-widest"
-                        >Archivo</a
+            <!-- Socials & Copyright Column -->
+            <div class="md:col-start-4 flex flex-col justify-between">
+                <div class="mb-8 md:text-right">
+                    <h4
+                        class="text-xs font-sans font-900 text-brand-black uppercase tracking-widest mb-6 border-b-2 border-brand-black pb-2 inline-block md:ml-auto"
                     >
-                    <a
-                        href="/#tarifas"
-                        class="text-xs font-sans font-bold text-brand-black hover:text-brand-red transition-colors uppercase tracking-widest"
-                        >Tarifas</a
-                    >
-                    <a
-                        href="/#core"
-                        class="text-xs font-sans font-bold text-brand-black hover:text-brand-red transition-colors uppercase tracking-widest"
-                        >Directorio</a
-                    >
-                    <a
-                        href="/#sync"
-                        class="text-xs font-sans font-bold text-brand-black hover:text-brand-red transition-colors uppercase tracking-widest"
-                        >Contacto</a
-                    >
-                    <a
-                        href="/privacidad"
-                        class="text-xs font-sans font-bold text-brand-black hover:text-brand-red transition-colors uppercase tracking-widest"
-                        >Privacidad</a
-                    >
-                </nav>
-            </div>
+                        CONNECT
+                    </h4>
+                    <nav class="flex flex-col gap-4">
+                        <a
+                            href="https://instagram.com/humanoidesyasociados"
+                            target="_blank"
+                            class="text-sm font-sans font-bold text-brand-black hover:opacity-60 transition-opacity uppercase tracking-wider"
+                            >INSTAGRAM</a
+                        >
+                        <a
+                            href="https://www.linkedin.com/company/79018424/admin/dashboard/"
+                            target="_blank"
+                            class="text-sm font-sans font-bold text-brand-black hover:opacity-60 transition-opacity uppercase tracking-wider"
+                            >LINKEDIN</a
+                        >
+                    </nav>
+                </div>
 
-            <!-- Location Column -->
-            <div class="md:text-right">
-                <h4
-                    class="text-[12px] font-sans font-900 text-brand-black uppercase tracking-[0.2em] mb-4 md:mb-6"
-                >
-                    Sede corporativa
-                </h4>
-                <p
-                    class="text-xs font-sans font-bold text-brand-black uppercase tracking-widest leading-loose"
-                >
-                    Perú & España <br />
-                    · Operación internacional ·
-                </p>
-            </div>
-        </div>
-
-        <!-- Bottom Bar -->
-        <div
-            class="pt-6 md:pt-8 border-t border-brand-black flex flex-col md:flex-row justify-between items-center gap-4 text-[12px] font-sans font-bold text-brand-red uppercase tracking-[0.2em]"
-        >
-            <div
-                class="flex flex-col md:flex-row items-center gap-1 md:gap-2 text-center md:text-left"
-            >
-                <span>&copy; {today.getFullYear()} Humanoides & Asociados</span>
-                <span class="hidden md:inline-block opacity-100">|</span>
-                <span>Todos los derechos reservados.</span>
-            </div>
-            <div class="opacity-100 text-[12px] text-center md:text-right">
-                TECNOLOGÍA HÍBRIDA HUMANO-IA
+                <div class="md:text-right">
+                    <p
+                        class="text-sm font-sans font-bold text-brand-black uppercase tracking-wider leading-relaxed"
+                    >
+                        &copy; 2026 Humanoides & Asociados.
+                    </p>
+                </div>
             </div>
         </div>
     </div>

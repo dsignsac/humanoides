@@ -1,69 +1,68 @@
 {
-    "currency": "$",
     "programs": [
         {
-            "id": "marca",
-            "name": "Programa Marca",
+            "id": "branding",
             "recommended": false,
+            "name": "Programa de Branding",
             "levels": {
-                "Basic": {
-                    "price": "149",
+                "Logo": {
+                    "price": 350,
                     "billing_period": "pago único",
-                    "description": "Identidad esencial. Incluye diseño de logotipo y manual de marca básico en PDF para una implementación inmediata."
+                    "description": "Diseño de logotipo con enfoque estratégico. Incluye investigación inicial, exploración conceptual, hasta 3 revisiones y entrega de archivos optimizados para entornos digitales. Uso de IA para exploración visual y referencias."
                 },
-                "Medium": {
-                    "price": "2,200",
-                    "billing_period": "/ año",
-                    "description": "Evolución de marca. Branding completo, manual interactivo (HTML), logotipo animado y mantenimiento de activos visuales."
+                "Brand": {
+                    "price": 780,
+                    "billing_period": "pago único",
+                    "description": "Logotipo y sistema de identidad visual. Incluye manual de marca, paleta, tipografías, lineamientos de uso, tono de comunicación y apoyo de IA para análisis y generación de escenarios visuales."
                 },
-                "Pro": {
-                    "price": "650",
-                    "billing_period": "/ mes",
-                    "description": "Dirección de arte continua. Gestión total de identidad, diseño de piezas para campañas y actualización constante de activos."
+                "Corp": {
+                    "price": 1599,
+                    "billing_period": "pago único",
+                    "description": "Branding corporativo completo. Incluye logotipo responsive, manual extenso, benchmarking, valores de marca, buyer persona, definición de redacción, look & feel y mini landing page."
                 }
             }
         },
         {
-            "id": "presencia",
-            "name": "Programa Presencia",
+            "id": "producto",
             "recommended": true,
+            "name": "Programa Producto & Presencia",
             "levels": {
-                "Basic": {
-                    "price": "850",
+                "Core": {
+                    "price": 1800,
                     "billing_period": "pago único",
-                    "description": "Despliegue inicial. Desarrollo de landing page en WordPress, configuración de hosting, dominio y 5 cuentas de correo."
+                    "description": "Diseño de producto o web orientada a conversión. UX/UI, arquitectura de información, storytelling y copywriting estructural. Uso de IA para investigación, generación de contenidos y optimización semántica."
                 },
-                "Medium": {
-                    "price": "4,500",
-                    "billing_period": "/ año",
-                    "description": "Ecosistema digital pro. Web Headless ultra veloz, hasta 50 correos corporativos y optimización SEO técnica anual."
+                "Advanced": {
+                    "price": 3200,
+                    "billing_period": "pago único",
+                    "description": "Producto comunicable completo. Diseño UX/UI, prototipo funcional, animaciones con GSAP y stack React o WordPress Headless con SEO técnico. IA aplicada a generación de copys, imágenes y variantes de contenido."
                 },
-                "Pro": {
-                    "price": "1,200",
+                "Care": {
+                    "price": 900,
                     "billing_period": "/ mes",
-                    "description": "Infraestructura crítica. Soporte 24/7, auditorías de seguridad semanales, optimización continua de carga y escalabilidad SaaS."
+                    "description": "Evolución continua del producto. Iteraciones de diseño, mejoras de conversión, nuevos contenidos generados con IA y soporte estratégico."
                 }
             }
         },
         {
             "id": "lanzamiento",
-            "name": "Programa Lanzamiento",
             "recommended": false,
+            "name": "Programa Lanzamiento de Producto",
             "levels": {
-                "Basic": {
-                    "price": "3,200",
-                    "billing_period": "pago único",
-                    "description": "MVP de validación. Desarrollo de producto mínimo viable con funciones core y estrategia de lanzamiento base."
-                },
-                "Medium": {
-                    "price": "8,900",
-                    "billing_period": "/ año",
-                    "description": "Crecimiento sostenido. Producto full-stack, UX avanzado y gestión de pauta digital (Trading de anuncios) durante el ciclo anual."
-                },
-                "Pro": {
-                    "price": "15,000",
+                "MVP": {
+                    "price": 2800,
                     "billing_period": "/ mes",
-                    "description": "Dominio 360 + IA. Campaña integral, Email Marketing, automatización de mensajes, branding, web ultra veloz y 42 activos IA (30 imágenes / 12 videos)."
+                    "description": "Ciclo mensual orientado a validación. Definición y refinamiento de propuesta de valor, diseño de MVP visual o funcional, landing page, copywriting creativo y generación asistida por IA de contenidos base."
+                },
+                "Launch": {
+                    "price": 1800,
+                    "billing_period": "/ mes",
+                    "description": "Ciclo mensual de lanzamiento estratégico. Integra narrativa, identidad, producto digital y visibilidad inicial. Incluye sistema de marca aplicado, diseño de producto o plataforma, landing optimizada, copywriting persuasivo, generación masiva de contenidos con IA (textos, imágenes y video corto), arquitectura para campañas digitales y acompañamiento activo."
+                },
+                "Growth": {
+                    "price": 1600,
+                    "billing_period": "/ mes",
+                    "description": "Evolución continua post-lanzamiento. Iteración de producto, mejoras UX/UI, nuevos contenidos con IA, experimentos de conversión y soporte estratégico."
                 }
             }
         }

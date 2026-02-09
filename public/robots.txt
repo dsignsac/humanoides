@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://humanoidesyasociados.com/sitemap.xml
+Sitemap: https://humanoidesyasociados.com/sitemap-index.xml

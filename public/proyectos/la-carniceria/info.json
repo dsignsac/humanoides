@@ -1,13 +1,9 @@
 {
     "id": "la-carniceria",
     "client": "La Carnicería",
-    "title": "Arte Al Peso",
-    "service": "Branding & Editorial Design",
     "year": "2019",
     "country": "Perú",
-    "description": "La Carnicería es una galería de arte disruptivo que opera bajo el concepto \"Arte al Peso\". La identidad visual se basa en la estética cruda de la industria cárnica, utilizando gráficas inspiradas en etiquetas térmicas, tickets y recibos de venta. El proyecto destaca por su cartel principal diseñado en 3D, donde la obra de arte se presenta empaquetada en una bandeja de poliestireno, reforzando la idea del arte como un producto de consumo directo y visceral.",
     "thumbnail": "00.webp",
-    "showOnLanding": true,
     "gallery": [
         {
             "type": "image",
@@ -35,5 +31,9 @@
         "Editorial Design",
         "Art Direction",
         "Graphic Research"
-    ]
+    ],
+    "showOnLanding": true,
+    "title": "Arte Al Peso",
+    "service": "Branding & Editorial Design",
+    "description": "La Carnicería es una galería de arte disruptivo que opera bajo el concepto \"Arte al Peso\". La identidad visual se basa en la estética cruda de la industria cárnica, utilizando gráficas inspiradas en etiquetas térmicas, tickets y recibos de venta. El proyecto destaca por su cartel principal diseñado en 3D, donde la obra de arte se presenta empaquetada en una bandeja de poliestireno, reforzando la idea del arte como un producto de consumo directo y visceral."
 }

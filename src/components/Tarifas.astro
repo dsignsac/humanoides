@@ -8,7 +8,7 @@
 import pricingData from "../data/pricing.json";
 
 const programs = pricingData.programs;
-const currency = pricingData.currency;
+const currencySymbol = "$";
 ---
 
 <section
@@ -24,19 +24,18 @@ const currency = pricingData.currency;
                 <h2
                     class="text-sm font-sans uppercase tracking-[0.2em] text-brand-red mb-2 block font-bold"
                 >
-                    TARIFARIO CORPORATIVO
+                    TARIFAS
                 </h2>
                 <div class="mt-4 hidden md:block">
                     <h3
                         class="text-xl md:text-2xl font-sans font-900 text-brand-black uppercase tracking-tight mb-1"
                     >
-                        Disponibilidad sujeta a agenda de producción.
+                        MODELOS DE COLABORACIÓN
                     </h3>
                     <p
                         class="text-[12px] font-sans font-medium text-brand-black uppercase tracking-widest leading-relaxed"
                     >
-                        Los programas se habilitan únicamente tras evaluación
-                        operativa.
+                        Escalabilidad predecible para tu proyecto.
                     </p>
                 </div>
             </div>
@@ -63,29 +62,37 @@ const currency = pricingData.currency;
             class="flex md:flex lg:grid lg:grid-cols-3 overflow-x-auto lg:overflow-visible snap-x lg:snap-none scrollbar-hide gap-4 md:gap-6 px-6 md:px-8 lg:px-0 pricing-carousel mb-10 md:mb-16"
         >
             {
-                programs.map((item, idx) => (
+                programs.map((item, idx) => {
+                    // Direct access
+                    const levelKeys = Object.keys(item.levels);
+                    const defaultLevel = levelKeys[1];
+                    const currentLevelData = item.levels[defaultLevel as keyof typeof item.levels];
+                    if (!currentLevelData) return null;
+                    const price = currentLevelData.price; 
+
+                    return (
                     <article
                         data-program-id={item.id}
                         class={`flex-shrink-0 w-[calc(100vw-48px)] md:w-[45vw] lg:w-full snap-center relative flex flex-col bg-brand-salmon p-6 md:p-8 transition-all duration-500 group active:scale-[0.98] md:active:scale-100 rounded-3xl border ${item.recommended ? "border-brand-red" : "border-brand-black"}`}
                     >
                         {item.recommended && (
-                            <div class="absolute top-4 right-6 bg-brand-red text-white text-[11px] font-sans font-900 px-4 py-1.5 uppercase tracking-widest rounded-full z-10">
+                            <div class="absolute top-3 right-3 bg-brand-red text-white text-[11px] font-sans font-900 px-4 py-1.5 uppercase tracking-widest rounded-full z-10">
                                 Recomendado
                             </div>
                         )}
 
-                        <div class="mt-8 mb-4">
+                        <div class="mt-14 mb-4">
                             <h4 class="text-xs font-sans font-900 text-brand-red uppercase tracking-[0.2em] mb-4">
                                 — {item.name}
                             </h4>
 
                             <!-- Level Selector -->
                             <div class="flex bg-brand-gray rounded-xl p-1 mb-8 level-selector" data-program={item.id}>
-                                {["Basic", "Medium", "Pro"].map((level, lIdx) => (
+                                {levelKeys.map((level, lIdx) => (
                                     <button
                                         data-level={level}
                                         data-index={lIdx}
-                                        class={`flex-1 py-3 text-[13px] font-sans font-900 uppercase tracking-widest rounded-lg transition-all duration-300 ${level === "Medium" ? "bg-white text-brand-black" : "text-brand-black hover:text-brand-red"}`}
+                                        class={`flex-1 py-3 text-[13px] font-sans font-900 uppercase tracking-widest rounded-lg transition-all duration-300 ${level === defaultLevel ? "bg-white text-brand-black" : "text-brand-black hover:text-brand-red"}`}
                                     >
                                         {level}
                                     </button>
@@ -95,19 +102,19 @@ const currency = pricingData.currency;
                             <div class="price-container mb-2">
                                 <div class="price-monthly block">
                                     <span class="text-5xl font-sans font-999 text-brand-black lowercase tracking-tighter">
-                                        {currency}<span class="price-value">{item.levels.Medium.price}</span>
+                                        {currencySymbol}<span class="price-value">{price}</span>
                                     </span>
                                     <span class="text-[13px] font-sans font-900 text-brand-black uppercase tracking-[0.2em] ml-2 price-period">
-                                        {item.levels.Medium.billing_period}
+                                        {currentLevelData.billing_period}
                                     </span>
                                 </div>
                             </div>
                             <div class="text-[12px] font-sans font-black text-brand-black uppercase tracking-widest mb-6">
-                                IVA INCLUIDO (DÉBITO AUTOMÁTICO)
+                                IMPUESTOS INCLUÍDOS
                             </div>
 
-                            <p class="text-lg font-sans font-medium text-brand-black leading-tight mb-8 description-text h-24 overflow-hidden">
-                                {item.levels.Medium.description}
+                            <p class="text-lg font-sans font-medium text-brand-black leading-tight mb-8 description-text min-h-[6rem]">
+                                {currentLevelData.description}
                             </p>
                         </div>
 
@@ -118,7 +125,7 @@ const currency = pricingData.currency;
                                 rel="noopener noreferrer"
                                 class={`cta-button inline-flex items-center justify-center gap-3 w-full py-5 rounded-full text-[13px] font-sans font-900 uppercase tracking-[0.2em] transition-all duration-300 ${item.recommended ? "bg-brand-red text-white hover:bg-brand-black" : "bg-brand-black text-white hover:bg-brand-red"}`}
                             >
-                                Agendar una cita
+                                EMPEZAR PROYECTO
                                 <svg
                                     class="w-3.5 h-3.5"
                                     viewBox="0 0 24 24"
@@ -131,7 +138,7 @@ const currency = pricingData.currency;
                             </a>
                         </div>
                     </article>
-                ))
+                )})
             }
         </div>
 
@@ -180,6 +187,9 @@ const currency = pricingData.currency;
 <script>
     import pricingData from "../data/pricing.json";
     import { gsap } from "gsap";
+
+    // Detect Context
+    const section = document.getElementById("tarifas");
 
     // Entrance Animation Logic
     const observerOptions = {
@@ -255,7 +265,11 @@ const currency = pricingData.currency;
 
                 // Update content with GSAP animation
                 if (priceValue && descriptionText && programData && pricePeriod) {
-                    const levelData = (programData.levels as any)[level];
+                    
+                    // New Data Access Logic
+                    const levelData = (programData as any).levels[level];
+                    const price = (programData as any).levels[level].price;
+
                     const elementsToAnimate = [priceValue, pricePeriod, descriptionText];
 
                     // Phase 1: Fade out and slide up
@@ -267,7 +281,7 @@ const currency = pricingData.currency;
                         stagger: 0.02,
                         onComplete: () => {
                             // Update content
-                            priceValue.innerText = levelData.price;
+                            priceValue.innerText = price;
                             pricePeriod.innerText = levelData.billing_period;
                             descriptionText.innerText = levelData.description;
 

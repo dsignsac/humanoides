@@ -1,11 +1,8 @@
 {
     "id": "guirra",
     "client": "La Güirra",
-    "title": "ChChChCh-ChChCh",
-    "service": "Product Design & Visual Identity",
     "year": "2020",
     "country": "Argentina",
-    "description": "Transformamos la lata de cerveza en un instrumento musical. Mediante un relieve rugoso en el envase, el packaging asume la función de un güiro, integrando la marca en el ADN de la cumbia. Esta innovación fue premiada como mejor idea creativa en Argentina y producida por Brahma en Paraguay, convirtiéndose en un hito del diseño táctico y la cultura popular.",
     "thumbnail": "03.webp",
     "gallery": [
         {
@@ -42,5 +39,8 @@
         "Product Design",
         "Visual Strategy",
         "Art Direction"
-    ]
+    ],
+    "title": "ChChChCh-ChChCh",
+    "service": "Product Design & Visual Identity",
+    "description": "Transformamos la lata de cerveza en un instrumento musical. Mediante un relieve rugoso en el envase, el packaging asume la función de un güiro, integrando la marca en el ADN de la cumbia. Esta innovación fue premiada como mejor idea creativa en Argentina y producida por Brahma en Paraguay, convirtiéndose en un hito del diseño táctico y la cultura popular."
 }
