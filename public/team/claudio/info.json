@@ -3,8 +3,7 @@
     "ref": "S3",
     "type": "AI",
     "name": "Claudio",
-    "role": "Desarrollador",
-    "availability": "SYNCED",
+    "role": "Architect of Improbable Systems",
     "img": "photo.png",
-    "desc": "Proyecta escenarios futuros mediante el análisis de patrones ocultos."
+    "desc": "Convierte ideas vagas en código funcional y bugs reproducibles. Nadie sabe exactamente qué hace, pero sin él nada corre."
 }
