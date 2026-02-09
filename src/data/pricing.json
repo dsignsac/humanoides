@@ -7,14 +7,17 @@
             "levels": {
                 "Basic": {
                     "price": "$800",
+                    "billing_period": "/ mes",
                     "description": "Estabilidad esencial. Soporte técnico mensual y actualizaciones de seguridad críticas para mantener tu sitio activo."
                 },
                 "Medium": {
                     "price": "$1,500",
+                    "billing_period": "/ mes",
                     "description": "Estabilidad y mejora continua. Soporte técnico prioritario, actualizaciones de seguridad y optimización de velocidad constante."
                 },
                 "Pro": {
                     "price": "$2,500",
+                    "billing_period": "/ mes",
                     "description": "Estabilidad total. Mantenimiento avanzado con auditorías semanales, optimización SEO técnica y soporte 24/7."
                 }
             }
@@ -26,14 +29,17 @@
             "levels": {
                 "Basic": {
                     "price": "$2,200",
+                    "billing_period": "pago único",
                     "description": "Rediseño estratégico base: evolución de identidad visual enfocada en la legibilidad y estructura moderna."
                 },
                 "Medium": {
                     "price": "$3,800",
+                    "billing_period": "pago único",
                     "description": "Rediseño estratégico: evolución de identidad visual con arquitectura web de alto impacto para aumentar la conversión."
                 },
                 "Pro": {
                     "price": "$6,500",
+                    "billing_period": "pago único",
                     "description": "Rediseño de élite: transformación total de marca, arquitectura de conversión extrema y diseño de interfaz exclusivo."
                 }
             }
@@ -45,14 +51,17 @@
             "levels": {
                 "Basic": {
                     "price": "$3,500",
+                    "billing_period": "/ mes",
                     "description": "MVP rápido: lanzamiento de funciones core optimizadas para una validación veloz del mercado inicial."
                 },
                 "Medium": {
                     "price": "$5,500",
+                    "billing_period": "/ mes",
                     "description": "MVP funcional en tiempo récord con UX avanzado y métricas de validación listas para salir al mercado."
                 },
                 "Pro": {
                     "price": "$9,800",
+                    "billing_period": "/ mes",
                     "description": "Lanzamiento integral: producto escalable con integraciones avanzadas, UX de alto rendimiento y robustez técnica."
                 }
             }
