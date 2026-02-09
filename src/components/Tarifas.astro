@@ -1,0 +1,497 @@
+---
+/**
+ * Pricing Section Component
+ * Aesthetic: 80s Corporate, Brutalist, Institutional.
+ * Redesigned for Premium Card Experience with Dynamic Toggle.
+ */
+
+const pricingData = {
+    services: [
+        {
+            name: "Web & Producto",
+            scope: "Desarrollo de ecosistemas digitales complejos.",
+            monthly: "$4,800",
+            annual: "$46,000",
+        },
+        {
+            name: "Branding",
+            scope: "Identidad visual y sistemas gráficos institucionales.",
+            monthly: "$3,200",
+            annual: "$30,000",
+        },
+        {
+            name: "Social Media",
+            scope: "Gestión estratégica y producción de contenido IA.",
+            monthly: "$1,800",
+            annual: "$17,000",
+        },
+        {
+            name: "Infraestructura",
+            scope: "Infraestructura web administrada para operaciones digitales.",
+            monthly: "$12",
+            annual: "$100",
+            features: [
+                "Hosting de alta velocidad",
+                "100 cuentas de correo corporativo",
+                "Certificado SSL",
+                "Backup automático diario",
+            ],
+        },
+    ],
+    programs: [
+        {
+            name: "Programa Lanzamiento",
+            scope: "MVP y validación de mercado en tiempo récord.",
+            monthly: "$6,500",
+            annual: "$62,000",
+        },
+        {
+            name: "Programa Marca",
+            scope: "Rediseño completo de identidad y presencia web.",
+            monthly: "$5,800",
+            annual: "$55,000",
+            recommended: true,
+        },
+        {
+            name: "Programa Presencia",
+            scope: "Operación y soporte continuo de plataforma.",
+            monthly: "$2,200",
+            annual: "$21,000",
+        },
+    ],
+};
+---
+
+<section
+    id="tarifas"
+    class="relative w-full bg-brand-gray text-brand-black pt-0 md:pt-24 mb-16 md:mb-12 overflow-hidden"
+>
+    <div class="max-w-[1440px] mx-auto px-6 relative z-10">
+        <!-- Section Header -->
+        <div
+            class="flex flex-col md:flex-row justify-between items-start md:items-end pb-0 md:pb-8"
+        >
+            <div class="reveal-fade-up">
+                <h2
+                    class="text-sm font-sans uppercase tracking-[0.2em] text-brand-red mb-2 block font-bold"
+                >
+                    TARIFARIO CORPORATIVO
+                </h2>
+                <div class="mt-4 hidden md:block">
+                    <h3
+                        class="text-xl md:text-2xl font-sans font-900 text-brand-black uppercase tracking-tight mb-1"
+                    >
+                        Disponibilidad sujeta a agenda de producción.
+                    </h3>
+                    <p
+                        class="text-[10px] font-sans font-bold text-brand-black/40 uppercase tracking-widest leading-relaxed"
+                    >
+                        Los programas se habilitan únicamente tras evaluación
+                        operativa.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Toggle Component -->
+            <div
+                class="mt-4 md:mt-0 flex items-center gap-4 bg-white/50 p-1 rounded-full border border-brand-black/5 reveal-fade-up"
+                style="animation-delay: 0.1s;"
+            >
+                <button
+                    id="toggle-monthly"
+                    class="px-6 py-2 rounded-full text-[10px] font-sans font-bold uppercase tracking-widest transition-all duration-300 bg-brand-black text-white"
+                >
+                    Mensual
+                </button>
+                <button
+                    id="toggle-annual"
+                    class="px-6 py-2 rounded-full text-[10px] font-sans font-bold uppercase tracking-widest transition-all duration-300 text-brand-black/40 hover:text-brand-black"
+                >
+                    Anual
+                </button>
+            </div>
+        </div>
+
+        <!-- Institutional Header Strip -->
+        <div
+            class="hidden md:flex w-full border-y border-brand-black py-4 justify-between items-center text-[10px] font-sans font-900 tracking-[0.2em] uppercase text-brand-black mb-16 reveal-fade-up"
+            style="animation-delay: 0.2s;"
+        >
+            <span>SISTEMA DE VALORIZACIÓN V2.0</span>
+            <span class="hidden md:inline">TABLA DE INVERSIÓN CORPORATIVA</span>
+            <span class="opacity-60">DPTO. DE OPERACIONES</span>
+        </div>
+
+        <!-- Mobile Carousel Navigation Strip -->
+        <div
+            class="w-full border-y border-brand-black py-3 flex md:hidden justify-between items-center text-[10px] font-sans font-bold tracking-[0.2em] uppercase text-brand-black mb-4 px-0 reveal-fade-up"
+            style="animation-delay: 0.3s;"
+        >
+            <span>PROGRAMAS DISPONIBLES</span>
+            <div class="flex gap-2" id="pricing-dots">
+                {
+                    pricingData.programs.map((_, i) => (
+                        <div
+                            class={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${i === 0 ? "bg-brand-red" : "bg-brand-black/20"}`}
+                        />
+                    ))
+                }
+            </div>
+        </div>
+
+        <!-- Mobile: Horizontal Scrollable Carousel -->
+        <div
+            class="flex md:hidden overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-0 px-0 pricing-carousel mb-10 md:mb-16"
+        >
+            {
+                pricingData.programs.map((item, idx) => (
+                    <article
+                        class={`flex-shrink-0 w-full snap-center relative flex flex-col bg-brand-salmon p-6 md:p-8 border-r border-brand-black/10 transition-all duration-500 group active:scale-[0.98] ${item.recommended ? "border-brand-red/20" : "border-brand-black/5"}`}
+                    >
+                        {item.recommended && (
+                            <div class="absolute top-4 left-8 bg-brand-red text-white text-[8px] font-sans font-900 px-3 py-1 uppercase tracking-widest rounded-full z-10">
+                                Recomendado
+                            </div>
+                        )}
+
+                        <div class="mb-6 md:mb-8 mt-4 md:mt-6">
+                            <h4 class="text-xs font-sans font-900 text-brand-red uppercase tracking-[0.2em] mb-3 md:mb-4">
+                                — {item.name}
+                            </h4>
+                            <p class="text-base font-sans font-semibold text-brand-black leading-tight">
+                                {item.scope}
+                            </p>
+                        </div>
+
+                        <div class="mt-auto pt-6 md:pt-8 border-t border-brand-black/10">
+                            <div class="flex flex-col mb-6 md:mb-8 overflow-hidden h-20 justify-center">
+                                <div
+                                    class="price-container transition-all duration-500 transform translate-y-0"
+                                    data-pricing-target
+                                >
+                                    <div class="price-monthly block transition-all duration-500">
+                                        <span class="text-4xl font-sans font-900 text-brand-black lowercase tracking-tighter">
+                                            {item.monthly}
+                                        </span>
+                                        <span class="text-[10px] font-sans font-bold text-brand-black/40 uppercase tracking-widest ml-1">
+                                            / mes
+                                        </span>
+                                    </div>
+                                    <div class="price-annual hidden opacity-0 translate-y-4 transition-all duration-500">
+                                        <span class="text-4xl font-sans font-900 text-brand-black lowercase tracking-tighter">
+                                            {item.annual}
+                                        </span>
+                                        <span class="text-[10px] font-sans font-bold text-brand-black/40 uppercase tracking-widest ml-1">
+                                            / año
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a
+                                href={`/#sync?subject=${encodeURIComponent(item.name)}`}
+                                class={`inline-flex items-center justify-center gap-3 w-full py-4 md:py-5 rounded-full text-xs font-sans font-900 uppercase tracking-widest transition-all duration-300 ${item.recommended ? "bg-brand-red text-white" : "bg-brand-black text-white"}`}
+                            >
+                                Solicitar activación
+                                <svg
+                                    class="w-3.5 h-3.5"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="4"
+                                >
+                                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                                </svg>
+                            </a>
+                        </div>
+                    </article>
+                ))
+            }
+        </div>
+
+        <!-- Desktop Grid -->
+        <div class="hidden md:grid grid-cols-3 gap-6 mb-16">
+            {
+                pricingData.programs.map((item, idx) => (
+                    <article
+                        class={`pricing-card reveal-fade-up relative flex flex-col bg-brand-salmon p-10 border transition-all duration-500 group md:hover:-translate-y-2.5 ${item.recommended ? "border-brand-red ring-1 ring-brand-red/20 shadow-xl shadow-brand-red/5" : "border-brand-black/5 md:hover:border-brand-black/20"}`}
+                        style={`animation-delay: ${0.4 + idx * 0.1}s;`}
+                    >
+                        {item.recommended && (
+                            <div class="absolute -top-3 left-10 bg-brand-red text-white text-[9px] font-sans font-900 px-4 py-1.5 uppercase tracking-widest rounded-full">
+                                Recomendado para Operaciones
+                            </div>
+                        )}
+
+                        <div class="mb-8">
+                            <h4 class="text-sm font-sans font-900 text-brand-red uppercase tracking-[0.2em] mb-4">
+                                — {item.name}
+                            </h4>
+                            <p class="text-base font-sans font-semibold text-brand-black leading-tight">
+                                {item.scope}
+                            </p>
+                        </div>
+
+                        <div class="mt-auto pt-6 md:pt-8 border-t border-brand-black/10">
+                            <div class="flex flex-col mb-6 md:mb-8 overflow-hidden h-20 justify-center">
+                                <div
+                                    class="price-container transition-all duration-500 transform translate-y-0"
+                                    data-pricing-target
+                                >
+                                    <div class="price-monthly block transition-all duration-500">
+                                        <span class="text-5xl font-sans font-900 text-brand-black lowercase tracking-tighter">
+                                            {item.monthly}
+                                        </span>
+                                        <span class="text-[10px] font-sans font-bold text-brand-black/40 uppercase tracking-widest ml-1">
+                                            / mes
+                                        </span>
+                                    </div>
+                                    <div class="price-annual hidden opacity-0 translate-y-4 transition-all duration-500">
+                                        <span class="text-5xl font-sans font-900 text-brand-black lowercase tracking-tighter">
+                                            {item.annual}
+                                        </span>
+                                        <span class="text-[10px] font-sans font-bold text-brand-black/40 uppercase tracking-widest ml-1">
+                                            / año
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a
+                                href={`/#sync?subject=${encodeURIComponent(item.name)}`}
+                                class={`inline-flex items-center justify-center gap-3 w-full py-5 rounded-full text-xs font-sans font-900 uppercase tracking-widest transition-all duration-300 ${item.recommended ? "bg-brand-red text-white hover:bg-brand-black" : "bg-brand-black text-white hover:bg-brand-red"}`}
+                            >
+                                Solicitar activación
+                                <svg
+                                    class="w-3.5 h-3.5"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="4"
+                                >
+                                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                                </svg>
+                            </a>
+                        </div>
+                    </article>
+                ))
+            }
+        </div>
+
+        <!-- Infrastructure & Extra Services -->
+        <div
+            class="mt-8 md:mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 reveal-fade-up"
+            style="animation-delay: 0.8s;"
+        >
+            {
+                pricingData.services.map((item, idx) => (
+                    <div class="flex flex-col group/service border-b border-brand-black/10 pb-6 md:pb-10 hover:border-brand-red transition-colors duration-300">
+                        <div class="flex justify-between items-start mb-4 md:mb-6">
+                            <div class="max-w-xs">
+                                <h4 class="text-xl md:text-2xl font-sans font-900 uppercase tracking-tight text-brand-black mb-2">
+                                    {item.name}
+                                </h4>
+                                <p class="text-[10px] font-sans font-bold text-brand-black/60 uppercase tracking-widest leading-relaxed">
+                                    {item.scope}
+                                </p>
+                            </div>
+                            <div class="text-right">
+                                <div
+                                    class="price-container-sm transition-all duration-500"
+                                    data-pricing-target
+                                >
+                                    <div class="price-monthly block">
+                                        <span class="text-2xl font-sans font-900 text-brand-black">
+                                            {item.monthly}
+                                        </span>
+                                        <span class="text-[9px] font-sans font-bold text-brand-black/30 uppercase tracking-widest block">
+                                            base / mes
+                                        </span>
+                                    </div>
+                                    <div class="price-annual hidden opacity-0">
+                                        <span class="text-2xl font-sans font-900 text-brand-black">
+                                            {item.annual}
+                                        </span>
+                                        <span class="text-[9px] font-sans font-bold text-brand-black/30 uppercase tracking-widest block">
+                                            base / año
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {item.features && (
+                            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 mb-8 mt-2">
+                                {item.features.map((feature) => (
+                                    <li class="text-[9px] font-sans font-bold text-brand-black/50 uppercase tracking-widest flex items-center gap-2">
+                                        <span class="w-1.5 h-1.5 bg-brand-red rounded-full" />
+                                        {feature}
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+
+                        <a
+                            href={`/#sync?subject=${encodeURIComponent(item.name)}`}
+                            class="text-[9px] font-sans font-900 text-brand-red uppercase tracking-[0.3em] flex items-center gap-2 opacity-60 hover:opacity-100 transition-all group/link"
+                        >
+                            Solicitar parámetros técnicos
+                            <svg
+                                class="w-2.5 h-2.5 transition-transform group-hover/link:translate-x-1"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="4"
+                            >
+                                <path d="M7 17L17 7M17 7H7M17 7V17" />
+                            </svg>
+                        </a>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    .reveal-fade-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+            opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+            transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+    }
+
+    .reveal-fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .pricing-card {
+        will-change: transform, box-shadow, border-color;
+    }
+
+    /* Toggle Animations */
+    #toggle-monthly.active,
+    #toggle-annual.active {
+        background: #000;
+        color: #fff;
+    }
+
+    .price-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .price-monthly,
+    .price-annual {
+        transition:
+            opacity 0.4s ease,
+            transform 0.4s ease;
+    }
+</style>
+
+<script>
+    const btnMonthly = document.getElementById("toggle-monthly");
+    const btnAnnual = document.getElementById("toggle-annual");
+    const containers = document.querySelectorAll("[data-pricing-target]");
+
+    // Entrance Animation Logic
+    const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                (entry.target as HTMLElement).classList.add("visible");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll(".reveal-fade-up").forEach((el) => {
+        observer.observe(el);
+    });
+
+    // Carousel Dots Logic
+    const carousel = document.querySelector(".pricing-carousel");
+    const dots = document.querySelectorAll("#pricing-dots div");
+    const cards = document.querySelectorAll(".pricing-carousel article");
+
+    if (carousel instanceof HTMLElement && cards.length > 0) {
+        carousel.addEventListener("scroll", () => {
+            const index = Math.round(
+                carousel.scrollLeft / carousel.clientWidth,
+            );
+            dots.forEach((dot, i) => {
+                dot.classList.toggle("bg-brand-red", i === index);
+                dot.classList.toggle("bg-brand-black/20", i !== index);
+            });
+        });
+    }
+
+    const updateDisplay = (isAnnual: boolean) => {
+        if (isAnnual) {
+            btnAnnual?.classList.add("bg-brand-black", "text-white");
+            btnAnnual?.classList.remove("text-brand-black/40");
+            btnMonthly?.classList.remove("bg-brand-black", "text-white");
+            btnMonthly?.classList.add("text-brand-black/40");
+        } else {
+            btnMonthly?.classList.add("bg-brand-black", "text-white");
+            btnMonthly?.classList.remove("text-brand-black/40");
+            btnAnnual?.classList.remove("bg-brand-black", "text-white");
+            btnAnnual?.classList.add("text-brand-black/40");
+        }
+
+        containers.forEach((container) => {
+            const monthly = container.querySelector(".price-monthly");
+            const annual = container.querySelector(".price-annual");
+
+            if (isAnnual) {
+                monthly?.classList.add("hidden", "opacity-0", "translate-y-4");
+                monthly?.classList.remove(
+                    "block",
+                    "opacity-100",
+                    "translate-y-0",
+                );
+
+                annual?.classList.remove(
+                    "hidden",
+                    "opacity-0",
+                    "translate-y-4",
+                );
+                annual?.classList.add("block", "opacity-100", "translate-y-0");
+
+                // Trigger reflow for animation
+                setTimeout(() => {
+                    annual?.classList.remove("translate-y-4");
+                }, 10);
+            } else {
+                annual?.classList.add("hidden", "opacity-0", "translate-y-4");
+                annual?.classList.remove(
+                    "block",
+                    "opacity-100",
+                    "translate-y-0",
+                );
+
+                monthly?.classList.remove(
+                    "hidden",
+                    "opacity-0",
+                    "translate-y-4",
+                );
+                monthly?.classList.add("block", "opacity-100", "translate-y-0");
+
+                setTimeout(() => {
+                    monthly?.classList.remove("translate-y-4");
+                }, 10);
+            }
+        });
+    };
+
+    btnMonthly?.addEventListener("click", () => updateDisplay(false));
+    btnAnnual?.addEventListener("click", () => updateDisplay(true));
+</script>

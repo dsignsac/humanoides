@@ -1,0 +1,46 @@
+{
+    "id": "guirra",
+    "client": "Guirra",
+    "title": "Industrial Aesthetics",
+    "service": "Product Design & Visual Identity",
+    "year": "2024",
+    "country": "España",
+    "description": "Desarrollo de identidad visual y narrativa de producto para Guirra. El proyecto se centró en elevar la percepción de calidad técnica a través de un sistema gráfico brutalista y una dirección de arte minimalista, optimizando la presencia digital de la marca para el mercado europeo.",
+    "thumbnail": "01.webp",
+    "gallery": [
+        {
+            "type": "image",
+            "src": "01.webp"
+        },
+        {
+            "type": "video",
+            "src": "https://www.youtube.com/watch?v=No6fN080u30"
+        },
+        {
+            "type": "image",
+            "src": "02.webp"
+        },
+        {
+            "type": "image",
+            "src": "03.webp"
+        },
+        {
+            "type": "image",
+            "src": "04.webp"
+        },
+        {
+            "type": "image",
+            "src": "05.webp"
+        },
+        {
+            "type": "image",
+            "src": "06.webp"
+        }
+    ],
+    "stack": [
+        "Brand Identity",
+        "Product Design",
+        "Visual Strategy",
+        "Art Direction"
+    ]
+}

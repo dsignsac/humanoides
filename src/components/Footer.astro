@@ -4,13 +4,15 @@ const today = new Date();
 ---
 
 <footer
-    class="w-full bg-brand-gray mt-auto border-t-[3px] border-brand-red pt-16 pb-8"
+    class="w-full bg-brand-gray mt-auto border-t-[3px] border-brand-red pt-12 md:pt-16 pb-6 md:pb-8"
 >
     <div class="max-w-[1440px] mx-auto px-6">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+        <div
+            class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-10 md:mb-16"
+        >
             <!-- Brand Column -->
             <div class="md:col-span-2">
-                <div class="w-48 mb-6">
+                <div class="w-48 mb-4 md:mb-6">
                     <AnimatedLogo
                         mode="static"
                         variant="full"
@@ -28,7 +30,7 @@ const today = new Date();
             <!-- Divisions Column -->
             <div>
                 <h4
-                    class="text-[10px] font-sans font-900 text-brand-black/40 uppercase tracking-[0.2em] mb-6"
+                    class="text-[10px] font-sans font-900 text-brand-black/40 uppercase tracking-[0.2em] mb-4 md:mb-6"
                 >
                     Divisiones
                 </h4>
@@ -59,7 +61,7 @@ const today = new Date();
             <!-- Location Column -->
             <div class="md:text-right">
                 <h4
-                    class="text-[10px] font-sans font-900 text-brand-black/40 uppercase tracking-[0.2em] mb-6"
+                    class="text-[10px] font-sans font-900 text-brand-black/40 uppercase tracking-[0.2em] mb-4 md:mb-6"
                 >
                     Sede corporativa
                 </h4>
@@ -74,7 +76,7 @@ const today = new Date();
 
         <!-- Bottom Bar -->
         <div
-            class="pt-8 border-t border-brand-black/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-sans font-bold text-brand-red uppercase tracking-[0.2em]"
+            class="pt-6 md:pt-8 border-t border-brand-black/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-sans font-bold text-brand-red uppercase tracking-[0.2em]"
         >
             <div
                 class="flex flex-col md:flex-row items-center gap-1 md:gap-2 text-center md:text-left"
