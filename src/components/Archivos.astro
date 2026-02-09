@@ -142,33 +142,54 @@ const projects = projectsData
 
     <!-- Desktop List (Hidden on Mobile) -->
     <div class="hidden md:block">
+        <!-- Desktop Header -->
+        <div class="flex items-center justify-between border-b border-brand-black/20 pb-4 mb-4 px-6 -mx-6 text-xs font-mono opacity-50 uppercase tracking-widest">
+            <div class="w-1/12">Index</div>
+            <div class="w-4/12">Cliente / Proyecto</div>
+            <div class="w-1/12">Año</div>
+            <div class="w-2/12">País</div>
+            <div class="w-2/12">Servicios</div>
+            <div class="w-1/12 text-right">Link</div>
+        </div>
+
         {projects.map((project, index) => (
           <a href={project.url} class="group relative block w-full border-b border-brand-black/10 py-12 transition-colors duration-300 hover:bg-brand-black/5 rounded-2xl px-6 -mx-6">
               <div class="flex items-center justify-between">
+                  <!-- Index -->
                   <div class="w-1/12 text-xs font-mono opacity-50">
                       {String(index + 1).padStart(2, '0')}
                   </div>
                   
-                  <div class="w-5/12">
+                  <!-- Client / Project -->
+                  <div class="w-4/12">
                       <h3 class="text-6xl font-sans font-900 uppercase tracking-tighter text-brand-black group-hover:translate-x-4 transition-transform duration-500 will-change-transform">
                           {project.client}
                       </h3>
-                  </div>
-
-                  <div class="w-3/12">
-                      <p class="text-xl font-sans font-normal text-brand-black/90 lowercase first-letter:uppercase">
+                      <p class="text-xl font-sans font-normal text-brand-black/90 mt-1 lowercase first-letter:uppercase">
                           {project.project}
                       </p>
                   </div>
 
+                  <!-- Year -->
+                  <div class="w-1/12 font-mono text-xs uppercase tracking-widest opacity-60">
+                      '{project.year.slice(2)}
+                  </div>
+
+                  <!-- Country -->
+                  <div class="w-2/12 font-mono text-xs uppercase tracking-widest opacity-60">
+                      {project.country}
+                  </div>
+
+                   <!-- Service -->
                    <div class="w-2/12 font-mono text-xs uppercase tracking-widest opacity-60">
                       {project.service}
                    </div>
 
+                   <!-- Arrow -->
                    <div class="w-1/12 flex justify-end">
                         <div class="w-10 h-10 rounded-full border border-brand-black/20 flex items-center justify-center group-hover:bg-brand-black group-hover:text-white transition-all duration-300">
                             <svg class="w-4 h-4 transform -rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M7 17L17 7M17 7H7M17 7V17" />
+                                <path d="M5 12h14M12 5l7 7-7 7" />
                             </svg>
                         </div>
                    </div>
@@ -176,9 +197,6 @@ const projects = projectsData
           </a>
         ))}
     </div>
-            </div>
-
-            </div>
         </a>
       </article>
     ))}
