@@ -57,11 +57,6 @@
     >
       ENVIAR SOLICITUD
     </button>
-    <p
-      class="text-[10px] font-sans text-brand-black/60 uppercase tracking-widest font-bold"
-    >
-      — Un responsable de operaciones revisará su solicitud.
-    </p>
   </div>
 </form>
 
@@ -76,7 +71,7 @@
     const urlParams = new URLSearchParams(window.location.search);
     const subject = urlParams.get("subject");
     if (subject && descriptionInput) {
-      descriptionInput.value = `INTERÉS EN SERVICIO/PROGRAMA: ${subject.toUpperCase()}\n\n`;
+      descriptionInput.value = `Interés en servicio/programa: ${subject}\n\n`;
       // Smooth scroll to form if subject is present
       const formSection = document.getElementById("sync");
       if (formSection) {

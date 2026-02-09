@@ -68,7 +68,7 @@ const projects = projectsData
 });
 ---
 
-<section id="log" class="w-full bg-brand-gray text-brand-black mb-16 md:mb-12">
+<section id="log" class="w-full bg-brand-gray text-brand-black mb-12 md:mb-16">
   
   <div class="w-full max-w-[1440px] mx-auto px-6 pt-16 md:pt-24">
     <!-- Big Headline -->
@@ -103,7 +103,7 @@ const projects = projectsData
 
     <!-- Project Rows -->
     {projects.map((project) => (
-      <article class="article-row group relative border-b border-brand-black/10 transition-colors duration-300 hover:bg-brand-salmon overflow-hidden">
+      <article class="article-row group relative border-b border-brand-black/10 transition-all duration-300 hover:bg-brand-salmon overflow-hidden md:hover:rounded-2xl md:mx-2">
 
         <!-- Link Wrapper -->
         <a href={project.url} class="block w-full h-full relative z-10">
