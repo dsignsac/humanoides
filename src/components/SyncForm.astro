@@ -35,21 +35,6 @@
     />
   </div>
 
-  <div class="flex flex-col gap-2">
-    <label
-      for="message"
-      class="text-xs font-bold tracking-widest uppercase text-brand-black"
-      >Transmisión (Mensaje)</label
-    >
-    <textarea
-      id="message"
-      name="message"
-      rows="3"
-      required
-      class="w-full bg-transparent border-b border-brand-black/40 py-2 text-brand-black focus:outline-none focus:border-brand-red transition-colors text-sm resize-none placeholder:text-brand-black/30"
-      placeholder="INGRESAR DATOS..."></textarea>
-  </div>
-
   <button
     type="submit"
     class="mt-4 w-full md:w-auto self-start inline-flex items-center justify-center px-8 py-3 bg-brand-black text-brand-gray text-xs font-900 uppercase tracking-widest hover:bg-brand-red hover:text-white transition-all duration-300 rounded-full"
@@ -65,11 +50,10 @@
     e.preventDefault();
 
     const formData = new FormData(form);
-    const name = formData.get("name");
-    const email = formData.get("email");
-    const message = formData.get("message");
+    const name = formData.get("name") || "";
+    const email = formData.get("email") || "";
 
-    const text = `Hola Humanoides y Asociados! \n\nSoy ${name}.\nMi contacto: ${email}\n\nMensaje: ${message}`;
+    const text = `hola humanoides & asociados me llamo ${name} y quiero trabajar con ustedes, mi email es:${email}. sALUDOS!`;
     const encodedText = encodeURIComponent(text);
     const whatsappUrl = `https://api.whatsapp.com/send?phone=34627191859&text=${encodedText}`;
 
