@@ -295,13 +295,15 @@ const {
                     "<",
                 );
 
-            wrapper.addEventListener("mouseenter", () => {
-                hoverTl.play();
-            });
+            if (mode !== "static") {
+                wrapper.addEventListener("mouseenter", () => {
+                    hoverTl.play();
+                });
 
-            wrapper.addEventListener("mouseleave", () => {
-                hoverTl.reverse();
-            });
+                wrapper.addEventListener("mouseleave", () => {
+                    hoverTl.reverse();
+                });
+            }
         });
     });
 </script>
