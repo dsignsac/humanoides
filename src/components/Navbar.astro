@@ -52,7 +52,7 @@ const currentPath = Astro.url.pathname;
                 links.map((link) => (
                     <a
                         href={link.href}
-                        class="nav-link group relative font-sans text-sm md:text-[18px] uppercase tracking-[0.2em] font-500 text-brand-red"
+                        class="nav-link group relative font-sans text-xs md:text-sm uppercase tracking-[0.2em] font-bold text-brand-red"
                         data-target={link.href.replace("/#", "")}
                     >
                         {link.name}

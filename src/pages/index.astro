@@ -79,7 +79,7 @@ const agents = team;
                     class="max-w-[1440px] w-full text-center md:text-right px-6"
                 >
                     <h1
-                        class="font-sans font-bold text-brand-red mb-6 md:mb-12"
+                        class="font-sans font-900 text-brand-red mb-6 md:mb-12"
                         style="font-size: clamp(3.5rem, 12vw, 180px); line-height: .9; letter-spacing: -0.04em;"
                     >
                         Make Internet<br />Work Again
@@ -197,14 +197,20 @@ const agents = team;
         >
             <div class="max-w-[1440px] mx-auto w-full px-6 relative">
                 <div
-                    class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 pb-4"
+                    class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8"
                 >
                     <div>
                         <h2
                             class="text-sm font-sans uppercase tracking-[0.2em] text-brand-red mb-2 block font-bold"
                         >
-                            Vista Corporativa
+                            DIRECTORIO CORPORATIVO
                         </h2>
+                    </div>
+                    <div class="hidden md:block text-right">
+                        <span
+                            class="text-xs font-sans tracking-widest block text-brand-black font-bold"
+                            >PLANTA EJECUTIVA</span
+                        >
                     </div>
                 </div>
 
@@ -272,16 +278,16 @@ const agents = team;
                                                         {member.ref}
                                                     </span>
                                                 </div>
-                                                <p class="text-lg font-sans text-brand-black font-medium leading-tight">
+                                                <p class="text-lg font-sans text-brand-black font-medium leading-tight opacity-80">
                                                     {member.desc}
                                                 </p>
                                                 {member.isLeader && (
                                                     <a
                                                         href="/team/david/cv.pdf"
                                                         download
-                                                        class="mt-8 inline-flex items-center gap-2 px-6 py-3 bg-brand-red text-white text-[10px] font-bold uppercase tracking-widest rounded-full hover:bg-brand-black transition-colors"
+                                                        class="mt-8 inline-flex items-center gap-3 px-8 py-4 bg-brand-red text-white text-xs md:text-sm font-900 uppercase tracking-widest rounded-full hover:bg-brand-black transition-all duration-300 group"
                                                     >
-                                                        Ver CV
+                                                        <span>Ver CV</span>
                                                         <svg
                                                             class="w-3 h-3"
                                                             viewBox="0 0 24 24"
@@ -343,9 +349,11 @@ const agents = team;
                                                     <a
                                                         href="/team/david/cv.pdf"
                                                         download
-                                                        class="mt-8 inline-flex items-center gap-2 px-6 py-3 bg-brand-black text-white text-[10px] font-bold uppercase tracking-widest rounded-full hover:bg-brand-red transition-all duration-300"
+                                                        class="mt-8 inline-flex items-center gap-3 px-8 py-4 bg-brand-black text-white text-xs md:text-sm font-900 uppercase tracking-widest rounded-full hover:bg-brand-red transition-all duration-300 group"
                                                     >
-                                                        Descargar CV
+                                                        <span>
+                                                            Descargar CV
+                                                        </span>
                                                         <svg
                                                             class="w-3 h-3"
                                                             viewBox="0 0 24 24"
@@ -386,13 +394,13 @@ const agents = team;
                             <h2
                                 class="text-sm font-sans uppercase tracking-[0.2em] text-brand-red mb-2 block font-bold"
                             >
-                                Fase Terminal
+                                CONTACTO FINAL
                             </h2>
                         </div>
                         <div class="hidden md:block text-right">
                             <span
                                 class="text-xs font-sans tracking-widest block text-brand-black font-bold"
-                                >SINCRO: ACTIVA</span
+                                >SEDE CENTRAL</span
                             >
                         </div>
                     </div>
@@ -401,7 +409,7 @@ const agents = team;
                     <div
                         class="w-full border-y border-brand-black py-3 flex justify-between items-center text-xs font-sans font-bold tracking-widest uppercase text-brand-black mb-12"
                     >
-                        <span class="opacity-60">Canales de Comunicación</span>
+                        <span class="opacity-60">CANALES OFICIALES</span>
                         <div class="flex gap-8">
                             <a
                                 href="https://instagram.com"
