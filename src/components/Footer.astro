@@ -1,4 +1,5 @@
 ---
+import AnimatedLogo from "./AnimatedLogo.astro";
 const today = new Date();
 ---
 
@@ -9,11 +10,14 @@ const today = new Date();
         <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
             <!-- Brand Column -->
             <div class="md:col-span-2">
-                <h3
-                    class="text-xl font-sans font-900 text-brand-red uppercase tracking-wider mb-2"
-                >
-                    Humanoides & Asociados
-                </h3>
+                <div class="w-48 mb-6">
+                    <AnimatedLogo
+                        mode="static"
+                        variant="full"
+                        color="var(--color-brand-red)"
+                        align="left"
+                    />
+                </div>
                 <p
                     class="text-sm md:text-base font-sans font-medium text-brand-black/80 max-w-xs leading-tight"
                 >
@@ -33,11 +37,6 @@ const today = new Date();
                         href="/#log"
                         class="text-xs font-sans font-bold text-brand-black hover:text-brand-red transition-colors uppercase tracking-widest"
                         >Archivo</a
-                    >
-                    <a
-                        href="/#core"
-                        class="text-xs font-sans font-bold text-brand-black hover:text-brand-red transition-colors uppercase tracking-widest"
-                        >Operaciones</a
                     >
                     <a
                         href="/#core"
@@ -62,7 +61,7 @@ const today = new Date();
                 <p
                     class="text-xs font-sans font-bold text-brand-black uppercase tracking-widest leading-loose"
                 >
-                    Lima, Perú <br />
+                    Perú & España <br />
                     · Operación internacional ·
                 </p>
             </div>
