@@ -22,7 +22,7 @@ const currencySymbol = "$";
         >
             <div class="reveal-fade-up">
                 <h2
-                    class="text-sm font-sans uppercase tracking-[0.2em] text-brand-red mb-2 block font-bold"
+                    class="text-sm font-sans uppercase tracking-[0.2em] text-[#C41E1E] mb-2 block font-bold"
                 >
                     TARIFAS
                 </h2>
@@ -76,15 +76,15 @@ const currencySymbol = "$";
                         class={`flex-shrink-0 w-[calc(100vw-48px)] md:w-[45vw] lg:w-full snap-center relative flex flex-col bg-brand-salmon p-6 md:p-8 transition-all duration-500 group active:scale-[0.98] md:active:scale-100 rounded-3xl border ${item.recommended ? "border-brand-red" : "border-brand-black"}`}
                     >
                         {item.recommended && (
-                            <div class="absolute top-3 right-3 bg-brand-red text-white text-[11px] font-sans font-900 px-4 py-1.5 uppercase tracking-widest rounded-full z-10">
+                            <div class="absolute top-3 right-3 bg-[#C41E1E] text-white text-[11px] font-sans font-900 px-4 py-1.5 uppercase tracking-widest rounded-full z-10">
                                 Recomendado
                             </div>
                         )}
 
                         <div class="mt-10 mb-4">
-                            <h4 class="text-xs font-sans font-900 text-brand-red uppercase tracking-[0.2em] mb-4">
+                            <h3 class="text-xs font-sans font-900 text-[#C41E1E] uppercase tracking-[0.2em] mb-4">
                                 — {item.name}
-                            </h4>
+                            </h3>
 
                             <!-- Level Selector -->
                             <div class="flex bg-brand-gray rounded-xl p-1 mb-8 level-selector" data-program={item.id}>
@@ -123,7 +123,7 @@ const currencySymbol = "$";
                                 href="https://calendly.com/humanoidesyasociados/sync"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                class={`cta-button inline-flex items-center justify-center gap-3 w-full py-5 rounded-full text-[13px] font-sans font-900 uppercase tracking-[0.2em] transition-all duration-300 ${item.recommended ? "bg-brand-red text-white hover:bg-brand-black" : "bg-brand-black text-white hover:bg-brand-red"}`}
+                                class={`cta-button inline-flex items-center justify-center gap-3 w-full py-5 rounded-full text-[13px] font-sans font-900 uppercase tracking-[0.2em] transition-all duration-300 ${item.recommended ? "bg-[#C41E1E] text-white hover:bg-brand-black" : "bg-brand-black text-white hover:bg-[#C41E1E]"}`}
                             >
                                 EMPEZAR PROYECTO
                                 <svg

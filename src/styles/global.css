@@ -3,13 +3,14 @@
 
 @theme {
   /* Fonts */
-  --font-sans: 'Anek Malayalam', system-ui, sans-serif;
+  --font-sans: "Anek Malayalam", system-ui, sans-serif;
+  --font-mono: "Anek Malayalam", system-ui, sans-serif;
 
   /* Colors from Manual */
-  --color-brand-red: #FA2A2A;
-  --color-brand-salmon: #FFEEDB;
-  --color-brand-gray: #D4DAD3;
-  --color-brand-black: #2F2F2F;
+  --color-brand-red: #fa2a2a;
+  --color-brand-salmon: #ffeedb;
+  --color-brand-gray: #d4dad3;
+  --color-brand-black: #2f2f2f;
 
   /* Semantic Colors */
   --color-background: var(--color-brand-gray);
@@ -25,10 +26,10 @@
   --font-weight-600: 600;
   --font-weight-700: 700;
   --font-weight-800: 800;
+  --font-weight-900: 900;
 }
 
 @layer base {
-
   html.lenis,
   html.lenis body {
     height: auto;

@@ -78,7 +78,7 @@ const projects = projectsData
     >
       <div>
         <h2
-          class="text-sm font-sans uppercase tracking-[0.2em] text-brand-red mb-2 block font-bold"
+          class="text-sm font-sans uppercase tracking-[0.2em] text-[#C41E1E] mb-2 block font-bold"
         >
           PORTFOLIO
         </h2>
@@ -147,6 +147,7 @@ const projects = projectsData
           <div class="absolute inset-0 z-0">
               <img 
                 src={projects[projects.length - 1].image} 
+                alt={`${projects[projects.length - 1].client} preview`}
                 class="w-full h-full object-cover" 
                 loading="lazy"
               />
@@ -154,7 +155,7 @@ const projects = projectsData
           </div>
           <div class="relative z-10 flex flex-col p-6 flex-grow justify-end">
               <div class="mb-4">
-                  <h3 class="text-3xl font-sans font-900 uppercase tracking-tighter leading-none text-white mb-1">{projects[projects.length - 1].client}</h3>
+                  <h3 class="text-3xl font-sans font-900 capitalize tracking-tighter leading-none text-white mb-1">{projects[projects.length - 1].client}</h3>
                   <p class="text-lg font-sans font-normal leading-tight text-white/90 lowercase first-letter:uppercase">{projects[projects.length - 1].service}</p>
               </div>
               <a href={projects[projects.length - 1].url} class="w-full py-4 bg-white text-brand-black border border-white rounded-full flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest hover:bg-brand-red hover:text-white hover:border-brand-red transition-colors">
@@ -184,7 +185,7 @@ const projects = projectsData
 
             <div class="relative z-10 flex flex-col p-6 flex-grow justify-end">
                 <div class="mb-4">
-                    <h3 class="text-3xl font-sans font-900 uppercase tracking-tighter leading-none text-white mb-1">
+                    <h3 class="text-3xl font-sans font-900 capitalize tracking-tighter leading-none text-white mb-1">
                         {project.client}
                     </h3>
                     <p class="text-lg font-sans font-normal leading-tight text-white/90 lowercase first-letter:uppercase">
@@ -221,6 +222,7 @@ const projects = projectsData
           <div class="absolute inset-0 z-0">
               <img 
                 src={projects[0].image} 
+                alt={`${projects[0].client} preview`}
                 class="w-full h-full object-cover" 
                 loading="lazy"
               />
@@ -228,7 +230,7 @@ const projects = projectsData
           </div>
           <div class="relative z-10 flex flex-col p-6 flex-grow justify-end">
               <div class="mb-4">
-                  <h3 class="text-3xl font-sans font-900 uppercase tracking-tighter leading-none text-white mb-1">{projects[0].client}</h3>
+                  <h3 class="text-3xl font-sans font-900 capitalize tracking-tighter leading-none text-white mb-1">{projects[0].client}</h3>
                   <p class="text-lg font-sans font-normal leading-tight text-white/90 lowercase first-letter:uppercase">{projects[0].service}</p>
               </div>
               <a href={projects[0].url} class="w-full py-4 bg-white text-brand-black border border-white rounded-full flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest hover:bg-brand-red hover:text-white hover:border-brand-red transition-colors">
@@ -262,7 +264,7 @@ const projects = projectsData
 
               <!-- Cliente -->
               <div class="col-span-4">
-                <h3 class="text-6xl font-sans font-900 uppercase tracking-tighter text-brand-black group-hover:translate-x-4 transition-transform duration-500 will-change-transform">
+                <h3 class="text-6xl font-sans font-900 capitalize tracking-tighter text-brand-black group-hover:translate-x-4 transition-transform duration-500 will-change-transform">
                   {project.client}
                 </h3>
               </div>

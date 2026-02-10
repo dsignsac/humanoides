@@ -5,27 +5,27 @@ import fs from "node:fs";
 import path from "node:path";
 
 export function getProjects() {
-    const projectsDir = path.resolve("./public/proyectos");
-    const projectFolders = fs.readdirSync(projectsDir);
+  const projectsDir = path.resolve("./public/proyectos");
+  const projectFolders = fs.readdirSync(projectsDir);
 
-    return projectFolders
-        .map((folder) => {
-            const infoPath = path.join(projectsDir, folder, "info.json");
-            if (fs.existsSync(infoPath)) {
-                return JSON.parse(fs.readFileSync(infoPath, "utf-8"));
-            }
-            return null;
-        })
-        .filter(Boolean)
-        .sort((a, b) => parseInt(b.year) - parseInt(a.year));
+  return projectFolders
+    .map((folder) => {
+      const infoPath = path.join(projectsDir, folder, "info.json");
+      if (fs.existsSync(infoPath)) {
+        return JSON.parse(fs.readFileSync(infoPath, "utf-8"));
+      }
+      return null;
+    })
+    .filter(Boolean)
+    .sort((a, b) => parseInt(b.year) - parseInt(a.year));
 }
 
 export function getStaticPaths() {
-    const projectsData = getProjects();
-    return projectsData.map((project) => ({
-        params: { id: project.id },
-        props: { project, projectsData },
-    }));
+  const projectsData = getProjects();
+  return projectsData.map((project) => ({
+    params: { id: project.id },
+    props: { project, projectsData },
+  }));
 }
 
 const { project, projectsData } = Astro.props;
@@ -34,246 +34,212 @@ const { project, projectsData } = Astro.props;
 const currentIndex = projectsData.findIndex((p) => p.id === project.id);
 const nextProjectData = projectsData[(currentIndex + 1) % projectsData.length];
 const nextProject = {
-    slug: nextProjectData.id,
-    title: nextProjectData.client,
+  slug: nextProjectData.id,
+  title: nextProjectData.client,
 };
 
 // Forced Global UI Palette (Melbourne style)
 const uiPalette = {
-    base: "#1A1A1A",
-    contraste: "#FF3E00",
-    textos: "#D4DAD3",
-    logos: "#FF3E00",
+  base: "#1A1A1A",
+  contraste: "#FF3E00",
+  textos: "#D4DAD3",
+  logos: "#FF3E00",
 };
 
 // Logo specific logic: Project Global > Default
 const projectLogoColor =
-    project.logoColor || project.palette?.logos || uiPalette.logos;
+  project.logoColor || project.palette?.logos || uiPalette.logos;
 ---
 
 <Layout title={`${project.client} // ${project.title}`}>
-    <main
-        class="min-h-screen bg-brand-salmon text-brand-black pb-0 selection:bg-brand-red selection:text-white"
-    >
-        <!-- PROJECT THEMED AREA -->
-        <div
-            class="project-area w-full transition-colors duration-700"
-            style={`
+  <main
+    class="min-h-screen bg-brand-salmon text-brand-black pb-0 selection:bg-brand-red selection:text-white"
+  >
+    <!-- PROJECT THEMED AREA -->
+    <div
+      class="project-area w-full transition-colors duration-700"
+      style={`
                 background-color: ${uiPalette.base}; 
                 color: ${uiPalette.textos};
                 --p-contraste: ${uiPalette.contraste};
                 --p-textos: ${uiPalette.textos};
                 --p-logos: ${projectLogoColor};
             `}
+    >
+      <div class="max-w-[1440px] mx-auto w-full px-0 md:px-6 pt-32 md:pt-48">
+        <!-- HEADER -->
+        <div
+          class="px-6 md:px-0 flex flex-col md:flex-row justify-between items-start md:items-end mb-16 pb-8 border-b border-[var(--p-contraste)] gap-8"
         >
-            <div
-                class="max-w-[1440px] mx-auto w-full px-0 md:px-6 pt-32 md:pt-48"
+          <div>
+            <span
+              class="block text-xs font-sans font-bold tracking-[0.3em] mb-4 text-brand-red uppercase"
+              >{project.client}</span
             >
-                <!-- HEADER -->
-                <div
-                    class="px-6 md:px-0 flex flex-col md:flex-row justify-between items-start md:items-end mb-16 pb-8 border-b border-[var(--p-contraste)] gap-8"
-                >
-                    <div>
-                        <span
-                            class="block text-xs font-mono font-bold tracking-[0.3em] mb-4 text-brand-red uppercase"
-                            >{project.client}</span
-                        >
-                        <h1
-                            class="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-sans font-800 uppercase leading-[0.85] tracking-tighter text-[var(--p-textos)] break-words"
-                            style="font-size: clamp(2.5rem, 12vw, 8rem);"
-                        >
-                            {project.title}
-                        </h1>
-                    </div>
-                </div>
+            <h1
+              class="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-sans font-900 capitalize leading-[0.85] tracking-tighter text-[var(--p-textos)] break-words"
+              style="font-size: clamp(2.5rem, 12vw, 8rem);"
+            >
+              {project.title}
+            </h1>
+          </div>
+        </div>
 
-                <!-- PROJECT DATA & DESCRIPTION -->
-                <div
-                    class="px-6 md:px-0 grid grid-cols-1 md:grid-cols-12 gap-12 mb-24"
-                >
-                    <!-- META DATA COLUMNS -->
-                    <div
-                        class="md:col-span-4 grid grid-cols-2 gap-y-8 gap-x-4 content-start"
-                    >
-                        <div>
-                            <h3
-                                class="text-[12px] font-mono uppercase tracking-widest mb-2 text-[var(--p-contraste)]"
-                            >
-                                Cliente
-                            </h3>
-                            <p class="font-sans text-lg font-500">
-                                {project.client}
-                            </p>
-                        </div>
-                        <div>
-                            <h3
-                                class="text-[12px] font-mono uppercase tracking-widest mb-2 text-[var(--p-contraste)]"
-                            >
-                                Servicio
-                            </h3>
-                            <p class="font-sans text-lg font-500">
-                                {project.service}
-                            </p>
-                        </div>
-                        <div>
-                            <h3
-                                class="text-[12px] font-mono uppercase tracking-widest mb-2 text-[var(--p-contraste)]"
-                            >
-                                Año
-                            </h3>
-                            <p class="font-sans text-lg font-500">
-                                {project.year}
-                            </p>
-                        </div>
-                    </div>
+        <!-- PROJECT DATA & DESCRIPTION -->
+        <div class="px-6 md:px-0 grid grid-cols-1 md:grid-cols-12 gap-12 mb-24">
+          <!-- META DATA COLUMNS -->
+          <div
+            class="md:col-span-4 grid grid-cols-2 gap-y-8 gap-x-4 content-start"
+          >
+            <div>
+              <h3
+                class="text-[12px] font-sans font-bold uppercase tracking-widest mb-2 text-[var(--p-contraste)]"
+              >
+                Cliente
+              </h3>
+              <p class="font-sans text-lg font-500">
+                {project.client}
+              </p>
+            </div>
+            <div>
+              <h3
+                class="text-[12px] font-sans font-bold uppercase tracking-widest mb-2 text-[var(--p-contraste)]"
+              >
+                Servicio
+              </h3>
+              <p class="font-sans text-lg font-500">
+                {project.service}
+              </p>
+            </div>
+            <div>
+              <h3
+                class="text-[12px] font-sans font-bold uppercase tracking-widest mb-2 text-[var(--p-contraste)]"
+              >
+                Año
+              </h3>
+              <p class="font-sans text-lg font-500">
+                {project.year}
+              </p>
+            </div>
+          </div>
 
-                    <!-- DESCRIPTION -->
-                    <div class="md:col-span-8">
-                        <p
-                            class="text-2xl md:text-4xl font-sans font-300 leading-tight mb-12"
-                        >
-                            {
-                                project.description ||
-                                    "Documentación del proyecto bajo proceso de sincronización."
-                            }
-                        </p>
+          <!-- DESCRIPTION -->
+          <div class="md:col-span-8">
+            <p
+              class="text-2xl md:text-4xl font-sans font-300 leading-tight mb-12"
+            >
+              {
+                project.description ||
+                  "Documentación del proyecto bajo proceso de sincronización."
+              }
+            </p>
 
-                        <div class="flex gap-3 flex-wrap">
-                            {
-                                project.stack?.map((tech: string) => (
-                                    <span class="px-4 py-2 bg-[var(--p-contraste)] text-[var(--p-textos)] rounded-full text-xs font-sans font-bold uppercase tracking-wider cursor-default">
-                                        {tech}
-                                    </span>
-                                ))
-                            }
-                        </div>
-                    </div>
-                </div>
+            <div class="flex gap-3 flex-wrap">
+              {
+                project.stack?.map((tech: string) => (
+                  <span class="px-4 py-2 bg-[var(--p-contraste)] text-[var(--p-textos)] rounded-full text-xs font-sans font-bold uppercase tracking-wider cursor-default">
+                    {tech}
+                  </span>
+                ))
+              }
+            </div>
+          </div>
+        </div>
 
-                <!-- GALLERY -->
-                <section class="flex flex-col w-full">
-                    {
-                        project.gallery ? (
-                            <div class="w-full">
-                                {project.gallery.map(
-                                    (item: any, index: number) => {
-                                        const getPath = (src: string) => {
-                                            if (!src) return "";
-                                            if (
-                                                src.startsWith("/") ||
-                                                src.startsWith("http")
-                                            )
-                                                return src;
-                                            return `/proyectos/${project.id}/${src}`;
-                                        };
+        <!-- GALLERY -->
+        <section class="flex flex-col w-full">
+          {
+            project.gallery ? (
+              <div class="w-full">
+                {project.gallery.map((item: any, index: number) => {
+                  const getPath = (src: string) => {
+                    if (!src) return "";
+                    if (src.startsWith("/") || src.startsWith("http"))
+                      return src;
+                    return `/proyectos/${project.id}/${src}`;
+                  };
 
-                                        if (item.type === "image") {
-                                            return (
-                                                <div class="w-full overflow-hidden">
-                                                    <img
-                                                        src={getPath(item.src)}
-                                                        class="w-full h-auto object-cover block"
-                                                        alt={`${project.title} - ${index}`}
-                                                        loading="lazy"
-                                                    />
-                                                </div>
-                                            );
-                                        }
+                  if (item.type === "image") {
+                    return (
+                      <div class="w-full overflow-hidden">
+                        <img
+                          src={getPath(item.src)}
+                          class="w-full h-auto object-cover block"
+                          alt={`${project.title} - ${index}`}
+                          loading="lazy"
+                        />
+                      </div>
+                    );
+                  }
 
-                                        if (item.type === "video") {
-                                            let videoSrc = item.src;
+                  if (item.type === "video") {
+                    let videoSrc = item.src;
 
-                                            if (
-                                                videoSrc.includes("vimeo") ||
-                                                /^\d+$/.test(videoSrc)
-                                            ) {
-                                                // Extract ID and Hash if present
-                                                let vimeoId = videoSrc
-                                                    .replace(
-                                                        "https://vimeo.com/",
-                                                        "",
-                                                    )
-                                                    .replace(
-                                                        "https://player.vimeo.com/video/",
-                                                        "",
-                                                    )
-                                                    .split("?")[0];
-                                                // Keep hash if it exists in the original URL
-                                                const urlParams =
-                                                    new URLSearchParams(
-                                                        videoSrc.includes("?")
-                                                            ? videoSrc.split(
-                                                                  "?",
-                                                              )[1]
-                                                            : "",
-                                                    );
-                                                const hash = urlParams.get("h");
+                    if (videoSrc.includes("vimeo") || /^\d+$/.test(videoSrc)) {
+                      // Extract ID and Hash if present
+                      let vimeoId = videoSrc
+                        .replace("https://vimeo.com/", "")
+                        .replace("https://player.vimeo.com/video/", "")
+                        .split("?")[0];
+                      // Keep hash if it exists in the original URL
+                      const urlParams = new URLSearchParams(
+                        videoSrc.includes("?") ? videoSrc.split("?")[1] : "",
+                      );
+                      const hash = urlParams.get("h");
 
-                                                videoSrc = `https://player.vimeo.com/video/${vimeoId}?autoplay=0&loop=1&muted=0${hash ? `&h=${hash}` : ""}`;
-                                            } else if (
-                                                videoSrc.includes("youtube") ||
-                                                videoSrc.includes("youtu.be")
-                                            ) {
-                                                const ytId = videoSrc.includes(
-                                                    "watch?v=",
-                                                )
-                                                    ? videoSrc
-                                                          .split("v=")[1]
-                                                          .split("&")[0]
-                                                    : videoSrc
-                                                          .split("/")
-                                                          .pop()
-                                                          ?.split("?")[0];
-                                                videoSrc = `https://www.youtube.com/embed/${ytId}?autoplay=0&controls=1&loop=1&playlist=${ytId}&rel=0`;
-                                            }
+                      videoSrc = `https://player.vimeo.com/video/${vimeoId}?autoplay=0&loop=1&muted=0${hash ? `&h=${hash}` : ""}`;
+                    } else if (
+                      videoSrc.includes("youtube") ||
+                      videoSrc.includes("youtu.be")
+                    ) {
+                      const ytId = videoSrc.includes("watch?v=")
+                        ? videoSrc.split("v=")[1].split("&")[0]
+                        : videoSrc.split("/").pop()?.split("?")[0];
+                      videoSrc = `https://www.youtube.com/embed/${ytId}?autoplay=0&controls=1&loop=1&playlist=${ytId}&rel=0`;
+                    }
 
-                                            return (
-                                                <div class="w-full aspect-video bg-black overflow-hidden text-brand-black">
-                                                    <iframe
-                                                        src={videoSrc}
-                                                        class="w-full h-full"
-                                                        style="width: 100%; height: 100%;"
-                                                        allow="autoplay; fullscreen; picture-in-picture"
-                                                        allowfullscreen
-                                                    />
-                                                </div>
-                                            );
-                                        }
+                    return (
+                      <div class="w-full aspect-video bg-black overflow-hidden text-brand-black">
+                        <iframe
+                          src={videoSrc}
+                          class="w-full h-full"
+                          style="width: 100%; height: 100%;"
+                          allow="autoplay; fullscreen; picture-in-picture"
+                          allowfullscreen
+                        />
+                      </div>
+                    );
+                  }
 
-                                        if (item.type === "logo") {
-                                            const src = getPath(item.src);
-                                            const context = getPath(
-                                                item.context,
-                                            );
-                                            const isSVG = src.endsWith(".svg");
-                                            const useOriginal =
-                                                item.color === "original";
-                                            const logoColor =
-                                                item.color &&
-                                                item.color !== "original"
-                                                    ? item.color
-                                                    : "var(--p-logos)";
+                  if (item.type === "logo") {
+                    const src = getPath(item.src);
+                    const context = getPath(item.context);
+                    const isSVG = src.endsWith(".svg");
+                    const useOriginal = item.color === "original";
+                    const logoColor =
+                      item.color && item.color !== "original"
+                        ? item.color
+                        : "var(--p-logos)";
 
-                                            return (
-                                                <div class="group relative w-full aspect-video md:aspect-[21/9] border-b border-[var(--p-contraste)] flex items-center justify-center overflow-hidden cursor-pointer">
-                                                    {/* Context Background Image */}
-                                                    {context && (
-                                                        <div class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-700 ease-out">
-                                                            <img
-                                                                src={context}
-                                                                class="w-full h-full object-cover scale-110 group-hover:scale-100 group-active:scale-100 transition-transform duration-1000"
-                                                                alt="Contexto"
-                                                            />
-                                                            <div class="absolute inset-0 bg-black opacity-40 mix-blend-multiply" />
-                                                        </div>
-                                                    )}
+                    return (
+                      <div class="group relative w-full aspect-video md:aspect-[21/9] border-b border-[var(--p-contraste)] flex items-center justify-center overflow-hidden cursor-pointer">
+                        {/* Context Background Image */}
+                        {context && (
+                          <div class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-700 ease-out">
+                            <img
+                              src={context}
+                              class="w-full h-full object-cover scale-110 group-hover:scale-100 group-active:scale-100 transition-transform duration-1000"
+                              alt="Contexto"
+                            />
+                            <div class="absolute inset-0 bg-black opacity-40 mix-blend-multiply" />
+                          </div>
+                        )}
 
-                                                    <div class="relative z-10 w-full h-full max-w-[320px] md:max-w-[800px] p-8 md:p-32 flex items-center justify-center transition-transform duration-500 group-hover:scale-110 group-active:scale-110">
-                                                        {isSVG &&
-                                                        !useOriginal ? (
-                                                            <div
-                                                                class="w-full h-full"
-                                                                style={`
+                        <div class="relative z-10 w-full h-full max-w-[320px] md:max-w-[800px] p-8 md:p-32 flex items-center justify-center transition-transform duration-500 group-hover:scale-110 group-active:scale-110">
+                          {isSVG && !useOriginal ? (
+                            <div
+                              class="w-full h-full"
+                              style={`
                                                                 background-color: ${logoColor};
                                                                 mask-image: url(${src});
                                                                 -webkit-mask-image: url(${src});
@@ -284,70 +250,67 @@ const projectLogoColor =
                                                                 mask-position: center;
                                                                 -webkit-mask-position: center;
                                                             `}
-                                                            />
-                                                        ) : (
-                                                            <img
-                                                                src={src}
-                                                                class={`max-w-full max-h-full object-contain transition-all duration-500 ${!useOriginal ? "grayscale brightness-0 invert group-hover:brightness-200 group-active:brightness-200" : ""}`}
-                                                                alt="Logo"
-                                                                loading="lazy"
-                                                            />
-                                                        )}
-                                                    </div>
-                                                </div>
-                                            );
-                                        }
-                                        return null;
-                                    },
-                                )}
-                            </div>
-                        ) : (
-                            project.images?.map(
-                                (img: string, index: number) => (
-                                    <div class="w-full overflow-hidden">
-                                        <img
-                                            src={img}
-                                            class="w-full h-auto object-cover block transition-all duration-700"
-                                            alt={`${project.title} - Vista ${index + 1}`}
-                                            loading="lazy"
-                                        />
-                                    </div>
-                                ),
-                            )
-                        )
-                    }
-                </section>
-            </div>
+                            />
+                          ) : (
+                            <img
+                              src={src}
+                              class={`max-w-full max-h-full object-contain transition-all duration-500 ${!useOriginal ? "grayscale brightness-0 invert group-hover:brightness-200 group-active:brightness-200" : ""}`}
+                              alt="Logo"
+                              loading="lazy"
+                            />
+                          )}
+                        </div>
+                      </div>
+                    );
+                  }
+                  return null;
+                })}
+              </div>
+            ) : (
+              project.images?.map((img: string, index: number) => (
+                <div class="w-full overflow-hidden">
+                  <img
+                    src={img}
+                    class="w-full h-auto object-cover block transition-all duration-700"
+                    alt={`${project.title} - Vista ${index + 1}`}
+                    loading="lazy"
+                  />
+                </div>
+              ))
+            )
+          }
+        </section>
+      </div>
+    </div>
+
+    <!-- FOOTER NAVIGATION (Outside project-area to keep original brand colors) -->
+    <a
+      href={`/projects/${nextProject.slug}`}
+      class="block w-full border-t border-brand-red mt-0 bg-brand-black hover:bg-brand-red transition-all duration-500 group relative overflow-hidden"
+    >
+      <!-- Subtle glow effect removed for brand compliance -->
+
+      <div
+        class="max-w-[1440px] mx-auto w-full px-6 md:px-6 py-16 md:py-24 flex justify-between items-center relative z-10"
+      >
+        <div>
+          <span
+            class="block text-[12px] font-bold bg-brand-red text-white px-3 py-1 rounded-full uppercase tracking-wider mb-4 inline-block group-hover:bg-black group-hover:text-white transition-colors duration-500"
+          >
+            Siguiente Proyecto
+          </span>
+          <h2
+            class="text-5xl md:text-8xl font-sans font-800 uppercase tracking-tighter text-brand-red group-hover:text-brand-black transition-colors duration-500 leading-none"
+          >
+            {nextProject.title}
+          </h2>
         </div>
-
-        <!-- FOOTER NAVIGATION (Outside project-area to keep original brand colors) -->
-        <a
-            href={`/projects/${nextProject.slug}`}
-            class="block w-full border-t border-brand-red mt-0 bg-brand-black hover:bg-brand-red transition-all duration-500 group relative overflow-hidden"
+        <div
+          class="text-5xl md:text-8xl text-brand-red group-hover:text-brand-black group-hover:translate-x-6 transition-all duration-500"
         >
-            <!-- Subtle glow effect removed for brand compliance -->
-
-            <div
-                class="max-w-[1440px] mx-auto w-full px-6 md:px-6 py-16 md:py-24 flex justify-between items-center relative z-10"
-            >
-                <div>
-                    <span
-                        class="block text-[12px] font-bold bg-brand-red text-white px-3 py-1 rounded-full uppercase tracking-wider mb-4 inline-block group-hover:bg-black group-hover:text-white transition-colors duration-500"
-                    >
-                        Siguiente Proyecto
-                    </span>
-                    <h2
-                        class="text-5xl md:text-8xl font-sans font-800 uppercase tracking-tighter text-brand-red group-hover:text-brand-black transition-colors duration-500 leading-none"
-                    >
-                        {nextProject.title}
-                    </h2>
-                </div>
-                <div
-                    class="text-5xl md:text-8xl text-brand-red group-hover:text-brand-black group-hover:translate-x-6 transition-all duration-500"
-                >
-                    →
-                </div>
-            </div>
-        </a>
-    </main>
+          →
+        </div>
+      </div>
+    </a>
+  </main>
 </Layout>

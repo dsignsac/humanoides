@@ -4,665 +4,614 @@ import AnimatedLogo from "../components/AnimatedLogo.astro";
 ---
 
 <Layout title="Manual de Marca | Humanoides & Asociados">
-    <main
-        class="min-h-screen bg-brand-gray flex flex-col gap-16 md:gap-20 text-brand-black"
+  <main
+    class="min-h-screen bg-brand-gray flex flex-col gap-16 md:gap-20 text-brand-black"
+  >
+    <!-- Hero Section (Typographic) -->
+    <section
+      class="relative w-full min-h-[60vh] flex flex-col justify-center items-center overflow-hidden pt-32"
     >
-        <!-- Hero Section (Typographic) -->
-        <section
-            class="relative w-full min-h-[60vh] flex flex-col justify-center items-center overflow-hidden pt-32"
+      <div class="relative z-10 text-center px-6 max-w-7xl mx-auto">
+        <div
+          class="inline-block border border-brand-red/30 px-6 py-2 rounded-full text-xs font-sans italic uppercase tracking-[0.3em] mb-12 text-brand-red"
         >
-            <div class="relative z-10 text-center px-6 max-w-7xl mx-auto">
-                <div
-                    class="inline-block border border-brand-red/30 px-6 py-2 rounded-full text-xs font-sans italic uppercase tracking-[0.3em] mb-12 text-brand-red"
+          2026 Manual V1.1
+        </div>
+        <h1
+          class="text-7xl md:text-9xl lg:text-[11rem] font-sans font-800 tracking-tighter text-brand-red mb-12 leading-[0.8]"
+        >
+          Identidad<br />Visual
+        </h1>
+        <p
+          class="text-xl md:text-3xl font-sans font-300 text-brand-black max-w-3xl mx-auto leading-relaxed opacity-80"
+        >
+          Sistemas visuales, tipográficos y cromáticos que definen la esencia de <span
+            class="font-bold text-brand-black">Humanoides & Asociados</span
+          >.
+        </p>
+      </div>
+    </section>
+
+    <!-- 1. Motion Showcase (Keep existing logic but cleaner) -->
+    <section class="max-w-[1440px] mx-auto w-full px-6 md:px-0">
+      <h2
+        class="text-xs uppercase tracking-[0.3em] opacity-50 mb-10 font-sans border-b border-brand-black/10 pb-4"
+      >
+        01. Elementos Dinámicos
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
+        <div
+          class="bg-brand-black p-12 rounded-lg md:rounded-[2rem] border border-white/10 flex flex-col items-center justify-center aspect-square md:aspect-video relative overflow-hidden group pointer-events-none"
+        >
+          <div
+            class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+          >
+          </div>
+          <AnimatedLogo mode="loop" variant="full" />
+          <span
+            class="mt-8 text-[10px] font-sans opacity-40 text-white tracking-widest uppercase"
+            >Loop Sequence</span
+          >
+        </div>
+        <div
+          class="bg-brand-red p-12 rounded-lg md:rounded-[2rem] flex flex-col items-center justify-center aspect-square md:aspect-video text-white border border-brand-black/5 relative overflow-hidden pointer-events-none"
+        >
+          <div
+            class="w-full max-w-sm transition-all duration-500 relative z-10"
+          >
+            <AnimatedLogo mode="retractable" variant="iso" color="#D4DAD3" />
+          </div>
+          <span
+            class="mt-8 text-[10px] font-sans opacity-60 tracking-widest uppercase text-white"
+            >Retractable Isotype</span
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Typography System (Updated) -->
+    <section class="max-w-[1440px] mx-auto w-full px-6 md:px-0">
+      <h2
+        class="text-xs uppercase tracking-[0.3em] opacity-50 mb-14 font-sans border-b border-brand-black/10 pb-4"
+      >
+        02. Sistema de Tipografía
+      </h2>
+
+      <div class="grid grid-cols-1 gap-12">
+        <div class="relative">
+          <div class="absolute -top-3 left-0 z-10">
+            <span
+              class="text-[10px] font-sans px-3 py-1 bg-brand-red text-white rounded-full font-500 uppercase tracking-wider"
+              >Fuente Principal</span
+            >
+          </div>
+          <div
+            class="bg-brand-salmon p-8 md:p-16 rounded-lg md:rounded-[2.5rem] border border-brand-black/10 backdrop-blur-sm"
+          >
+            <div
+              class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 border-b border-brand-black/10 pb-8"
+            >
+              <div>
+                <h3
+                  class="text-4xl md:text-6xl font-sans font-600 text-brand-red mb-2"
                 >
-                    2026 Manual V1.1
-                </div>
-                <h1
-                    class="text-7xl md:text-9xl lg:text-[11rem] font-sans font-800 tracking-tighter text-brand-red mb-12 leading-[0.8]"
-                >
-                    Identidad<br />Visual
-                </h1>
-                <p
-                    class="text-xl md:text-3xl font-sans font-300 text-brand-black max-w-3xl mx-auto leading-relaxed opacity-80"
-                >
-                    Sistemas visuales, tipográficos y cromáticos que definen la
-                    esencia de <span class="font-bold text-brand-black"
-                        >Humanoides & Asociados</span
-                    >.
+                  Anek Malayalam
+                </h3>
+                <p class="opacity-50 font-sans text-brand-black">
+                  Sans Serif Humanista con precisión Geométrica
                 </p>
+              </div>
+              <div
+                class="mt-6 md:mt-0 text-right opacity-40 text-sm font-sans italic text-brand-black"
+              >
+                Pesos: 100 - 800
+              </div>
             </div>
-        </section>
 
-        <!-- 1. Motion Showcase (Keep existing logic but cleaner) -->
-        <section class="max-w-[1440px] mx-auto w-full px-6 md:px-0">
-            <h2
-                class="text-xs uppercase tracking-[0.3em] opacity-50 mb-10 font-sans border-b border-brand-black/10 pb-4"
+            <!-- Weights Showcase -->
+            <div class="space-y-4 mb-16 overflow-hidden">
+              <div class="flex items-baseline gap-8">
+                <span class="w-24 text-xs font-sans italic text-brand-red"
+                  >100 Delgada</span
+                >
+                <p
+                  class="text-3xl md:text-5xl font-sans font-100 truncate text-brand-black/60"
+                >
+                  Somos un Creativo Vibe Coder
+                </p>
+              </div>
+              <div class="flex items-baseline gap-8">
+                <span class="w-24 text-xs font-sans italic text-brand-red"
+                  >300 Ligera</span
+                >
+                <p
+                  class="text-3xl md:text-5xl font-sans font-300 truncate text-brand-black/60"
+                >
+                  Somos un Creativo Vibe Coder
+                </p>
+              </div>
+              <div class="flex items-baseline gap-8">
+                <span class="w-24 text-xs font-sans italic text-brand-red"
+                  >400 Regular</span
+                >
+                <p
+                  class="text-3xl md:text-5xl font-sans font-400 truncate text-brand-black/60"
+                >
+                  Somos un Creativo Vibe Coder
+                </p>
+              </div>
+              <div class="flex items-baseline gap-8">
+                <span class="w-24 text-xs font-sans italic text-brand-red"
+                  >500 Media</span
+                >
+                <p
+                  class="text-3xl md:text-5xl font-sans font-500 truncate text-brand-black/60"
+                >
+                  Somos un Creativo Vibe Coder
+                </p>
+              </div>
+              <div class="flex items-baseline gap-8">
+                <span class="w-24 text-xs font-sans italic text-brand-red"
+                  >600 SemiNegrita</span
+                >
+                <p
+                  class="text-3xl md:text-5xl font-sans font-600 truncate text-brand-black/60"
+                >
+                  Somos un Creativo Vibe Coder
+                </p>
+              </div>
+              <div class="flex items-baseline gap-8">
+                <span class="w-24 text-xs font-sans italic text-brand-red"
+                  >700 Negrita</span
+                >
+                <p
+                  class="text-3xl md:text-5xl font-sans font-700 truncate text-brand-black/60"
+                >
+                  Somos un Creativo Vibe Coder
+                </p>
+              </div>
+              <div class="flex items-baseline gap-8">
+                <span class="w-24 text-xs font-sans italic text-brand-red"
+                  >800 ExtraNegrita</span
+                >
+                <p
+                  class="text-3xl md:text-5xl font-sans font-800 truncate text-brand-black/60"
+                >
+                  Somos un Creativo Vibe Coder
+                </p>
+              </div>
+            </div>
+
+            <!-- Styles Usage -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+              <div>
+                <h4
+                  class="text-xs uppercase tracking-widest opacity-50 mb-6 font-sans text-brand-black"
+                >
+                  Párrafo / Cuerpo
+                </h4>
+                <p class="text-lg leading-relaxed font-300 text-brand-black/80">
+                  El diseño no es solo lo que se ve y se siente. El diseño es
+                  cómo funciona. Utilizamos <span
+                    class="font-500 text-brand-salmon">peso 300</span
+                  > para cuerpos de texto largos para mantener la elegancia y legibilidad,
+                  y <span class="font-500 text-brand-salmon">peso 500</span> para
+                  destaques sutiles sin gritar.
+                </p>
+              </div>
+              <div>
+                <h4
+                  class="text-xs uppercase tracking-widest opacity-50 mb-6 font-sans text-brand-black"
+                >
+                  Italic Usage
+                </h4>
+                <p class="text-2xl font-300 italic text-brand-black/90 mb-4">
+                  "La eficiencia es inteligente, pero la disrupción es
+                  necesaria."
+                </p>
+                <p class="text-sm opacity-60 text-brand-black">
+                  Usamos *itálicas* (simuladas o reales cuando estén
+                  disponibles) estrictamente para citas, énfasis narrativo o
+                  metadatos técnicos.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03. Color System -->
+    <section class="max-w-[1440px] mx-auto w-full px-6 md:px-0">
+      <h2
+        class="text-xs uppercase tracking-[0.3em] opacity-50 mb-10 font-sans border-b border-brand-black/10 pb-4"
+      >
+        03. Sistema de Color
+      </h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div
+          class="p-4 bg-brand-red rounded-lg md:rounded-[2rem] text-white h-40 flex flex-col justify-between"
+        >
+          <span class="block font-bold text-lg">Brand Red</span>
+          <span class="block font-sans italic text-xs opacity-80">#FA2A2A</span>
+        </div>
+        <div
+          class="p-4 bg-brand-salmon rounded-lg md:rounded-[2rem] text-brand-black h-40 flex flex-col justify-between border border-brand-black/5"
+        >
+          <span class="block font-bold text-lg">Soft Salmon</span>
+          <span class="block font-sans italic text-xs opacity-60">#FFEEDB</span>
+        </div>
+        <div
+          class="p-4 bg-brand-gray rounded-lg md:rounded-[2rem] text-brand-black h-40 flex flex-col justify-between border border-brand-black/5"
+        >
+          <span class="block font-bold text-lg">Metric Gray</span>
+          <span class="block font-sans italic text-xs opacity-60">#D4DAD3</span>
+        </div>
+        <div
+          class="p-4 bg-brand-black rounded-lg md:rounded-[2rem] text-white h-40 flex flex-col justify-between"
+        >
+          <span class="block font-bold text-lg">Void Black</span>
+          <span class="block font-sans italic text-xs opacity-80">#2F2F2F</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Components: Cards & Buttons -->
+    <section class="max-w-[1440px] mx-auto w-full px-6 md:px-0">
+      <h2
+        class="text-xs uppercase tracking-[0.3em] opacity-50 mb-10 font-sans border-b border-brand-black/10 pb-4"
+      >
+        04. Componentes de Interfaz
+      </h2>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Cards Style -->
+        <div class="space-y-8">
+          <h3 class="text-xl font-sans font-500 text-brand-black">
+            Contenedores de Tarjetas
+          </h3>
+          <!-- Default Card -->
+          <div
+            class="bg-white rounded-lg md:rounded-[2rem] p-8 text-brand-black hover:-translate-y-1 border border-brand-black/5 transition-all duration-300"
+          >
+            <div
+              class="mb-4 w-12 h-12 bg-brand-red rounded-full flex items-center justify-center text-white"
             >
-                01. Elementos Dinámicos
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
-                <div
-                    class="bg-brand-black p-12 rounded-lg md:rounded-[2rem] border border-white/10 flex flex-col items-center justify-center aspect-square md:aspect-video relative overflow-hidden group pointer-events-none"
-                >
-                    <div
-                        class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-                    >
-                    </div>
-                    <AnimatedLogo mode="loop" variant="full" />
-                    <span
-                        class="mt-8 text-[10px] font-sans opacity-40 text-white tracking-widest uppercase"
-                        >Loop Sequence</span
-                    >
-                </div>
-                <div
-                    class="bg-brand-red p-12 rounded-lg md:rounded-[2rem] flex flex-col items-center justify-center aspect-square md:aspect-video text-white border border-brand-black/5 relative overflow-hidden pointer-events-none"
-                >
-                    <div
-                        class="w-full max-w-sm transition-all duration-500 relative z-10"
-                    >
-                        <AnimatedLogo
-                            mode="retractable"
-                            variant="iso"
-                            color="#D4DAD3"
-                        />
-                    </div>
-                    <span
-                        class="mt-8 text-[10px] font-sans opacity-60 tracking-widest uppercase text-white"
-                        >Retractable Isotype</span
-                    >
-                </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-6 h-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg
+              >
             </div>
-        </section>
+            <h4 class="text-2xl font-700 mb-2">Standard Card</h4>
+            <p class="opacity-70 font-400">
+              Fondo White (#FFFFFF). Texto Void Black. Bordes 2rem (32px).
+              Mantiene la estética limpia y técnica.
+            </p>
+          </div>
 
-        <!-- 2. Typography System (Updated) -->
-        <section class="max-w-[1440px] mx-auto w-full px-6 md:px-0">
-            <h2
-                class="text-xs uppercase tracking-[0.3em] opacity-50 mb-14 font-sans border-b border-brand-black/10 pb-4"
+          <!-- Dark Card -->
+          <div
+            class="bg-[#1a1a1a] border border-white/10 rounded-lg md:rounded-[2rem] p-8 text-white hover:border-brand-salmon/30 transition-all duration-300"
+          >
+            <h4 class="text-2xl font-700 mb-2 text-brand-salmon">
+              Dark Mode Card
+            </h4>
+            <p class="opacity-60 font-300">
+              Para secciones de alto contraste. Stroke sutil blanco/10.
+            </p>
+          </div>
+        </div>
+
+        <!-- Buttons Style -->
+        <div class="space-y-8">
+          <h3 class="text-xl font-sans font-500 text-brand-black">
+            Interactive Elements
+          </h3>
+
+          <div
+            class="bg-white p-10 rounded-lg md:rounded-[2.5rem] border border-brand-black/5 flex flex-col gap-8 justify-center items-start"
+          >
+            <!-- Primary Button -->
+            <div class="space-y-2">
+              <button
+                class="bg-brand-red text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-brand-black transition-all duration-300"
+              >
+                Acción Primaria
+              </button>
+              <p
+                class="text-xs opacity-40 font-sans italic mt-2 text-brand-black"
+              >
+                bg-brand-red • rounded-full • bold • no-shadow
+              </p>
+            </div>
+
+            <!-- Secondary Button -->
+            <div class="space-y-2">
+              <button
+                class="bg-transparent border-2 border-brand-black text-brand-black px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-brand-black hover:text-white transition-all duration-300"
+              >
+                Acción Secundaria
+              </button>
+              <p
+                class="text-xs opacity-40 font-sans italic mt-2 text-brand-black"
+              >
+                border-2-black • bg-transparent • bold
+              </p>
+            </div>
+
+            <!-- Text Link -->
+            <div class="space-y-2">
+              <button
+                class="text-brand-salmon font-500 uppercase tracking-widest text-sm hover:opacity-70 transition-opacity border-b border-brand-salmon pb-1"
+              >
+                Text Link Style
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05. UX Feedback System -->
+    <section class="max-w-[1440px] mx-auto w-full px-6 md:px-0">
+      <h2
+        class="text-xs uppercase tracking-[0.3em] opacity-50 mb-10 font-sans border-b border-brand-black/10 pb-4"
+      >
+        05. Sistema de Retroalimentación UX
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Success / Luxury State -->
+        <div
+          class="bg-brand-black border border-brand-red/20 rounded-lg md:rounded-[2rem] p-8 md:p-12 relative overflow-hidden group"
+        >
+          <div
+            class="absolute top-0 right-0 w-32 h-32 bg-brand-red blur-[80px] opacity-20"
+          >
+          </div>
+          <div class="relative z-10">
+            <span
+              class="text-[10px] font-bold bg-brand-red/10 text-brand-red px-3 py-1 rounded-full uppercase tracking-wider mb-6 inline-block"
             >
-                02. Sistema de Tipografía
-            </h2>
+              Premium / Success State
+            </span>
+            <h3 class="text-3xl md:text-4xl font-700 text-brand-red mb-4">
+              Operation Successful
+            </h3>
+            <p class="text-brand-gray opacity-80 text-lg leading-relaxed">
+              Para mensajes de éxito o momentos "premium", utilizamos el fondo
+              negro profundo con tipografía roja vibrante. Evoca lujo, precisión
+              y control total.
+            </p>
+          </div>
+        </div>
 
-            <div class="grid grid-cols-1 gap-12">
-                <div class="relative">
-                    <div class="absolute -top-3 left-0 z-10">
-                        <span
-                            class="text-[10px] font-sans px-3 py-1 bg-brand-red text-white rounded-full font-500 uppercase tracking-wider"
-                            >Fuente Principal</span
-                        >
-                    </div>
-                    <div
-                        class="bg-brand-salmon p-8 md:p-16 rounded-lg md:rounded-[2.5rem] border border-brand-black/10 backdrop-blur-sm"
-                    >
-                        <div
-                            class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 border-b border-brand-black/10 pb-8"
-                        >
-                            <div>
-                                <h3
-                                    class="text-4xl md:text-6xl font-sans font-600 text-brand-red mb-2"
-                                >
-                                    Anek Malayalam
-                                </h3>
-                                <p
-                                    class="opacity-50 font-sans text-brand-black"
-                                >
-                                    Sans Serif Humanista con precisión
-                                    Geométrica
-                                </p>
-                            </div>
-                            <div
-                                class="mt-6 md:mt-0 text-right opacity-40 text-sm font-sans italic text-brand-black"
-                            >
-                                Pesos: 100 - 800
-                            </div>
-                        </div>
-
-                        <!-- Weights Showcase -->
-                        <div class="space-y-4 mb-16 overflow-hidden">
-                            <div class="flex items-baseline gap-8">
-                                <span
-                                    class="w-24 text-xs font-mono text-brand-red"
-                                    >100 Delgada</span
-                                >
-                                <p
-                                    class="text-3xl md:text-5xl font-sans font-100 truncate text-brand-black/60"
-                                >
-                                    Somos un Creativo Vibe Coder
-                                </p>
-                            </div>
-                            <div class="flex items-baseline gap-8">
-                                <span
-                                    class="w-24 text-xs font-sans italic text-brand-red"
-                                    >300 Ligera</span
-                                >
-                                <p
-                                    class="text-3xl md:text-5xl font-sans font-300 truncate text-brand-black/60"
-                                >
-                                    Somos un Creativo Vibe Coder
-                                </p>
-                            </div>
-                            <div class="flex items-baseline gap-8">
-                                <span
-                                    class="w-24 text-xs font-sans italic text-brand-red"
-                                    >400 Regular</span
-                                >
-                                <p
-                                    class="text-3xl md:text-5xl font-sans font-400 truncate text-brand-black/60"
-                                >
-                                    Somos un Creativo Vibe Coder
-                                </p>
-                            </div>
-                            <div class="flex items-baseline gap-8">
-                                <span
-                                    class="w-24 text-xs font-sans italic text-brand-red"
-                                    >500 Media</span
-                                >
-                                <p
-                                    class="text-3xl md:text-5xl font-sans font-500 truncate text-brand-black/60"
-                                >
-                                    Somos un Creativo Vibe Coder
-                                </p>
-                            </div>
-                            <div class="flex items-baseline gap-8">
-                                <span
-                                    class="w-24 text-xs font-sans italic text-brand-red"
-                                    >600 SemiNegrita</span
-                                >
-                                <p
-                                    class="text-3xl md:text-5xl font-sans font-600 truncate text-brand-black/60"
-                                >
-                                    Somos un Creativo Vibe Coder
-                                </p>
-                            </div>
-                            <div class="flex items-baseline gap-8">
-                                <span
-                                    class="w-24 text-xs font-sans italic text-brand-red"
-                                    >700 Negrita</span
-                                >
-                                <p
-                                    class="text-3xl md:text-5xl font-sans font-700 truncate text-brand-black/60"
-                                >
-                                    Somos un Creativo Vibe Coder
-                                </p>
-                            </div>
-                            <div class="flex items-baseline gap-8">
-                                <span
-                                    class="w-24 text-xs font-sans italic text-brand-red"
-                                    >800 ExtraNegrita</span
-                                >
-                                <p
-                                    class="text-3xl md:text-5xl font-sans font-800 truncate text-brand-black/60"
-                                >
-                                    Somos un Creativo Vibe Coder
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Styles Usage -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                            <div>
-                                <h4
-                                    class="text-xs uppercase tracking-widest opacity-50 mb-6 font-sans text-brand-black"
-                                >
-                                    Párrafo / Cuerpo
-                                </h4>
-                                <p
-                                    class="text-lg leading-relaxed font-300 text-brand-black/80"
-                                >
-                                    El diseño no es solo lo que se ve y se
-                                    siente. El diseño es cómo funciona.
-                                    Utilizamos <span
-                                        class="font-500 text-brand-salmon"
-                                        >peso 300</span
-                                    > para cuerpos de texto largos para mantener la
-                                    elegancia y legibilidad, y <span
-                                        class="font-500 text-brand-salmon"
-                                        >peso 500</span
-                                    > para destaques sutiles sin gritar.
-                                </p>
-                            </div>
-                            <div>
-                                <h4
-                                    class="text-xs uppercase tracking-widest opacity-50 mb-6 font-sans text-brand-black"
-                                >
-                                    Italic Usage
-                                </h4>
-                                <p
-                                    class="text-2xl font-300 italic text-brand-black/90 mb-4"
-                                >
-                                    "La eficiencia es inteligente, pero la
-                                    disrupción es necesaria."
-                                </p>
-                                <p class="text-sm opacity-60 text-brand-black">
-                                    Usamos *itálicas* (simuladas o reales cuando
-                                    estén disponibles) estrictamente para citas,
-                                    énfasis narrativo o metadatos técnicos.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 03. Color System -->
-        <section class="max-w-[1440px] mx-auto w-full px-6 md:px-0">
-            <h2
-                class="text-xs uppercase tracking-[0.3em] opacity-50 mb-10 font-sans border-b border-brand-black/10 pb-4"
+        <!-- Error / 404 State -->
+        <div
+          class="bg-brand-red rounded-lg md:rounded-[2rem] p-8 md:p-12 text-brand-black relative overflow-hidden group"
+        >
+          <div
+            class="absolute -bottom-10 -left-10 w-48 h-48 bg-brand-black blur-[60px] opacity-10"
+          >
+          </div>
+          <div class="relative z-10">
+            <span
+              class="text-[10px] font-bold bg-black/10 text-brand-black px-3 py-1 rounded-full uppercase tracking-wider mb-6 inline-block"
             >
-                03. Sistema de Color
-            </h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div
-                    class="p-4 bg-brand-red rounded-lg md:rounded-[2rem] text-white h-40 flex flex-col justify-between"
-                >
-                    <span class="block font-bold text-lg">Brand Red</span>
-                    <span class="block font-sans italic text-xs opacity-80"
-                        >#FA2A2A</span
-                    >
-                </div>
-                <div
-                    class="p-4 bg-brand-salmon rounded-lg md:rounded-[2rem] text-brand-black h-40 flex flex-col justify-between border border-brand-black/5"
-                >
-                    <span class="block font-bold text-lg">Soft Salmon</span>
-                    <span class="block font-sans italic text-xs opacity-60"
-                        >#FFEEDB</span
-                    >
-                </div>
-                <div
-                    class="p-4 bg-brand-gray rounded-lg md:rounded-[2rem] text-brand-black h-40 flex flex-col justify-between border border-brand-black/5"
-                >
-                    <span class="block font-bold text-lg">Metric Gray</span>
-                    <span class="block font-sans italic text-xs opacity-60"
-                        >#D4DAD3</span
-                    >
-                </div>
-                <div
-                    class="p-4 bg-brand-black rounded-lg md:rounded-[2rem] text-white h-40 flex flex-col justify-between"
-                >
-                    <span class="block font-bold text-lg">Void Black</span>
-                    <span class="block font-sans italic text-xs opacity-80"
-                        >#2F2F2F</span
-                    >
-                </div>
+              Error / 404 State
+            </span>
+            <h3 class="text-3xl md:text-4xl font-800 text-brand-black mb-4">
+              SYSTEM FAILURE
+            </h3>
+            <p class="text-brand-black/80 font-500 text-lg leading-relaxed">
+              Para errores críticos o páginas 404, invertimos la paleta
+              ofensivamente: Fondo Rojo (#FA2A2A) con texto Negro (#2F2F2F). Es
+              una alerta visual ineludible.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 06. System Specifications & Moodboard -->
+    <section class="max-w-[1440px] mx-auto w-full px-6 md:px-0 mb-16">
+      <h2
+        class="text-xs uppercase tracking-[0.3em] opacity-50 mb-10 font-sans border-b border-brand-black/10 pb-4"
+      >
+        06. Especificaciones del Sistema
+      </h2>
+
+      <!-- Specs Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 mb-12">
+        <!-- Border Radius -->
+        <div>
+          <h3
+            class="text-4xl md:text-5xl font-sans font-600 text-brand-black mb-8"
+          >
+            Radio de Borde
+          </h3>
+          <div class="space-y-12">
+            <div class="flex items-center gap-8">
+              <div
+                class="w-32 h-16 bg-brand-red text-white flex items-center justify-center font-sans italic text-xs rounded-full"
+              >
+                Full
+              </div>
+              <div>
+                <h4 class="font-bold mb-1">Botones y Píldoras</h4>
+                <p class="text-brand-black/60 text-sm">
+                  Siempre usa <code class="bg-white px-1 rounded"
+                    >rounded-full</code
+                  > para acciones.
+                </p>
+              </div>
             </div>
-        </section>
-
-        <!-- 3. Components: Cards & Buttons -->
-        <section class="max-w-[1440px] mx-auto w-full px-6 md:px-0">
-            <h2
-                class="text-xs uppercase tracking-[0.3em] opacity-50 mb-10 font-sans border-b border-brand-black/10 pb-4"
-            >
-                04. Componentes de Interfaz
-            </h2>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <!-- Cards Style -->
-                <div class="space-y-8">
-                    <h3 class="text-xl font-sans font-500 text-brand-black">
-                        Contenedores de Tarjetas
-                    </h3>
-                    <!-- Default Card -->
-                    <div
-                        class="bg-white rounded-lg md:rounded-[2rem] p-8 text-brand-black hover:-translate-y-1 border border-brand-black/5 transition-all duration-300"
-                    >
-                        <div
-                            class="mb-4 w-12 h-12 bg-brand-red rounded-full flex items-center justify-center text-white"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="w-6 h-6"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                ><path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg
-                            >
-                        </div>
-                        <h4 class="text-2xl font-700 mb-2">Standard Card</h4>
-                        <p class="opacity-70 font-400">
-                            Fondo White (#FFFFFF). Texto Void Black. Bordes 2rem
-                            (32px). Mantiene la estética limpia y técnica.
-                        </p>
-                    </div>
-
-                    <!-- Dark Card -->
-                    <div
-                        class="bg-[#1a1a1a] border border-white/10 rounded-lg md:rounded-[2rem] p-8 text-white hover:border-brand-salmon/30 transition-all duration-300"
-                    >
-                        <h4 class="text-2xl font-700 mb-2 text-brand-salmon">
-                            Dark Mode Card
-                        </h4>
-                        <p class="opacity-60 font-300">
-                            Para secciones de alto contraste. Stroke sutil
-                            blanco/10.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Buttons Style -->
-                <div class="space-y-8">
-                    <h3 class="text-xl font-sans font-500 text-brand-black">
-                        Interactive Elements
-                    </h3>
-
-                    <div
-                        class="bg-white p-10 rounded-lg md:rounded-[2.5rem] border border-brand-black/5 flex flex-col gap-8 justify-center items-start"
-                    >
-                        <!-- Primary Button -->
-                        <div class="space-y-2">
-                            <button
-                                class="bg-brand-red text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-brand-black transition-all duration-300"
-                            >
-                                Acción Primaria
-                            </button>
-                            <p
-                                class="text-xs opacity-40 font-sans italic mt-2 text-brand-black"
-                            >
-                                bg-brand-red • rounded-full • bold • no-shadow
-                            </p>
-                        </div>
-
-                        <!-- Secondary Button -->
-                        <div class="space-y-2">
-                            <button
-                                class="bg-transparent border-2 border-brand-black text-brand-black px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-brand-black hover:text-white transition-all duration-300"
-                            >
-                                Acción Secundaria
-                            </button>
-                            <p
-                                class="text-xs opacity-40 font-sans italic mt-2 text-brand-black"
-                            >
-                                border-2-black • bg-transparent • bold
-                            </p>
-                        </div>
-
-                        <!-- Text Link -->
-                        <div class="space-y-2">
-                            <button
-                                class="text-brand-salmon font-500 uppercase tracking-widest text-sm hover:opacity-70 transition-opacity border-b border-brand-salmon pb-1"
-                            >
-                                Text Link Style
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 05. UX Feedback System -->
-        <section class="max-w-[1440px] mx-auto w-full px-6 md:px-0">
-            <h2
-                class="text-xs uppercase tracking-[0.3em] opacity-50 mb-10 font-sans border-b border-brand-black/10 pb-4"
-            >
-                05. Sistema de Retroalimentación UX
-            </h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Success / Luxury State -->
-                <div
-                    class="bg-brand-black border border-brand-red/20 rounded-lg md:rounded-[2rem] p-8 md:p-12 relative overflow-hidden group"
+            <div class="flex items-center gap-8">
+              <div
+                class="w-32 h-32 bg-brand-black text-white flex items-center justify-center font-sans italic text-xs rounded-lg md:rounded-[2rem]"
+              >
+                Responsive
+              </div>
+              <div>
+                <h4 class="font-bold mb-1">
+                  Tarjetas, Imágenes y Contenedores
+                </h4>
+                <p class="text-brand-black/60 text-sm mb-2">
+                  Sistema responsive para elegancia en todos los dispositivos:
+                </p>
+                <ul class="text-sm text-brand-black/60 space-y-1">
+                  <li>
+                    <strong>Móvil:</strong>
+                    <code class="bg-white px-1 rounded">rounded-lg</code> (0.5rem
+                    / 8px)
+                  </li>
+                  <li>
+                    <strong>Desktop:</strong>
+                    <code class="bg-white px-1 rounded">rounded-[2rem]</code> (2rem
+                    / 32px)
+                  </li>
+                </ul>
+                <code
+                  class="block mt-2 text-xs bg-brand-black text-white p-2 rounded font-sans italic"
                 >
-                    <div
-                        class="absolute top-0 right-0 w-32 h-32 bg-brand-red blur-[80px] opacity-20"
-                    >
-                    </div>
-                    <div class="relative z-10">
-                        <span
-                            class="text-[10px] font-bold bg-brand-red/10 text-brand-red px-3 py-1 rounded-full uppercase tracking-wider mb-6 inline-block"
-                        >
-                            Premium / Success State
-                        </span>
-                        <h3
-                            class="text-3xl md:text-4xl font-700 text-brand-red mb-4"
-                        >
-                            Operation Successful
-                        </h3>
-                        <p
-                            class="text-brand-gray opacity-80 text-lg leading-relaxed"
-                        >
-                            Para mensajes de éxito o momentos "premium",
-                            utilizamos el fondo negro profundo con tipografía
-                            roja vibrante. Evoca lujo, precisión y control
-                            total.
-                        </p>
-                    </div>
-                </div>
+                  class="rounded-lg md:rounded-[2rem]"
+                </code>
+              </div>
+            </div>
+          </div>
+        </div>
 
-                <!-- Error / 404 State -->
+        <!-- Container -->
+        <div>
+          <h3
+            class="text-4xl md:text-5xl font-sans font-600 text-brand-black mb-8"
+          >
+            Contenedor
+          </h3>
+          <div class="space-y-8">
+            <div>
+              <h4 class="font-bold mb-1">Ancho Máximo</h4>
+              <p class="text-brand-black/60 text-sm mb-2">
+                Limitado a <code class="bg-white px-1 rounded"
+                  >max-w-[1440px]</code
+                >.
+              </p>
+              <div
+                class="h-4 w-full bg-brand-black/10 rounded overflow-hidden relative"
+              >
                 <div
-                    class="bg-brand-red rounded-lg md:rounded-[2rem] p-8 md:p-12 text-brand-black relative overflow-hidden group"
+                  class="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-3/4 bg-brand-red/20 border-x border-brand-red"
                 >
-                    <div
-                        class="absolute -bottom-10 -left-10 w-48 h-48 bg-brand-black blur-[60px] opacity-10"
-                    >
-                    </div>
-                    <div class="relative z-10">
-                        <span
-                            class="text-[10px] font-bold bg-black/10 text-brand-black px-3 py-1 rounded-full uppercase tracking-wider mb-6 inline-block"
-                        >
-                            Error / 404 State
-                        </span>
-                        <h3
-                            class="text-3xl md:text-4xl font-800 text-brand-black mb-4"
-                        >
-                            SYSTEM FAILURE
-                        </h3>
-                        <p
-                            class="text-brand-black/80 font-500 text-lg leading-relaxed"
-                        >
-                            Para errores críticos o páginas 404, invertimos la
-                            paleta ofensivamente: Fondo Rojo (#FA2A2A) con texto
-                            Negro (#2F2F2F). Es una alerta visual ineludible.
-                        </p>
-                    </div>
                 </div>
+              </div>
             </div>
-        </section>
-        <!-- 06. System Specifications & Moodboard -->
-        <section class="max-w-[1440px] mx-auto w-full px-6 md:px-0 mb-16">
-            <h2
-                class="text-xs uppercase tracking-[0.3em] opacity-50 mb-10 font-sans border-b border-brand-black/10 pb-4"
-            >
-                06. Especificaciones del Sistema
-            </h2>
-
-            <!-- Specs Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 mb-12">
-                <!-- Border Radius -->
-                <div>
-                    <h3
-                        class="text-4xl md:text-5xl font-sans font-600 text-brand-black mb-8"
-                    >
-                        Radio de Borde
-                    </h3>
-                    <div class="space-y-12">
-                        <div class="flex items-center gap-8">
-                            <div
-                                class="w-32 h-16 bg-brand-red text-white flex items-center justify-center font-sans italic text-xs rounded-full"
-                            >
-                                Full
-                            </div>
-                            <div>
-                                <h4 class="font-bold mb-1">
-                                    Botones y Píldoras
-                                </h4>
-                                <p class="text-brand-black/60 text-sm">
-                                    Siempre usa <code
-                                        class="bg-white px-1 rounded"
-                                        >rounded-full</code
-                                    > para acciones.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-8">
-                            <div
-                                class="w-32 h-32 bg-brand-black text-white flex items-center justify-center font-sans italic text-xs rounded-lg md:rounded-[2rem]"
-                            >
-                                Responsive
-                            </div>
-                            <div>
-                                <h4 class="font-bold mb-1">
-                                    Tarjetas, Imágenes y Contenedores
-                                </h4>
-                                <p class="text-brand-black/60 text-sm mb-2">
-                                    Sistema responsive para elegancia en todos
-                                    los dispositivos:
-                                </p>
-                                <ul
-                                    class="text-sm text-brand-black/60 space-y-1"
-                                >
-                                    <li>
-                                        <strong>Móvil:</strong>
-                                        <code class="bg-white px-1 rounded"
-                                            >rounded-lg</code
-                                        > (0.5rem / 8px)
-                                    </li>
-                                    <li>
-                                        <strong>Desktop:</strong>
-                                        <code class="bg-white px-1 rounded"
-                                            >rounded-[2rem]</code
-                                        > (2rem / 32px)
-                                    </li>
-                                </ul>
-                                <code
-                                    class="block mt-2 text-xs bg-brand-black text-white p-2 rounded font-sans italic"
-                                >
-                                    class="rounded-lg md:rounded-[2rem]"
-                                </code>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Container -->
-                <div>
-                    <h3
-                        class="text-4xl md:text-5xl font-sans font-600 text-brand-black mb-8"
-                    >
-                        Contenedor
-                    </h3>
-                    <div class="space-y-8">
-                        <div>
-                            <h4 class="font-bold mb-1">Ancho Máximo</h4>
-                            <p class="text-brand-black/60 text-sm mb-2">
-                                Limitado a <code class="bg-white px-1 rounded"
-                                    >max-w-[1440px]</code
-                                >.
-                            </p>
-                            <div
-                                class="h-4 w-full bg-brand-black/10 rounded overflow-hidden relative"
-                            >
-                                <div
-                                    class="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-3/4 bg-brand-red/20 border-x border-brand-red"
-                                >
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 class="font-bold mb-1">Padding Estándar</h4>
-                            <p class="text-brand-black/60 text-sm mb-2">
-                                Márgenes de seguridad adaptativos.
-                            </p>
-                            <ul class="text-sm text-brand-black/60 space-y-2">
-                                <li>
-                                    <strong>Móvil:</strong>
-                                    <code class="bg-white px-1 rounded"
-                                        >px-6</code
-                                    > (24px) - Para evitar bordes.
-                                </li>
-                                <li>
-                                    <strong>Escritorio:</strong>
-                                    <code class="bg-white px-1 rounded"
-                                        >px-0</code
-                                    > (0px) - Ancho completo en contenedor.
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+            <div>
+              <h4 class="font-bold mb-1">Padding Estándar</h4>
+              <p class="text-brand-black/60 text-sm mb-2">
+                Márgenes de seguridad adaptativos.
+              </p>
+              <ul class="text-sm text-brand-black/60 space-y-2">
+                <li>
+                  <strong>Móvil:</strong>
+                  <code class="bg-white px-1 rounded">px-6</code> (24px) - Para evitar
+                  bordes.
+                </li>
+                <li>
+                  <strong>Escritorio:</strong>
+                  <code class="bg-white px-1 rounded">px-0</code> (0px) - Ancho completo
+                  en contenedor.
+                </li>
+              </ul>
             </div>
-        </section>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <!-- 07. Look & Feel -->
-        <section class="max-w-[1440px] mx-auto w-full px-6 md:px-0 mb-16">
-            <h2
-                class="text-xs uppercase tracking-[0.3em] opacity-50 mb-10 font-sans border-b border-brand-black/10 pb-4"
-            >
-                07. Look & Feel
-            </h2>
-            <div class="relative w-full">
-                <div class="columns-2 md:columns-4 gap-4">
-                    <img
-                        src="/moodboard/01.jpeg"
-                        class="w-full h-auto block mb-4 rounded-lg md:rounded-[2rem]"
-                        alt=""
-                    />
-                    <img
-                        src="/moodboard/02.jpeg"
-                        class="w-full h-auto block mb-4 rounded-lg md:rounded-[2rem]"
-                        alt=""
-                    />
-                    <img
-                        src="/moodboard/03.jpeg"
-                        class="w-full h-auto block mb-4 rounded-lg md:rounded-[2rem]"
-                        alt=""
-                    />
-                    <img
-                        src="/moodboard/04.jpeg"
-                        class="w-full h-auto block mb-4 rounded-lg md:rounded-[2rem]"
-                        alt=""
-                    />
-                    <img
-                        src="/moodboard/05.jpeg"
-                        class="w-full h-auto block mb-4 rounded-lg md:rounded-[2rem]"
-                        alt=""
-                    />
-                    <img
-                        src="/moodboard/06.jpeg"
-                        class="w-full h-auto block mb-4 rounded-lg md:rounded-[2rem]"
-                        alt=""
-                    />
-                    <img
-                        src="/moodboard/07.jpeg"
-                        class="w-full h-auto block mb-4 rounded-lg md:rounded-[2rem]"
-                        alt=""
-                    />
-                    <img
-                        src="/moodboard/08.jpeg"
-                        class="w-full h-auto block mb-4 rounded-lg md:rounded-[2rem]"
-                        alt=""
-                    />
-                    <img
-                        src="/moodboard/09.jpeg"
-                        class="w-full h-auto block mb-4 rounded-lg md:rounded-[2rem]"
-                        alt=""
-                    />
-                    <img
-                        src="/moodboard/10.jpeg"
-                        class="w-full h-auto block mb-4 rounded-lg md:rounded-[2rem]"
-                        alt=""
-                    />
-                    <img
-                        src="/moodboard/11.jpeg"
-                        class="w-full h-auto block mb-4 rounded-lg md:rounded-[2rem]"
-                        alt=""
-                    />
-                    <img
-                        src="/moodboard/12.jpeg"
-                        class="w-full h-auto block mb-4 rounded-lg md:rounded-[2rem]"
-                        alt=""
-                    />
-                </div>
-            </div>
-        </section>
-    </main>
+    <!-- 07. Look & Feel -->
+    <section class="max-w-[1440px] mx-auto w-full px-6 md:px-0 mb-16">
+      <h2
+        class="text-xs uppercase tracking-[0.3em] opacity-50 mb-10 font-sans border-b border-brand-black/10 pb-4"
+      >
+        07. Look & Feel
+      </h2>
+      <div class="relative w-full">
+        <div class="columns-2 md:columns-4 gap-4">
+          <img
+            src="/moodboard/01.jpeg"
+            class="w-full h-auto block mb-4 rounded-lg md:rounded-[2rem]"
+            alt=""
+          />
+          <img
+            src="/moodboard/02.jpeg"
+            class="w-full h-auto block mb-4 rounded-lg md:rounded-[2rem]"
+            alt=""
+          />
+          <img
+            src="/moodboard/03.jpeg"
+            class="w-full h-auto block mb-4 rounded-lg md:rounded-[2rem]"
+            alt=""
+          />
+          <img
+            src="/moodboard/04.jpeg"
+            class="w-full h-auto block mb-4 rounded-lg md:rounded-[2rem]"
+            alt=""
+          />
+          <img
+            src="/moodboard/05.jpeg"
+            class="w-full h-auto block mb-4 rounded-lg md:rounded-[2rem]"
+            alt=""
+          />
+          <img
+            src="/moodboard/06.jpeg"
+            class="w-full h-auto block mb-4 rounded-lg md:rounded-[2rem]"
+            alt=""
+          />
+          <img
+            src="/moodboard/07.jpeg"
+            class="w-full h-auto block mb-4 rounded-lg md:rounded-[2rem]"
+            alt=""
+          />
+          <img
+            src="/moodboard/08.jpeg"
+            class="w-full h-auto block mb-4 rounded-lg md:rounded-[2rem]"
+            alt=""
+          />
+          <img
+            src="/moodboard/09.jpeg"
+            class="w-full h-auto block mb-4 rounded-lg md:rounded-[2rem]"
+            alt=""
+          />
+          <img
+            src="/moodboard/10.jpeg"
+            class="w-full h-auto block mb-4 rounded-lg md:rounded-[2rem]"
+            alt=""
+          />
+          <img
+            src="/moodboard/11.jpeg"
+            class="w-full h-auto block mb-4 rounded-lg md:rounded-[2rem]"
+            alt=""
+          />
+          <img
+            src="/moodboard/12.jpeg"
+            class="w-full h-auto block mb-4 rounded-lg md:rounded-[2rem]"
+            alt=""
+          />
+        </div>
+      </div>
+    </section>
+  </main>
 </Layout>
 
 <style>
-    .pointer-events-none :global(svg) {
-        pointer-events: none;
-    }
+  .pointer-events-none :global(svg) {
+    pointer-events: none;
+  }
 </style>
