@@ -6,223 +6,233 @@ import Footer from "../components/Footer.astro";
 import Preloader from "../components/Preloader.astro";
 
 interface Props {
-	title?: string;
-	showNavbar?: boolean;
-	showFooter?: boolean;
-	showPreloader?: boolean;
+  title?: string;
+  showNavbar?: boolean;
+  showFooter?: boolean;
+  showPreloader?: boolean;
 }
 
 const {
-	title = "HA",
-	showNavbar = true,
-	showFooter = true,
-	showPreloader = true,
+  title = "HA",
+  showNavbar = true,
+  showFooter = true,
+  showPreloader = true,
 } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-		{
-			(Astro.url.pathname.includes("/preview") ||
-				Astro.url.pathname.includes("/projects") ||
-				Astro.url.pathname.includes("/brand")) && (
-				<meta name="robots" content="noindex, nofollow" />
-			)
-		}
-		<meta
-			name="description"
-			content="Humanoides & Asociados: Consultoría creativa disruptiva. Fusión de talento humano y agentes de Inteligencia Artificial para el éxito digital."
-		/>
-		<meta
-			name="keywords"
-			content="agencia creativa, inteligencia artificial, desarrollo web, diseño disruptivo, transformación digital, humanoides"
-		/>
-		<meta name="author" content="Humanoides & Asociados" />
-		<link rel="canonical" href={Astro.url} />
+  <head>
+    <!-- Google Tag Manager -->
+    <script is:inline>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-WDFWL49V");
+    </script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    {
+      (Astro.url.pathname.includes("/preview") ||
+        Astro.url.pathname.includes("/projects") ||
+        Astro.url.pathname.includes("/brand")) && (
+        <meta name="robots" content="noindex, nofollow" />
+      )
+    }
+    <meta
+      name="description"
+      content="Humanoides & Asociados: Consultoría creativa disruptiva. Fusión de talento humano y agentes de Inteligencia Artificial para el éxito digital."
+    />
+    <meta
+      name="keywords"
+      content="agencia creativa, inteligencia artificial, desarrollo web, diseño disruptivo, transformación digital, humanoides"
+    />
+    <meta name="author" content="Humanoides & Asociados" />
+    <link rel="canonical" href={Astro.url} />
 
-		<!-- Open Graph / Facebook -->
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content={Astro.url} />
-		<meta property="og:title" content={title} />
-		<meta
-			property="og:description"
-			content="Humanoides & Asociados: Fusión de talento humano y agentes IA para producir proyectos digitales de alto impacto."
-		/>
-		<meta property="og:image" content="/humanoides-logo.svg" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta
+      property="og:description"
+      content="Humanoides & Asociados: Fusión de talento humano y agentes IA para producir proyectos digitales de alto impacto."
+    />
+    <meta property="og:image" content="/humanoides-logo.svg" />
 
-		<!-- Twitter -->
-		<meta property="twitter:card" content="summary_large_image" />
-		<meta property="twitter:url" content={Astro.url} />
-		<meta property="twitter:title" content={title} />
-		<meta
-			property="twitter:description"
-			content="Humanoides & Asociados: Fusión de talento humano y agentes IA para producir proyectos digitales de alto impacto."
-		/>
-		<meta property="twitter:image" content="/humanoides-logo.svg" />
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta
+      property="twitter:description"
+      content="Humanoides & Asociados: Fusión de talento humano y agentes IA para producir proyectos digitales de alto impacto."
+    />
+    <meta property="twitter:image" content="/humanoides-logo.svg" />
 
-		<!-- Theme Color -->
-		<meta name="theme-color" content="#FA2A2A" />
-		<meta name="msapplication-navbutton-color" content="#FA2A2A" />
-		<meta
-			name="apple-mobile-web-app-status-bar-style"
-			content="black-translucent"
-		/>
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#FA2A2A" />
+    <meta name="msapplication-navbutton-color" content="#FA2A2A" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
 
-		<!-- Schema.org JSON-LD -->
-		<script type="application/ld+json" is:inline>
-			{
-				"@context": "https://schema.org",
-				"@graph": [
-					{
-						"@type": "Person",
-						"@id": "https://humanoidesyasociados.com/#david",
-						"name": "David Salcedo",
-						"jobTitle": "Director Creativo y Fundador",
-						"url": "https://humanoidesyasociados.com",
-						"sameAs": [
-							"https://instagram.com/humanoidesyasociados"
-						],
-						"nationality": "Peruana"
-					},
-					{
-						"@type": "ProfessionalService",
-						"@id": "https://humanoidesyasociados.com/#organization",
-						"name": "Humanoides & Asociados",
-						"url": "https://humanoidesyasociados.com",
-						"logo": "https://humanoidesyasociados.com/humanoides-logo.svg",
-						"email": "hola@humanoidesyasociados.com",
-						"address": {
-							"@type": "PostalAddress",
-							"addressCountry": "PE"
-						},
-						"founder": {
-							"@id": "https://humanoidesyasociados.com/#david"
-						},
-						"brand": {
-							"@id": "https://humanoidesyasociados.com/#organization"
-						},
-						"priceRange": "$$$",
-						"description": "Somos un profesional y sus agentes (IAs), listos para producir tu próximo éxito digital. Creative Operations en diseño y desarrollo web."
-					}
-				]
-			}
-		</script>
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://humanoidesyasociados.com/#david",
+            "name": "David Salcedo",
+            "jobTitle": "Director Creativo y Fundador",
+            "url": "https://humanoidesyasociados.com",
+            "sameAs": ["https://instagram.com/humanoidesyasociados"],
+            "nationality": "Peruana"
+          },
+          {
+            "@type": "ProfessionalService",
+            "@id": "https://humanoidesyasociados.com/#organization",
+            "name": "Humanoides & Asociados",
+            "url": "https://humanoidesyasociados.com",
+            "logo": "https://humanoidesyasociados.com/humanoides-logo.svg",
+            "email": "hola@humanoidesyasociados.com",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "PE"
+            },
+            "founder": {
+              "@id": "https://humanoidesyasociados.com/#david"
+            },
+            "brand": {
+              "@id": "https://humanoidesyasociados.com/#organization"
+            },
+            "priceRange": "$$$",
+            "description": "Somos un profesional y sus agentes (IAs), listos para producir tu próximo éxito digital. Creative Operations en diseño y desarrollo web."
+          }
+        ]
+      }
+    </script>
 
-		<!-- Preload Critical Resources -->
-		<!-- Preload Hero Image for LCP -->
-		<link
-			rel="preload"
-			as="image"
-			href="/src/assets/hero_studio.png"
-			type="image/png"
-			fetchpriority="high"
-		/>
+    <!-- Preload Critical Resources -->
+    <!-- Preload Hero Image for LCP -->
+    <link
+      rel="preload"
+      as="image"
+      href="/src/assets/hero_studio.png"
+      type="image/png"
+      fetchpriority="high"
+    />
 
-		<!-- Preload Self-Hosted Font -->
-		<link
-			rel="preload"
-			as="font"
-			type="font/woff2"
-			href="/fonts/anek-malayalam-100-800.woff2"
-			crossorigin
-		/>
+    <!-- Preload Self-Hosted Font -->
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/anek-malayalam-100-800.woff2"
+      crossorigin
+    />
 
-		<ClientRouter />
-		<script is:inline>
-			// Instant check to prevent preloader flash on subsequent visits or internal pages
-			(function () {
-				const isLanding =
-					window.location.pathname === "/" ||
-					window.location.pathname === "/index.html";
-				const hasShown = sessionStorage.getItem("ha-preloader-shown");
-				if (hasShown || !isLanding) {
-					document.documentElement.classList.add("preloader-hidden");
-				}
-			})();
-		</script>
-	</head>
-	<body class="min-h-screen flex flex-col font-sans">
-		{showPreloader && <Preloader />}
-		{showNavbar && <Navbar />}
-		<slot />
-		{showFooter && <Footer />}
+    <ClientRouter />
+    <script is:inline>
+      // Instant check to prevent preloader flash on subsequent visits or internal pages
+      (function () {
+        const isLanding =
+          window.location.pathname === "/" ||
+          window.location.pathname === "/index.html";
+        const hasShown = sessionStorage.getItem("ha-preloader-shown");
+        if (hasShown || !isLanding) {
+          document.documentElement.classList.add("preloader-hidden");
+        }
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen flex flex-col font-sans">
+    {showPreloader && <Preloader />}
+    {showNavbar && <Navbar />}
+    <slot />
+    {showFooter && <Footer />}
 
-		<script>
-			import Lenis from "lenis";
+    <script>
+      import Lenis from "lenis";
 
-			const lenis = new Lenis();
+      const lenis = new Lenis();
 
-			function raf(time: number) {
-				lenis.raf(time);
-				requestAnimationFrame(raf);
-			}
+      function raf(time: number) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
 
-			requestAnimationFrame(raf);
+      requestAnimationFrame(raf);
 
-			document.addEventListener("astro:after-swap", () => {
-				lenis.scrollTo(0, { immediate: true });
-			});
+      document.addEventListener("astro:after-swap", () => {
+        lenis.scrollTo(0, { immediate: true });
+      });
 
-			// GLOBAL SMOOTH SCROLL INTERCEPTOR
-			// Captures clicks on anchor links to enforce smooth scroll for local targets
-			// Uses 'capture: true' and 'stopImmediatePropagation' to bypass Astro ClientRouter logic
-			document.addEventListener(
-				"click",
-				(e) => {
-					const target = e.target as HTMLElement;
-					// Find closest anchor tag
-					const link = target.closest("a");
-					if (!link) return;
+      // GLOBAL SMOOTH SCROLL INTERCEPTOR
+      // Captures clicks on anchor links to enforce smooth scroll for local targets
+      // Uses 'capture: true' and 'stopImmediatePropagation' to bypass Astro ClientRouter logic
+      document.addEventListener(
+        "click",
+        (e) => {
+          const target = e.target as HTMLElement;
+          // Find closest anchor tag
+          const link = target.closest("a");
+          if (!link) return;
 
-					const href = link.getAttribute("href");
-					if (!href || !href.includes("#")) return;
+          const href = link.getAttribute("href");
+          if (!href || !href.includes("#")) return;
 
-					// Split URL into path and hash parts
-					const [pathStr, hashStr] = href.split("#");
-					if (!hashStr) return; // e.g. href="#"
+          // Split URL into path and hash parts
+          const [pathStr, hashStr] = href.split("#");
+          if (!hashStr) return; // e.g. href="#"
 
-					// Analyze paths to check if it's the same page
-					const currentPath = window.location.pathname;
-					// If pathStr is empty (href="#id"), it implies current page.
-					// If pathStr is "/" and current is "/", it matches.
-					// Normalization: remove trailing slashes for comparison if necessary, but simple usually works.
+          // Analyze paths to check if it's the same page
+          const currentPath = window.location.pathname;
+          // If pathStr is empty (href="#id"), it implies current page.
+          // If pathStr is "/" and current is "/", it matches.
+          // Normalization: remove trailing slashes for comparison if necessary, but simple usually works.
 
-					const isCurrentPage =
-						pathStr === "" ||
-						pathStr === currentPath ||
-						(pathStr === "/" && currentPath === "/");
+          const isCurrentPage =
+            pathStr === "" ||
+            pathStr === currentPath ||
+            (pathStr === "/" && currentPath === "/");
 
-					if (isCurrentPage) {
-						const el = document.getElementById(hashStr);
-						if (el) {
-							// Prevent default jump and stop other handlers (Astro Router)
-							e.preventDefault();
-							e.stopPropagation();
-							e.stopImmediatePropagation();
+          if (isCurrentPage) {
+            const el = document.getElementById(hashStr);
+            if (el) {
+              // Prevent default jump and stop other handlers (Astro Router)
+              e.preventDefault();
+              e.stopPropagation();
+              e.stopImmediatePropagation();
 
-							// Execute smooth scroll
-							const navbarHeight =
-								window.innerWidth >= 768 ? -96 : -80; // Desktop: h-24 (96px), Mobile: h-20 (80px)
-							lenis.scrollTo(el, {
-								offset: navbarHeight,
-								duration: 1.5,
-								easing: (t) =>
-									Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-							});
+              // Execute smooth scroll
+              const navbarHeight = window.innerWidth >= 768 ? -96 : -80; // Desktop: h-24 (96px), Mobile: h-20 (80px)
+              lenis.scrollTo(el, {
+                offset: navbarHeight,
+                duration: 1.5,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+              });
 
-							// Optional: update URL hash silently if desired, but omitting it prevents jumps
-							// history.replaceState(null, null, '#' + hashStr);
-						}
-					}
-				},
-				{ capture: true },
-			);
-		</script>
-	</body>
+              // Optional: update URL hash silently if desired, but omitting it prevents jumps
+              // history.replaceState(null, null, '#' + hashStr);
+            }
+          }
+        },
+        { capture: true },
+      );
+    </script>
+  </body>
 </html>
