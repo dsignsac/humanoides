@@ -6,7 +6,6 @@ import Archivos from "../components/Archivos.astro";
 import Tarifas from "../components/Tarifas.astro";
 import Operaciones from "../components/Operaciones.astro";
 import Contacto from "../components/Contacto.astro";
-import Testimonios from "../components/Testimonios.astro";
 
 import fs from "node:fs";
 import path from "node:path";
@@ -187,9 +186,6 @@ const logos = rawLogos.map((l) => ({
 
     <!-- PRICING / TARIFARIO SECTION -->
     <Tarifas />
-
-    <!-- TESTIMONIALS / REGISTRY SECTION -->
-    <Testimonios />
 
     <!-- SYNC / CONTACTO SECTION -->
     <Contacto />

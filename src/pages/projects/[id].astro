@@ -1,30 +1,31 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import { Image } from "astro:assets";
 import fs from "node:fs";
 import path from "node:path";
 
 export function getProjects() {
-  const projectsDir = path.resolve("./public/proyectos");
-  const projectFolders = fs.readdirSync(projectsDir);
+    const projectsDir = path.resolve("./public/proyectos");
+    const projectFolders = fs.readdirSync(projectsDir);
 
-  return projectFolders
-    .map((folder) => {
-      const infoPath = path.join(projectsDir, folder, "info.json");
-      if (fs.existsSync(infoPath)) {
-        return JSON.parse(fs.readFileSync(infoPath, "utf-8"));
-      }
-      return null;
-    })
-    .filter(Boolean)
-    .sort((a, b) => parseInt(b.year) - parseInt(a.year));
+    return projectFolders
+        .map((folder) => {
+            const infoPath = path.join(projectsDir, folder, "info.json");
+            if (fs.existsSync(infoPath)) {
+                return JSON.parse(fs.readFileSync(infoPath, "utf-8"));
+            }
+            return null;
+        })
+        .filter(Boolean)
+        .sort((a, b) => parseInt(b.year) - parseInt(a.year));
 }
 
 export function getStaticPaths() {
-  const projectsData = getProjects();
-  return projectsData.map((project) => ({
-    params: { id: project.id },
-    props: { project, projectsData },
-  }));
+    const projectsData = getProjects();
+    return projectsData.map((project) => ({
+        params: { id: project.id },
+        props: { project, projectsData },
+    }));
 }
 
 const { project, projectsData } = Astro.props;
@@ -33,518 +34,323 @@ const { project, projectsData } = Astro.props;
 const currentIndex = projectsData.findIndex((p) => p.id === project.id);
 const nextProjectData = projectsData[(currentIndex + 1) % projectsData.length];
 const nextProject = {
-  slug: nextProjectData.id,
-  title: nextProjectData.client,
+    slug: nextProjectData.id,
+    title: nextProjectData.client,
 };
 
-// Brutalist Corporate Configuration
-const meta = {
-  id: `${project.id.toUpperCase()}-${project.year}-HA`,
-  status: "OPERATIONAL",
-  version: "V1.0.S",
+// Forced Global UI Palette (Melbourne style)
+const uiPalette = {
+    base: "#1A1A1A",
+    contraste: "#FF3E00",
+    textos: "#D4DAD3",
+    logos: "#FF3E00",
 };
+
+// Logo specific logic: Project Global > Default
+const projectLogoColor =
+    project.logoColor || project.palette?.logos || uiPalette.logos;
 ---
 
-<Layout title={`RE: ${project.client} // Humanoides`}>
-  <main
-    class="bg-brand-gray text-brand-black min-h-screen font-sans selection:bg-brand-red selection:text-white"
-  >
-    <!-- Header / Terminal Bar -->
-    <header
-      class="fixed top-0 left-0 w-full z-50 bg-brand-gray border-b border-brand-black/20 px-6 py-4 flex justify-between items-center backdrop-blur-sm"
+<Layout title={`${project.client} // ${project.title}`}>
+    <main
+        class="min-h-screen bg-brand-salmon text-brand-black pb-0 selection:bg-brand-red selection:text-white"
     >
-      <div class="flex items-center gap-4">
-        <span class="w-2 h-2 bg-brand-red rounded-full animate-pulse"></span>
-        <span class="text-[10px] font-mono tracking-widest uppercase opacity-60"
-          >SYSTEM_STATUS: {meta.status}</span
-        >
-      </div>
-      <div
-        class="hidden md:flex gap-8 text-[10px] font-mono tracking-widest uppercase opacity-40"
-      >
-        <span>{meta.id}</span>
-        <span>CAT_PROJECT_LOG</span>
-        <span>VER_{meta.version}</span>
-      </div>
-    </header>
-
-    <!-- Hero Section: Brutalist Corporate -->
-    <section
-      class="min-h-[80vh] pt-32 pb-20 px-6 flex flex-col justify-end border-b border-brand-black/10"
-    >
-      <div class="max-w-[1440px] mx-auto w-full">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
-          <div class="lg:col-span-8">
-            <div class="mb-12">
-              <span
-                class="inline-block border border-brand-red text-brand-red px-3 py-1 text-[10px] font-bold tracking-[0.3em] uppercase mb-8"
-              >
-                ARCHIVE_FILE_{project.id.toUpperCase()}
-              </span>
-              <h1
-                class="text-5xl md:text-[8rem] lg:text-[10rem] font-800 leading-[0.8] tracking-tighter text-brand-red uppercase break-words"
-              >
-                {project.client}<br />
-                <span class="text-brand-black/20 italic">{project.title}</span>
-              </h1>
-            </div>
-            <p
-              class="text-xl md:text-3xl font-100 max-w-4xl leading-tight opacity-70 italic"
-            >
-              {
-                project.description ||
-                  "Inyectando eficiencia en sistemas creativos."
-              }
-            </p>
-          </div>
-          <div class="lg:col-span-4 lg:text-right">
-            <div
-              class="inline-block p-6 border border-brand-black/10 bg-brand-salmon text-left rounded-sm"
-            >
-              <span
-                class="block text-[10px] font-bold uppercase tracking-widest mb-4 opacity-40"
-                >INDEX_SUMMARY</span
-              >
-              <ul class="space-y-2 text-xs font-mono uppercase tracking-widest">
-                <li
-                  class="flex justify-between gap-8 border-b border-brand-black/5 pb-2"
-                >
-                  <span>YEAR</span>
-                  <span>{project.year || "N/A"}</span>
-                </li>
-                <li
-                  class="flex justify-between gap-8 border-b border-brand-black/5 pb-2"
-                >
-                  <span>SERVICE</span>
-                  <span>{project.service || "N/A"}</span>
-                </li>
-                <li class="flex justify-between gap-8 pb-2">
-                  <span>COUNTRY</span>
-                  <span>{project.country || "GLOBAL"}</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Technical Schematic (Animated SVG) -->
-    <section
-      class="architecture-section py-24 px-6 border-b border-brand-black/10 bg-brand-salmon/30 relative overflow-hidden"
-    >
-      <div class="max-w-[1440px] mx-auto relative z-10">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          <div>
-            <h2
-              class="text-xs font-bold tracking-[0.5em] text-brand-red mb-12 uppercase"
-            >
-              01. SCHEMATIC_OVERVIEW
-            </h2>
-            <h3
-              class="text-3xl md:text-5xl font-800 tracking-tighter text-brand-black mb-8"
-            >
-              Ecosistema de Solución
-            </h3>
-            <p class="text-lg opacity-60 leading-relaxed max-w-lg mb-12">
-              Mapeo técnico de la infraestructura implementada. Cada interacción
-              representa un punto de valor sincronizado bajo los estándares
-              operativos de Humanoides.
-            </p>
-
-            <div
-              class="grid grid-cols-2 gap-8 border-t border-brand-black/10 pt-12"
-            >
-              <div>
-                <span
-                  class="block text-[10px] font-bold text-brand-red mb-2 uppercase tracking-widest"
-                  >ID_1. CORE</span
-                >
-                <p
-                  class="text-[10px] opacity-50 uppercase tracking-widest leading-relaxed"
-                >
-                  Núcleo estratégico y visual unificado.
-                </p>
-              </div>
-              <div>
-                <span
-                  class="block text-[10px] font-bold text-brand-red mb-2 uppercase tracking-widest"
-                  >OP_2. FLOW</span
-                >
-                <p
-                  class="text-[10px] opacity-50 uppercase tracking-widest leading-relaxed"
-                >
-                  Optimización de flujos y activos.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="p-8 border border-brand-black/10 bg-white shadow-2xl relative group"
-          >
-            <svg
-              viewBox="0 0 400 400"
-              class="w-full h-auto text-brand-black opacity-80"
-            >
-              <line
-                x1="0"
-                y1="200"
-                x2="400"
-                y2="200"
-                stroke="currentColor"
-                stroke-width="0.5"
-                stroke-dasharray="2 4"
-                class="opacity-10"></line>
-              <line
-                x1="200"
-                y1="0"
-                x2="200"
-                y2="400"
-                stroke="currentColor"
-                stroke-width="0.5"
-                stroke-dasharray="2 4"
-                class="opacity-10"></line>
-              <rect
-                x="160"
-                y="160"
-                width="80"
-                height="80"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"></rect>
-              <rect
-                x="170"
-                y="170"
-                width="60"
-                height="60"
-                fill="currentColor"
-                class="text-brand-red animate-pulse"></rect>
-              <g class="module-node">
-                <circle
-                  cx="200"
-                  cy="60"
-                  r="10"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"></circle>
-              </g>
-              <g class="module-node">
-                <circle
-                  cx="340"
-                  cy="200"
-                  r="10"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"></circle>
-              </g>
-              <g class="module-node">
-                <circle
-                  cx="200"
-                  cy="340"
-                  r="10"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"></circle>
-              </g>
-              <g class="module-node">
-                <circle
-                  cx="60"
-                  cy="200"
-                  r="10"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"></circle>
-              </g>
-              <path
-                d="M200 70 V160 M200 240 V330 M240 200 H330 M160 200 H70"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1"
-                stroke-dasharray="4 2"></path>
-            </svg>
-            <div class="absolute top-4 left-4 text-[8px] font-mono opacity-40">
-              H-A_DS00
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Technical Solutions (if data exists) -->
-    {
-      project.challenges && (
-        <section class="py-24 px-6 border-b border-brand-black/10">
-          <div class="max-w-[1440px] mx-auto">
-            <div class="mb-20 space-y-4">
-              <h2 class="text-xs font-bold tracking-[0.5em] text-brand-red uppercase">
-                02. TECHNICAL_SOLUTIONS_REPORT
-              </h2>
-              <h3 class="text-4xl md:text-6xl font-800 tracking-tighter">
-                Sincronización de Retos
-              </h3>
-            </div>
-            <div class="grid grid-cols-1 gap-1 border-t border-brand-black/10">
-              {project.challenges.map((item: any, index: number) => (
-                <div class="group border-b border-brand-black/10 py-12 flex flex-col md:grid md:grid-cols-12 gap-8 items-start hover:bg-brand-salmon/50 transition-colors duration-500 px-4 md:px-8">
-                  <div class="md:col-span-1">
-                    <span class="text-xs font-mono font-bold text-brand-red opacity-40">
-                      T_{index + 1}
-                    </span>
-                  </div>
-                  <div class="md:col-span-4">
-                    <h4 class="text-xl md:text-3xl font-700 tracking-tighter mb-4 text-brand-red uppercase">
-                      {item.title}
-                    </h4>
-                    <p class="text-xs border-l-2 border-brand-red pl-4 opacity-60">
-                      "Challenge: {item.problem}"
-                    </p>
-                  </div>
-                  <div class="md:col-span-5">
-                    <p class="text-lg font-300 mb-6 leading-tight">
-                      {item.solution}
-                    </p>
-                    <div class="bg-white/50 p-4 border border-brand-black/5">
-                      <span class="block text-[8px] font-bold tracking-widest opacity-40 mb-2 uppercase">
-                        TECHNICAL_SPEC
-                      </span>
-                      <p class="text-xs font-mono tracking-widest">
-                        {item.technical}
-                      </p>
-                    </div>
-                  </div>
-                  <div class="md:col-span-2 text-right">
-                    <div class="inline-block p-1 bg-brand-red text-white text-[8px] font-bold tracking-widest px-2">
-                      RESOLVED
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )
-    }
-
-    <!-- Horizontal Metrics (if data exists) -->
-    {
-      project.metrics && (
-        <section class="metrics-horizontal-section relative h-screen bg-brand-black text-brand-gray overflow-hidden">
-          <div class="sticky-container h-screen flex items-center">
-            <div class="metrics-wrapper flex gap-0 px-0">
-              <div class="metric-intro w-screen h-screen flex flex-col justify-center px-6 md:px-24 shrink-0 bg-brand-black">
-                <div class="p-12 border border-white/10 max-w-2xl bg-white/[0.02]">
-                  <h2 class="text-xs font-bold tracking-[0.5em] text-brand-red mb-12 uppercase">
-                    03. AUDIT_REPORTS
-                  </h2>
-                  <h3 class="text-4xl md:text-8xl font-800 tracking-tighter text-white leading-[0.85] mb-8">
-                    Audit Results
-                  </h3>
-                </div>
-              </div>
-              {project.metrics.map((metric: any, index: number) => (
-                <div class="metric-card w-screen md:w-[50vw] h-screen flex flex-col justify-center px-12 md:px-24 shrink-0 border-r border-white/10 group hover:bg-brand-red/10 transition-colors">
-                  <span class="block text-[8px] font-mono text-brand-red mb-12 opacity-60 tracking-[0.5em]">
-                    LOG_0{index + 1}
-                  </span>
-                  <span class="block text-xs uppercase tracking-widest text-white/40 mb-4 font-bold">
-                    {metric.label}
-                  </span>
-                  <div class="text-7xl md:text-[12rem] font-800 mb-8 tracking-tighter text-white group-hover:text-brand-red transition-colors duration-700">
-                    {metric.value}
-                  </div>
-                  <p class="text-xl text-white/30 font-300 italic max-w-sm border-l border-white/10 pl-8">
-                    {metric.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )
-    }
-
-    <!-- Asset Gallery -->
-    <section class="py-24 px-6 bg-brand-gray border-b border-brand-black/10">
-      <div class="max-w-[1440px] mx-auto">
+        <!-- PROJECT THEMED AREA -->
         <div
-          class="mb-20 flex justify-between items-end border-b border-brand-black/10 pb-12"
+            class="project-area w-full transition-colors duration-700"
+            style={`
+                background-color: ${uiPalette.base}; 
+                color: ${uiPalette.textos};
+                --p-contraste: ${uiPalette.contraste};
+                --p-textos: ${uiPalette.textos};
+                --p-logos: ${projectLogoColor};
+            `}
         >
-          <h2
-            class="text-xs font-bold tracking-[0.5em] text-brand-red uppercase"
-          >
-            04. ASSET_GALLERY_PROOFS
-          </h2>
-        </div>
+            <div
+                class="max-w-[1440px] mx-auto w-full px-0 md:px-6 pt-32 md:pt-48"
+            >
+                <!-- HEADER -->
+                <div
+                    class="px-6 md:px-0 flex flex-col md:flex-row justify-between items-start md:items-end mb-16 pb-8 border-b border-[var(--p-contraste)] gap-8"
+                >
+                    <div>
+                        <span
+                            class="block text-xs font-mono font-bold tracking-[0.3em] mb-4 text-brand-red uppercase"
+                            >{project.client}</span
+                        >
+                        <h1
+                            class="text-6xl md:text-8xl lg:text-9xl font-sans font-800 uppercase leading-[0.85] tracking-tighter text-[var(--p-textos)]"
+                        >
+                            {project.title}
+                        </h1>
+                    </div>
+                </div>
 
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 border border-brand-black/10"
-        >
-          {
-            project.gallery
-              ? project.gallery.map((item: any, index: number) => {
-                  const getPath = (src: string) => {
-                    if (!src) return "";
-                    if (src.startsWith("/") || src.startsWith("http"))
-                      return src;
-                    return `/proyectos/${project.id}/${src}`;
-                  };
-                  return (
-                    <div class="bg-brand-gray p-8 group overflow-hidden">
-                      <div
-                        class={`relative overflow-hidden ${item.type === "video" ? "aspect-video" : "aspect-square"} border border-brand-black/5 shadow-inner`}
-                      >
-                        {item.type === "image" && (
-                          <img
-                            src={getPath(item.src)}
-                            class="w-full h-full object-cover scale-100 group-hover:scale-105 transition-transform duration-700"
-                            loading="lazy"
-                          />
-                        )}
-                        {item.type === "video" && (
-                          <iframe
-                            src={item.src}
-                            class="w-full h-full"
-                            frameborder="0"
-                            allow="autoplay; fullscreen"
-                            allowfullscreen
-                          />
-                        )}
-                        <div class="absolute top-4 right-4 bg-brand-red text-white text-[8px] px-2 py-1 font-bold">
-                          SLIDE_{index + 1}
+                <!-- PROJECT DATA & DESCRIPTION -->
+                <div
+                    class="px-6 md:px-0 grid grid-cols-1 md:grid-cols-12 gap-12 mb-24"
+                >
+                    <!-- META DATA COLUMNS -->
+                    <div
+                        class="md:col-span-4 grid grid-cols-2 gap-y-8 gap-x-4 content-start"
+                    >
+                        <div>
+                            <h3
+                                class="text-[10px] font-mono uppercase tracking-widest mb-2 text-[var(--p-contraste)]"
+                            >
+                                Cliente
+                            </h3>
+                            <p class="font-sans text-lg font-500">
+                                {project.client}
+                            </p>
                         </div>
-                      </div>
-                      <div class="mt-8 flex justify-between items-start opacity-40 group-hover:opacity-100 transition-opacity">
-                        <span class="text-[10px] font-mono uppercase tracking-widest">
-                          {item.type}_ASSET
-                        </span>
-                        <span class="text-2xl font-800">/0{index + 1}</span>
-                      </div>
+                        <div>
+                            <h3
+                                class="text-[10px] font-mono uppercase tracking-widest mb-2 text-[var(--p-contraste)]"
+                            >
+                                Servicio
+                            </h3>
+                            <p class="font-sans text-lg font-500">
+                                {project.service}
+                            </p>
+                        </div>
+                        <div>
+                            <h3
+                                class="text-[10px] font-mono uppercase tracking-widest mb-2 text-[var(--p-contraste)]"
+                            >
+                                Año
+                            </h3>
+                            <p class="font-sans text-lg font-500">
+                                {project.year}
+                            </p>
+                        </div>
                     </div>
-                  );
-                })
-              : project.images?.map((img: string, index: number) => (
-                  <div class="bg-brand-gray p-8 group overflow-hidden">
-                    <div class="relative overflow-hidden aspect-square border border-brand-black/5 shadow-inner">
-                      <img
-                        src={img}
-                        class="w-full h-full object-cover scale-100 group-hover:scale-105 transition-transform duration-700"
-                        loading="lazy"
-                      />
-                      <div class="absolute top-4 right-4 bg-brand-red text-white text-[8px] px-2 py-1 font-bold">
-                        SLIDE_{index + 1}
-                      </div>
+
+                    <!-- DESCRIPTION -->
+                    <div class="md:col-span-8">
+                        <p
+                            class="text-2xl md:text-4xl font-sans font-300 leading-tight mb-12"
+                        >
+                            {
+                                project.description ||
+                                    "Documentación del proyecto bajo proceso de sincronización."
+                            }
+                        </p>
+
+                        <div class="flex gap-3 flex-wrap">
+                            {
+                                project.stack?.map((tech: string) => (
+                                    <span class="px-4 py-2 bg-[var(--p-contraste)] text-[var(--p-textos)] rounded-full text-xs font-sans font-bold uppercase tracking-wider cursor-default">
+                                        {tech}
+                                    </span>
+                                ))
+                            }
+                        </div>
                     </div>
-                  </div>
-                ))
-          }
-        </div>
-      </div>
-    </section>
+                </div>
 
-    <!-- Tech Stack Strip -->
-    <section class="py-24 px-6 bg-brand-black text-brand-gray overflow-hidden">
-      <div class="max-w-[1440px] mx-auto overflow-hidden">
-        <div class="flex flex-wrap justify-center gap-4">
-          {
-            project.stack?.map((tech: string) => (
-              <span class="text-[10px] font-mono uppercase tracking-[0.4em] px-6 py-2 border border-white/5 opacity-40 hover:opacity-100 hover:text-brand-red transition-all cursor-crosshair">
-                [{tech}]
-              </span>
-            ))
-          }
-        </div>
-      </div>
-    </section>
+                <!-- GALLERY -->
+                <section class="flex flex-col w-full">
+                    {
+                        project.gallery ? (
+                            <div class="w-full">
+                                {project.gallery.map(
+                                    (item: any, index: number) => {
+                                        const getPath = (src: string) => {
+                                            if (!src) return "";
+                                            if (
+                                                src.startsWith("/") ||
+                                                src.startsWith("http")
+                                            )
+                                                return src;
+                                            return `/proyectos/${project.id}/${src}`;
+                                        };
 
-    <!-- Footer Navigation -->
-    <a
-      href={`/projects/${nextProject.slug}`}
-      class="block w-full bg-brand-salmon hover:bg-brand-red transition-all duration-700 group relative overflow-hidden border-t border-brand-black/10"
-    >
-      <div
-        class="max-w-[1440px] mx-auto w-full px-6 py-32 flex flex-col md:flex-row justify-between items-center relative z-10 text-center md:text-left gap-12"
-      >
-        <div>
-          <span
-            class="block text-[10px] font-bold border border-brand-red text-brand-red px-3 py-1 uppercase tracking-widest mb-8 inline-block group-hover:border-white group-hover:text-white transition-colors"
-            >INIT_NEXT_CONNECTION</span
-          >
-          <h2
-            class="text-6xl md:text-9xl font-800 uppercase tracking-tighter group-hover:text-white transition-colors leading-[0.8] mb-4"
-          >
-            {nextProject.title}
-          </h2>
-          <p
-            class="text-xs font-mono opacity-40 group-hover:text-white transition-colors"
-          >
-            ESTABLISHING_DATA_LINK_TO_SYSTEM_{nextProject.slug.toUpperCase()}
-          </p>
+                                        if (item.type === "image") {
+                                            return (
+                                                <div class="w-full overflow-hidden">
+                                                    <img
+                                                        src={getPath(item.src)}
+                                                        class="w-full h-auto object-cover block"
+                                                        alt={`${project.title} - ${index}`}
+                                                        loading="lazy"
+                                                    />
+                                                </div>
+                                            );
+                                        }
+
+                                        if (item.type === "video") {
+                                            let videoSrc = item.src;
+
+                                            if (
+                                                videoSrc.includes("vimeo") ||
+                                                /^\d+$/.test(videoSrc)
+                                            ) {
+                                                // Extract ID and Hash if present
+                                                let vimeoId = videoSrc
+                                                    .replace(
+                                                        "https://vimeo.com/",
+                                                        "",
+                                                    )
+                                                    .replace(
+                                                        "https://player.vimeo.com/video/",
+                                                        "",
+                                                    )
+                                                    .split("?")[0];
+                                                // Keep hash if it exists in the original URL
+                                                const urlParams =
+                                                    new URLSearchParams(
+                                                        videoSrc.includes("?")
+                                                            ? videoSrc.split(
+                                                                  "?",
+                                                              )[1]
+                                                            : "",
+                                                    );
+                                                const hash = urlParams.get("h");
+
+                                                videoSrc = `https://player.vimeo.com/video/${vimeoId}?autoplay=0&loop=1&muted=0${hash ? `&h=${hash}` : ""}`;
+                                            } else if (
+                                                videoSrc.includes("youtube") ||
+                                                videoSrc.includes("youtu.be")
+                                            ) {
+                                                const ytId = videoSrc.includes(
+                                                    "watch?v=",
+                                                )
+                                                    ? videoSrc
+                                                          .split("v=")[1]
+                                                          .split("&")[0]
+                                                    : videoSrc
+                                                          .split("/")
+                                                          .pop()
+                                                          ?.split("?")[0];
+                                                videoSrc = `https://www.youtube.com/embed/${ytId}?autoplay=0&controls=1&loop=1&playlist=${ytId}&rel=0`;
+                                            }
+
+                                            return (
+                                                <div class="w-full aspect-video bg-black/10 overflow-hidden">
+                                                    <iframe
+                                                        src={videoSrc}
+                                                        class="w-full h-full"
+                                                        style="width: 100%; height: 100%;"
+                                                        allow="autoplay; fullscreen; picture-in-picture"
+                                                        allowfullscreen
+                                                    />
+                                                </div>
+                                            );
+                                        }
+
+                                        if (item.type === "logo") {
+                                            const src = getPath(item.src);
+                                            const context = getPath(
+                                                item.context,
+                                            );
+                                            const isSVG = src.endsWith(".svg");
+                                            const useOriginal =
+                                                item.color === "original";
+                                            const logoColor =
+                                                item.color &&
+                                                item.color !== "original"
+                                                    ? item.color
+                                                    : "var(--p-logos)";
+
+                                            return (
+                                                <div class="group relative w-full aspect-video md:aspect-[21/9] border-b border-[var(--p-contraste)]/10 flex items-center justify-center overflow-hidden cursor-pointer">
+                                                    {/* Context Background Image */}
+                                                    {context && (
+                                                        <div class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-700 ease-out">
+                                                            <img
+                                                                src={context}
+                                                                class="w-full h-full object-cover scale-110 group-hover:scale-100 group-active:scale-100 transition-transform duration-1000"
+                                                                alt="Contexto"
+                                                            />
+                                                            <div class="absolute inset-0 bg-black/40 mix-blend-multiply" />
+                                                        </div>
+                                                    )}
+
+                                                    <div class="relative z-10 w-full h-full max-w-[320px] md:max-w-[800px] p-8 md:p-32 flex items-center justify-center transition-transform duration-500 group-hover:scale-110 group-active:scale-110">
+                                                        {isSVG &&
+                                                        !useOriginal ? (
+                                                            <div
+                                                                class="w-full h-full"
+                                                                style={`
+                                                                background-color: ${logoColor};
+                                                                mask-image: url(${src});
+                                                                -webkit-mask-image: url(${src});
+                                                                mask-size: contain;
+                                                                -webkit-mask-size: contain;
+                                                                mask-repeat: no-repeat;
+                                                                -webkit-mask-repeat: no-repeat;
+                                                                mask-position: center;
+                                                                -webkit-mask-position: center;
+                                                            `}
+                                                            />
+                                                        ) : (
+                                                            <img
+                                                                src={src}
+                                                                class={`max-w-full max-h-full object-contain transition-all duration-500 ${!useOriginal ? "grayscale brightness-0 invert opacity-80 group-hover:opacity-100 group-active:opacity-100 group-hover:brightness-200 group-active:brightness-200" : ""}`}
+                                                                alt="Logo"
+                                                                loading="lazy"
+                                                            />
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            );
+                                        }
+                                        return null;
+                                    },
+                                )}
+                            </div>
+                        ) : (
+                            project.images?.map(
+                                (img: string, index: number) => (
+                                    <div class="w-full overflow-hidden">
+                                        <img
+                                            src={img}
+                                            class="w-full h-auto object-cover block transition-all duration-700"
+                                            alt={`${project.title} - Vista ${index + 1}`}
+                                            loading="lazy"
+                                        />
+                                    </div>
+                                ),
+                            )
+                        )
+                    }
+                </section>
+            </div>
         </div>
-        <div
-          class="text-6xl md:text-[10rem] font-100 group-hover:text-white transition-transform duration-700 group-hover:translate-x-12"
+
+        <!-- FOOTER NAVIGATION (Outside project-area to keep original brand colors) -->
+        <a
+            href={`/projects/${nextProject.slug}`}
+            class="block w-full border-t border-brand-red/20 mt-0 bg-brand-black hover:bg-brand-red transition-all duration-500 group relative overflow-hidden"
         >
-          →
-        </div>
-      </div>
-    </a>
-  </main>
+            <!-- Subtle glow effect from brand guidelines section 05 -->
+            <div
+                class="absolute top-0 right-0 w-64 h-64 bg-brand-red blur-[100px] opacity-10 group-hover:opacity-30 transition-opacity duration-500"
+            >
+            </div>
+
+            <div
+                class="max-w-[1440px] mx-auto w-full px-6 md:px-6 py-16 md:py-24 flex justify-between items-center relative z-10"
+            >
+                <div>
+                    <span
+                        class="block text-[10px] font-bold bg-brand-red/10 text-brand-red px-3 py-1 rounded-full uppercase tracking-wider mb-4 inline-block group-hover:bg-black/10 group-hover:text-brand-black transition-colors duration-500"
+                    >
+                        Siguiente Proyecto
+                    </span>
+                    <h2
+                        class="text-5xl md:text-8xl font-sans font-800 uppercase tracking-tighter text-brand-red group-hover:text-brand-black transition-colors duration-500 leading-none"
+                    >
+                        {nextProject.title}
+                    </h2>
+                </div>
+                <div
+                    class="text-5xl md:text-8xl text-brand-red group-hover:text-brand-black group-hover:translate-x-6 transition-all duration-500"
+                >
+                    →
+                </div>
+            </div>
+        </a>
+    </main>
 </Layout>
-
-<script>
-  import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  const initProjectLore = () => {
-    // Hero Reveal
-    gsap.from("h1", { opacity: 0, y: 50, duration: 1, ease: "power4.out" });
-
-    // Schematic
-    gsap.from(".module-node", {
-      scale: 0,
-      opacity: 0,
-      duration: 1,
-      stagger: 0.2,
-      ease: "back.out(1.7)",
-      scrollTrigger: {
-        trigger: ".architecture-section",
-        start: "top 70%",
-      },
-    });
-
-    // Horizontal metrics (if element exists)
-    const wrapper = document.querySelector(".metrics-wrapper");
-    if (wrapper) {
-      gsap.to(wrapper, {
-        x: () => -(wrapper.scrollWidth - window.innerWidth),
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".metrics-horizontal-section",
-          start: "top top",
-          end: () => `+=${wrapper.scrollWidth}`,
-          scrub: 1,
-          pin: true,
-          anticipatePin: 1,
-        },
-      });
-    }
-  };
-
-  document.addEventListener("DOMContentLoaded", initProjectLore);
-  document.addEventListener("astro:after-swap", initProjectLore);
-</script>
-
-<style>
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #d4dad3;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #fa2a2a;
-    border: 2px solid #d4dad3;
-  }
-</style>
