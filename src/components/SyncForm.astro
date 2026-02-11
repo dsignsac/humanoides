@@ -73,18 +73,15 @@
     if (subject && descriptionInput) {
       descriptionInput.value = `Interés en servicio/programa: ${subject}\n\n`;
       // Smooth scroll to form if subject is present
-      const formSection = document.getElementById("sync");
-      if (formSection) {
-        formSection.scrollIntoView({ behavior: "smooth" });
+      const contactSection = document.getElementById("contacto");
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: "smooth" });
       }
     }
   };
 
   // Run on load
   updateDescriptionFromQuery();
-
-  // Also listen for popstate or other navigation events if needed
-  window.addEventListener("popstate", updateDescriptionFromQuery);
 
   form?.addEventListener("submit", (e) => {
     e.preventDefault();

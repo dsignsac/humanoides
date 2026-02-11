@@ -17,25 +17,14 @@ interface Project {
   url: string;
 }
 
-import fs from "node:fs";
-import path from "node:path";
-const projectsDir = path.resolve("./public/projects");
-const projectFolders = fs.readdirSync(projectsDir);
+import { getDataFromFolders } from "../lib/data";
 
-const projectsData = projectFolders
-  .map((folder) => {
-    const infoPath = path.join(projectsDir, folder, "info.json");
-    if (fs.existsSync(infoPath)) {
-      return JSON.parse(fs.readFileSync(infoPath, "utf-8"));
-    }
-    return null;
-  })
-  .filter(Boolean)
-  .sort((a, b) => parseInt(b.year) - parseInt(a.year));
+const projectsData = getDataFromFolders("./public/projects");
 
 // Map scanned data to Project interface and filter by landing visibility
 const projects = projectsData
   .filter((p) => p.showOnLanding !== false) // Default is true, only hide if explicitly false
+  .sort((a, b) => parseInt(b.year) - parseInt(a.year))
   .map((p) => {
     const getImagePath = (src: string) => {
       if (!src) return "";

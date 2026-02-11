@@ -7,32 +7,7 @@ import Pricing from "../components/Pricing.astro";
 import Operations from "../components/Operations.astro";
 import Contact from "../components/Contact.astro";
 
-import fs from "node:fs";
-import path from "node:path";
-
-// Helper for dynamic data folder reading
-const getDataFromFolders = (dirPath: string) => {
-  const fullPath = path.resolve(dirPath);
-  if (!fs.existsSync(fullPath)) return [];
-
-  const folders = fs.readdirSync(fullPath);
-  return folders
-    .map((folder) => {
-      const infoPath = path.join(fullPath, folder, "info.json");
-      if (fs.existsSync(infoPath)) {
-        try {
-          const data = JSON.parse(fs.readFileSync(infoPath, "utf-8"));
-          return { ...data, folder };
-        } catch (e) {
-          console.error(`Error parsing JSON in ${infoPath}`, e);
-          return null;
-        }
-      }
-      return null;
-    })
-    .filter(Boolean)
-    .sort((a, b) => (a.order || 99) - (b.order || 99));
-};
+import { getDataFromFolders } from "../lib/data";
 
 // Fetch Logos Data
 const rawLogos = getDataFromFolders("./public/brands");
@@ -62,8 +37,7 @@ const logos = rawLogos.map((l) => ({
           format="webp"
         />
       </div>
-      <div class="absolute inset-0 z-[5] bg-brand-black/60"></div>
-
+      <div class="absolute inset-0 z-5 bg-brand-black/60"></div>
       <!-- Content -->
       <div
         class="relative z-10 flex-1 flex flex-col justify-center items-center pt-20 md:pt-24 lg:pt-32 pb-32 md:pb-48"
@@ -93,82 +67,48 @@ const logos = rawLogos.map((l) => ({
           </div>
         </div>
       </div>
-
       <!-- Logo Marquee Banner -->
       <div
         class="absolute bottom-0 left-0 w-full bg-brand-red py-6 md:py-10 z-20 overflow-hidden"
       >
         <div class="flex animate-marquee whitespace-nowrap">
-          <div class="flex items-center flex-shrink-0">
-            {
-              [...logos, ...logos].map((logo) => (
-                <div class="h-8 md:h-12 w-24 md:w-32 flex-shrink-0 flex items-center justify-center mx-6 md:mx-12">
-                  {logo.href ? (
-                    <a
-                      href={logo.href}
-                      class="w-full h-full block"
-                      aria-label={`Visitar sitio web de ${logo.alt}`}
-                    >
+          {
+            [1, 2].map(() => (
+              <div class="flex items-center shrink-0">
+                {logos.map((logo) => (
+                  <div class="h-8 md:h-12 w-24 md:w-32 shrink-0 flex items-center justify-center mx-6 md:mx-12">
+                    {logo.href ? (
+                      <a
+                        href={logo.href}
+                        class="w-full h-full block"
+                        aria-label={`Visitar sitio web de ${logo.alt}`}
+                      >
+                        <div
+                          class="w-full h-full bg-[#D4DAD3]"
+                          style={`
+                            mask: url(${logo.src}) no-repeat center;
+                            -webkit-mask: url(${logo.src}) no-repeat center;
+                            mask-size: contain;
+                            -webkit-mask-size: contain;
+                          `}
+                        />
+                      </a>
+                    ) : (
                       <div
                         class="w-full h-full bg-[#D4DAD3]"
                         style={`
-                                                    mask: url(${logo.src}) no-repeat center;
-                                                    -webkit-mask: url(${logo.src}) no-repeat center;
-                                                    mask-size: contain;
-                                                    -webkit-mask-size: contain;
-                                                `}
+                          mask: url(${logo.src}) no-repeat center;
+                          -webkit-mask: url(${logo.src}) no-repeat center;
+                          mask-size: contain;
+                          -webkit-mask-size: contain;
+                        `}
                       />
-                    </a>
-                  ) : (
-                    <div
-                      class="w-full h-full bg-[#D4DAD3]"
-                      style={`
-                                                mask: url(${logo.src}) no-repeat center;
-                                                -webkit-mask: url(${logo.src}) no-repeat center;
-                                                mask-size: contain;
-                                                -webkit-mask-size: contain;
-                                            `}
-                    />
-                  )}
-                </div>
-              ))
-            }
-          </div>
-          <div class="flex items-center flex-shrink-0" aria-hidden="true">
-            {
-              [...logos, ...logos].map((logo) => (
-                <div class="h-8 md:h-12 w-24 md:w-32 flex-shrink-0 flex items-center justify-center mx-6 md:mx-12">
-                  {logo.href ? (
-                    <a
-                      href={logo.href}
-                      class="w-full h-full block"
-                      aria-label={`Visitar sitio web de ${logo.alt}`}
-                    >
-                      <div
-                        class="w-full h-full bg-[#D4DAD3]"
-                        style={`
-                                                    mask: url(${logo.src}) no-repeat center;
-                                                    -webkit-mask: url(${logo.src}) no-repeat center;
-                                                    mask-size: contain;
-                                                    -webkit-mask-size: contain;
-                                                `}
-                      />
-                    </a>
-                  ) : (
-                    <div
-                      class="w-full h-full bg-[#D4DAD3]"
-                      style={`
-                                                mask: url(${logo.src}) no-repeat center;
-                                                -webkit-mask: url(${logo.src}) no-repeat center;
-                                                mask-size: contain;
-                                                -webkit-mask-size: contain;
-                                            `}
-                    />
-                  )}
-                </div>
-              ))
-            }
-          </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            ))
+          }
         </div>
       </div>
     </section>
