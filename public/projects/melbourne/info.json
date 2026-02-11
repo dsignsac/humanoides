@@ -1,0 +1,138 @@
+{
+    "id": "melbourne",
+    "client": "Melbourne Pisco",
+    "year": "2023",
+    "country": "Australia",
+    "thumbnail": "01.webp",
+    "gallery": [
+        {
+            "type": "image",
+            "src": "01.webp",
+            "caption": "Ident Hero Visual"
+        },
+        {
+            "type": "video",
+            "src": "https://player.vimeo.com/video/779012594?h=1219c32f8b",
+            "caption": "Brand Essence Film"
+        },
+        {
+            "type": "image",
+            "src": "02.webp",
+            "caption": "Web Experience V1"
+        },
+        {
+            "type": "video",
+            "src": "https://player.vimeo.com/video/779011006?h=f71225fe9c",
+            "caption": "Product Motion"
+        },
+        {
+            "type": "image",
+            "src": "05.webp",
+            "caption": "Social Strategy"
+        },
+        {
+            "type": "image",
+            "src": "06.webp",
+            "caption": "Packaging Specs"
+        },
+        {
+            "type": "image",
+            "src": "07.webp",
+            "caption": "Visual Consistency"
+        },
+        {
+            "type": "image",
+            "src": "08.webp",
+            "caption": "Market Alignment"
+        },
+        {
+            "type": "image",
+            "src": "09.webp",
+            "caption": "Final Output"
+        }
+    ],
+    "slides": [
+        {
+            "id": "slide-01",
+            "label": "Project Identity",
+            "type": "hero",
+            "mobileGalleryIndices": [0, 1]
+        },
+        {
+            "id": "slide-02",
+            "label": "Problemas",
+            "type": "tasks",
+            "items": [
+                {
+                    "title": "Cultural Gap",
+                    "solution": "Narrativa visual dual: herencia peruana + minimalismo australiano."
+                },
+                {
+                    "title": "Voice Consistency",
+                    "solution": "Sincronización 360: Website, redes y packaging unificados."
+                },
+                {
+                    "title": "B2B Friction",
+                    "solution": "Digitalización total y plataforma educativa dedicada."
+                }
+            ],
+            "mobileGalleryIndices": [2, 3]
+        },
+        {
+            "id": "slide-03",
+            "label": "Proceso",
+            "type": "process",
+            "items": [
+                {
+                    "code": "Aud-01",
+                    "name": "Market Audit",
+                    "desc": "Análisis de sector licores premium en Australia."
+                },
+                {
+                    "code": "Brn-02",
+                    "name": "Brand Core",
+                    "desc": "Rediseño de logotipo y tono de voz corporativo."
+                },
+                {
+                    "code": "Web-03",
+                    "name": "Ecosystem Build",
+                    "desc": "Construcción plataforma digital responsive."
+                },
+                {
+                    "code": "Ops-04",
+                    "name": "Content Operations",
+                    "desc": "Estrategia continua y dirección de arte."
+                }
+            ],
+            "mobileGalleryIndices": [4, 5]
+        },
+        {
+            "id": "slide-04",
+            "label": "Resultados",
+            "type": "results",
+            "title": "Consolidación Premium",
+            "description": "Se logró una identidad coherente y atractiva que facilitó la entrada exclusiva al mercado australiano.",
+            "stats": [
+                {
+                    "label": "Mercado",
+                    "value": "Australia"
+                },
+                {
+                    "label": "Ecosistema",
+                    "value": "360°"
+                }
+            ],
+            "mobileGalleryIndices": []
+        }
+    ],
+    "stack": [
+        "Social Media Design",
+        "Copywriting",
+        "Web Design",
+        "Photography Direction",
+        "Merchandising"
+    ],
+    "title": "Exporting Heritage",
+    "service": "360 Design & Content Strategy",
+    "description": "Gestión integral de marca para la importación de pisco premium en Australia. El proyecto abarcó desde el diseño web y la estrategia de contenido (copywriting y redes) hasta la dirección de arte en sesiones fotográficas y producción de merchandising, consolidando una identidad visual coherente para el mercado anglo-parlante."
+}

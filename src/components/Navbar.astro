@@ -1,10 +1,10 @@
 ---
 import AnimatedLogo from "./AnimatedLogo.astro";
 const links = [
-  { name: "Portafolio", href: "/#portafolio" },
-  { name: "Team", href: "/#team" },
-  { name: "Tarifas", href: "/#tarifas" },
-  { name: "Contacto", href: "/#contacto" },
+  { name: "portafolio", href: "/#portafolio" },
+  { name: "equipo", href: "/#team" },
+  { name: "precios", href: "/#tarifas" },
+  { name: "contacto", href: "/#contacto" },
 ];
 
 const socialLinks = [
@@ -23,7 +23,7 @@ const socialLinks = [
 ---
 
 <nav
-  class="fixed top-0 left-0 w-full bg-brand-gray z-[120] border-b-[3px] border-brand-red h-20 md:h-24 flex items-center"
+  class="fixed top-0 left-0 w-full bg-brand-gray z-200 border-b-[3px] border-brand-red h-20 md:h-24 flex items-center"
 >
   <div
     class="max-w-[1440px] mx-auto w-full flex items-center justify-between px-6"
@@ -31,7 +31,7 @@ const socialLinks = [
     <!-- Brand Identity Section -->
     <a
       href="/"
-      class="flex items-center group relative z-[110]"
+      class="flex items-center group relative z-210"
       aria-label="Humanoides & Asociados Home"
     >
       <div class="flex items-center">
@@ -50,7 +50,7 @@ const socialLinks = [
     <!-- Desktop Navigation -->
     <div class="hidden md:flex items-center gap-6 lg:gap-10">
       {
-        links.slice(0, 4).map((link) => (
+        links.map((link) => (
           <a
             href={link.href}
             class="nav-link group relative font-sans font-bold text-brand-red"
@@ -66,7 +66,7 @@ const socialLinks = [
     <!-- Mobile Menu Toggle -->
     <button
       id="menu-toggle"
-      class="block md:hidden relative z-[110] w-10 h-10 focus:outline-none"
+      class="block md:hidden relative z-210 w-10 h-10 focus:outline-none"
       aria-label="Toggle Menu"
     >
       <div
@@ -89,7 +89,7 @@ const socialLinks = [
 <!-- Industrial Mobile Menu -->
 <div
   id="mobile-menu"
-  class="fixed inset-0 z-[105] pointer-events-none invisible overflow-hidden"
+  class="fixed inset-0 z-190 pointer-events-none invisible overflow-hidden"
 >
   <!-- Top and Bottom Panels (Industrial Reveal) - Seamless Background -->
   <div
@@ -178,6 +178,11 @@ const socialLinks = [
     width: 100% !important;
   }
 
+  #mobile-menu.menu-is-clickable {
+    pointer-events: auto !important;
+    visibility: visible !important;
+  }
+
   /* Hamburger Lines Transition */
   .menu-open .hamburger-line:nth-child(1) {
     transform: translateY(9px) rotate(45deg);
@@ -212,11 +217,12 @@ const socialLinks = [
       onStart: () => {
         gsap.set(menu, {
           visibility: "visible",
-          pointerEvents: "auto",
         });
+        menu.classList.add("menu-is-clickable");
       },
       onReverseComplete: () => {
-        gsap.set(menu, { visibility: "hidden", pointerEvents: "none" });
+        gsap.set(menu, { visibility: "hidden" });
+        menu.classList.remove("menu-is-clickable");
       },
     });
 
@@ -260,14 +266,31 @@ const socialLinks = [
       }
     });
 
-    // Close menu on link click
-    mobileLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        isOpen = false;
-        document.body.classList.remove("menu-open", "overflow-hidden");
-        menuTl.timeScale(1.5).reverse();
+    // Close menu on link click (Capture on window to bypass Layout.astro's document interceptor)
+    const handleMenuClosure = (e: Event) => {
+      if (!isOpen) return;
+
+      const target = e.target as HTMLElement;
+      const link = target.closest("a");
+
+      if (link) {
+        // If it's a mobile nav link or a link inside the menu
+        if (link.classList.contains("mobile-nav-link") || menu.contains(link)) {
+          isOpen = false;
+          document.body.classList.remove("menu-open", "overflow-hidden");
+          menuTl.timeScale(1.5).reverse();
+        }
+      }
+    };
+
+    // Cleanup previous listener to avoid accumulation during Astro navigations
+    if ((window as any).__ha_menu_handler) {
+      window.removeEventListener("click", (window as any).__ha_menu_handler, {
+        capture: true,
       });
-    });
+    }
+    window.addEventListener("click", handleMenuClosure, { capture: true });
+    (window as any).__ha_menu_handler = handleMenuClosure;
 
     // ScrollSpy Logic (kept from original)
     const sections = document.querySelectorAll("section");

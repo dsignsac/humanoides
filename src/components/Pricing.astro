@@ -1,0 +1,290 @@
+---
+/**
+ * Pricing Section Component
+ * Aesthetic: 80s Corporate, Brutalist, Institutional.
+ * Redesigned for Premium Card Experience with Dynamic Toggle.
+ */
+
+import pricingData from "../data/pricing.json";
+
+const programs = pricingData.programs;
+const currencySymbol = "$";
+---
+
+<section
+    id="tarifas"
+    class="relative w-full bg-brand-gray text-brand-black pt-0 md:pt-24 overflow-hidden"
+>
+    <div class="max-w-[1440px] mx-auto px-6 relative z-10">
+        <!-- Section Header -->
+        <div
+      class="flex flex-col md:flex-row justify-between items-start md:items-end mb-6 md:mb-8"
+    >
+      <div>
+        <h2
+          class="text-sm font-sans tracking-normal text-brand-red block font-bold uppercase"
+        >
+          Tarifas
+        </h2>
+        <div class="hidden lg:block mb-4">
+          <h3
+            class="text-xl md:text-2xl font-sans font-900 text-brand-black tracking-tight uppercase"
+          >
+            Modelos De Colaboración
+          </h3>
+        </div>
+      </div>
+      
+    </div>
+
+        <!-- Institutional Header Strip -->
+        <div
+            class="w-full border-y border-brand-black py-3 flex justify-between items-center text-[12px] font-sans font-bold tracking-normal text-brand-black mb-4 px-0"
+        >
+            <span>Programas Disponibles</span>
+        </div>
+
+        <div
+            class="flex md:flex lg:grid lg:grid-cols-3 items-start lg:items-stretch overflow-x-auto lg:overflow-visible snap-x lg:snap-none scrollbar-hide gap-4 md:gap-6 px-6 md:px-8 lg:px-0 pricing-carousel mb-10 md:mb-16"
+        >
+            {
+                programs.map((item, idx) => {
+                    // Direct access
+                    const levelKeys = Object.keys(item.levels);
+                    const defaultLevel = levelKeys[1];
+                    const currentLevelData = item.levels[defaultLevel as keyof typeof item.levels];
+                    if (!currentLevelData) return null;
+                    const price = currentLevelData.price; 
+
+                    return (
+                    <article
+                        data-program-id={item.id}
+                        class={`flex-shrink-0 w-[calc(100vw-48px)] md:w-[45vw] lg:w-full snap-center relative flex flex-col bg-brand-salmon p-6 md:p-8 transition-all duration-500 group active:scale-[0.98] md:active:scale-100 rounded-3xl border ${item.recommended ? "border-brand-red" : "border-brand-black"}`}
+                    >
+                        {item.recommended && (
+                            <div class="absolute top-3 right-3 bg-brand-red text-white text-[11px] font-sans font-900 px-4 py-1.5 tracking-normal rounded-full z-10">
+                                Recomendado
+                            </div>
+                        )}
+
+                        <div class="mt-10 mb-4">
+                            <h3 class="text-xs font-sans font-900 text-brand-red tracking-normal mb-4 px-0">
+                                — {item.name}
+                            </h3>
+
+                            <!-- Level Selector -->
+                            <div class="flex bg-brand-gray rounded-xl p-1 mb-8 level-selector" data-program={item.id}>
+                                {levelKeys.map((level, lIdx) => (
+                                    <button
+                                        data-level={level}
+                                        data-index={lIdx}
+                                        class={`flex-1 py-3 text-[13px] font-sans font-900 tracking-normal rounded-lg transition-all duration-300 ${level === defaultLevel ? "bg-white text-brand-black" : "text-brand-black hover:text-brand-red"}`}
+                                    >
+                                        {level}
+                                    </button>
+                                ))}
+                            </div>
+                            
+                            <div class="price-container mb-2">
+                                <div class="price-monthly block">
+                                    <span class="text-5xl font-sans font-999 text-brand-black lowercase tracking-tighter">
+                                        {currencySymbol}<span class="price-value">{price}</span>
+                                    </span>
+                                    <span class="text-[13px] font-sans font-900 text-brand-black tracking-normal ml-2 price-period">
+                                        {currentLevelData.billing_period}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="text-[12px] font-sans font-black text-brand-black tracking-normal mb-6">
+                                Impuestos Incluídos
+                            </div>
+
+                            <p class="text-lg font-sans font-medium text-brand-black leading-tight mb-8 description-text min-h-[6rem]">
+                                {currentLevelData.description}
+                            </p>
+                        </div>
+
+                        <div class="mt-auto">
+                            <a
+                                href="https://calendly.com/humanoidesyasociados/sync"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class={`cta-button inline-flex items-center justify-center gap-3 w-full py-5 rounded-full text-[13px] font-sans font-900 tracking-normal transition-all duration-300 ${item.recommended ? "bg-brand-red text-white hover:bg-brand-black" : "bg-brand-black text-white hover:bg-brand-red"}`}
+                            >
+                                Empezar Proyecto
+                                <svg
+                                    class="w-3.5 h-3.5"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="4"
+                                >
+                                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                                </svg>
+                            </a>
+                        </div>
+                    </article>
+                )})
+            }
+        </div>
+
+    </div>
+</section>
+
+<style>
+    .reveal-fade-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+            opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+            transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+    }
+
+    .reveal-fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .pricing-card {
+        will-change: transform, box-shadow, border-color;
+    }
+
+    /* Toggle Animations */
+    #toggle-monthly.active,
+    #toggle-annual.active {
+        background: #000;
+        color: #fff;
+    }
+
+    .price-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .price-monthly,
+    .price-annual {
+        transition:
+            opacity 0.4s ease,
+            transform 0.4s ease;
+    }
+</style>
+
+<script>
+    import pricingData from "../data/pricing.json";
+    import { gsap } from "gsap";
+
+    // Detect Context
+    const section = document.getElementById("tarifas");
+
+    // Entrance Animation Logic
+    const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                (entry.target as HTMLElement).classList.add("visible");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll(".reveal-fade-up").forEach((el) => {
+        observer.observe(el);
+    });
+
+    // Carousel Dots Logic
+    const carousel = document.querySelector(".pricing-carousel");
+    const dots = document.querySelectorAll("#pricing-dots div");
+    const cards = document.querySelectorAll(".pricing-carousel article");
+
+    if (carousel instanceof HTMLElement && cards.length > 0) {
+        carousel.addEventListener("scroll", () => {
+            const index = Math.round(
+                carousel.scrollLeft / carousel.clientWidth,
+            );
+            dots.forEach((dot, i) => {
+                dot.classList.toggle("bg-brand-red", i === index);
+                dot.classList.toggle("bg-brand-black", i !== index);
+            });
+        });
+    }
+
+    // Level Switcher Logic
+    const pricingDataRef = pricingData;
+
+    document.querySelectorAll(".level-selector").forEach((selector) => {
+        const programId = selector.getAttribute("data-program");
+        const article = selector.closest("article");
+        const priceValue = article?.querySelector(
+            ".price-value",
+        ) as HTMLElement;
+        const pricePeriod = article?.querySelector(
+            ".price-period",
+        ) as HTMLElement;
+        const descriptionText = article?.querySelector(
+            ".description-text",
+        ) as HTMLElement;
+        const ctaButton = article?.querySelector(
+            ".cta-button",
+        ) as HTMLAnchorElement;
+        const buttons = selector.querySelectorAll("button");
+
+        const programData = pricingDataRef.programs.find(
+            (p: any) => p.id === programId,
+        );
+
+        buttons.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                const level = btn.getAttribute("data-level") as string;
+                // Update UI state
+                buttons.forEach((b) => {
+                    b.classList.remove("bg-white", "text-brand-black");
+                    b.classList.add("text-brand-black");
+                });
+                btn.classList.add("bg-white", "text-brand-black");
+                btn.classList.remove("text-brand-black");
+
+                // Update content with GSAP animation
+                if (priceValue && descriptionText && programData && pricePeriod) {
+                    
+                    // New Data Access Logic
+                    const levelData = (programData as any).levels[level];
+                    const price = (programData as any).levels[level].price;
+
+                    const elementsToAnimate = [priceValue, pricePeriod, descriptionText];
+
+                    // Phase 1: Fade out and slide up
+                    gsap.to(elementsToAnimate, {
+                        opacity: 0,
+                        y: -10,
+                        duration: 0.2,
+                        ease: "power2.in",
+                        stagger: 0.02,
+                        onComplete: () => {
+                            // Update content
+                            priceValue.innerText = price;
+                            pricePeriod.innerText = levelData.billing_period;
+                            descriptionText.innerText = levelData.description;
+
+                            if (ctaButton) {
+                                // Keep static link to Calendly
+                                ctaButton.href = "https://calendly.com/humanoidesyasociados/sync";
+                            }
+
+                            // Phase 2: Fade in and slide up from below
+                            gsap.fromTo(elementsToAnimate, 
+                                { opacity: 0, y: 10 },
+                                { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", stagger: 0.02 }
+                            );
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>

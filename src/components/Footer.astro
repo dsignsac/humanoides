@@ -4,12 +4,10 @@ const today = new Date();
 ---
 
 <footer
-  class="w-full bg-brand-gray mt-auto border-t-[3px] border-brand-red pt-16 md:pt-24 pb-4 md:pb-6"
+  class="w-full bg-brand-gray mt-auto border-t-[3px] border-brand-red py-10"
 >
   <div class="max-w-[1440px] mx-auto px-6">
-    <div
-      class="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-16 mb-16 md:mb-24"
-    >
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-16">
       <!-- Brand Column -->
       <div class="md:col-span-2">
         <div class="w-48 mb-6 md:mb-8">
@@ -21,45 +19,91 @@ const today = new Date();
           />
         </div>
         <p
-          class="text-base md:text-lg font-sans font-medium text-brand-black/80 max-w-lg leading-relaxed"
+          class="text-base md:text-lg font-sans font-medium text-brand-black max-w-lg leading-relaxed"
         >
-          Somos especialistas en el desarrollo de Branding Estratégico, Sitios
-          Web de alto rendimiento y MVP. Nuestro equipo técnico evaluará su
-          requerimiento y ejecutará su proyecto digital bajo estándares de
-          escalabilidad y eficiencia.
+          Branding Estratégico. Desarrollo Web. Productos Digitales. Ayudamos a
+          marcas visionarias a construir su futuro digital con estándares de
+          escalabilidad, eficiencia y "lore".
         </p>
+        <div class="mt-4 opacity-60">
+          <a
+            href="/complaints-book"
+            class="group mb-4 flex items-center gap-2 w-fit border border-brand-black/20 px-6 py-2 rounded-full hover:bg-brand-black hover:text-white transition-all duration-300"
+            title="Libro de Reclamaciones"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+              ></path>
+            </svg>
+            <span class="text-[10px] font-sans font-900 tracking-tighter"
+              >Libro de reclamaciones</span
+            >
+          </a>
+          <p class="text-[9px] font-sans font-bold text-brand-black uppercase">
+            Humanoides & Asociados es una marca de DSIGN S.A.C
+          </p>
+          <p class="text-[9px] font-sans font-medium text-brand-black">
+            RUC: 20609948257
+          </p>
+        </div>
       </div>
 
       <!-- Socials & Copyright Column -->
       <div class="md:col-start-4 flex flex-col justify-between">
         <div class="mb-8 md:text-right">
           <h3
-            class="text-xs font-sans font-900 text-brand-black uppercase tracking-widest mb-6 border-b-2 border-brand-black pb-2 inline-block md:ml-auto"
+            class="text-xs font-sans font-900 text-brand-black tracking-normal mb-6 border-b-2 border-brand-black pb-2 hidden md:inline-block md:ml-auto uppercase"
           >
-            CONNECT
+            Links de Interés
           </h3>
-          <nav class="flex flex-col gap-4">
+          <nav
+            class="flex flex-row md:flex-col justify-center md:justify-end gap-6 md:gap-1"
+          >
             <a
               href="https://instagram.com/humanoidesyasociados"
               target="_blank"
-              class="text-sm font-sans font-bold text-brand-black hover:opacity-60 transition-opacity uppercase tracking-wider"
-              >INSTAGRAM</a
+              class="text-sm font-sans font-bold text-brand-black hover:opacity-60 transition-opacity tracking-normal"
+              >Instagram</a
             >
             <a
               href="https://www.linkedin.com/company/79018424/admin/dashboard/"
               target="_blank"
-              class="text-sm font-sans font-bold text-brand-black hover:opacity-60 transition-opacity uppercase tracking-wider"
-              >LINKEDIN</a
+              class="text-sm font-sans font-bold text-brand-black hover:opacity-60 transition-opacity tracking-normal"
+              >LinkedIn</a
+            >
+
+            <a
+              href="/privacy"
+              class="text-sm font-sans font-bold text-brand-black hover:opacity-60 transition-opacity tracking-normal"
+              >Legal</a
             >
           </nav>
         </div>
 
-        <div class="md:text-right">
+        <div
+          class="md:text-right text-center flex flex-col items-center md:items-end"
+        >
           <p
-            class="text-sm font-sans font-bold text-brand-black uppercase tracking-wider leading-relaxed"
+            class="text-sm font-sans font-bold text-brand-black tracking-normal leading-relaxed mb-2"
           >
-            &copy; 2026 Humanoides & Asociados.
+            &copy; {today.getFullYear()} Humanoides & Asociados.
           </p>
+          <span
+            id="disclamer"
+            class="text-[9px] leading-tight text-brand-black block ml-auto mr-auto md:mr-0 md:ml-auto max-w-xs md:max-w-none opacity-60"
+          >
+            Todos los derechos reservados. Esta marca no tiene vinculación
+            comercial, legal ni editorial con "Les Humanoïdes Associés".
+          </span>
         </div>
       </div>
     </div>

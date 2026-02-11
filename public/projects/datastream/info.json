@@ -1,0 +1,100 @@
+{
+    "id": "datastream",
+    "client": "DataStream",
+    "year": "2025",
+    "country": "Perú",
+    "thumbnail": "00.webp",
+    "gallery": [
+        {
+            "type": "image",
+            "src": "01.webp",
+            "caption": "Democratizando Métricas - Item 1"
+        }
+    ],
+    "stack": [
+        "Product Design",
+        "Data Visualization",
+        "Open Data",
+        "AdTech Strategy",
+        "UX/UI"
+    ],
+    "title": "Democratizando Métricas",
+    "service": "UX/UI Design & Product Strategy",
+    "description": "Plataforma de Open Data que democratiza el acceso a métricas de streaming en Perú. El sistema transforma datos de audiencia en tiempo real en una herramienta estratégica de AdTech para optimizar la toma de decisiones y la pauta publicitaria en medios digitales.",
+    "slides": [
+        {
+            "id": "slide-01",
+            "label": "Project Identity",
+            "type": "hero",
+            "mobileGalleryIndices": [
+                0
+            ]
+        },
+        {
+            "id": "slide-02",
+            "label": "Problemas",
+            "type": "tasks",
+            "items": [
+                {
+                    "title": "Creative Audit",
+                    "solution": "Análisis y diagnóstico de la situación actual de marca."
+                },
+                {
+                    "title": "Strategic Sync",
+                    "solution": "Sincronización de activos digitales y puntos de contacto."
+                },
+                {
+                    "title": "Visual Output",
+                    "solution": "Ejecución de entregables de alta fidelidad según requerimiento."
+                }
+            ],
+            "mobileGalleryIndices": []
+        },
+        {
+            "id": "slide-03",
+            "label": "Proceso",
+            "type": "process",
+            "items": [
+                {
+                    "code": "Res-01",
+                    "name": "Research",
+                    "desc": "Investigación profunda del mercado y competencia."
+                },
+                {
+                    "code": "Str-02",
+                    "name": "Strategy",
+                    "desc": "Definición del tono de voz y pilares visuales."
+                },
+                {
+                    "code": "Dev-03",
+                    "name": "Development",
+                    "desc": "Construcción de la infraestructura digital."
+                },
+                {
+                    "code": "Lnc-04",
+                    "name": "Launch",
+                    "desc": "Despliegue y optimización continua."
+                }
+            ],
+            "mobileGalleryIndices": []
+        },
+        {
+            "id": "slide-04",
+            "label": "Resultados",
+            "type": "results",
+            "title": "Impacto del Proyecto",
+            "description": "Se logró optimizar la visualización de datos complejos, permitiendo a los usuarios tomar decisiones informadas en tiempo real con una interfaz intuitiva y potente.",
+            "stats": [
+                {
+                    "label": "Eficiencia",
+                    "value": "+30%"
+                },
+                {
+                    "label": "Usuarios",
+                    "value": "10k+"
+                }
+            ],
+            "mobileGalleryIndices": []
+        }
+    ]
+}

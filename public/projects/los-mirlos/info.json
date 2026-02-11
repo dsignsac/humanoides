@@ -1,0 +1,100 @@
+{
+    "id": "los-mirlos",
+    "client": "Los Mirlos",
+    "year": "2024",
+    "country": "Perú",
+    "thumbnail": "00.webp",
+    "gallery": [
+        {
+            "type": "image",
+            "src": "01.webp",
+            "caption": "El Poder Verde - Item 1"
+        }
+    ],
+    "stack": [
+        "UI/UX Design",
+        "Visual Storytelling",
+        "Art Direction",
+        "Responsive Design"
+    ],
+    "showOnLanding": true,
+    "title": "El Poder Verde",
+    "service": "Web Design & Art Direction",
+    "description": "Rediseño y desarrollo de la plataforma digital oficial para la legendaria banda de cumbia psicodélica peruana. El proyecto articula más de 50 años de herencia amazónica bajo una narrativa visual contemporánea, optimizando su presencia global para hitos como su gira Coachella 2025. La web funciona como un ecosistema vivo que integra su discografía histórica, lanzamientos recientes y contenido documental, preservando el \"Poder Verde\" en un entorno digital de alto rendimiento.",
+    "slides": [
+        {
+            "id": "slide-01",
+            "label": "Project Identity",
+            "type": "hero",
+            "mobileGalleryIndices": [
+                0
+            ]
+        },
+        {
+            "id": "slide-02",
+            "label": "Problemas",
+            "type": "tasks",
+            "items": [
+                {
+                    "title": "Creative Audit",
+                    "solution": "Análisis y diagnóstico de la situación actual de marca."
+                },
+                {
+                    "title": "Strategic Sync",
+                    "solution": "Sincronización de activos digitales y puntos de contacto."
+                },
+                {
+                    "title": "Visual Output",
+                    "solution": "Ejecución de entregables de alta fidelidad según requerimiento."
+                }
+            ],
+            "mobileGalleryIndices": []
+        },
+        {
+            "id": "slide-03",
+            "label": "Proceso",
+            "type": "process",
+            "items": [
+                {
+                    "code": "Res-01",
+                    "name": "Research",
+                    "desc": "Investigación profunda del mercado y competencia."
+                },
+                {
+                    "code": "Str-02",
+                    "name": "Strategy",
+                    "desc": "Definición del tono de voz y pilares visuales."
+                },
+                {
+                    "code": "Dev-03",
+                    "name": "Development",
+                    "desc": "Construcción de la infraestructura digital."
+                },
+                {
+                    "code": "Lnc-04",
+                    "name": "Launch",
+                    "desc": "Despliegue y optimización continua."
+                }
+            ],
+            "mobileGalleryIndices": []
+        },
+        {
+            "id": "slide-04",
+            "label": "Resultados",
+            "type": "results",
+            "title": "El Poder Verde Digital",
+            "description": "Se logró una plataforma de alto impacto que proyecta la herencia de la banda hacia una audiencia global contemporánea.",
+            "stats": [
+                {
+                    "label": "Herencia",
+                    "value": "50 años"
+                },
+                {
+                    "label": "Impacto",
+                    "value": "Global"
+                }
+            ],
+            "mobileGalleryIndices": []
+        }
+    ]
+}

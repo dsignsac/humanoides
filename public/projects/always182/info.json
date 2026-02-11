@@ -1,0 +1,103 @@
+{
+    "id": "always182",
+    "client": "Always182",
+    "year": "2024",
+    "country": "Global",
+    "thumbnail": "00.webp",
+    "gallery": [
+        {
+            "type": "image",
+            "src": "01.webp",
+            "caption": "Always182.com web design"
+        }
+    ],
+    "stack": [
+        "E-commerce",
+        "Streetwear",
+        "Digital Strategy",
+        "Niche Marketing"
+    ],
+    "title": "Viking Wizard Eyes",
+    "service": "E-commerce & Brand Strategy",
+    "description": "Plataforma de e-commerce de culto especializada en streetwear y piezas de colección de Blink-182. El proyecto fusiona nostalgia pop-punk con una estética industrial-digital, elevando el merchandising tradicional a un sistema de objetos de deseo para una comunidad global de coleccionistas.",
+    "slides": [
+        {
+            "id": "slide-01",
+            "label": "Branding",
+            "type": "hero",
+            "mobileGalleryIndices": [
+                0
+            ]
+        },
+        {
+            "id": "slide-02",
+            "label": "Problemas",
+            "type": "tasks",
+            "items": [
+                {
+                    "title": "Contenido sin rumbo",
+                    "solution": "Análisis y diagnóstico de la situación actual de marca."
+                },
+                {
+                    "title": "Inflación de precios",
+                    "solution": "Sincronización de activos digitales y puntos de contacto."
+                },
+                {
+                    "title": "Piratería",
+                    "solution": "Ejecución de entregables de alta fidelidad según requerimiento."
+                }
+            ],
+            "mobileGalleryIndices": []
+        },
+        {
+            "id": "slide-03",
+            "label": "Proceso",
+            "type": "process",
+            "items": [
+                {
+                    "code": "Res-01",
+                    "name": "Research",
+                    "desc": "Investigación profunda del mercado y competencia."
+                },
+                {
+                    "code": "Str-02",
+                    "name": "Strategy",
+                    "desc": "Definición del tono de voz y pilares visuales."
+                },
+                {
+                    "code": "Dev-03",
+                    "name": "Development",
+                    "desc": "Construcción de la infraestructura digital."
+                },
+                {
+                    "code": "Lnc-04",
+                    "name": "Launch",
+                    "desc": "Despliegue y optimización continua."
+                }
+            ],
+            "mobileGalleryIndices": []
+        },
+        {
+            "id": "slide-04",
+            "label": "Resultados",
+            "type": "results",
+            "title": "Impacto Digital",
+            "description": "Logramos consolidar una comunidad leal en torno a la marca, incrementando la retención de clientes y elevando la percepción de valor de cada lanzamiento.",
+            "stats": [
+                {
+                    "label": "Crecimiento",
+                    "value": "+45%"
+                },
+                {
+                    "label": "Engagement",
+                    "value": "12.8%"
+                },
+                {
+                    "label": "Engagement",
+                    "value": "12.8%"
+                }
+            ],
+            "mobileGalleryIndices": []
+        }
+    ]
+}

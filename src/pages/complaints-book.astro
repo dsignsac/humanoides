@@ -1,0 +1,105 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Libro de Reclamaciones | Humanoides & Asociados"
+  showPreloader={false}
+>
+  <main class="min-h-screen bg-brand-gray text-brand-black pt-32 pb-20 px-6">
+    <div class="max-w-3xl mx-auto">
+      <!-- Sharp Header -->
+      <div class="mb-12">
+        <h1
+          class="text-5xl md:text-7xl font-sans font-900 tracking-tight text-brand-black leading-none"
+        >
+          Libro de<br /><span class="text-brand-red">reclamaciones</span>
+        </h1>
+        <p class="text-xs font-sans font-bold mt-4 opacity-60 tracking-normal">
+          Conforme a lo establecido en el Código de Protección y Defensa del
+          Consumidor
+        </p>
+      </div>
+
+      <div class="bg-brand-gray p-8 md:p-12">
+        <form class="space-y-8">
+          <!-- Identificación del Consumidor -->
+          <fieldset class="space-y-4">
+            <legend
+              class="text-sm font-sans font-900 border-b-2 border-brand-black pb-1 mb-4"
+              >1. Identificación del consumidor</legend
+            >
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input
+                type="text"
+                placeholder="Nombre completo"
+                class="w-full border-2 border-brand-black p-3 bg-transparent font-sans text-sm focus:bg-brand-red/5 outline-none"
+                required
+              />
+              <input
+                type="text"
+                placeholder="DNI / RUC"
+                class="w-full border-2 border-brand-black p-3 bg-transparent font-sans text-sm focus:bg-brand-red/5 outline-none"
+                required
+              />
+            </div>
+            <input
+              type="email"
+              placeholder="Correo electrónico"
+              class="w-full border-2 border-brand-black p-3 bg-transparent font-sans text-sm focus:bg-brand-red/5 outline-none"
+              required
+            />
+            <input
+              type="tel"
+              placeholder="Teléfono"
+              class="w-full border-2 border-brand-black p-3 bg-transparent font-sans text-sm focus:bg-brand-red/5 outline-none"
+            />
+          </fieldset>
+
+          <!-- Detalle de Reclamación -->
+          <fieldset class="space-y-4">
+            <legend
+              class="text-sm font-sans font-900 border-b-2 border-brand-black pb-1 mb-4"
+              >2. Detalle de la reclamación</legend
+            >
+            <div class="flex gap-6">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="tipo"
+                  value="queja"
+                  class="w-4 h-4 accent-brand-red"
+                  checked
+                />
+                <span class="text-xs font-bold">Queja</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="tipo"
+                  value="reclamo"
+                  class="w-4 h-4 accent-brand-red"
+                />
+                <span class="text-xs font-bold">Reclamo</span>
+              </label>
+            </div>
+            <textarea
+              placeholder="Descripción detallada de los hechos..."
+              rows="5"
+              class="w-full border-2 border-brand-black p-3 bg-transparent font-sans text-sm focus:bg-brand-red/5 outline-none resize-none"
+              required></textarea>
+          </fieldset>
+
+          <div class="pt-4">
+            <button
+              type="submit"
+              class="w-full md:w-auto px-12 py-4 bg-brand-black text-white font-sans font-bold rounded-full hover:bg-brand-red transition-all duration-300"
+            >
+              Enviar reclamo
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+</Layout>

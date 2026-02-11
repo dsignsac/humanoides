@@ -1,0 +1,482 @@
+---
+/**
+ * Portfolio Section Component
+ * Stuctured for future Headless WP integration.
+ * Style: Technical, Industrial, Efficient.
+ */
+
+interface Project {
+  id: string;
+  client: string;
+  project: string;
+  service: string;
+  year: string;
+  country: string;
+  image: string; // URL for now, later WP Media Item
+  srcset: string;
+  url: string;
+}
+
+import fs from "node:fs";
+import path from "node:path";
+const projectsDir = path.resolve("./public/projects");
+const projectFolders = fs.readdirSync(projectsDir);
+
+const projectsData = projectFolders
+  .map((folder) => {
+    const infoPath = path.join(projectsDir, folder, "info.json");
+    if (fs.existsSync(infoPath)) {
+      return JSON.parse(fs.readFileSync(infoPath, "utf-8"));
+    }
+    return null;
+  })
+  .filter(Boolean)
+  .sort((a, b) => parseInt(b.year) - parseInt(a.year));
+
+// Map scanned data to Project interface and filter by landing visibility
+const projects = projectsData
+  .filter((p) => p.showOnLanding !== false) // Default is true, only hide if explicitly false
+  .map((p) => {
+    const getImagePath = (src: string) => {
+      if (!src) return "";
+      if (src.startsWith("/") || src.startsWith("http")) return src;
+      return `/projects/${p.id}/${src}`;
+    };
+
+    const getSrcSet = (imagePath: string) => {
+      if (!imagePath || imagePath.endsWith(".svg")) return "";
+      const base = imagePath.substring(0, imagePath.lastIndexOf("."));
+
+      return `${base}-medium.webp 1000w, ${imagePath} 2000w`;
+    };
+
+    const imagePath = getImagePath(
+      p.thumbnail ||
+        (p.gallery && p.gallery[0]?.src) ||
+        (p.images && p.images[0]),
+    );
+    
+    return {
+      id: p.id,
+      client: p.client,
+      project: p.title,
+      service: p.service,
+      year: p.year,
+      country: p.country || "GLOBAL",
+      image: imagePath,
+      srcset: getSrcSet(imagePath),
+      url: `/projects/${p.id}`,
+    };
+  });
+---
+
+<section id="portafolio" class="w-full bg-brand-gray text-brand-black mb-12 md:mb-16">
+  <div class="w-full max-w-[1440px] mx-auto px-6 pt-16 md:pt-24">
+    <!-- Big Headline -->
+    <div
+      class="flex flex-col md:flex-row justify-between items-start md:items-end mb-6 md:mb-8"
+    >
+      <div>
+        <h2
+          class="text-sm font-sans tracking-normal text-brand-red block font-bold uppercase"
+        >
+          Casos De Estudio
+        </h2>
+        <div class="hidden lg:block mb-4">
+          <h3
+            class="text-xl md:text-2xl font-sans font-900 text-brand-black tracking-tight uppercase"
+          >
+            Portfolio
+          </h3>
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  <!-- Projects Grid / List -->
+  <div class="w-full max-w-[1440px] mx-auto flex flex-col px-6">
+    <!-- Table Header (Desktop Only) -->
+    <div
+      class="hidden lg:grid grid-cols-12 gap-4 px-6 lg:px-0 py-3 border-y border-brand-black mb-6 md:mb-12 text-xs font-sans font-bold tracking-normal text-brand-black uppercase"
+    >
+      <div class="col-span-1">año</div>
+      <div class="col-span-4">cliente</div>
+      <div class="col-span-3">país</div>
+      <div class="col-span-3">servicio</div>
+      <div class="col-span-1 text-right">acción</div>
+    </div>
+
+    <!-- Project Rows -->
+    <!-- Mobile Carousel Navigation Strip -->
+    <div
+      class="w-full border-y border-brand-black py-3 flex lg:hidden justify-between items-center text-xs font-sans font-bold tracking-widest text-brand-black mb-6 px-0"
+    >
+      <span id="mobile-project-country">{projects[0]?.country || "GLOBAL"}</span>
+      <div class="flex gap-2" id="projects-dots">
+        {
+          projects.map((_, i) => (
+            <div
+              class={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${i === 0 ? "bg-brand-red" : "bg-brand-black"}`}
+            />
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Mobile Carousel -->
+    <div
+      class="flex lg:hidden overflow-x-auto snap-x snap-mandatory scrollbar-hide flex-nowrap projects-carousel h-auto pb-8 relative px-6 md:px-8"
+    >
+      {/* Clone of Last Project */}
+      {projects.length > 0 && (
+        <article 
+          data-country={projects[projects.length - 1].country}
+          class="shrink-0 w-[85vw] snap-center relative flex flex-col aspect-4/5 border border-brand-black rounded-2xl overflow-hidden mr-4 group"
+        >
+          <div class="absolute inset-0 z-0">
+              <img 
+                src={projects[projects.length - 1].image} 
+                alt={`${projects[projects.length - 1].client} preview`}
+                class="w-full h-full object-cover" 
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-brand-black opacity-40"></div>
+          </div>
+          <div class="relative z-10 flex flex-col p-6 grow justify-end">
+              <div class="mb-4">
+                  <h3 class="text-3xl font-sans font-900 capitalize tracking-tighter leading-none text-white mb-1">{projects[projects.length - 1].client}</h3>
+                  <p class="text-lg font-sans font-normal leading-tight text-white/90">{projects[projects.length - 1].service}</p>
+              </div>
+              <a href={projects[projects.length - 1].url} class="w-full py-4 bg-white text-brand-black border border-white rounded-full flex items-center justify-center gap-2 text-sm font-bold tracking-normal hover:bg-brand-red hover:text-white hover:border-brand-red transition-colors">
+                Ver Proyecto <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
+              </a>
+          </div>
+        </article>
+      )}
+
+      {/* Real Projects */}
+      {
+        projects.map((project, index) => (
+          <article 
+            data-country={project.country}
+            class="shrink-0 w-[85vw] snap-center relative flex flex-col aspect-4/5 border border-brand-black rounded-2xl overflow-hidden mr-4 group"
+          >
+            <!-- Project Thumbnail (Full Cover) -->
+            <div class="absolute inset-0 z-0">
+                <img 
+                    src={project.image} 
+                    alt={project.client}
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                />
+                <div class="absolute inset-0 bg-brand-black opacity-40"></div>
+            </div>
+
+            <div class="relative z-10 flex flex-col p-6 grow justify-end">
+                <div class="mb-4">
+                    <h3 class="text-3xl font-sans font-900 capitalize tracking-tighter leading-none text-white mb-1">
+                        {project.client}
+                    </h3>
+                    <p class="text-lg font-sans font-normal leading-tight text-white/90">
+                        {project.service}
+                    </p>
+                </div>
+
+                <a
+                  href={project.url}
+                  class="w-full py-4 bg-white text-brand-black border border-white rounded-full flex items-center justify-center gap-2 text-sm font-bold tracking-normal hover:bg-brand-red hover:text-white hover:border-brand-red transition-colors"
+                >
+                  Ver Proyecto
+                  <svg
+                    class="w-3 h-3"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                </a>
+            </div>
+          </article>
+        ))
+      }
+
+      {/* Clone of First Project */}
+      {projects.length > 0 && (
+        <article 
+          data-country={projects[0].country}
+          class="shrink-0 w-[85vw] snap-center relative flex flex-col aspect-4/5 border border-brand-black rounded-2xl overflow-hidden mr-4 group"
+        >
+          <div class="absolute inset-0 z-0">
+              <img 
+                src={projects[0].image} 
+                alt={`${projects[0].client} preview`}
+                class="w-full h-full object-cover" 
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-brand-black opacity-40"></div>
+          </div>
+          <div class="relative z-10 flex flex-col p-6 grow justify-end">
+              <div class="mb-4">
+                  <h3 class="text-3xl font-sans font-900 capitalize tracking-tighter leading-none text-white mb-1">{projects[0].client}</h3>
+                  <p class="text-lg font-sans font-normal leading-tight text-white/90">{projects[0].service}</p>
+              </div>
+              <a href={projects[0].url} class="w-full py-4 bg-white text-brand-black border border-white rounded-full flex items-center justify-center gap-2 text-sm font-bold tracking-normal hover:bg-brand-red hover:text-white hover:border-brand-red transition-colors">
+                Ver Proyecto <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
+              </a>
+          </div>
+        </article>
+      )}
+    </div>
+
+    <!-- Desktop List (Hidden on Mobile) -->
+    <style>
+      /* Hide next sibling's top border when previous one is hovered */
+      .project-row:hover + .project-row {
+        border-top-color: transparent;
+      }
+    </style>
+    <div class="hidden lg:block px-6 lg:px-0">
+      {
+        projects.map((project, index) => (
+          <a
+            href={project.url}
+            data-image={project.image}
+            class="project-row group relative block w-full border-t last:border-b border-brand-black py-10 md:py-12 transition-all duration-500 hover:bg-brand-salmon px-0 hover:px-8 hover:rounded-[2.5rem] hover:border-transparent cursor-none"
+          >
+            <div class="grid grid-cols-12 gap-4 items-center">
+              <!-- Año -->
+              <div class="col-span-1 text-xs font-sans italic font-400 text-brand-black tracking-widest">
+                {project.year}
+              </div>
+
+              <!-- Cliente -->
+              <div class="col-span-4">
+                <h3 class="text-6xl font-sans font-900 capitalize tracking-tighter text-brand-black group-hover:translate-x-4 transition-transform duration-500 will-change-transform">
+                  {project.client}
+                </h3>
+              </div>
+
+              <!-- País -->
+              <div class="col-span-3">
+                <p class="text-xl font-sans font-normal text-brand-black">
+                  {project.country}
+                </p>
+              </div>
+
+              <!-- Servicio -->
+              <div class="col-span-3 font-sans italic text-xs font-400 tracking-widest text-brand-black">
+                {project.service}
+              </div>
+
+              <!-- Acción -->
+              <div class="col-span-1 flex justify-end">
+                <div class="w-10 h-10 rounded-full border border-brand-black flex items-center justify-center group-hover:bg-brand-black group-hover:text-white transition-all duration-300">
+                  <svg
+                    class="w-4 h-4 transform rotate-45"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Cursor Follower (Desktop Only) -->
+  <div
+    id="project-cursor-follower"
+    class="fixed top-0 left-0 w-96 h-auto z-50 pointer-events-none opacity-0 invisible hidden flex-col bg-brand-gray border border-brand-black p-3 shadow-[4px_4px_0px_0px_#2F2F2F]"
+  >
+
+
+    <!-- Image Container with Inner Border -->
+    <div class="relative w-full aspect-4/3 border border-brand-black bg-white p-1">
+        <img
+          id="follower-image"
+          src=""
+          class="w-full h-full object-cover"
+          alt="Project Preview"
+        />
+    </div>
+
+    <!-- Bottom Meta Line -->
+    <div class="flex justify-between items-center mt-2 border-t border-brand-black/20 pt-1">
+        <span class="text-[9px] font-sans font-bold text-brand-black tracking-widest">HUMANOIDES & ASOCIADOS</span>
+        <span class="text-[9px] font-sans font-bold text-brand-black">::</span>
+    </div>
+  </div>
+</section>
+
+<script>
+  const carousel = document.querySelector(".projects-carousel");
+  const dots = document.querySelectorAll("#projects-dots div");
+
+  if (carousel instanceof HTMLElement && dots.length > 0) {
+    const countryLabel = document.getElementById("mobile-project-country");
+    const realCount = dots.length;
+    
+    // Initial Position (Skip first clone)
+    const initPos = () => {
+        const articles = carousel.querySelectorAll("article");
+        if (articles[1]) {
+            // Find the center of the viewport and align the center of the first real card
+            const rect = articles[1].getBoundingClientRect();
+            const centerOffset = (carousel.offsetWidth - articles[1].offsetWidth) / 2;
+            carousel.scrollLeft = articles[1].offsetLeft - centerOffset;
+        }
+    };
+    
+    // Wait for layout
+    setTimeout(initPos, 100);
+
+    let isJumping = false;
+
+    carousel.addEventListener("scroll", () => {
+      if (isJumping) return;
+
+      const scrollPos = carousel.scrollLeft;
+      const visibleWidth = carousel.offsetWidth;
+      const articles = carousel.querySelectorAll("article");
+      const lastRealIndex = realCount;
+      const firstRealIndex = 1;
+      const centerOffset = (visibleWidth - articles[0].offsetWidth) / 2;
+
+      // Infinite Jump Logic
+      if (scrollPos >= articles[lastRealIndex + 1].offsetLeft - centerOffset - 10) {
+        isJumping = true;
+        carousel.scrollTo({ left: articles[firstRealIndex].offsetLeft - centerOffset, behavior: 'auto' });
+        setTimeout(() => isJumping = false, 50);
+        return;
+      }
+      if (scrollPos <= 10) {
+        isJumping = true;
+        carousel.scrollTo({ left: articles[lastRealIndex].offsetLeft - centerOffset, behavior: 'auto' });
+        setTimeout(() => isJumping = false, 50);
+        return;
+      }
+
+      // Find active index based on proximity to center of viewport
+      const viewportCenter = scrollPos + (visibleWidth / 2);
+      let activeIndex = 0;
+      let minDiff = Infinity;
+      articles.forEach((art, i) => {
+        const artCenter = art.offsetLeft + (art.offsetWidth / 2);
+        const diff = Math.abs(artCenter - viewportCenter);
+        if (diff < minDiff) {
+            minDiff = diff;
+            activeIndex = i;
+        }
+      });
+
+      // Map activeIndex to dotIndex
+      let dotIndex = activeIndex - 1;
+      if (dotIndex < 0) dotIndex = realCount - 1;
+      if (dotIndex >= realCount) dotIndex = 0;
+
+      // Update Dots
+      dots.forEach((dot, i) => {
+        dot.classList.remove("bg-brand-red", "bg-brand-black");
+        dot.classList.add(i === dotIndex ? "bg-brand-red" : "bg-brand-black");
+      });
+
+      // Update Country
+      if (articles[activeIndex] && countryLabel) {
+        countryLabel.textContent = articles[activeIndex].getAttribute("data-country") || "GLOBAL";
+      }
+    });
+  }
+
+
+  // Cursor Follower Logic (Desktop)
+  import { gsap } from "gsap";
+
+  const setupCursorFollower = () => {
+    const follower = document.getElementById("project-cursor-follower");
+    const followerImg = document.getElementById("follower-image") as HTMLImageElement;
+    const projectRows = document.querySelectorAll(".project-row");
+
+    if (!follower || !followerImg || projectRows.length === 0) return;
+
+    // Use GSAP x/y for better performance than top/left
+    gsap.set(follower, { xPercent: -50, yPercent: -50 }); // Center on cursor
+
+    // Shared mouse move listener for the window to track cursor
+    // Only active when a row is hovered to save resources ideally, 
+    // but tracking globally is smoother if we want entrance animations from cursor position.
+    // For now, let's track on the rows to keep it scoped.
+    
+    let isHovering = false;
+
+    projectRows.forEach((row) => {
+        row.addEventListener("mouseenter", (e) => {
+            const mouseEvent = e as MouseEvent;
+            const imgUrl = row.getAttribute("data-image");
+            if (imgUrl) followerImg.src = imgUrl;
+
+            isHovering = true;
+            
+            // Kill ANY existing hide/show animations to prevent conflicts
+            gsap.killTweensOf(follower);
+
+            // Instant position and show before animating
+            gsap.set(follower, {
+                x: mouseEvent.clientX,
+                y: mouseEvent.clientY,
+                display: "flex",
+                visibility: "visible",
+                opacity: 0,
+                scale: 0.8
+            });
+
+            gsap.to(follower, {
+                opacity: 1,
+                scale: 1,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+        });
+
+        row.addEventListener("mouseleave", () => {
+            isHovering = false;
+            
+            gsap.to(follower, {
+                opacity: 0,
+                scale: 0.8,
+                duration: 0.3,
+                ease: "power2.out",
+                onComplete: () => {
+                    // ONLY hide if we are not hovering ANOTHER row
+                    if (!isHovering) {
+                        gsap.set(follower, { display: "none", visibility: "hidden" });
+                    }
+                }
+            });
+        });
+
+        row.addEventListener("mousemove", (e) => {
+            const mouseEvent = e as MouseEvent;
+            gsap.to(follower, {
+                x: mouseEvent.clientX,
+                y: mouseEvent.clientY,
+                duration: 0.1,
+                ease: "power1.out",
+                overwrite: "auto"
+            });
+        });
+    });
+  };
+
+  // Run on load
+  setupCursorFollower();
+</script>

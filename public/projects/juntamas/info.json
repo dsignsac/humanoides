@@ -1,0 +1,120 @@
+{
+    "id": "juntamas",
+    "client": "JuntaMas",
+    "year": "2024",
+    "country": "Perú",
+    "thumbnail": "00.webp",
+    "gallery": [
+        {
+            "type": "image",
+            "src": "01.webp",
+            "caption": "Finanzas Colaborativas - Item 1"
+        },
+        {
+            "type": "image",
+            "src": "02.webp",
+            "caption": "Finanzas Colaborativas - Item 2"
+        },
+        {
+            "type": "image",
+            "src": "03..webp",
+            "caption": "Finanzas Colaborativas - Item 3"
+        },
+        {
+            "type": "image",
+            "src": "04.webp",
+            "caption": "Finanzas Colaborativas - Item 4"
+        }
+    ],
+    "stack": [
+        "Fintech Design",
+        "Product Strategy",
+        "Mobile App UI",
+        "User Experience",
+        "Financial Inclusion"
+    ],
+    "title": "Finanzas Colaborativas",
+    "service": "UX/UI Design & Product Strategy",
+    "description": "Plataforma fintech que digitaliza el ahorro grupal comunitario. El diseño UX/UI optimiza la gestión de cuotas y sorteos, transformando procesos informales en una experiencia financiera transparente, segura y orientada a la trazabilidad del usuario.",
+    "slides": [
+        {
+            "id": "slide-01",
+            "label": "Project Identity",
+            "type": "hero",
+            "mobileGalleryIndices": [
+                0
+            ]
+        },
+        {
+            "id": "slide-02",
+            "label": "Problemas",
+            "type": "tasks",
+            "items": [
+                {
+                    "title": "Creative Audit",
+                    "solution": "Análisis y diagnóstico de la situación actual de marca."
+                },
+                {
+                    "title": "Strategic Sync",
+                    "solution": "Sincronización de activos digitales y puntos de contacto."
+                },
+                {
+                    "title": "Visual Output",
+                    "solution": "Ejecución de entregables de alta fidelidad según requerimiento."
+                }
+            ],
+            "mobileGalleryIndices": [
+                1,
+                2
+            ]
+        },
+        {
+            "id": "slide-03",
+            "label": "Proceso",
+            "type": "process",
+            "items": [
+                {
+                    "code": "Res-01",
+                    "name": "Research",
+                    "desc": "Investigación profunda del mercado y competencia."
+                },
+                {
+                    "code": "Str-02",
+                    "name": "Strategy",
+                    "desc": "Definición del tono de voz y pilares visuales."
+                },
+                {
+                    "code": "Dev-03",
+                    "name": "Development",
+                    "desc": "Construcción de la infraestructura digital."
+                },
+                {
+                    "code": "Lnc-04",
+                    "name": "Launch",
+                    "desc": "Despliegue y optimización continua."
+                }
+            ],
+            "mobileGalleryIndices": [
+                3
+            ]
+        },
+        {
+            "id": "slide-04",
+            "label": "Resultados",
+            "type": "results",
+            "title": "Fricción Eliminada",
+            "description": "Se digitalizaron procesos que antes eran manuales y propensos a errores, creando una herramienta de confianza para la comunidad.",
+            "stats": [
+                {
+                    "label": "Seguridad",
+                    "value": "100%"
+                },
+                {
+                    "label": "Gestión",
+                    "value": "Digital"
+                }
+            ],
+            "mobileGalleryIndices": []
+        }
+    ]
+}

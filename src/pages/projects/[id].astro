@@ -5,27 +5,27 @@ import fs from "node:fs";
 import path from "node:path";
 
 export function getProjects() {
-    const projectsDir = path.resolve("./public/proyectos");
-    const projectFolders = fs.readdirSync(projectsDir);
+  const projectsDir = path.resolve("./public/projects");
+  const projectFolders = fs.readdirSync(projectsDir);
 
-    return projectFolders
-        .map((folder) => {
-            const infoPath = path.join(projectsDir, folder, "info.json");
-            if (fs.existsSync(infoPath)) {
-                return JSON.parse(fs.readFileSync(infoPath, "utf-8"));
-            }
-            return null;
-        })
-        .filter(Boolean)
-        .sort((a, b) => parseInt(b.year) - parseInt(a.year));
+  return projectFolders
+    .map((folder) => {
+      const infoPath = path.join(projectsDir, folder, "info.json");
+      if (fs.existsSync(infoPath)) {
+        return JSON.parse(fs.readFileSync(infoPath, "utf-8"));
+      }
+      return null;
+    })
+    .filter(Boolean)
+    .sort((a, b) => parseInt(b.year) - parseInt(a.year));
 }
 
 export function getStaticPaths() {
-    const projectsData = getProjects();
-    return projectsData.map((project) => ({
-        params: { id: project.id },
-        props: { project, projectsData },
-    }));
+  const projectsData = getProjects();
+  return projectsData.map((project) => ({
+    params: { id: project.id },
+    props: { project, projectsData },
+  }));
 }
 
 const { project, projectsData } = Astro.props;
@@ -34,323 +34,493 @@ const { project, projectsData } = Astro.props;
 const currentIndex = projectsData.findIndex((p) => p.id === project.id);
 const nextProjectData = projectsData[(currentIndex + 1) % projectsData.length];
 const nextProject = {
-    slug: nextProjectData.id,
-    title: nextProjectData.client,
+  slug: nextProjectData.id,
+  title: nextProjectData.client,
 };
 
 // Forced Global UI Palette (Melbourne style)
 const uiPalette = {
-    base: "#1A1A1A",
-    contraste: "#FF3E00",
-    textos: "#D4DAD3",
-    logos: "#FF3E00",
+  base: "#1A1A1A",
+  contraste: "#FA2A2A",
+  textos: "#D4DAD3",
+  logos: "#FA2A2A",
 };
 
-// Logo specific logic: Project Global > Default
-const projectLogoColor =
-    project.logoColor || project.palette?.logos || uiPalette.logos;
+// Helper for image paths
+const getPath = (src: string) => {
+  if (!src) return "";
+  if (src.startsWith("/") || src.startsWith("http")) return src;
+  return `/projects/${project.id}/${src}`;
+};
 ---
 
-<Layout title={`${project.client} // ${project.title}`}>
-    <main
-        class="min-h-screen bg-brand-salmon text-brand-black pb-0 selection:bg-brand-red selection:text-white"
+<Layout title={`RE: ${project.client} // Humanoides`}>
+  <main
+    class="min-h-screen bg-[#1A1A1A] text-[#D4DAD3] pb-0 selection:bg-brand-red selection:text-white"
+  >
+    <!-- PROJECT THEMED AREA -->
+    <div
+      class="project-area w-full transition-colors duration-700 bg-[#1A1A1A]"
+      style={`color: ${uiPalette.textos}; --p-contraste: ${uiPalette.contraste}; --p-textos: ${uiPalette.textos}; --p-logos: ${uiPalette.logos};`}
     >
-        <!-- PROJECT THEMED AREA -->
-        <div
-            class="project-area w-full transition-colors duration-700"
-            style={`
-                background-color: ${uiPalette.base}; 
-                color: ${uiPalette.textos};
-                --p-contraste: ${uiPalette.contraste};
-                --p-textos: ${uiPalette.textos};
-                --p-logos: ${projectLogoColor};
-            `}
-        >
-            <div
-                class="max-w-[1440px] mx-auto w-full px-0 md:px-6 pt-32 md:pt-48"
+      <!-- Desktop Layout (Hidden on Mobile) -->
+      <div id="desktop-showcase-container" class="hidden md:block">
+        <div class="max-w-[1440px] mx-auto px-6">
+          <div class="flex flex-col md:flex-row relative">
+            <!-- Left Panel: Context & Data (Sticky) -->
+            <aside
+              id="data-aside"
+              class="w-full md:w-5/12 h-screen sticky top-0 flex flex-col justify-center z-20 bg-[#1A1A1A] overflow-hidden"
             >
-                <!-- HEADER -->
-                <div
-                    class="px-6 md:px-0 flex flex-col md:flex-row justify-between items-start md:items-end mb-16 pb-8 border-b border-[var(--p-contraste)] gap-8"
-                >
-                    <div>
-                        <span
-                            class="block text-xs font-mono font-bold tracking-[0.3em] mb-4 text-brand-red uppercase"
-                            >{project.client}</span
-                        >
-                        <h1
-                            class="text-6xl md:text-8xl lg:text-9xl font-sans font-800 uppercase leading-[0.85] tracking-tighter text-[var(--p-textos)]"
-                        >
-                            {project.title}
-                        </h1>
-                    </div>
-                </div>
-
-                <!-- PROJECT DATA & DESCRIPTION -->
-                <div
-                    class="px-6 md:px-0 grid grid-cols-1 md:grid-cols-12 gap-12 mb-24"
-                >
-                    <!-- META DATA COLUMNS -->
-                    <div
-                        class="md:col-span-4 grid grid-cols-2 gap-y-8 gap-x-4 content-start"
-                    >
+              <!-- Horizontal Slide Container -->
+              <div
+                id="data-scroll-container"
+                class="w-full h-full overflow-hidden bg-[#1A1A1A]"
+              >
+                <div id="slides-wrapper" class="flex h-full w-max relative">
+                  {
+                    project.slides?.map((slide: any) => (
+                      <section
+                        id={slide.id}
+                        class="w-[calc((min(1440px,100vw)-48px)*5/12)] h-full pl-0 pr-12 flex flex-col justify-center"
+                      >
                         <div>
-                            <h3
-                                class="text-[10px] font-mono uppercase tracking-widest mb-2 text-[var(--p-contraste)]"
-                            >
-                                Cliente
-                            </h3>
-                            <p class="font-sans text-lg font-500">
-                                {project.client}
-                            </p>
-                        </div>
-                        <div>
-                            <h3
-                                class="text-[10px] font-mono uppercase tracking-widest mb-2 text-[var(--p-contraste)]"
-                            >
-                                Servicio
-                            </h3>
-                            <p class="font-sans text-lg font-500">
-                                {project.service}
-                            </p>
-                        </div>
-                        <div>
-                            <h3
-                                class="text-[10px] font-mono uppercase tracking-widest mb-2 text-[var(--p-contraste)]"
-                            >
-                                Año
-                            </h3>
-                            <p class="font-sans text-lg font-500">
-                                {project.year}
-                            </p>
-                        </div>
-                    </div>
+                          <span class="block text-sm font-bold tracking-normal mb-4 text-brand-red uppercase">
+                            {slide.label}
+                          </span>
 
-                    <!-- DESCRIPTION -->
-                    <div class="md:col-span-8">
-                        <p
-                            class="text-2xl md:text-4xl font-sans font-300 leading-tight mb-12"
-                        >
-                            {
-                                project.description ||
-                                    "Documentación del proyecto bajo proceso de sincronización."
-                            }
-                        </p>
-
-                        <div class="flex gap-3 flex-wrap">
-                            {
-                                project.stack?.map((tech: string) => (
-                                    <span class="px-4 py-2 bg-[var(--p-contraste)] text-[var(--p-textos)] rounded-full text-xs font-sans font-bold uppercase tracking-wider cursor-default">
-                                        {tech}
+                          {slide.type === "hero" && (
+                            <>
+                              <h1 class="text-4xl md:text-5xl lg:text-7xl font-sans font-800 leading-[0.9] tracking-tighter text-[var(--p-textos)] border-none">
+                                {(project.title || slide.title)
+                                  ?.split(" ")
+                                  .map((word: string) => (
+                                    <span class="inline-block mr-[0.2em] last:mr-0">
+                                      <span class="inline-block">{word}</span>
                                     </span>
-                                ))
-                            }
-                        </div>
-                    </div>
-                </div>
+                                  ))}
+                              </h1>
+                              <div class="grid grid-cols-2 gap-8 py-8 border-y border-[var(--p-contraste)]/20 mt-12">
+                                <div>
+                                  <h3 class="text-[10px] tracking-normal mb-2 text-[var(--p-contraste)] uppercase">
+                                    Cliente
+                                  </h3>
+                                  <p class="font-sans text-sm font-bold tracking-normal">
+                                    {project.client}
+                                  </p>
+                                </div>
+                                <div>
+                                  <h3 class="text-[10px] tracking-normal mb-2 text-[var(--p-contraste)] uppercase">
+                                    Servicio
+                                  </h3>
+                                  <p class="font-sans text-sm font-bold tracking-normal">
+                                    {project.service}
+                                  </p>
+                                </div>
+                              </div>
+                              <p class="text-xl font-sans font-300 leading-snug opacity-80 max-w-sm mt-8">
+                                {project.description}
+                              </p>
+                              <div class="flex gap-2 flex-wrap max-w-sm mt-8">
+                                {project.stack?.map((tech: string) => (
+                                  <span class="px-3 py-1 border border-[var(--p-contraste)]/30 text-[var(--p-contraste)] text-[10px] tracking-normal rounded-full uppercase">
+                                    {tech}
+                                  </span>
+                                ))}
+                              </div>
+                            </>
+                          )}
 
-                <!-- GALLERY -->
-                <section class="flex flex-col w-full">
-                    {
-                        project.gallery ? (
-                            <div class="w-full">
-                                {project.gallery.map(
-                                    (item: any, index: number) => {
-                                        const getPath = (src: string) => {
-                                            if (!src) return "";
-                                            if (
-                                                src.startsWith("/") ||
-                                                src.startsWith("http")
-                                            )
-                                                return src;
-                                            return `/proyectos/${project.id}/${src}`;
-                                        };
-
-                                        if (item.type === "image") {
-                                            return (
-                                                <div class="w-full overflow-hidden">
-                                                    <img
-                                                        src={getPath(item.src)}
-                                                        class="w-full h-auto object-cover block"
-                                                        alt={`${project.title} - ${index}`}
-                                                        loading="lazy"
-                                                    />
-                                                </div>
-                                            );
-                                        }
-
-                                        if (item.type === "video") {
-                                            let videoSrc = item.src;
-
-                                            if (
-                                                videoSrc.includes("vimeo") ||
-                                                /^\d+$/.test(videoSrc)
-                                            ) {
-                                                // Extract ID and Hash if present
-                                                let vimeoId = videoSrc
-                                                    .replace(
-                                                        "https://vimeo.com/",
-                                                        "",
-                                                    )
-                                                    .replace(
-                                                        "https://player.vimeo.com/video/",
-                                                        "",
-                                                    )
-                                                    .split("?")[0];
-                                                // Keep hash if it exists in the original URL
-                                                const urlParams =
-                                                    new URLSearchParams(
-                                                        videoSrc.includes("?")
-                                                            ? videoSrc.split(
-                                                                  "?",
-                                                              )[1]
-                                                            : "",
-                                                    );
-                                                const hash = urlParams.get("h");
-
-                                                videoSrc = `https://player.vimeo.com/video/${vimeoId}?autoplay=0&loop=1&muted=0${hash ? `&h=${hash}` : ""}`;
-                                            } else if (
-                                                videoSrc.includes("youtube") ||
-                                                videoSrc.includes("youtu.be")
-                                            ) {
-                                                const ytId = videoSrc.includes(
-                                                    "watch?v=",
-                                                )
-                                                    ? videoSrc
-                                                          .split("v=")[1]
-                                                          .split("&")[0]
-                                                    : videoSrc
-                                                          .split("/")
-                                                          .pop()
-                                                          ?.split("?")[0];
-                                                videoSrc = `https://www.youtube.com/embed/${ytId}?autoplay=0&controls=1&loop=1&playlist=${ytId}&rel=0`;
-                                            }
-
-                                            return (
-                                                <div class="w-full aspect-video bg-black/10 overflow-hidden">
-                                                    <iframe
-                                                        src={videoSrc}
-                                                        class="w-full h-full"
-                                                        style="width: 100%; height: 100%;"
-                                                        allow="autoplay; fullscreen; picture-in-picture"
-                                                        allowfullscreen
-                                                    />
-                                                </div>
-                                            );
-                                        }
-
-                                        if (item.type === "logo") {
-                                            const src = getPath(item.src);
-                                            const context = getPath(
-                                                item.context,
-                                            );
-                                            const isSVG = src.endsWith(".svg");
-                                            const useOriginal =
-                                                item.color === "original";
-                                            const logoColor =
-                                                item.color &&
-                                                item.color !== "original"
-                                                    ? item.color
-                                                    : "var(--p-logos)";
-
-                                            return (
-                                                <div class="group relative w-full aspect-video md:aspect-[21/9] border-b border-[var(--p-contraste)]/10 flex items-center justify-center overflow-hidden cursor-pointer">
-                                                    {/* Context Background Image */}
-                                                    {context && (
-                                                        <div class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-700 ease-out">
-                                                            <img
-                                                                src={context}
-                                                                class="w-full h-full object-cover scale-110 group-hover:scale-100 group-active:scale-100 transition-transform duration-1000"
-                                                                alt="Contexto"
-                                                            />
-                                                            <div class="absolute inset-0 bg-black/40 mix-blend-multiply" />
-                                                        </div>
-                                                    )}
-
-                                                    <div class="relative z-10 w-full h-full max-w-[320px] md:max-w-[800px] p-8 md:p-32 flex items-center justify-center transition-transform duration-500 group-hover:scale-110 group-active:scale-110">
-                                                        {isSVG &&
-                                                        !useOriginal ? (
-                                                            <div
-                                                                class="w-full h-full"
-                                                                style={`
-                                                                background-color: ${logoColor};
-                                                                mask-image: url(${src});
-                                                                -webkit-mask-image: url(${src});
-                                                                mask-size: contain;
-                                                                -webkit-mask-size: contain;
-                                                                mask-repeat: no-repeat;
-                                                                -webkit-mask-repeat: no-repeat;
-                                                                mask-position: center;
-                                                                -webkit-mask-position: center;
-                                                            `}
-                                                            />
-                                                        ) : (
-                                                            <img
-                                                                src={src}
-                                                                class={`max-w-full max-h-full object-contain transition-all duration-500 ${!useOriginal ? "grayscale brightness-0 invert opacity-80 group-hover:opacity-100 group-active:opacity-100 group-hover:brightness-200 group-active:brightness-200" : ""}`}
-                                                                alt="Logo"
-                                                                loading="lazy"
-                                                            />
-                                                        )}
-                                                    </div>
-                                                </div>
-                                            );
-                                        }
-                                        return null;
-                                    },
-                                )}
+                          {slide.type === "tasks" && (
+                            <div class="space-y-6 overflow-y-auto pr-4 custom-scrollbar max-h-[70vh]">
+                              {(slide.items as any[])?.map(
+                                (item: any, index: number) => (
+                                  <div class="p-6 border border-white/5 bg-transparent transition-colors group">
+                                    <span class="text-[10px] text-brand-red opacity-50 block mb-2 font-bold tracking-normal uppercase">
+                                      {(project.itemLabel || slide.itemLabel) || "Punto"} 0{index + 1}
+                                    </span>
+                                    <h4 class="text-xl font-bold tracking-tight mb-2 ">
+                                      {item.title}
+                                    </h4>
+                                    <p class="text-sm leading-relaxed font-sans">
+                                      {item.solution}
+                                    </p>
+                                  </div>
+                                )
+                              )}
                             </div>
-                        ) : (
-                            project.images?.map(
-                                (img: string, index: number) => (
-                                    <div class="w-full overflow-hidden">
-                                        <img
-                                            src={img}
-                                            class="w-full h-auto object-cover block transition-all duration-700"
-                                            alt={`${project.title} - Vista ${index + 1}`}
-                                            loading="lazy"
-                                        />
+                          )}
+
+                          {slide.type === "results" && (
+                            <div class="space-y-6">
+                              <div class="p-8 border-l-2 border-brand-red bg-white/[0.02]">
+                                <h3 class="text-3xl font-bold tracking-tight mb-4">{slide.title || "Resultados"}</h3>
+                                <p class="text-lg opacity-80 leading-snug">{slide.description}</p>
+                              </div>
+                              <div class="grid grid-cols-2 gap-4">
+                                {slide.stats?.map((stat: any) => (
+                                  <div class="p-4 border border-white/5">
+                                    <span class="block text-2xl font-bold text-brand-red">{stat.value}</span>
+                                    <span class="text-[10px] uppercase opacity-50">{stat.label}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                          {slide.type === "process" && (
+                            <div class="space-y-6">
+                              <div class="space-y-6 mb-8 pt-4">
+                                {(slide.items as any[])?.map((step: any) => (
+                                  <div class="flex gap-6 items-start process-step-item">
+                                    <span class="text-[12px] font-bold text-brand-red">
+                                      {step.code}
+                                    </span>
+                                    <div>
+                                      <h4 class="text-base font-bold tracking-tight  mb-1">
+                                        {step.name}
+                                      </h4>
+                                      <p class="text-sm opacity-50 leading-tight font-sans">
+                                        {step.desc}
+                                      </p>
                                     </div>
-                                ),
-                            )
-                        )
-                    }
-                </section>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                          {slide.type === "image" && (
+                            <div class="relative w-full aspect-square md:aspect-[4/5] overflow-hidden border border-white/5">
+                              <img
+                                src={getPath(slide.src)}
+                                alt={slide.label}
+                                class="w-full h-full object-cover"
+                              />
+                              {slide.caption && (
+                                <div class="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm p-3 border-l-2 border-brand-red uppercase">
+                                  <p class="text-[10px] tracking-normal">
+                                    {slide.caption}
+                                  </p>
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      </section>
+                    ))
+                  }
+                </div>
+              </div>
+            </aside>
+
+            <!-- Right Panel: Visual Gallery (Normal Scroll) -->
+            <div id="gallery-right" class="w-full md:w-7/12 pt-24">
+              <div class="flex flex-col">
+                {
+                  project.gallery?.map((item: any) => (
+                    <div class="w-full group relative mb-0">
+                      {item.type === "image" ? (
+                        <img
+                          src={getPath(item.src)}
+                          class="w-full h-auto object-cover block"
+                          alt={item.caption || `${project.client} - ${project.title}`}
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div class="w-full aspect-video bg-black/10 overflow-hidden">
+                          <iframe
+                            src={item.src}
+                            class="w-full h-full"
+                            style="width: 100%; height: 100%;"
+                            allow="autoplay; fullscreen; picture-in-picture"
+                            allowfullscreen
+                          />
+                        </div>
+                      )}
+                    </div>
+                  ))
+                }
+              </div>
             </div>
+          </div>
         </div>
+      </div>
 
-        <!-- FOOTER NAVIGATION (Outside project-area to keep original brand colors) -->
-        <a
-            href={`/projects/${nextProject.slug}`}
-            class="block w-full border-t border-brand-red/20 mt-0 bg-brand-black hover:bg-brand-red transition-all duration-500 group relative overflow-hidden"
+      <!-- Mobile Layout (Visible on Mobile) -->
+      <div class="block md:hidden pt-20 bg-[#1A1A1A]">
+        {
+          project.slides?.map((slide: any) => (
+            <div class="flex flex-col">
+              <!-- Slide Content -->
+              <section class="px-6 py-16 border-b border-white/5">
+                  <span class="block text-xs font-bold tracking-normal mb-6 text-brand-red uppercase">
+                    {slide.label}
+                  </span>
+
+                  {slide.type === "hero" && (
+                    <>
+                      <h1 class="text-5xl font-sans font-800 leading-[0.9] tracking-tighter text-[var(--p-textos)] mb-8">
+                        {project.title}
+                      </h1>
+                      <div class="grid grid-cols-2 gap-4 py-6 border-y border-[var(--p-contraste)]/20 mb-8">
+                        <div>
+                          <h3 class="text-[10px] tracking-normal mb-1 text-[var(--p-contraste)] opacity-70 uppercase">
+                            Cliente
+                          </h3>
+                          <p class="font-sans text-xs font-bold tracking-normal">
+                            {project.client}
+                          </p>
+                        </div>
+                        <div>
+                          <h3 class="text-[10px] tracking-normal mb-1 text-[var(--p-contraste)] opacity-70 uppercase">
+                            Servicio
+                          </h3>
+                          <p class="font-sans text-xs font-bold tracking-normal">
+                            {project.service}
+                          </p>
+                        </div>
+                      </div>
+                      <p class="text-lg font-sans font-300 leading-snug opacity-80 mb-8">
+                        {project.description}
+                      </p>
+                      <div class="flex gap-2 flex-wrap">
+                        {project.stack?.map((tech: string) => (
+                          <span class="px-3 py-1 border border-[var(--p-contraste)]/30 text-[var(--p-contraste)] text-[10px] tracking-normal rounded-full uppercase">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </>
+                  )}
+
+                  {slide.type === "tasks" && (
+                    <div class="space-y-4">
+                      {(slide.items as any[])?.map((item: any, index: number) => (
+                        <div class="p-5 border border-white/5 bg-white/[0.02]">
+                          <span class="text-[10px] text-brand-red opacity-60 block mb-2 font-bold tracking-normal uppercase">
+                            {(project.itemLabel || slide.itemLabel) || "Punto"} 0{index + 1}
+                          </span>
+                          <h4 class="text-lg font-bold tracking-tight mb-2">
+                            {item.title}
+                          </h4>
+                          <p class="text-sm leading-relaxed opacity-70 font-sans">
+                            {item.solution}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {slide.type === "results" && (
+                    <div class="space-y-6">
+                       <div class="p-6 border-l-2 border-brand-red bg-white/[0.02]">
+                          <h3 class="text-2xl font-bold tracking-tight mb-3">{slide.title || "Resultados"}</h3>
+                          <p class="text-base opacity-70 leading-snug">{slide.description}</p>
+                       </div>
+                       <div class="grid grid-cols-2 gap-3">
+                        {slide.stats?.map((stat: any) => (
+                          <div class="p-4 border border-white/5">
+                            <span class="block text-xl font-bold text-brand-red">{stat.value}</span>
+                            <span class="text-[10px] uppercase opacity-50">{stat.label}</span>
+                          </div>
+                        ))}
+                       </div>
+                    </div>
+                  )}
+
+                  {slide.type === "process" && (
+                    <div class="space-y-6">
+                      <div class="space-y-6">
+                        {(slide.items as any[])?.map((step: any) => (
+                          <div class="flex gap-4 items-start">
+                            <span class="text-[11px] font-bold text-brand-red mt-1">
+                              {step.code}
+                            </span>
+                            <div>
+                              <h4 class="text-sm font-bold tracking-tight mb-1">
+                                {step.name}
+                              </h4>
+                              <p class="text-xs opacity-60 leading-normal font-sans">
+                                {step.desc}
+                              </p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+              </section>
+
+              <!-- Interleaved Gallery Images -->
+              {slide.mobileGalleryIndices && (
+                <div class="flex flex-col">
+                  {(slide.mobileGalleryIndices as number[]).map((galleryIndex) => {
+                    const item = project.gallery[galleryIndex];
+                    if (!item) return null;
+                    return (
+                      <div class="w-full relative">
+                        {item.type === "image" ? (
+                          <img
+                            src={getPath(item.src)}
+                            class="w-full h-auto object-cover block"
+                            alt={item.caption}
+                            loading="lazy"
+                          />
+                        ) : (
+                           <div class="w-full aspect-video bg-black/10 overflow-hidden">
+                              <iframe
+                                src={item.src}
+                                class="w-full h-full"
+                                style="width: 100%; height: 100%;"
+                                allow="autoplay; fullscreen; picture-in-picture"
+                                allowfullscreen
+                              />
+                            </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- FOOTER NAVIGATION (Outside project-area to keep original brand colors) -->
+    <a
+      href={`/projects/${nextProject.slug}`}
+      class="block w-full border-t border-brand-red/20 mt-0 bg-brand-black hover:bg-brand-red transition-all duration-500 group relative overflow-hidden"
+    >
+      <!-- Subtle glow effect from brand guidelines section 05 -->
+      <div
+        class="absolute top-0 right-0 w-64 h-64 bg-brand-red blur-[100px] opacity-10 group-hover:opacity-30 transition-opacity duration-500"
+      >
+      </div>
+
+      <div
+        class="max-w-[1440px] mx-auto w-full px-6 md:px-6 py-16 md:py-24 flex justify-between items-center relative z-10"
+      >
+        <div>
+          <span
+            class="block text-[10px] font-bold bg-brand-red/10 text-brand-red px-3 py-1 rounded-full tracking-normal mb-4 inline-block group-hover:bg-black/10 group-hover:text-brand-black transition-colors duration-500 uppercase"
+          >
+            Siguiente Proyecto
+          </span>
+          <h2
+            class="text-5xl md:text-8xl font-sans font-800 tracking-tighter text-brand-red group-hover:text-brand-black transition-colors duration-500 leading-none"
+          >
+            {nextProject.title}
+          </h2>
+        </div>
+        <div
+          class="text-5xl md:text-8xl text-brand-red group-hover:text-brand-black group-hover:translate-x-6 transition-all duration-500"
         >
-            <!-- Subtle glow effect from brand guidelines section 05 -->
-            <div
-                class="absolute top-0 right-0 w-64 h-64 bg-brand-red blur-[100px] opacity-10 group-hover:opacity-30 transition-opacity duration-500"
-            >
-            </div>
+          →
+        </div>
+      </div>
+    </a>
 
-            <div
-                class="max-w-[1440px] mx-auto w-full px-6 md:px-6 py-16 md:py-24 flex justify-between items-center relative z-10"
-            >
-                <div>
-                    <span
-                        class="block text-[10px] font-bold bg-brand-red/10 text-brand-red px-3 py-1 rounded-full uppercase tracking-wider mb-4 inline-block group-hover:bg-black/10 group-hover:text-brand-black transition-colors duration-500"
-                    >
-                        Siguiente Proyecto
-                    </span>
-                    <h2
-                        class="text-5xl md:text-8xl font-sans font-800 uppercase tracking-tighter text-brand-red group-hover:text-brand-black transition-colors duration-500 leading-none"
-                    >
-                        {nextProject.title}
-                    </h2>
-                </div>
-                <div
-                    class="text-5xl md:text-8xl text-brand-red group-hover:text-brand-black group-hover:translate-x-6 transition-all duration-500"
-                >
-                    →
-                </div>
-            </div>
-        </a>
-    </main>
+    <script>
+      import { gsap } from "gsap";
+      import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      let ctx: any;
+
+      const initBrutalistCase = () => {
+        // Cleanup previous context and triggers
+        if (ctx) ctx.revert();
+        ScrollTrigger.getAll().forEach(t => t.kill());
+
+        const scrollContainer = document.getElementById("data-scroll-container");
+        const slidesWrapper = document.getElementById("slides-wrapper");
+        const showcaseContainer = document.getElementById("desktop-showcase-container");
+        
+        if (!scrollContainer || !slidesWrapper || !showcaseContainer) return;
+
+        ctx = gsap.context(() => {
+          let mm = gsap.matchMedia();
+
+          mm.add("(min-width: 768px)", () => {
+             // Reset initial state
+             gsap.set(slidesWrapper, { x: 0 });
+
+             const sections = slidesWrapper.querySelectorAll("section");
+             const steps = sections.length - 1;
+
+             ScrollTrigger.create({
+               trigger: "#desktop-showcase-container",
+               start: "top top",
+               end: "bottom bottom",
+               scrub: true,
+               invalidateOnRefresh: true,
+               animation: gsap.to(slidesWrapper, {
+                 x: () => -(slidesWrapper.scrollWidth - scrollContainer.offsetWidth),
+                 ease: `steps(${steps})`
+               })
+             });
+          });
+        });
+
+        // Forced refresh with multiple checks to handle layout settlement
+        ScrollTrigger.refresh();
+        setTimeout(() => ScrollTrigger.refresh(), 200);
+        setTimeout(() => ScrollTrigger.refresh(), 1000); // Resilience for slow asset loads
+      };
+
+      // Lifecycle hooks for Astro and standard loads
+      document.addEventListener("DOMContentLoaded", initBrutalistCase);
+      document.addEventListener("astro:after-swap", initBrutalistCase);
+      window.addEventListener("load", initBrutalistCase);
+      window.addEventListener("resize", () => ScrollTrigger.refresh());
+    </script>
+
+    <style>
+      /* Brutalist Scrollbar Overrides */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #d4dad3;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #fa2a2a;
+        border-radius: 0;
+        border: 2px solid #d4dad3;
+      }
+
+      .perspective-1000 {
+        perspective: 1000px;
+      }
+      .transform-style-3d {
+        transform-style: preserve-3d;
+      }
+      .backface-hidden {
+        backface-visibility: hidden;
+      }
+
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.02);
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: var(--p-contraste);
+        opacity: 0.3;
+      }
+    </style>
+  </main>
 </Layout>

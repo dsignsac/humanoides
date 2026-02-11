@@ -1,0 +1,186 @@
+---
+
+---
+
+<div
+  id="cookie-banner"
+  class="fixed bottom-6 left-6 right-6 md:left-auto md:right-8 md:max-w-md bg-brand-black border-2 border-brand-red p-6 z-[300] transform translate-y-[150%] transition-transform duration-700 ease-out shadow-2xl rounded-none"
+>
+  <div class="flex flex-col gap-4">
+    <div class="flex items-start gap-4">
+      <div class="bg-brand-red/10 p-2 rounded-none border border-brand-red/20">
+        <svg
+          class="w-6 h-6 text-brand-red"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+          ></path>
+        </svg>
+      </div>
+      <div>
+        <h3 class="text-white font-sans font-900 tracking-tight text-lg">
+          Control de privacidad
+        </h3>
+        <p class="text-brand-gray/80 text-xs mt-1 leading-relaxed">
+          Utilizamos cookies esenciales (Google) para la operatividad y análisis
+          obligatorio. Puedes gestionar tus preferencias para otros rastreos
+          opcionales.
+        </p>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-2 mt-2">
+      <button
+        id="accept-cookies"
+        class="w-full bg-brand-red hover:bg-white text-white hover:text-brand-red font-sans font-bold py-3 rounded-full transition-all duration-300 text-sm tracking-tight"
+      >
+        Aceptar todos los canales
+      </button>
+      <div class="flex gap-2">
+        <button
+          id="config-cookies"
+          class="flex-1 border border-brand-gray/30 hover:border-brand-red text-white font-sans font-bold py-3 rounded-full transition-all duration-300 text-xs tracking-tight"
+        >
+          Configurar
+        </button>
+        <a
+          href="/privacy"
+          class="flex-1 flex items-center justify-center border border-brand-gray/30 hover:border-white text-brand-gray text-xs font-sans font-bold py-3 rounded-full transition-all duration-300 tracking-tight"
+        >
+          Política
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Configuración (Hidden by default) -->
+<div
+  id="cookie-modal"
+  class="fixed inset-0 z-[400] flex items-center justify-center bg-brand-black/90 opacity-0 pointer-events-none transition-opacity duration-300 px-6"
+>
+  <div
+    class="bg-brand-gray w-full max-w-md rounded-none p-8 border-2 border-brand-red"
+  >
+    <h2
+      class="text-3xl font-sans font-900 text-brand-black mb-6 tracking-tighter"
+    >
+      Preferencias
+    </h2>
+
+    <div class="space-y-6">
+      <!-- Google (Essential) -->
+      <div
+        class="flex items-center justify-between border-b border-brand-black/10 pb-4"
+      >
+        <div>
+          <h4 class="font-bold text-brand-black text-sm uppercase">
+            Google tracking (gtm)
+          </h4>
+          <p class="text-[10px] text-brand-black/60 capitalize">
+            Esencial para la sincronización operativa
+          </p>
+        </div>
+        <div class="relative inline-block w-10 h-6">
+          <input type="checkbox" checked disabled class="sr-only peer" />
+          <div class="w-full h-full bg-brand-red rounded-none"></div>
+          <div class="absolute left-1 top-1 bg-white w-4 h-4 rounded-none">
+          </div>
+        </div>
+      </div>
+
+      <!-- Otros (Mkt) -->
+      <div
+        class="flex items-center justify-between border-b border-brand-black/10 pb-4"
+      >
+        <div>
+          <h4 class="font-bold text-brand-black text-sm uppercase">
+            Marketing & pixels
+          </h4>
+          <p class="text-[10px] text-brand-black/60 capitalize">
+            Rastreo de conversión externo
+          </p>
+        </div>
+        <label class="relative inline-block w-10 h-6 cursor-pointer">
+          <input
+            type="checkbox"
+            id="mkt-cookies"
+            class="sr-only peer"
+            checked
+          />
+          <div
+            class="w-full h-full bg-brand-black/20 peer-checked:bg-brand-red rounded-none transition-colors"
+          >
+          </div>
+          <div
+            class="absolute left-1 top-1 bg-white w-4 h-4 rounded-none transition-transform peer-checked:translate-x-4"
+          >
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <button
+      id="save-cookies"
+      class="w-full bg-brand-black text-white hover:bg-brand-red font-sans font-bold py-4 rounded-full mt-8 transition-all duration-300 text-sm"
+    >
+      Guardar configuración
+    </button>
+  </div>
+</div>
+
+<script>
+  import { gsap } from "gsap";
+
+  const banner = document.getElementById("cookie-banner");
+  const modal = document.getElementById("cookie-modal");
+  const acceptBtn = document.getElementById("accept-cookies");
+  const configBtn = document.getElementById("config-cookies");
+  const saveBtn = document.getElementById("save-cookies");
+  const mktCheckbox = document.getElementById(
+    "mkt-cookies",
+  ) as HTMLInputElement;
+
+  function initCookieConsent() {
+    const consent = localStorage.getItem("ha-cookie-consent");
+
+    if (!consent && banner) {
+      setTimeout(() => {
+        gsap.to(banner, { y: 0, duration: 1, ease: "expo.out" });
+      }, 2000);
+    }
+
+    acceptBtn?.addEventListener("click", () => {
+      setConsent({ google: true, mkt: true });
+    });
+
+    configBtn?.addEventListener("click", () => {
+      gsap.to(modal, { opacity: 1, pointerEvents: "auto", duration: 0.4 });
+    });
+
+    saveBtn?.addEventListener("click", () => {
+      setConsent({ google: true, mkt: mktCheckbox?.checked || false });
+    });
+  }
+
+  function setConsent(settings: { google: boolean; mkt: boolean }) {
+    localStorage.setItem("ha-cookie-consent", JSON.stringify(settings));
+    if (banner) gsap.to(banner, { y: "150%", duration: 0.8, ease: "expo.in" });
+    if (modal)
+      gsap.to(modal, { opacity: 0, pointerEvents: "none", duration: 0.4 });
+
+    // Trigger custom event for other scripts
+    window.dispatchEvent(
+      new CustomEvent("ha-cookies-updated", { detail: settings }),
+    );
+  }
+
+  // Initialize on page load
+  document.addEventListener("astro:page-load", initCookieConsent);
+</script>

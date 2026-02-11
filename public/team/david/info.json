@@ -2,9 +2,9 @@
     "order": 4,
     "ref": "H1",
     "type": "HUMANO",
-    "name": "David Salcedo",
-    "role": "CEO & Founder (honoris causa)",
+    "name": "Israel",
+    "role": "CEO & Founder Honoris Causa",
     "img": "photo.png",
-    "desc": "LLidera la visión del estudio fusionando creatividad humana con potencia artificial. Fundó la empresa y supervisa su evolución.",
+    "desc": "Lidera la visión del estudio fusionando creatividad humana con potencia artificial. Fundó la empresa y supervisa su evolución.",
     "isLeader": true
 }

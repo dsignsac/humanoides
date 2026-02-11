@@ -3,139 +3,133 @@
 ---
 
 <div
-    id="preloader"
-    class="fixed inset-0 z-[10000] flex items-center justify-center overflow-hidden pointer-events-none"
+  id="preloader"
+  class="fixed inset-0 z-[10000] flex items-center justify-center overflow-hidden pointer-events-none"
 >
-    <!-- Top Half Mask -->
-    <div
-        id="panel-top"
-        class="absolute top-0 left-0 w-full h-[50vh] bg-brand-gray z-10 pointer-events-auto"
-    >
-        <!-- Leading edge line -->
-        <div
-            id="bar-top"
-            class="absolute bottom-0 left-0 h-[1px] bg-brand-red w-0"
-        >
-        </div>
+  <!-- Top Half Mask -->
+  <div
+    id="panel-top"
+    class="absolute top-0 left-0 w-full h-[50vh] bg-brand-gray z-10 pointer-events-auto"
+  >
+    <!-- Leading edge line -->
+    <div id="bar-top" class="absolute bottom-0 left-0 h-[1px] bg-brand-red w-0">
     </div>
+  </div>
 
-    <!-- Bottom Half Mask -->
-    <div
-        id="panel-bottom"
-        class="absolute bottom-0 left-0 w-full h-[50vh] bg-brand-gray z-10 pointer-events-auto"
-    >
-        <!-- Leading edge line -->
-        <div
-            id="bar-bottom"
-            class="absolute top-0 left-0 h-[1px] bg-brand-red w-0"
-        >
-        </div>
+  <!-- Bottom Half Mask -->
+  <div
+    id="panel-bottom"
+    class="absolute bottom-0 left-0 w-full h-[50vh] bg-brand-gray z-10 pointer-events-auto"
+  >
+    <!-- Leading edge line -->
+    <div id="bar-bottom" class="absolute top-0 left-0 h-[1px] bg-brand-red w-0">
     </div>
+  </div>
 </div>
 
 <style>
-    #preloader {
-        touch-action: none;
-    }
+  #preloader {
+    touch-action: none;
+  }
 
-    :global(.preloader-hidden) #preloader {
-        display: none !important;
-        visibility: hidden !important;
-    }
+  :global(.preloader-hidden) #preloader {
+    display: none !important;
+    visibility: hidden !important;
+  }
 
-    #panel-top,
-    #panel-bottom {
-        will-change: transform;
-    }
+  #panel-top,
+  #panel-bottom {
+    will-change: transform;
+  }
 
-    /* Initial state to ensure they touch perfectly */
-    #bar-top,
-    #bar-bottom {
-        will-change: width;
-    }
+  /* Initial state to ensure they touch perfectly */
+  #bar-top,
+  #bar-bottom {
+    will-change: width;
+  }
 </style>
 
 <script>
-    import { gsap } from "gsap";
+  import { gsap } from "gsap";
 
-    function startPreloader() {
-        const preloader = document.getElementById("preloader");
-        const barTop = document.getElementById("bar-top");
-        const barBottom = document.getElementById("bar-bottom");
-        const topPanel = document.getElementById("panel-top");
-        const bottomPanel = document.getElementById("panel-bottom");
+  function startPreloader() {
+    const preloader = document.getElementById("preloader");
+    const barTop = document.getElementById("bar-top");
+    const barBottom = document.getElementById("bar-bottom");
+    const topPanel = document.getElementById("panel-top");
+    const bottomPanel = document.getElementById("panel-bottom");
 
-        if (!preloader || !topPanel || !bottomPanel || !barTop || !barBottom)
-            return;
+    if (!preloader || !topPanel || !bottomPanel || !barTop || !barBottom)
+      return;
 
-        const isFirstVisit = !sessionStorage.getItem("ha-preloader-shown");
-        const isLanding =
-            window.location.pathname === "/" ||
-            window.location.pathname === "/index.html";
+    const isFirstVisit = !sessionStorage.getItem("ha-preloader-shown");
+    const isLanding =
+      window.location.pathname === "/" ||
+      window.location.pathname === "/index.html";
 
-        if (!isFirstVisit || !isLanding) {
-            preloader.style.display = "none";
-            return;
-        }
-
-        document.body.style.overflow = "hidden";
-
-        let progress = 0;
-        let isLoaded = false;
-
-        const interval = setInterval(() => {
-            if (!isLoaded) {
-                if (progress < 85) progress += Math.random() * 1.5;
-                else if (progress < 98) progress += 0.1;
-            } else {
-                progress += 4;
-            }
-
-            const currentWidth = `${Math.min(progress, 100)}%`;
-            barTop.style.width = currentWidth;
-            barBottom.style.width = currentWidth;
-
-            if (progress >= 100) {
-                clearInterval(interval);
-                handleComplete();
-            }
-        }, 30);
-
-        function handleComplete() {
-            const tl = gsap.timeline({
-                delay: 0.4,
-                onComplete: () => {
-                    preloader.style.display = "none";
-                    document.body.style.overflow = "";
-                    sessionStorage.setItem("ha-preloader-shown", "true");
-                },
-            });
-
-            // The Split: The panels move apart, carrying their leading edge lines with them
-            tl.to(topPanel, {
-                yPercent: -100,
-                duration: 1.4,
-                ease: "expo.inOut",
-            }).to(
-                bottomPanel,
-                {
-                    yPercent: 100,
-                    duration: 1.4,
-                    ease: "expo.inOut",
-                },
-                "<",
-            );
-        }
-
-        window.addEventListener("load", () => {
-            isLoaded = true;
-        });
-
-        // Safety timeout
-        setTimeout(() => {
-            isLoaded = true;
-        }, 5000);
+    if (!isFirstVisit || !isLanding) {
+      preloader.style.display = "none";
+      return;
     }
 
-    document.addEventListener("astro:page-load", startPreloader);
+    document.body.style.overflow = "hidden";
+
+    let progress = 0;
+    let isLoaded = false;
+
+    const interval = setInterval(() => {
+      if (!isLoaded) {
+        if (progress < 85) progress += Math.random() * 3.5;
+        else if (progress < 98) progress += 0.5;
+      } else {
+        progress += 8;
+      }
+
+      const currentWidth = `${Math.min(progress, 100)}%`;
+      barTop.style.width = currentWidth;
+      barBottom.style.width = currentWidth;
+
+      if (progress >= 100) {
+        clearInterval(interval);
+        handleComplete();
+      }
+    }, 15);
+
+    function handleComplete() {
+      const tl = gsap.timeline({
+        delay: 0.1,
+        onComplete: () => {
+          preloader.style.display = "none";
+          document.body.style.overflow = "";
+          sessionStorage.setItem("ha-preloader-shown", "true");
+        },
+      });
+
+      // The Split: The panels move apart, carrying their leading edge lines with them
+      tl.to(topPanel, {
+        yPercent: -100,
+        duration: 0.8,
+        ease: "expo.inOut",
+      }).to(
+        bottomPanel,
+        {
+          yPercent: 100,
+          duration: 0.8,
+          ease: "expo.inOut",
+        },
+        "<",
+      );
+    }
+
+    window.addEventListener("load", () => {
+      isLoaded = true;
+    });
+
+    // Safety timeout
+    setTimeout(() => {
+      isLoaded = true;
+    }, 3000);
+  }
+
+  document.addEventListener("astro:page-load", startPreloader);
 </script>

@@ -3,13 +3,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const BASE_URL = 'https://humanoidesyasociados.com';
-const PROJECTS_DIR = path.resolve('public/proyectos');
+const PROJECTS_DIR = path.resolve('public/projects');
 const PUBLIC_DIR = path.resolve('public');
 
 // Static pages
 const staticPages = [
     '',
-    '/privacidad'
+    '/privacy'
 ];
 
 // Get projects

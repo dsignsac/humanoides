@@ -1,0 +1,126 @@
+{
+    "id": "la-carniceria",
+    "client": "La Carnicería",
+    "year": "2019",
+    "country": "Perú",
+    "thumbnail": "00.webp",
+    "gallery": [
+        {
+            "type": "image",
+            "src": "01.webp",
+            "caption": "Arte Al Peso - Item 1"
+        },
+        {
+            "type": "image",
+            "src": "02.webp",
+            "caption": "Arte Al Peso - Item 2"
+        },
+        {
+            "type": "image",
+            "src": "03.webp",
+            "caption": "Arte Al Peso - Item 3"
+        },
+        {
+            "type": "image",
+            "src": "04.webp",
+            "caption": "Arte Al Peso - Item 4"
+        },
+        {
+            "type": "image",
+            "src": "05.webp",
+            "caption": "Arte Al Peso - Item 5"
+        }
+    ],
+    "stack": [
+        "Brand Identity",
+        "Editorial Design",
+        "Art Direction",
+        "Graphic Research"
+    ],
+    "showOnLanding": true,
+    "title": "Arte Al Peso",
+    "service": "Branding & Editorial Design",
+    "description": "La Carnicería es una galería de arte disruptivo que opera bajo el concepto \"Arte al Peso\". La identidad visual se basa en la estética cruda de la industria cárnica, utilizando gráficas inspiradas en etiquetas térmicas, tickets y recibos de venta. El proyecto destaca por su cartel principal diseñado en 3D, donde la obra de arte se presenta empaquetada en una bandeja de poliestireno, reforzando la idea del arte como un producto de consumo directo y visceral.",
+    "slides": [
+        {
+            "id": "slide-01",
+            "label": "Project Identity",
+            "type": "hero",
+            "mobileGalleryIndices": [
+                0
+            ]
+        },
+        {
+            "id": "slide-02",
+            "label": "Problemas",
+            "type": "tasks",
+            "items": [
+                {
+                    "title": "Creative Audit",
+                    "solution": "Análisis y diagnóstico de la situación actual de marca."
+                },
+                {
+                    "title": "Strategic Sync",
+                    "solution": "Sincronización de activos digitales y puntos de contacto."
+                },
+                {
+                    "title": "Visual Output",
+                    "solution": "Ejecución de entregables de alta fidelidad según requerimiento."
+                }
+            ],
+            "mobileGalleryIndices": [
+                1,
+                2
+            ]
+        },
+        {
+            "id": "slide-03",
+            "label": "Proceso",
+            "type": "process",
+            "items": [
+                {
+                    "code": "Res-01",
+                    "name": "Research",
+                    "desc": "Investigación profunda del mercado y competencia."
+                },
+                {
+                    "code": "Str-02",
+                    "name": "Strategy",
+                    "desc": "Definición del tono de voz y pilares visuales."
+                },
+                {
+                    "code": "Dev-03",
+                    "name": "Development",
+                    "desc": "Construcción de la infraestructura digital."
+                },
+                {
+                    "code": "Lnc-04",
+                    "name": "Launch",
+                    "desc": "Despliegue y optimización continua."
+                }
+            ],
+            "mobileGalleryIndices": [
+                3,
+                4
+            ]
+        },
+        {
+            "id": "slide-04",
+            "label": "Resultados",
+            "type": "results",
+            "title": "Arte Empaquetado",
+            "description": "Se logró una identidad visual icónica y disruptiva que reforzó el concepto de arte como producto de consumo directo.",
+            "stats": [
+                {
+                    "label": "Identidad",
+                    "value": "Icónica"
+                },
+                {
+                    "label": "Impacto",
+                    "value": "Visceral"
+                }
+            ],
+            "mobileGalleryIndices": []
+        }
+    ]
+}
