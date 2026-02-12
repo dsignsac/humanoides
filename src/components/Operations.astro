@@ -1,5 +1,6 @@
 ---
 import { getDataFromFolders } from "../lib/data";
+import ImageWithSkeleton from "./ImageWithSkeleton.astro";
 
 // Fetch Team Data
 const rawTeam = getDataFromFolders("./public/team");
@@ -78,12 +79,10 @@ const agents = team;
             >
               <div class="flex flex-col gap-4">
                 <div class="w-full aspect-4/5 sm:aspect-video shrink-0 bg-brand-gray overflow-hidden rounded-t-3xl">
-                  <img
+                  <ImageWithSkeleton
                     src={member.img}
                     alt={member.name}
-                    class="w-full h-full object-cover object-top"
-                    loading="lazy"
-                    decoding="async"
+                    imgClassName="object-top"
                   />
                 </div>
                 <div class="flex grow px-6 pb-6">
@@ -138,16 +137,14 @@ const agents = team;
               class={`w-full relative p-8 transition-all duration-500 overflow-hidden group/member ${member.isLeader ? "bg-brand-salmon" : "bg-brand-gray"}`}
             >
               <div class="flex flex-col gap-6 relative z-10">
-                <div class="w-full aspect-[3/4] flex-shrink-0 bg-brand-secondary overflow-hidden rounded-2xl relative">
-                  <img
+                <div class="w-full aspect-3/4 shrink-0 bg-brand-secondary overflow-hidden rounded-2xl relative">
+                  <ImageWithSkeleton
                     src={member.img}
                     alt={member.name}
-                    class={`w-full h-full object-cover object-top transition-transform duration-700 ${member.isLeader ? "group-hover/member:scale-105" : ""}`}
-                    loading="lazy"
-                    decoding="async"
+                    imgClassName={`object-top transition-transform duration-700 ${member.isLeader ? "group-hover/member:scale-105" : ""}`}
                   />
                 </div>
-                <div class="flex-grow">
+                <div class="grow">
                   <div class="flex justify-between items-start mb-4">
                     <div class="flex flex-col">
                       <h3 class="font-sans font-900 text-3xl xl:text-4xl capitalize leading-none text-brand-black">

@@ -1,0 +1,76 @@
+---
+import Skeleton from "./Skeleton.astro";
+import { Image } from "astro:assets";
+
+interface Props {
+  src: string;
+  alt: string;
+  className?: string;
+  imgClassName?: string;
+  loading?: "lazy" | "eager";
+  draggable?: boolean;
+  widths?: number[];
+  sizes?: string;
+}
+
+const {
+  src,
+  alt,
+  className = "",
+  imgClassName = "",
+  loading = "lazy",
+  draggable = false,
+  widths = [400, 800, 1200],
+  sizes = "(max-width: 800px) 100vw, 800px",
+} = Astro.props;
+
+/**
+ * Dinamic resolution of images from src/assets.
+ * If the path starts with /projects or /team, we look for it in src/assets.
+ */
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/**/*.{jpeg,jpg,png,gif,webp,WebP}",
+);
+
+let assetPath = src.startsWith("/") ? `/src/assets${src}` : src;
+const imageAsset =
+  images[assetPath] || images[assetPath.replace(".webp", ".WebP")];
+---
+
+<div class={`relative overflow-hidden group/image ${className}`}>
+  <div
+    class="skeleton-wrapper absolute inset-0 z-10 transition-opacity duration-500"
+  >
+    <Skeleton />
+  </div>
+
+  {
+    imageAsset ? (
+      <Image
+        src={imageAsset()}
+        alt={alt}
+        widths={widths}
+        sizes={sizes}
+        class={`w-full h-full object-cover transition-opacity duration-700 opacity-0 ${imgClassName}`}
+        loading={loading}
+        draggable={draggable}
+        onload="this.parentElement.querySelector('.skeleton-wrapper').style.opacity = '0'; this.style.opacity = '1'; setTimeout(() => this.parentElement.querySelector('.skeleton-wrapper').style.display = 'none', 500);"
+      />
+    ) : (
+      <img
+        src={src}
+        alt={alt}
+        class={`w-full h-full object-cover transition-opacity duration-700 opacity-0 ${imgClassName}`}
+        loading={loading}
+        draggable={draggable}
+        onload="this.parentElement.querySelector('.skeleton-wrapper').style.opacity = '0'; this.style.opacity = '1'; setTimeout(() => this.parentElement.querySelector('.skeleton-wrapper').style.display = 'none', 500);"
+      />
+    )
+  }
+</div>
+
+<style>
+  div {
+    background-color: #d4dad3; /* Fondo base para evitar saltos visuales */
+  }
+</style>

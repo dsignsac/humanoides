@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import ImageWithSkeleton from "../../components/ImageWithSkeleton.astro";
 import { Image } from "astro:assets";
 import fs from "node:fs";
 import path from "node:path";
@@ -86,12 +87,12 @@ const getPath = (src: string) => {
                       >
                         <div>
                           <span class="block text-sm font-bold tracking-normal mb-4 text-brand-red uppercase">
-                            {slide.label}
+                            {slide.type === "hero" ? project.client : slide.label}
                           </span>
 
                           {slide.type === "hero" && (
                             <>
-                              <h1 class="text-4xl md:text-5xl lg:text-7xl font-sans font-800 leading-[0.9] tracking-tighter text-[var(--p-textos)] border-none">
+                              <h1 class="text-4xl md:text-5xl lg:text-7xl font-sans font-800 leading-[0.9] tracking-tighter text-(--p-textos) border-none">
                                 {(project.title || slide.title)
                                   ?.split(" ")
                                   .map((word: string) => (
@@ -100,9 +101,9 @@ const getPath = (src: string) => {
                                     </span>
                                   ))}
                               </h1>
-                              <div class="grid grid-cols-2 gap-8 py-8 border-y border-[var(--p-contraste)]/20 mt-12">
+                              <div class="grid grid-cols-2 gap-8 py-8 border-y border-(--p-contraste)/20 mt-12">
                                 <div>
-                                  <h3 class="text-[10px] tracking-normal mb-2 text-[var(--p-contraste)] uppercase">
+                                  <h3 class="text-[10px] tracking-normal mb-2 text-(--p-contraste) uppercase">
                                     Cliente
                                   </h3>
                                   <p class="font-sans text-sm font-bold tracking-normal">
@@ -110,7 +111,7 @@ const getPath = (src: string) => {
                                   </p>
                                 </div>
                                 <div>
-                                  <h3 class="text-[10px] tracking-normal mb-2 text-[var(--p-contraste)] uppercase">
+                                  <h3 class="text-[10px] tracking-normal mb-2 text-(--p-contraste) uppercase">
                                     Servicio
                                   </h3>
                                   <p class="font-sans text-sm font-bold tracking-normal">
@@ -123,7 +124,7 @@ const getPath = (src: string) => {
                               </p>
                               <div class="flex gap-2 flex-wrap max-w-sm mt-8">
                                 {project.stack?.map((tech: string) => (
-                                  <span class="px-3 py-1 border border-[var(--p-contraste)]/30 text-[var(--p-contraste)] text-[10px] tracking-normal rounded-full uppercase">
+                                  <span class="px-3 py-1 border border-(--p-contraste)/30 text-(--p-contraste) text-[10px] tracking-normal rounded-full uppercase">
                                     {tech}
                                   </span>
                                 ))}
@@ -134,12 +135,9 @@ const getPath = (src: string) => {
                           {slide.type === "tasks" && (
                             <div class="space-y-6 overflow-y-auto pr-4 custom-scrollbar max-h-[70vh]">
                               {(slide.items as any[])?.map(
-                                (item: any, index: number) => (
+                                (item: any) => (
                                   <div class="p-6 border border-white/5 bg-transparent transition-colors group">
-                                    <span class="text-[10px] text-brand-red opacity-50 block mb-2 font-bold tracking-normal uppercase">
-                                      {(project.itemLabel || slide.itemLabel) || "Punto"} 0{index + 1}
-                                    </span>
-                                    <h4 class="text-xl font-bold tracking-tight mb-2 ">
+                                    <h4 class="text-xl font-bold tracking-tight mb-2 text-brand-red">
                                       {item.title}
                                     </h4>
                                     <p class="text-sm leading-relaxed font-sans">
@@ -153,7 +151,7 @@ const getPath = (src: string) => {
 
                           {slide.type === "results" && (
                             <div class="space-y-6">
-                              <div class="p-8 border-l-2 border-brand-red bg-white/[0.02]">
+                              <div class="p-8 border-l-2 border-brand-red bg-white/2">
                                 <h3 class="text-3xl font-bold tracking-tight mb-4">{slide.title || "Resultados"}</h3>
                                 <p class="text-lg opacity-80 leading-snug">{slide.description}</p>
                               </div>
@@ -169,33 +167,26 @@ const getPath = (src: string) => {
                           )}
 
                           {slide.type === "process" && (
-                            <div class="space-y-6">
-                              <div class="space-y-6 mb-8 pt-4">
-                                {(slide.items as any[])?.map((step: any) => (
-                                  <div class="flex gap-6 items-start process-step-item">
-                                    <span class="text-[12px] font-bold text-brand-red">
-                                      {step.code}
-                                    </span>
-                                    <div>
-                                      <h4 class="text-base font-bold tracking-tight  mb-1">
-                                        {step.name}
-                                      </h4>
-                                      <p class="text-sm opacity-50 leading-tight font-sans">
-                                        {step.desc}
-                                      </p>
-                                    </div>
+                            <div class="space-y-6 overflow-y-auto pr-4 custom-scrollbar max-h-[70vh]">
+                                {(slide.items as any[])?.map((item: any) => (
+                                  <div class="p-6 border border-white/5 bg-transparent transition-colors group">
+                                    <h4 class="text-xl font-bold tracking-tight mb-2 text-brand-red">
+                                      {item.name}
+                                    </h4>
+                                    <p class="text-sm leading-relaxed font-sans">
+                                      {item.desc}
+                                    </p>
                                   </div>
                                 ))}
-                              </div>
                             </div>
                           )}
 
                           {slide.type === "image" && (
-                            <div class="relative w-full aspect-square md:aspect-[4/5] overflow-hidden border border-white/5">
-                              <img
+                            <div class="relative w-full aspect-square md:aspect-4/5 overflow-hidden border border-white/5">
+                              <ImageWithSkeleton
                                 src={getPath(slide.src)}
                                 alt={slide.label}
-                                class="w-full h-full object-cover"
+                                className="w-full h-full"
                               />
                               {slide.caption && (
                                 <div class="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm p-3 border-l-2 border-brand-red uppercase">
@@ -221,11 +212,11 @@ const getPath = (src: string) => {
                   project.gallery?.map((item: any) => (
                     <div class="w-full group relative mb-0">
                       {item.type === "image" ? (
-                        <img
+                        <ImageWithSkeleton
                           src={getPath(item.src)}
-                          class="w-full h-auto object-cover block"
+                          className="w-full"
+                          imgClassName="h-auto block"
                           alt={item.caption || `${project.client} - ${project.title}`}
-                          loading="lazy"
                         />
                       ) : (
                         <div class="w-full aspect-video bg-black/10 overflow-hidden">
@@ -255,17 +246,17 @@ const getPath = (src: string) => {
               <!-- Slide Content -->
               <section class="px-6 py-16 border-b border-white/5">
                   <span class="block text-xs font-bold tracking-normal mb-6 text-brand-red uppercase">
-                    {slide.label}
+                    {slide.type === "hero" ? project.client : slide.label}
                   </span>
 
                   {slide.type === "hero" && (
                     <>
-                      <h1 class="text-5xl font-sans font-800 leading-[0.9] tracking-tighter text-[var(--p-textos)] mb-8">
+                      <h1 class="text-5xl font-sans font-800 leading-[0.9] tracking-tighter text-(--p-textos) mb-8">
                         {project.title}
                       </h1>
-                      <div class="grid grid-cols-2 gap-4 py-6 border-y border-[var(--p-contraste)]/20 mb-8">
+                      <div class="grid grid-cols-2 gap-4 py-6 border-y border-(--p-contraste)/20 mb-8">
                         <div>
-                          <h3 class="text-[10px] tracking-normal mb-1 text-[var(--p-contraste)] opacity-70 uppercase">
+                          <h3 class="text-[10px] tracking-normal mb-1 text-(--p-contraste) opacity-70 uppercase">
                             Cliente
                           </h3>
                           <p class="font-sans text-xs font-bold tracking-normal">
@@ -273,7 +264,7 @@ const getPath = (src: string) => {
                           </p>
                         </div>
                         <div>
-                          <h3 class="text-[10px] tracking-normal mb-1 text-[var(--p-contraste)] opacity-70 uppercase">
+                          <h3 class="text-[10px] tracking-normal mb-1 text-(--p-contraste) opacity-70 uppercase">
                             Servicio
                           </h3>
                           <p class="font-sans text-xs font-bold tracking-normal">
@@ -286,7 +277,7 @@ const getPath = (src: string) => {
                       </p>
                       <div class="flex gap-2 flex-wrap">
                         {project.stack?.map((tech: string) => (
-                          <span class="px-3 py-1 border border-[var(--p-contraste)]/30 text-[var(--p-contraste)] text-[10px] tracking-normal rounded-full uppercase">
+                          <span class="px-3 py-1 border border-(--p-contraste)/30 text-(--p-contraste) text-[10px] tracking-normal rounded-full uppercase">
                             {tech}
                           </span>
                         ))}
@@ -296,12 +287,9 @@ const getPath = (src: string) => {
 
                   {slide.type === "tasks" && (
                     <div class="space-y-4">
-                      {(slide.items as any[])?.map((item: any, index: number) => (
-                        <div class="p-5 border border-white/5 bg-white/[0.02]">
-                          <span class="text-[10px] text-brand-red opacity-60 block mb-2 font-bold tracking-normal uppercase">
-                            {(project.itemLabel || slide.itemLabel) || "Punto"} 0{index + 1}
-                          </span>
-                          <h4 class="text-lg font-bold tracking-tight mb-2">
+                      {(slide.items as any[])?.map((item: any) => (
+                        <div class="p-5 border border-white/5 bg-white/2">
+                          <h4 class="text-lg font-bold tracking-tight mb-2 text-brand-red">
                             {item.title}
                           </h4>
                           <p class="text-sm leading-relaxed opacity-70 font-sans">
@@ -314,7 +302,7 @@ const getPath = (src: string) => {
 
                   {slide.type === "results" && (
                     <div class="space-y-6">
-                       <div class="p-6 border-l-2 border-brand-red bg-white/[0.02]">
+                       <div class="p-6 border-l-2 border-brand-red bg-white/2">
                           <h3 class="text-2xl font-bold tracking-tight mb-3">{slide.title || "Resultados"}</h3>
                           <p class="text-base opacity-70 leading-snug">{slide.description}</p>
                        </div>
@@ -330,24 +318,17 @@ const getPath = (src: string) => {
                   )}
 
                   {slide.type === "process" && (
-                    <div class="space-y-6">
-                      <div class="space-y-6">
-                        {(slide.items as any[])?.map((step: any) => (
-                          <div class="flex gap-4 items-start">
-                            <span class="text-[11px] font-bold text-brand-red mt-1">
-                              {step.code}
-                            </span>
-                            <div>
-                              <h4 class="text-sm font-bold tracking-tight mb-1">
-                                {step.name}
-                              </h4>
-                              <p class="text-xs opacity-60 leading-normal font-sans">
-                                {step.desc}
-                              </p>
-                            </div>
+                    <div class="space-y-4">
+                        {(slide.items as any[])?.map((item: any) => (
+                          <div class="p-5 border border-white/5 bg-white/2">
+                            <h4 class="text-base font-bold tracking-tight mb-2 text-brand-red">
+                              {item.name}
+                            </h4>
+                            <p class="text-sm leading-relaxed opacity-70 font-sans">
+                              {item.desc}
+                            </p>
                           </div>
                         ))}
-                      </div>
                     </div>
                   )}
               </section>
@@ -361,11 +342,11 @@ const getPath = (src: string) => {
                     return (
                       <div class="w-full relative">
                         {item.type === "image" ? (
-                          <img
+                          <ImageWithSkeleton
                             src={getPath(item.src)}
-                            class="w-full h-auto object-cover block"
+                            className="w-full"
+                            imgClassName="h-auto block"
                             alt={item.caption}
-                            loading="lazy"
                           />
                         ) : (
                            <div class="w-full aspect-video bg-black/10 overflow-hidden">
@@ -405,7 +386,7 @@ const getPath = (src: string) => {
       >
         <div>
           <span
-            class="block text-[10px] font-bold bg-brand-red/10 text-brand-red px-3 py-1 rounded-full tracking-normal mb-4 inline-block group-hover:bg-black/10 group-hover:text-brand-black transition-colors duration-500 uppercase"
+            class="inline-block text-[10px] font-bold bg-brand-red/10 text-brand-red px-3 py-1 rounded-full tracking-normal mb-4 group-hover:bg-black/10 transition-colors duration-500 uppercase"
           >
             Siguiente Proyecto
           </span>

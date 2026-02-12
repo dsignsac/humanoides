@@ -18,45 +18,54 @@ interface Project {
 }
 
 import { getDataFromFolders } from "../lib/data";
-
+import ImageWithSkeleton from "./ImageWithSkeleton.astro";
+import { getImage } from "astro:assets";
+const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/**/*.{jpeg,jpg,png,gif,webp,WebP}");
 const projectsData = getDataFromFolders("./public/projects");
 
-// Map scanned data to Project interface and filter by landing visibility
-const projects = projectsData
-  .filter((p) => p.showOnLanding !== false) // Default is true, only hide if explicitly false
-  .sort((a, b) => parseInt(b.year) - parseInt(a.year))
-  .map((p) => {
-    const getImagePath = (src: string) => {
-      if (!src) return "";
-      if (src.startsWith("/") || src.startsWith("http")) return src;
-      return `/projects/${p.id}/${src}`;
-    };
+const projects = await Promise.all(
+  projectsData
+    .filter((p: any) => p.showOnLanding !== false)
+    .sort((a: any, b: any) => parseInt(b.year) - parseInt(a.year))
+    .map(async (p: any) => {
+      const getImagePath = (src: string) => {
+        if (!src) return "";
+        if (src.startsWith("/") || src.startsWith("http")) return src;
+        return `/projects/${p.id}/${src}`;
+      };
 
-    const getSrcSet = (imagePath: string) => {
-      if (!imagePath || imagePath.endsWith(".svg")) return "";
-      const base = imagePath.substring(0, imagePath.lastIndexOf("."));
+      const rawPath = getImagePath(
+        p.thumbnail ||
+          (p.gallery && p.gallery[0]?.src) ||
+          (p.images && p.images[0]),
+      );
 
-      return `${base}-medium.webp 1000w, ${imagePath} 2000w`;
-    };
+      const assetPath = `/src/assets${rawPath}`;
+      const assetLoader = images[assetPath];
+      let optimizedImage = rawPath;
 
-    const imagePath = getImagePath(
-      p.thumbnail ||
-        (p.gallery && p.gallery[0]?.src) ||
-        (p.images && p.images[0]),
-    );
-    
-    return {
-      id: p.id,
-      client: p.client,
-      project: p.title,
-      service: p.service,
-      year: p.year,
-      country: p.country || "GLOBAL",
-      image: imagePath,
-      srcset: getSrcSet(imagePath),
-      url: `/projects/${p.id}`,
-    };
-  });
+      if (assetLoader) {
+        const optimized = await getImage({ 
+          src: assetLoader(), 
+          width: 1000, 
+          quality: 80, 
+          format: 'webp' 
+        });
+        optimizedImage = optimized.src;
+      }
+      
+      return {
+        id: p.id,
+        client: p.client,
+        project: p.title,
+        service: p.service,
+        year: p.year,
+        country: p.country || "GLOBAL",
+        image: optimizedImage,
+        url: `/projects/${p.id}`,
+      };
+    })
+);
 ---
 
 <section id="portafolio" class="w-full bg-brand-gray text-brand-black mb-12 md:mb-16">
@@ -125,11 +134,10 @@ const projects = projectsData
           class="shrink-0 w-[85vw] snap-center relative flex flex-col aspect-4/5 border border-brand-black rounded-2xl overflow-hidden mr-4 group"
         >
           <div class="absolute inset-0 z-0">
-              <img 
+              <ImageWithSkeleton
                 src={projects[projects.length - 1].image} 
                 alt={`${projects[projects.length - 1].client} preview`}
-                class="w-full h-full object-cover" 
-                loading="lazy"
+                className="w-full h-full"
               />
               <div class="absolute inset-0 bg-brand-black opacity-40"></div>
           </div>
@@ -154,11 +162,10 @@ const projects = projectsData
           >
             <!-- Project Thumbnail (Full Cover) -->
             <div class="absolute inset-0 z-0">
-                <img 
+                <ImageWithSkeleton
                     src={project.image} 
                     alt={project.client}
-                    class="w-full h-full object-cover"
-                    loading="lazy"
+                    className="w-full h-full"
                 />
                 <div class="absolute inset-0 bg-brand-black opacity-40"></div>
             </div>
@@ -200,11 +207,10 @@ const projects = projectsData
           class="shrink-0 w-[85vw] snap-center relative flex flex-col aspect-4/5 border border-brand-black rounded-2xl overflow-hidden mr-4 group"
         >
           <div class="absolute inset-0 z-0">
-              <img 
+              <ImageWithSkeleton
                 src={projects[0].image} 
                 alt={`${projects[0].client} preview`}
-                class="w-full h-full object-cover" 
-                loading="lazy"
+                className="w-full h-full"
               />
               <div class="absolute inset-0 bg-brand-black opacity-40"></div>
           </div>

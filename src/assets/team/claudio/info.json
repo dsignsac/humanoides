@@ -1,0 +1,9 @@
+{
+    "order": 3,
+    "ref": "S3",
+    "type": "AI",
+    "name": "Claudio",
+    "role": "Architect of Improbable Systems",
+    "img": "photo.png",
+    "desc": "Convierte ideas vagas en código funcional y bugs reproducibles. Nadie sabe exactamente qué hace, pero sin él nada corre."
+}
