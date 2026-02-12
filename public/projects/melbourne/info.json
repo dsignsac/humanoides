@@ -63,64 +63,73 @@
             "type": "tasks",
             "items": [
                 {
-                    "title": "Brecha Cultural",
-                    "solution": "Traducir la herencia del pisco peruano a una estética visual premium que resuene con el lifestyle cosmopolita de Melbourne."
+                    "title": "Alineación de Mercado",
+                    "solution": "Reducción de la brecha cultural mediante una estética premium. El pisco pasó de ser un producto étnico a un 'craft spirit' de lujo."
                 },
                 {
-                    "title": "Fragmentación Visual",
-                    "solution": "Estandarización de la identidad a través de una dirección de arte cohesiva para web, fotografía de producto y redes sociales."
+                    "title": "Valor de Marca",
+                    "solution": "Incremento en el valor percibido gracias a una dirección de arte cohesiva, facilitando el ingreso a locales de alto ticket."
                 },
                 {
-                    "title": "Barrera de Conversión",
-                    "solution": "Optimización del ecosistema digital para facilitar la venta directa y el catálogo B2B para bares y restaurantes."
+                    "title": "Eficiencia B2B",
+                    "solution": "Digitalización del catálogo y ecosistema web, optimizando la captación de leads y la conversión de bares y restaurantes."
                 }
             ],
-            "mobileGalleryIndices": [1,2,3]
+            "mobileGalleryIndices": [1, 2, 3]
         },
         {
             "id": "slide-03",
             "label": "Proceso",
             "type": "process",
             "items": [
-            {
-                "code": "Dir-01",
-                "name": "Art Direction",
-                "desc": "Conceptualización y dirección de sesión fotográfica de producto enfocada en 'modern heritage'."
-            },
-            {
-                "code": "Cpy-02",
-                "name": "Storytelling",
-                "desc": "Desarrollo de narrativa de marca y copywriting estratégico para el mercado anglo-australiano."
-            },
-            {
-                "code": "Web-03",
-                "name": "Product Interface",
-                "desc": "Diseño y despliegue de plataforma web orientada a la experiencia del usuario y confianza de marca."
-            },
-            {
-                "code": "Cnt-04",
-                "name": "Content Engine",
-                "desc": "Creación de activos visuales y estrategia de contenido para educación de producto y fidelización."
-            }
-        ],
-            "mobileGalleryIndices": [4,5,6,7,8,9]
+                {
+                    "code": "Dir-01",
+                    "name": "Art Direction",
+                    "desc": "Conceptualización y dirección de sesión fotográfica de producto enfocada en 'modern heritage'."
+                },
+                {
+                    "code": "Cpy-02",
+                    "name": "Storytelling",
+                    "desc": "Desarrollo de narrativa de marca y copywriting estratégico para el mercado anglo-australiano."
+                },
+                {
+                    "code": "Web-03",
+                    "name": "Product Interface",
+                    "desc": "Diseño y despliegue de plataforma web orientada a la experiencia del usuario y confianza de marca."
+                },
+                {
+                    "code": "Cnt-04",
+                    "name": "Content Engine",
+                    "desc": "Creación de activos visuales y estrategia de contenido para educación de producto y fidelización."
+                }
+            ],
+            "mobileGalleryIndices": [4, 5, 6, 7, 8]
         },
         {
             "id": "slide-04",
             "label": "Resultados",
             "type": "results",
-            "title": "Posicionamiento de Nicho",
-            "description": "Transformamos Melbourne Pisco en una marca referente del sector craft spirits en Australia. La nueva infraestructura digital y visual permitió una comunicación fluida tanto con la comunidad peruana como con el exigente circuito de bares de Melbourne, elevando el valor percibido del producto.",
+            "title": "Consolidación Premium",
+            "description": "Transformamos Melbourne Pisco en una marca referente del sector craft spirits en Australia. La nueva infraestructura digital y visual permitió una comunicación fluida tanto con la comunidad peruana como con el exigente circuito de bares de Melbourne y toda Australia, elevando el valor percibido del producto.",
             "stats": [
                 {
-                    "label": "Presencia",
-                    "value": "Melbourne"
+                    "label": "Mercado",
+                    "value": "Australia"
                 },
                 {
-                    "label": "Enfoque",
-                    "value": "B2B & B2C"
+                    "label": "Ecosistema",
+                    "value": "360°"
                 }
             ],
+            "metrics": {
+                "progressRings": {
+                    "show": true,
+                    "items": [
+                        { "label": "Brand Equity", "value": 90 },
+                        { "label": "B2B Readiness", "value": 85 }
+                    ]
+                }
+            },
             "mobileGalleryIndices": []
         }
     ],
@@ -133,5 +142,5 @@
     ],
     "title": "Exporting Heritage",
     "service": "360 Design & Content Strategy",
-    "description": "Gestión integral de marca para la importación de pisco premium en Australia. El proyecto abarcó desde el diseño web y la estrategia de contenido (copywriting y redes) hasta la dirección de arte en sesiones fotográficas y producción de merchandising, consolidando una identidad visual coherente para el mercado anglo-parlante."
+    "description": "Estrategia integral y dirección de arte para el desembarco de pisco peruano en el mercado australiano. El proyecto unificó el storytelling visual y digital, desde la dirección de fotografía de producto hasta el desarrollo de una plataforma web optimizada, logrando una identidad coherente que conecta la tradición exportada con la cultura de consumo de Melbourne."
 }

@@ -1,6 +1,6 @@
 {
     "id": "tranke",
-    "client": "Tranke",
+    "client": "Tranke Bier",
     "year": "2023",
     "country": "Alemania",
     "thumbnail": "03.webp",
@@ -8,116 +8,118 @@
         {
             "type": "image",
             "src": "01.webp",
-            "caption": "Deutsches Weißbier - Item 1"
+            "caption": "Packaging Concept: Pride Edition"
         },
         {
             "type": "image",
             "src": "03.webp",
-            "caption": "Deutsches Weißbier - Item 2"
+            "caption": "Urban Visual Identity"
         },
         {
             "type": "image",
             "src": "04.webp",
-            "caption": "Deutsches Weißbier - Item 3"
+            "caption": "Typography & Activism"
         },
         {
             "type": "image",
             "src": "05.webp",
-            "caption": "Deutsches Weißbier - Item 4"
+            "caption": "Social Media Presence"
         },
         {
             "type": "image",
             "src": "06.webp",
-            "caption": "Deutsches Weißbier - Item 5"
+            "caption": "Community Engagement Assets"
         }
     ],
     "stack": [
         "Blender 3D",
         "Procreate",
-        "Adobe Suite"
+        "Adobe Creative Suite",
+        "Art Direction"
     ],
-    "title": "Deutsches Weißbier",
-    "service": "Branding",
-    "description": "Tranke Bier es una marca de cerveza artesanal alemana que celebra la identidad LGBTQ+ bajo el concepto \"Prost mit Dankbarkeit\" (Brinda con gratitud). El diseño fusiona activismo y estética urbana, transformando el packaging en un símbolo de orgullo que honra la amistad y la diversidad de la \"familia elegida\" a través de un brindis lleno de reconocimiento.",
+    "title": "Prost mit Dankbarkeit",
+    "service": "Identity & Packaging Design",
+    "description": "Concepto de marca para una cerveza artesanal alemana que desafía los códigos visuales tradicionales de la industria. Tranke Bier celebra la identidad LGBTQ+ fusionando estética urbana con el concepto de 'gratitud hacia la familia elegida', transformando un producto de consumo en un manifiesto de visibilidad y orgullo.",
     "slides": [
         {
             "id": "slide-01",
             "type": "hero",
-            "mobileGalleryIndices": [
-                0
-            ]
+            "mobileGalleryIndices": [0]
         },
         {
             "id": "slide-02",
-            "label": "Problemas",
+            "label": "Retos Estratégicos",
             "type": "tasks",
             "items": [
                 {
-                    "title": "Creative Audit",
-                    "solution": "Análisis y diagnóstico de la situación actual de marca."
+                    "title": "Disrupción de Categoría",
+                    "solution": "Romper la estética conservadora del sector cervecero alemán mediante un lenguaje visual urbano, audaz y contemporáneo."
                 },
                 {
-                    "title": "Strategic Sync",
-                    "solution": "Sincronización de activos digitales y puntos de contacto."
+                    "title": "Evitar el Pinkwashing",
+                    "solution": "Construir una narrativa basada en la gratitud y la amistad (Chosen Family) para generar una conexión emocional genuina y duradera."
                 },
                 {
-                    "title": "Visual Output",
-                    "solution": "Ejecución de entregables de alta fidelidad según requerimiento."
+                    "title": "Versatilidad Social",
+                    "solution": "Creación de un sistema visual escalable que funcione tanto en el entorno digital de redes sociales como en el punto de venta físico."
                 }
             ],
-            "mobileGalleryIndices": [
-                1,
-                2
-            ]
+            "mobileGalleryIndices": [1]
         },
         {
             "id": "slide-03",
-            "label": "Proceso",
+            "label": "Proceso Creativo",
             "type": "process",
             "items": [
                 {
-                    "code": "Res-01",
-                    "name": "Research",
-                    "desc": "Investigación profunda del mercado y competencia."
+                    "code": "Cnc-01",
+                    "name": "Concept Development",
+                    "desc": "Definición del pilar 'Gratitud' como eje central del brindis y la identidad."
                 },
                 {
-                    "code": "Str-02",
-                    "name": "Strategy",
-                    "desc": "Definición del tono de voz y pilares visuales."
+                    "code": "Typ-02",
+                    "name": "Visual Systems",
+                    "desc": "Exploración tipográfica y de color que equilibra el activismo con la calidad artesanal."
                 },
                 {
-                    "code": "Dev-03",
-                    "name": "Development",
-                    "desc": "Construcción de la infraestructura digital."
+                    "code": "3Dd-03",
+                    "name": "3D Prototyping",
+                    "desc": "Modelado y renderizado de packaging para visualizar el impacto del diseño en volumen."
                 },
                 {
-                    "code": "Lnc-04",
-                    "name": "Launch",
-                    "desc": "Despliegue y optimización continua."
+                    "code": "Art-04",
+                    "name": "Art Direction",
+                    "desc": "Desarrollo de assets visuales para una campaña de lanzamiento enfocada en espacios urbanos."
                 }
             ],
-            "mobileGalleryIndices": [
-                3,
-                4
-            ]
+            "mobileGalleryIndices": [2]
         },
         {
             "id": "slide-04",
-            "label": "Resultados",
+            "label": "Impacto Proyectado",
             "type": "results",
-            "title": "Brindis con Orgullo",
-            "description": "Se logró un packaging que no solo es estético, sino que funciona como un símbolo de identidad y gratitud para la comunidad.",
+            "title": "Más que una cerveza",
+            "description": "El resultado es una marca con una voz política y estética potente. Tranke Bier no solo vende una bebida, sino un símbolo de reconocimiento mutuo, logrando un posicionamiento único en el mercado de nicho de cervezas craft en Berlín.",
             "stats": [
                 {
-                    "label": "Comunidad",
-                    "value": "LGBTQ+"
+                    "label": "Tono",
+                    "value": "Activista"
                 },
                 {
-                    "label": "Identidad",
-                    "value": "Urbana"
+                    "label": "Mercado",
+                    "value": "Berlin / Urban"
                 }
             ],
-            "mobileGalleryIndices": []
+            "metrics": {
+                "progressRings": {
+                    "show": true,
+                    "items": [
+                        { "label": "Brand Sentiment", "value": 98 },
+                        { "label": "Cultural Relevance", "value": 92 }
+                    ]
+                }
+            },
+            "mobileGalleryIndices": [3,4]
         }
     ]
 }

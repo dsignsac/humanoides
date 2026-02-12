@@ -5,121 +5,71 @@
     "country": "Perú",
     "thumbnail": "00.webp",
     "gallery": [
-        {
-            "type": "image",
-            "src": "01.webp",
-            "caption": "Arte Al Peso - Item 1"
-        },
-        {
-            "type": "image",
-            "src": "02.webp",
-            "caption": "Arte Al Peso - Item 2"
-        },
-        {
-            "type": "image",
-            "src": "03.webp",
-            "caption": "Arte Al Peso - Item 3"
-        },
-        {
-            "type": "image",
-            "src": "04.webp",
-            "caption": "Arte Al Peso - Item 4"
-        },
-        {
-            "type": "image",
-            "src": "05.webp",
-            "caption": "Arte Al Peso - Item 5"
-        }
+        { "type": "image", "src": "01.webp", "caption": "Identidad Visual: Arte al Peso" },
+        { "type": "image", "src": "02.webp", "caption": "Sistema de Etiquetas Térmicas" },
+        { "type": "image", "src": "03.webp", "caption": "Concepto de Empaque Editorial" },
+        { "type": "image", "src": "04.webp", "caption": "Dirección de Arte: Galería Disruptiva" },
+        { "type": "image", "src": "05.webp", "caption": "Aplicaciones de Marca" }
     ],
     "stack": [
-        "Brand Identity",
-        "Editorial Design",
-        "Art Direction",
-        "Graphic Research"
+        "Identidad de Marca",
+        "Diseño Editorial",
+        "Dirección de Arte",
+        "Investigación Gráfica"
     ],
     "showOnLanding": true,
     "title": "Arte Al Peso",
-    "service": "Branding & Editorial Design",
-    "description": "La Carnicería es una galería de arte disruptivo que opera bajo el concepto \"Arte al Peso\". La identidad visual se basa en la estética cruda de la industria cárnica, utilizando gráficas inspiradas en etiquetas térmicas, tickets y recibos de venta. El proyecto destaca por su cartel principal diseñado en 3D, donde la obra de arte se presenta empaquetada en una bandeja de poliestireno, reforzando la idea del arte como un producto de consumo directo y visceral.",
+    "service": "Branding & Concepto Visual",
+    "description": "Propuesta de identidad para una galería de arte disruptiva que trata la obra como producto de consumo masivo. El concepto visual nace de la observación cotidiana de la industria cárnica, utilizando la estética de etiquetas térmicas y tickets de balanza para desmitificar la exclusividad del arte y presentarlo de forma visceral.",
     "slides": [
         {
             "id": "slide-01",
             "type": "hero",
-            "mobileGalleryIndices": [
-                0
-            ]
+            "mobileGalleryIndices": [0]
         },
         {
             "id": "slide-02",
-            "label": "Problemas",
             "type": "tasks",
+            "label": "El Reto Creativo",
             "items": [
                 {
-                    "title": "Creative Audit",
-                    "solution": "Análisis y diagnóstico de la situación actual de marca."
+                    "title": "Desmitificación del Arte",
+                    "solution": "Eliminar la estética pretenciosa de las galerías convencionales para adoptar un lenguaje crudo y directo."
                 },
                 {
-                    "title": "Strategic Sync",
-                    "solution": "Sincronización de activos digitales y puntos de contacto."
-                },
-                {
-                    "title": "Visual Output",
-                    "solution": "Ejecución de entregables de alta fidelidad según requerimiento."
+                    "title": "Unidad Conceptual",
+                    "solution": "Búsqueda de un elemento común que unificara el nombre 'La Carnicería' con la experiencia de compra real."
                 }
             ],
-            "mobileGalleryIndices": [
-                1,
-                2
-            ]
+            "mobileGalleryIndices": [1, 2]
         },
         {
             "id": "slide-03",
-            "label": "Proceso",
-            "type": "process",
+            "type": "tasks",
+            "label": "El Hallazgo",
             "items": [
                 {
-                    "code": "Res-01",
-                    "name": "Research",
-                    "desc": "Investigación profunda del mercado y competencia."
+                    "title": "La Epifanía del Objeto",
+                    "solution": "La solución surgió de la observación de etiquetas de balanza en un supermercado; un sistema visual honesto, funcional y reconocible por todos."
                 },
                 {
-                    "code": "Str-02",
-                    "name": "Strategy",
-                    "desc": "Definición del tono de voz y pilares visuales."
-                },
-                {
-                    "code": "Dev-03",
-                    "name": "Development",
-                    "desc": "Construcción de la infraestructura digital."
-                },
-                {
-                    "code": "Lnc-04",
-                    "name": "Launch",
-                    "desc": "Despliegue y optimización continua."
+                    "title": "Traducción Visual",
+                    "solution": "Adaptación de tipografías monoespaciadas, códigos de barras y retículas de tickets para estructurar toda la comunicación de la galería."
                 }
             ],
-            "mobileGalleryIndices": [
-                3,
-                4
-            ]
+            "mobileGalleryIndices": [3]
         },
         {
             "id": "slide-04",
-            "label": "Resultados",
             "type": "results",
-            "title": "Arte Empaquetado",
-            "description": "Se logró una identidad visual icónica y disruptiva que reforzó el concepto de arte como producto de consumo directo.",
+            "label": "Resultados",
+            "title": "Estética de lo Cotidiano",
+            "description": "Se consolidó una marca que destaca por su sencillez y coherencia. Al utilizar códigos visuales preexistentes en la mente del consumidor, la identidad se percibe como auténtica y refuerza el posicionamiento disruptivo del espacio artístico.",
             "stats": [
-                {
-                    "label": "Identidad",
-                    "value": "Icónica"
-                },
-                {
-                    "label": "Impacto",
-                    "value": "Visceral"
-                }
+                { "label": "Concepto", "value": "Directo" },
+                { "label": "Estética", "value": "Industrial" }
             ],
-            "mobileGalleryIndices": []
+            "mobileGalleryIndices": [4]
         }
     ]
 }

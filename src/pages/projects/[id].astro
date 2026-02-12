@@ -4,6 +4,7 @@ import ImageWithSkeleton from "../../components/ImageWithSkeleton.astro";
 import { Image } from "astro:assets";
 import fs from "node:fs";
 import path from "node:path";
+import ProgressRing from "../../components/charts/ProgressRing.astro";
 
 export function getProjects() {
   const projectsDir = path.resolve("./public/projects");
@@ -53,6 +54,20 @@ const getPath = (src: string) => {
   if (src.startsWith("/") || src.startsWith("http")) return src;
   return `/projects/${project.id}/${src}`;
 };
+
+// Helper to check if a slide has content
+const hasContent = (slide: any) => {
+  if (slide.type === "hero" || slide.type === "image") return true;
+  if (slide.type === "tasks" || slide.type === "process") {
+    return slide.items && slide.items.length > 0;
+  }
+  if (slide.type === "results") {
+    const hasStats = slide.stats && slide.stats.length > 0;
+    const hasMetrics = slide.metrics && slide.metrics.progressRings?.show && slide.metrics.progressRings.items?.length > 0;
+    return hasStats || hasMetrics;
+  }
+  return false;
+};
 ---
 
 <Layout title={`RE: ${project.client} // Humanoides`}>
@@ -80,7 +95,9 @@ const getPath = (src: string) => {
               >
                 <div id="slides-wrapper" class="flex h-full w-max relative">
                   {
-                    project.slides?.map((slide: any) => (
+                    project.slides?.map((slide: any) => {
+                      if (!hasContent(slide)) return null;
+                      return (
                       <section
                         id={slide.id}
                         class="w-[calc((min(1440px,100vw)-48px)*5/12)] h-full pl-0 pr-12 flex flex-col justify-center"
@@ -140,12 +157,24 @@ const getPath = (src: string) => {
                                     <h4 class="text-xl font-bold tracking-tight mb-2 text-brand-red">
                                       {item.title}
                                     </h4>
-                                    <p class="text-sm leading-relaxed font-sans">
+                              <p class="text-sm leading-relaxed font-sans">
                                       {item.solution}
                                     </p>
+                                    
+                                    {/* Item-level Progress Ring */}
+                                    {item.progressRing && (
+                                      <div class="mt-4 flex justify-center">
+                                        <ProgressRing 
+                                          label={item.progressRing.label} 
+                                          value={item.progressRing.value} 
+                                          size={80} 
+                                        />
+                                      </div>
+                                    )}
                                   </div>
                                 )
                               )}
+                              
                             </div>
                           )}
 
@@ -158,11 +187,26 @@ const getPath = (src: string) => {
                               <div class="grid grid-cols-2 gap-4">
                                 {slide.stats?.map((stat: any) => (
                                   <div class="p-4 border border-white/5">
-                                    <span class="block text-2xl font-bold text-brand-red">{stat.value}</span>
+                                    <span class="block text-2xl font-bold">{stat.value}</span>
                                     <span class="text-[10px] uppercase opacity-50">{stat.label}</span>
                                   </div>
                                 ))}
                               </div>
+
+                              {/* Metrics Integration (Results - Moved from project root) */}
+                              {slide.metrics && (
+                                <div class="space-y-12">
+                                  
+                                  {slide.metrics.progressRings?.show && (
+                                    <div class="grid grid-cols-3 gap-4 w-full">
+                                      {slide.metrics.progressRings.items.map((item: any) => (
+                                        <ProgressRing label={item.label} value={item.value} size={100} />
+                                      ))}
+                                    </div>
+                                  )}
+
+                                </div>
+                              )}
                             </div>
                           )}
 
@@ -170,14 +214,26 @@ const getPath = (src: string) => {
                             <div class="space-y-6 overflow-y-auto pr-4 custom-scrollbar max-h-[70vh]">
                                 {(slide.items as any[])?.map((item: any) => (
                                   <div class="p-6 border border-white/5 bg-transparent transition-colors group">
-                                    <h4 class="text-xl font-bold tracking-tight mb-2 text-brand-red">
+                                    <h4 class="text-xl font-bold tracking-tight mb-2">
                                       {item.name}
                                     </h4>
                                     <p class="text-sm leading-relaxed font-sans">
                                       {item.desc}
                                     </p>
+                                    
+                                    {/* Item-level Progress Ring */}
+                                    {item.progressRing && (
+                                      <div class="mt-4 flex justify-center">
+                                        <ProgressRing 
+                                          label={item.progressRing.label} 
+                                          value={item.progressRing.value} 
+                                          size={80} 
+                                        />
+                                      </div>
+                                    )}
                                   </div>
                                 ))}
+                                
                             </div>
                           )}
 
@@ -199,7 +255,8 @@ const getPath = (src: string) => {
                           )}
                         </div>
                       </section>
-                    ))
+                      );
+                    })
                   }
                 </div>
               </div>
@@ -221,7 +278,15 @@ const getPath = (src: string) => {
                       ) : (
                         <div class="w-full aspect-video bg-black/10 overflow-hidden">
                           <iframe
-                            src={item.src}
+                            src={(() => {
+                              const src = item.src;
+                              if (src.includes("youtube.com/watch?v=")) {
+                                return src.replace("watch?v=", "embed/");
+                              } else if (src.includes("youtu.be/")) {
+                                return src.replace("youtu.be/", "youtube.com/embed/");
+                              }
+                              return src;
+                            })()}
                             class="w-full h-full"
                             style="width: 100%; height: 100%;"
                             allow="autoplay; fullscreen; picture-in-picture"
@@ -241,7 +306,9 @@ const getPath = (src: string) => {
       <!-- Mobile Layout (Visible on Mobile) -->
       <div class="block md:hidden pt-20 bg-[#1A1A1A]">
         {
-          project.slides?.map((slide: any) => (
+          project.slides?.map((slide: any) => {
+            if (!hasContent(slide)) return null;
+            return (
             <div class="flex flex-col">
               <!-- Slide Content -->
               <section class="px-6 py-16 border-b border-white/5">
@@ -292,10 +359,21 @@ const getPath = (src: string) => {
                           <h4 class="text-lg font-bold tracking-tight mb-2 text-brand-red">
                             {item.title}
                           </h4>
-                          <p class="text-sm leading-relaxed opacity-70 font-sans">
-                            {item.solution}
-                          </p>
-                        </div>
+                            <p class="text-sm leading-relaxed opacity-70 font-sans">
+                              {item.solution}
+                            </p>
+                            
+                            {/* Item-level Progress Ring */}
+                            {item.progressRing && (
+                              <div class="mt-4 flex justify-center">
+                                <ProgressRing 
+                                  label={item.progressRing.label} 
+                                  value={item.progressRing.value} 
+                                  size={80} 
+                                />
+                              </div>
+                            )}
+                          </div>
                       ))}
                     </div>
                   )}
@@ -309,11 +387,26 @@ const getPath = (src: string) => {
                        <div class="grid grid-cols-2 gap-3">
                         {slide.stats?.map((stat: any) => (
                           <div class="p-4 border border-white/5">
-                            <span class="block text-xl font-bold text-brand-red">{stat.value}</span>
+                            <span class="block text-xl font-bold text-white">{stat.value}</span>
                             <span class="text-[10px] uppercase opacity-50">{stat.label}</span>
                           </div>
                         ))}
                        </div>
+
+                         {/* Mobile Metrics */}
+                         {slide.metrics && (
+                           <div class="mt-8 space-y-10">
+
+                            {slide.metrics.progressRings?.show && (
+                              <div class="grid grid-cols-2 gap-y-10 w-full">
+                                {slide.metrics.progressRings.items.map((item: any) => (
+                                  <ProgressRing label={item.label} value={item.value} size={100} />
+                                ))}
+                              </div>
+                            )}
+
+                         </div>
+                       )}
                     </div>
                   )}
 
@@ -327,6 +420,17 @@ const getPath = (src: string) => {
                             <p class="text-sm leading-relaxed opacity-70 font-sans">
                               {item.desc}
                             </p>
+                            
+                            {/* Item-level Progress Ring */}
+                            {item.progressRing && (
+                              <div class="mt-4 flex justify-center">
+                                <ProgressRing 
+                                  label={item.progressRing.label} 
+                                  value={item.progressRing.value} 
+                                  size={80} 
+                                />
+                              </div>
+                            )}
                           </div>
                         ))}
                     </div>
@@ -351,7 +455,15 @@ const getPath = (src: string) => {
                         ) : (
                            <div class="w-full aspect-video bg-black/10 overflow-hidden">
                               <iframe
-                                src={item.src}
+                                src={(() => {
+                                  const src = item.src;
+                                  if (src.includes("youtube.com/watch?v=")) {
+                                    return src.replace("watch?v=", "embed/");
+                                  } else if (src.includes("youtu.be/")) {
+                                    return src.replace("youtu.be/", "youtube.com/embed/");
+                                  }
+                                  return src;
+                                })()}
                                 class="w-full h-full"
                                 style="width: 100%; height: 100%;"
                                 allow="autoplay; fullscreen; picture-in-picture"
@@ -365,7 +477,8 @@ const getPath = (src: string) => {
                 </div>
               )}
             </div>
-          ))
+            );
+          })
         }
       </div>
     </div>
@@ -386,7 +499,7 @@ const getPath = (src: string) => {
       >
         <div>
           <span
-            class="inline-block text-[10px] font-bold bg-brand-red/10 text-brand-red px-3 py-1 rounded-full tracking-normal mb-4 group-hover:bg-black/10 transition-colors duration-500 uppercase"
+            class="inline-block text-[10px] font-bold bg-brand-red/10 text-brand-red px-3 py-1 rounded-full tracking-normal mb-4 group-hover:bg-brand-black group-hover:text-white/60 transition-colors duration-500 uppercase"
           >
             Siguiente Proyecto
           </span>

@@ -8,91 +8,88 @@
         {
             "type": "image",
             "src": "01.webp",
-            "caption": "Democratizando Métricas - Item 1"
+            "caption": "Ecosistema DataStream: Visualización de Audiencias"
         }
     ],
     "stack": [
-        "Product Design",
-        "Data Visualization",
-        "Open Data",
-        "AdTech Strategy",
+        "Diseño de Producto",
+        "Visualización de Datos",
+        "Estrategia AdTech",
         "UX/UI"
     ],
     "title": "Democratizando Métricas",
-    "service": "UX/UI Design & Product Strategy",
-    "description": "Plataforma de Open Data que democratiza el acceso a métricas de streaming en Perú. El sistema transforma datos de audiencia en tiempo real en una herramienta estratégica de AdTech para optimizar la toma de decisiones y la pauta publicitaria en medios digitales.",
+    "service": "Diseño de Producto & Estrategia",
+    "description": "Plataforma de Open Data que transforma flujos complejos de streaming en decisiones estratégicas de AdTech en tiempo real.",
     "slides": [
         {
             "id": "slide-01",
             "type": "hero",
-            "mobileGalleryIndices": [
-                0
-            ]
+            "mobileGalleryIndices": [0]
         },
         {
             "id": "slide-02",
-            "label": "Problemas",
+            "label": "Retos Estratégicos",
             "type": "tasks",
             "items": [
                 {
-                    "title": "Creative Audit",
-                    "solution": "Análisis y diagnóstico de la situación actual de marca."
+                    "title": "Opacidad de Datos",
+                    "solution": "Acceso transparente a métricas de audiencia mediante una arquitectura abierta."
                 },
                 {
-                    "title": "Strategic Sync",
-                    "solution": "Sincronización de activos digitales y puntos de contacto."
-                },
-                {
-                    "title": "Visual Output",
-                    "solution": "Ejecución de entregables de alta fidelidad según requerimiento."
+                    "title": "Latencia en Pauta",
+                    "solution": "Reducción del tiempo de respuesta entre captura y ejecución publicitaria."
                 }
             ],
             "mobileGalleryIndices": []
         },
         {
             "id": "slide-03",
-            "label": "Proceso",
+            "label": "Proceso de Producto",
             "type": "process",
             "items": [
                 {
-                    "code": "Res-01",
-                    "name": "Research",
-                    "desc": "Investigación profunda del mercado y competencia."
+                    "code": "UX-01",
+                    "name": "User Journey",
+                    "desc": "Flujos críticos para analistas de medios."
                 },
                 {
-                    "code": "Str-02",
-                    "name": "Strategy",
-                    "desc": "Definición del tono de voz y pilares visuales."
+                    "code": "Vis-02",
+                    "name": "Data Arch",
+                    "desc": "Estructura jerárquica de métricas clave."
                 },
                 {
-                    "code": "Dev-03",
-                    "name": "Development",
-                    "desc": "Construcción de la infraestructura digital."
-                },
-                {
-                    "code": "Lnc-04",
-                    "name": "Launch",
-                    "desc": "Despliegue y optimización continua."
+                    "code": "UI-03",
+                    "name": "Design System",
+                    "desc": "Sistema modular para escalabilidad AdTech."
                 }
             ],
             "mobileGalleryIndices": []
         },
         {
             "id": "slide-04",
-            "label": "Resultados",
+            "label": "Impacto",
             "type": "results",
-            "title": "Impacto del Proyecto",
-            "description": "Se logró optimizar la visualización de datos complejos, permitiendo a los usuarios tomar decisiones informadas en tiempo real con una interfaz intuitiva y potente.",
+            "title": "Eficacia en Decisiones",
+            "description": "Consolidamos una interfaz que equilibra potencia analítica con una experiencia de uso excepcional para agencias.",
             "stats": [
                 {
                     "label": "Eficiencia",
                     "value": "+30%"
                 },
                 {
-                    "label": "Usuarios",
-                    "value": "10k+"
+                    "label": "Precisión",
+                    "value": "Real-Time"
                 }
             ],
+            "metrics": {
+                "progressRings": {
+                    "show": true,
+                    "items": [
+                        { "label": "Optimización", "value": 45 },
+                        { "label": "Adopción", "value": 80 }
+                    ]
+                }
+            },
             "mobileGalleryIndices": []
         }
     ]

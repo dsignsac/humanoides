@@ -1,6 +1,6 @@
 {
     "id": "guirra",
-    "client": "La Güirra",
+    "client": "Brahma",
     "year": "2020",
     "country": "Argentina",
     "thumbnail": "03.webp",
@@ -8,127 +8,128 @@
         {
             "type": "image",
             "src": "01.webp",
-            "caption": "ChChChCh-ChChCh - Item 1"
-        },
-        {
-            "type": "video",
-            "src": "https://www.youtube.com/watch?v=No6fN080u30",
-            "caption": "ChChChCh-ChChCh - Item 2"
+            "caption": "Diseño de Empaque"
         },
         {
             "type": "image",
             "src": "02.webp",
-            "caption": "ChChChCh-ChChCh - Item 3"
+            "caption": "Detalles de Innovación Táctil"
         },
         {
             "type": "image",
             "src": "03.webp",
-            "caption": "ChChChCh-ChChCh - Item 4"
+            "caption": "Integración Cultural"
         },
         {
             "type": "image",
             "src": "04.webp",
-            "caption": "ChChChCh-ChChCh - Item 5"
+            "caption": "Impacto en Redes Sociales"
         },
         {
             "type": "image",
             "src": "05.webp",
-            "caption": "ChChChCh-ChChCh - Item 6"
+            "caption": "Experiencia en Punto de Venta"
         },
         {
             "type": "image",
             "src": "06.webp",
-            "caption": "ChChChCh-ChChCh - Item 7"
+            "caption": "Prototipado de Relieve"
+        },
+        {
+            "type": "video",
+            "src": "https://www.youtube.com/watch?v=No6fN080u30",
+            "caption": "Caso de Estudio: La Güirra"
         }
     ],
     "stack": [
-        "Brand Identity",
-        "Product Design",
-        "Visual Strategy",
-        "Art Direction"
+        "Identidad de Marca",
+        "Diseño de Producto",
+        "Estrategia Visual",
+        "Dirección de Arte"
     ],
-    "title": "ChChChCh-ChChCh",
-    "service": "Product Design & Visual Identity",
-    "description": "Transformamos la lata de cerveza en un instrumento musical. Mediante un relieve rugoso en el envase, el packaging asume la función de un güiro, integrando la marca en el ADN de la cumbia. Esta innovación fue premiada como mejor idea creativa en Argentina y producida por Brahma en Paraguay, convirtiéndose en un hito del diseño táctico y la cultura popular.",
+    "title": "La Cerveza con Güiro",
+    "service": "Innovación en Empaque",
+    "description": "Transformación de la lata de aluminio en un instrumento musical rítmico mediante un relieve funcional. Este proyecto, nacido en el ámbito académico, fue seleccionado y financiado por su potencial disruptivo para competir en el Círculo de Creativos Argentinos, donde obtuvo reconocimiento oficial por parte de la industria y la marca Brahma.",
     "slides": [
         {
             "id": "slide-01",
             "type": "hero",
-            "mobileGalleryIndices": [
-                0
-            ]
+            "mobileGalleryIndices": [6]
         },
         {
             "id": "slide-02",
-            "label": "Problemas",
+            "label": "El Desafío Táctico",
             "type": "tasks",
             "items": [
                 {
-                    "title": "Creative Audit",
-                    "solution": "Análisis y diagnóstico de la situación actual de marca."
+                    "title": "Innovación de Soporte",
+                    "solution": "Intervención del envase industrial para añadir una función sonora que conecte el producto con el ritmo de la cultura popular."
                 },
                 {
-                    "title": "Strategic Sync",
-                    "solution": "Sincronización de activos digitales y puntos de contacto."
+                    "title": "Vínculo Emocional",
+                    "solution": "Unión del ritual del brindis con la cumbia, convirtiendo un objeto desechable en un instrumento de participación colectiva."
                 },
                 {
-                    "title": "Visual Output",
-                    "solution": "Ejecución de entregables de alta fidelidad según requerimiento."
+                    "title": "Validación Creativa",
+                    "solution": "Desarrollo de una idea con solidez estratégica suficiente para escalar desde un ejercicio de clase hasta un certamen nacional."
                 }
             ],
-            "mobileGalleryIndices": [
-                1,
-                2
-            ]
+            "mobileGalleryIndices": [3, 4, 5]
         },
         {
             "id": "slide-03",
-            "label": "Proceso",
+            "label": "Proceso y Reconocimiento",
             "type": "process",
             "items": [
                 {
-                    "code": "Res-01",
-                    "name": "Research",
-                    "desc": "Investigación profunda del mercado y competencia."
+                    "code": "Ide-01",
+                    "name": "Concepto Creativo",
+                    "desc": "Dirección de arte centrada en la ergonomía rítmica y la onomatopeya visual de la marca."
                 },
                 {
-                    "code": "Str-02",
-                    "name": "Strategy",
-                    "desc": "Definición del tono de voz y pilares visuales."
+                    "code": "Prt-02",
+                    "name": "Prototipado",
+                    "desc": "Pruebas de textura sobre metal para asegurar la calidad acústica y la viabilidad del relieve."
                 },
                 {
-                    "code": "Dev-03",
-                    "name": "Development",
-                    "desc": "Construcción de la infraestructura digital."
+                    "code": "Awd-03",
+                    "name": "Financiamiento",
+                    "desc": "Selección del proyecto por parte de la institución educativa para representar el talento joven en el Círculo de Creativos."
                 },
                 {
-                    "code": "Lnc-04",
-                    "name": "Launch",
-                    "desc": "Despliegue y optimización continua."
+                    "code": "Imp-04",
+                    "name": "Interés de Marca",
+                    "desc": "Gestión de la propiedad intelectual tras el acercamiento formal de Brahma manifestando interés en la propuesta."
                 }
             ],
-            "mobileGalleryIndices": [
-                3,
-                4
-            ]
+            "mobileGalleryIndices": [1]
         },
         {
             "id": "slide-04",
-            "label": "Resultados",
+            "label": "Resultados e Impacto",
             "type": "results",
-            "title": "Éxito Creativo",
-            "description": "La innovación en el packaging no solo generó un gran impacto visual, sino que se convirtió en una herramienta cultural premiada internacionalmente.",
+            "title": "Reconocimiento",
+            "description": "La propuesta fue galardonada con el Trofeo Diente de Plata en el certamen del Círculo de Creativos Argentinos. El impacto de la idea generó un reconocimiento directo de Brahma, validando la capacidad del diseño para generar soluciones que trascienden lo estético y se convierten en hitos culturales.",
             "stats": [
                 {
-                    "label": "Premios",
-                    "value": "Best Idea"
+                    "label": "Premio",
+                    "value": "Diente de Plata"
                 },
                 {
-                    "label": "Impacto",
-                    "value": "Viral"
+                    "label": "Categoría",
+                    "value": "Estudiantes"
                 }
             ],
-            "mobileGalleryIndices": []
+            "metrics": {
+                "progressRings": {
+                    "show": true,
+                    "items": [
+                        { "label": "Originalidad", "value": 100 },
+                        { "label": "Viabilidad", "value": 95 }
+                    ]
+                }
+            },
+            "mobileGalleryIndices": [2]
         }
     ]
 }

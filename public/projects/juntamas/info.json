@@ -8,104 +8,87 @@
         {
             "type": "image",
             "src": "01.webp",
-            "caption": "Finanzas Colaborativas - Item 1"
+            "caption": "Finanzas Colaborativas: Interfaz Principal"
         },
         {
             "type": "image",
             "src": "02.webp",
-            "caption": "Finanzas Colaborativas - Item 2"
+            "caption": "Gestión de Cuotas y Trazabilidad"
         },
         {
             "type": "image",
-            "src": "03..webp",
-            "caption": "Finanzas Colaborativas - Item 3"
+            "src": "03.webp",
+            "caption": "Sistema de Sorteos Automatizados"
         },
         {
             "type": "image",
             "src": "04.webp",
-            "caption": "Finanzas Colaborativas - Item 4"
+            "caption": "Componentes de Diseño Fintech"
         }
     ],
     "stack": [
-        "Fintech Design",
-        "Product Strategy",
-        "Mobile App UI",
-        "User Experience",
-        "Financial Inclusion"
+        "Diseño Fintech",
+        "Estrategia de Producto",
+        "UX/UI Móvil",
+        "Inclusión Financiera"
     ],
-    "title": "Finanzas Colaborativas",
-    "service": "UX/UI Design & Product Strategy",
-    "description": "Plataforma fintech que digitaliza el ahorro grupal comunitario. El diseño UX/UI optimiza la gestión de cuotas y sorteos, transformando procesos informales en una experiencia financiera transparente, segura y orientada a la trazabilidad del usuario.",
+    "title": "Ahorro Comunitario Digital",
+    "service": "Diseño de Producto & UX/UI",
+    "description": "Plataforma Fintech que digitaliza el ahorro grupal tradicional. Optimizamos la gestión de cuotas y sorteos, transformando procesos manuales en una experiencia financiera transparente y segura.",
     "slides": [
         {
             "id": "slide-01",
             "type": "hero",
-            "mobileGalleryIndices": [
-                0
-            ]
+            "mobileGalleryIndices": [0]
         },
         {
             "id": "slide-02",
-            "label": "Problemas",
+            "label": "Retos del Producto",
             "type": "tasks",
             "items": [
                 {
-                    "title": "Creative Audit",
-                    "solution": "Análisis y diagnóstico de la situación actual de marca."
+                    "title": "Informalidad Crítica",
+                    "solution": "Digitalización de flujos manuales para eliminar errores humanos y falta de transparencia."
                 },
                 {
-                    "title": "Strategic Sync",
-                    "solution": "Sincronización de activos digitales y puntos de contacto."
-                },
-                {
-                    "title": "Visual Output",
-                    "solution": "Ejecución de entregables de alta fidelidad según requerimiento."
+                    "title": "Barrera de Confianza",
+                    "solution": "Implementación de un sistema de trazabilidad clara que asegura la visibilidad de los fondos para todos."
                 }
             ],
-            "mobileGalleryIndices": [
-                1,
-                2
-            ]
+            "mobileGalleryIndices": [1, 2]
         },
         {
             "id": "slide-03",
-            "label": "Proceso",
+            "label": "Proceso de Diseño",
             "type": "process",
             "items": [
                 {
-                    "code": "Res-01",
-                    "name": "Research",
-                    "desc": "Investigación profunda del mercado y competencia."
+                    "code": "UX-01",
+                    "name": "Flow Optimization",
+                    "desc": "Simplificación del registro y pago de cuotas comunitarias."
                 },
                 {
-                    "code": "Str-02",
-                    "name": "Strategy",
-                    "desc": "Definición del tono de voz y pilares visuales."
+                    "code": "UI-02",
+                    "name": "Visual Trust",
+                    "desc": "Interfaz limpia y profesional para transmitir seguridad bancaria."
                 },
                 {
-                    "code": "Dev-03",
-                    "name": "Development",
-                    "desc": "Construcción de la infraestructura digital."
-                },
-                {
-                    "code": "Lnc-04",
-                    "name": "Launch",
-                    "desc": "Despliegue y optimización continua."
+                    "code": "Pro-03",
+                    "name": "Product Strategy",
+                    "desc": "Escalabilidad del sistema para diversos tipos de juntas de ahorro."
                 }
             ],
-            "mobileGalleryIndices": [
-                3
-            ]
+            "mobileGalleryIndices": [3]
         },
         {
             "id": "slide-04",
-            "label": "Resultados",
+            "label": "Impacto",
             "type": "results",
             "title": "Fricción Eliminada",
-            "description": "Se digitalizaron procesos que antes eran manuales y propensos a errores, creando una herramienta de confianza para la comunidad.",
+            "description": "Logramos profesionalizar el ahorro colaborativo, creando una herramienta de confianza que empodera la economía comunitaria.",
             "stats": [
                 {
-                    "label": "Seguridad",
+                    "label": "Trazabilidad",
                     "value": "100%"
                 },
                 {
@@ -113,6 +96,15 @@
                     "value": "Digital"
                 }
             ],
+            "metrics": {
+                "progressRings": {
+                    "show": true,
+                    "items": [
+                        { "label": "Reducción de Errores", "value": 85 },
+                        { "label": "Confianza de Usuario", "value": 90 }
+                    ]
+                }
+            },
             "mobileGalleryIndices": []
         }
     ]
