@@ -112,7 +112,7 @@ const projects = await Promise.all(
       class="w-full border-y border-brand-black py-3 flex lg:hidden justify-between items-center text-xs font-sans font-bold tracking-widest text-brand-black mb-6 px-0"
     >
       <span id="mobile-project-country">{projects[0]?.country || "GLOBAL"}</span>
-      <div class="flex gap-2" id="projects-dots">
+      <div class="flex gap-2" id="projects-dots" aria-hidden="true">
         {
           projects.map((_, i) => (
             <div
@@ -245,6 +245,7 @@ const projects = await Promise.all(
           <a
             href={project.url}
             data-image={project.image}
+            aria-label={`Ver caso de estudio: ${project.client}`}
             class="project-row group relative block w-full border-t last:border-b border-brand-black py-10 md:py-12 transition-all duration-500 hover:bg-brand-salmon px-0 hover:px-8 hover:rounded-[2.5rem] hover:border-transparent cursor-none"
           >
             <div class="grid grid-cols-12 gap-4 items-center">

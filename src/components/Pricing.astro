@@ -59,7 +59,7 @@ const currencySymbol = "$";
                     return (
                     <article
                         data-program-id={item.id}
-                        class={`flex-shrink-0 w-[calc(100vw-48px)] md:w-[45vw] lg:w-full snap-center relative flex flex-col bg-brand-salmon p-6 md:p-8 transition-all duration-500 group active:scale-[0.98] md:active:scale-100 rounded-3xl border ${item.recommended ? "border-brand-red" : "border-brand-black"}`}
+                        class={`shrink-0 w-[calc(100vw-48px)] md:w-[45vw] lg:w-full snap-center relative flex flex-col bg-brand-salmon p-6 md:p-8 transition-all duration-500 group active:scale-[0.98] md:active:scale-100 rounded-3xl border ${item.recommended ? "border-brand-red" : "border-brand-black"}`}
                     >
                         {item.recommended && (
                             <div class="absolute top-3 right-3 bg-brand-red text-white text-[11px] font-sans font-900 px-4 py-1.5 tracking-normal rounded-full z-10">
@@ -99,7 +99,7 @@ const currencySymbol = "$";
                                 Impuestos Incluídos
                             </div>
 
-                            <p class="text-lg font-sans font-medium text-brand-black leading-tight mb-8 description-text min-h-[6rem]">
+                            <p class="text-lg font-sans font-medium text-brand-black leading-tight mb-8 description-text min-h-24">
                                 {currentLevelData.description}
                             </p>
                         </div>
