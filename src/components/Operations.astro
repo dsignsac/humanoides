@@ -2,7 +2,6 @@
 import { getDataFromFolders } from "../lib/data";
 import ImageWithSkeleton from "./ImageWithSkeleton.astro";
 
-// Fetch Team Data
 const rawTeam = getDataFromFolders("./public/team");
 const team = rawTeam
   .sort((a: any, b: any) => a.order - b.order)
@@ -13,8 +12,9 @@ const team = rawTeam
 
 const agents = team.filter((m: any) => !m.isLeader);
 const leader = team.find((m: any) => m.isLeader);
-// Leader first (human leads), AI agents follow
 const allMembers = [...(leader ? [leader] : []), ...agents];
+
+const agentLabel = (i: number) => `Agente ${String(i + 1).padStart(2, "0")}`;
 ---
 
 <!-- OPERATIONS / AGENTS SECTION -->
@@ -31,8 +31,7 @@ const allMembers = [...(leader ? [leader] : []), ...agents];
           aria-hidden="true">02</span
         >
         <div class="flex flex-col">
-          <span
-            class="text-[10px] font-bold tracking-[0.3em] uppercase text-brand-red font-sans"
+          <span class="text-[10px] font-bold tracking-[0.3em] uppercase text-brand-red font-sans"
             >Directorio Corporativo</span
           >
           <h2
@@ -42,115 +41,105 @@ const allMembers = [...(leader ? [leader] : []), ...agents];
           </h2>
         </div>
       </div>
-      <!-- Animated divider -->
-      <div class="ops-divider w-full h-px bg-brand-black origin-left mb-0"></div>
+      <div class="ops-divider w-full h-px bg-brand-black origin-left"></div>
     </div>
   </div>
 
-  <!-- DESKTOP GRID (md+) -->
+  <!-- DESKTOP GRID: 4 equal columns -->
   <div class="hidden md:block max-w-[1440px] mx-auto w-full px-6">
-    <div class="grid grid-cols-5 gap-px bg-brand-black mt-0">
+    <div class="grid grid-cols-4 gap-px bg-brand-black mt-0">
 
-      {/* ── LEADER (HUMAN) — 2 cols, same weight as agents but in full color ── */}
+      {/* ── DAVID — full color ── */}
       {leader && (
-        <article
-          class="ops-card col-span-2 bg-brand-gray flex flex-col overflow-hidden group"
-          data-index={0}
-        >
-          <!-- Photo — full color (only one in color), fills full width -->
+        <article class="ops-card col-span-1 bg-brand-gray flex flex-col overflow-hidden" data-index={0}>
+          <!-- Photo: no overlay labels, CV button top-right in red -->
           <div class="relative w-full overflow-hidden bg-brand-black">
             <div class="ops-img-reveal absolute inset-0 bg-brand-gray z-10 origin-bottom" />
             <ImageWithSkeleton
               src={leader.img}
               alt={leader.name}
-              imgClassName="w-full object-top transition-transform duration-700 group-hover:scale-103"
-              widths={[500, 800]}
-              sizes="(max-width: 1440px) 38vw, 576px"
+              imgClassName="w-full object-top object-center"
+              widths={[400, 700]}
+              sizes="(max-width: 1440px) 25vw, 360px"
             />
-            <!-- Ref badge -->
-            <div class="absolute top-0 left-0 z-20 bg-brand-red px-2 py-1">
-              <span class="font-sans font-900 text-xs tracking-[0.2em] text-brand-gray">
-                {leader.ref}
-              </span>
-            </div>
+            <!-- CV button: top-right, red, big -->
+            {leader.cvLink && (
+              <a
+                href={leader.cvLink}
+                download
+                target="_blank"
+                rel="noopener noreferrer"
+                class="absolute top-0 right-0 z-20 bg-brand-red hover:bg-brand-black transition-colors duration-150 px-4 py-3 flex items-center gap-2"
+                aria-label="Descargar Currículum de David"
+              >
+                <svg class="w-5 h-5 text-white shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                  <line x1="12" y1="12" x2="12" y2="18"/>
+                  <polyline points="9 15 12 18 15 15"/>
+                </svg>
+                <span class="text-[10px] font-sans font-900 tracking-[0.2em] uppercase text-white whitespace-nowrap">Ver CV</span>
+              </a>
+            )}
           </div>
 
-          <!-- Content — same padding/structure as agent cards -->
+          <!-- Content: HUMANOIDE label replaces old HUMANO type badge -->
           <div class="flex flex-col flex-1 p-6 border-t border-brand-black">
-            <div class="flex items-center gap-2 mb-4">
-              <span class="ops-pulse-human block w-2 h-2 bg-brand-red" />
-              <span class="text-[10px] font-sans font-bold tracking-[0.25em] uppercase text-brand-red">
-                {leader.type}
-              </span>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="ops-pulse-human block w-2 h-2 bg-brand-red shrink-0" />
+              <span class="text-[10px] font-sans font-bold tracking-[0.3em] uppercase text-brand-red">Humanoide</span>
             </div>
-            <h3 class="font-sans font-900 text-[clamp(2rem,3.5vw,4rem)] leading-[0.9] text-brand-black mb-2 uppercase tracking-tight">
-              {leader.name}
-            </h3>
-            <span class="text-[10px] font-sans font-bold tracking-[0.25em] text-brand-red uppercase mb-4">
-              {leader.role}
-            </span>
+            <h3 class="font-sans font-900 text-[clamp(1.6rem,2.2vw,2.5rem)] leading-[0.9] text-brand-black mb-2 uppercase tracking-tight">{leader.name}</h3>
+            <span class="text-[10px] font-sans font-bold tracking-[0.25em] text-brand-red uppercase mb-4">{leader.role}</span>
             <div class="ops-desc-line w-full h-px bg-brand-black/30 origin-left mb-4" />
-            <p class="text-base md:text-lg font-sans text-brand-black font-medium leading-snug mt-auto">
-              {leader.desc}
-            </p>
+            <p class="text-sm font-sans text-brand-black font-medium leading-snug mt-auto">{leader.desc}</p>
           </div>
         </article>
       )}
 
-      {/* ── AGENTS AI — after leader, grayscale → color on hover ── */}
+      {/* ── AGENTS AI — grayscale, AI logo button top-right in red ── */}
       {agents.map((member: any, i: number) => (
-        <article
-          class="ops-card col-span-1 bg-brand-gray flex flex-col overflow-hidden group"
-          data-index={i + 1}
-        >
-          <!-- Image — grayscale by default -->
+        <article class="ops-card col-span-1 bg-brand-gray flex flex-col overflow-hidden" data-index={i + 1}>
+          <!-- Photo: no overlay labels, AI platform button top-right in red -->
           <div class="relative w-full overflow-hidden bg-brand-black">
             <div class="ops-img-reveal absolute inset-0 bg-brand-gray z-10 origin-bottom" />
             <ImageWithSkeleton
               src={member.img}
               alt={member.name}
-              imgClassName="w-full object-top transition-all duration-500 grayscale group-hover:grayscale-0 group-hover:scale-105"
-              widths={[300, 500, 700]}
-              sizes="(max-width: 1440px) 20vw, 288px"
+              imgClassName="w-full object-top grayscale"
+              widths={[400, 700]}
+              sizes="(max-width: 1440px) 25vw, 360px"
             />
-            <!-- Ref badge -->
-            <div class="absolute top-0 left-0 z-20 bg-brand-black px-2 py-1">
-              <span class="font-sans font-900 text-xs tracking-[0.2em] text-brand-gray">
-                {member.ref}
-              </span>
-            </div>
-          </div>
-
-          <!-- Content -->
-          <div class="flex flex-col flex-1 p-6 border-t border-brand-black">
-            <div class="flex items-center gap-2 mb-4">
-              <span class="ops-pulse block w-2 h-2 bg-brand-black" />
-              <span class="text-[10px] font-sans font-bold tracking-[0.25em] uppercase text-brand-black">
-                {member.type}
-              </span>
-            </div>
-            <h3 class="font-sans font-900 text-[clamp(1.6rem,2.2vw,2.5rem)] leading-[0.9] text-brand-black mb-2 uppercase tracking-tight">
-              {member.name}
-            </h3>
-            <span class="text-[10px] font-sans font-bold tracking-[0.25em] text-brand-red uppercase mb-4">
-              {member.role}
-            </span>
-            <div class="ops-desc-line w-full h-px bg-brand-black/20 origin-left mb-4" />
-            <p class="text-sm font-sans text-brand-black font-medium leading-snug flex-1">
-              {member.desc}
-            </p>
-
-            <!-- AI Platform logo — monochrome, subtle -->
-            {member.aiLogo && (
-              <div class="mt-6 pt-4 border-t border-brand-black/10 flex items-center justify-end">
+            <!-- AI platform button: top-right, red, big -->
+            {member.aiLogo && member.aiUrl && (
+              <a
+                href={member.aiUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="absolute top-0 right-0 z-20 bg-brand-red hover:bg-brand-black transition-colors duration-150 px-4 py-3 flex items-center gap-2"
+                aria-label={`Ver currículum de ${member.name}`}
+              >
                 <img
                   src={member.aiLogo}
                   alt=""
                   aria-hidden="true"
-                  class="h-6 w-auto opacity-20 grayscale invert"
+                  class="h-5 w-5 brightness-0 invert shrink-0"
                 />
-              </div>
+                <span class="text-[10px] font-sans font-900 tracking-[0.2em] uppercase text-white whitespace-nowrap">Ver CV</span>
+              </a>
             )}
+          </div>
+
+          <!-- Content: Agente 01/02/03 label replaces old AI type badge -->
+          <div class="flex flex-col flex-1 p-6 border-t border-brand-black">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="ops-pulse block w-2 h-2 bg-brand-black shrink-0" />
+              <span class="text-[10px] font-sans font-bold tracking-[0.3em] uppercase text-brand-black">{agentLabel(i)}</span>
+            </div>
+            <h3 class="font-sans font-900 text-[clamp(1.6rem,2.2vw,2.5rem)] leading-[0.9] text-brand-black mb-2 uppercase tracking-tight">{member.name}</h3>
+            <span class="text-[10px] font-sans font-bold tracking-[0.25em] text-brand-red uppercase mb-4">{member.role}</span>
+            <div class="ops-desc-line w-full h-px bg-brand-black/20 origin-left mb-4" />
+            <p class="text-sm font-sans text-brand-black font-medium leading-snug mt-auto">{member.desc}</p>
           </div>
         </article>
       ))}
@@ -158,9 +147,8 @@ const allMembers = [...(leader ? [leader] : []), ...agents];
     </div>
   </div>
 
-  <!-- MOBILE: Scroll-snap Carousel (leader first) -->
+  <!-- MOBILE: Scroll-snap Carousel -->
   <div class="md:hidden w-full">
-    <!-- Progress bar -->
     <div class="w-full h-px bg-brand-black/20 relative overflow-hidden">
       <div
         id="ops-progress"
@@ -169,114 +157,73 @@ const allMembers = [...(leader ? [leader] : []), ...agents];
       ></div>
     </div>
 
-    <!-- Carousel -->
-    <div
-      id="ops-carousel"
-      class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide"
-    >
-      {allMembers.map((member: any, i: number) => (
-        <article
-          class={`shrink-0 w-full snap-center flex flex-col bg-brand-gray`}
-        >
-          {/* Leader: full color photo, same structure as agents on mobile */}
-          {member.isLeader ? (
-            <div class="flex flex-col">
-              <div class="relative w-full overflow-hidden bg-brand-black">
-                <ImageWithSkeleton
-                  src={member.img}
-                  alt={member.name}
-                  imgClassName="w-full object-top object-center"
-                  widths={[400, 700]}
-                  sizes="100vw"
-                />
-                <div class="absolute top-0 left-0 z-10 bg-brand-red px-2 py-1">
-                  <span class="font-sans font-900 text-xs tracking-[0.2em] text-brand-gray">
-                    {member.ref}
-                  </span>
-                </div>
-              </div>
-              <div class="p-6 border-t border-brand-black">
-                <div class="flex items-center gap-2 mb-3">
-                  <span class="block w-2 h-2 bg-brand-red" />
-                  <span class="text-[10px] font-sans font-bold tracking-[0.25em] uppercase text-brand-red">
-                    {member.type}
-                  </span>
-                </div>
-                <h3 class="font-sans font-900 text-[clamp(2rem,10vw,3rem)] leading-[0.9] text-brand-black mb-1 uppercase tracking-tight">
-                  {member.name}
-                </h3>
-                <span class="text-[10px] font-sans font-bold tracking-[0.25em] text-brand-red uppercase mb-4 block">
-                  {member.role}
-                </span>
-                <div class="w-full h-px bg-brand-black/20 mb-4" />
-                <p class="text-sm font-sans text-brand-black font-medium leading-snug">
-                  {member.desc}
-                </p>
-              </div>
+    <div id="ops-carousel" class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+      {allMembers.map((member: any, i: number) => {
+        const idx = member.isLeader ? -1 : agents.findIndex((a: any) => a.ref === member.ref);
+        return (
+          <article class="shrink-0 w-full snap-center flex flex-col bg-brand-gray">
+            <div class="relative w-full overflow-hidden bg-brand-black">
+              <ImageWithSkeleton
+                src={member.img}
+                alt={member.name}
+                imgClassName={`w-full object-top object-center ${member.isLeader ? "" : "grayscale"}`}
+                widths={[400, 700]}
+                sizes="100vw"
+              />
+              <!-- CV / AI button top-right red -->
+              {member.isLeader && member.cvLink ? (
+                <a
+                  href={member.cvLink}
+                  download
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="absolute top-0 right-0 z-10 bg-brand-red hover:bg-brand-black transition-colors px-4 py-3 flex items-center gap-2"
+                  aria-label="Descargar CV"
+                >
+                  <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="12" y1="12" x2="12" y2="18"/>
+                    <polyline points="9 15 12 18 15 15"/>
+                  </svg>
+                  <span class="text-[10px] font-sans font-900 tracking-[0.2em] uppercase text-white">Ver CV</span>
+                </a>
+              ) : !member.isLeader && member.aiLogo && member.aiUrl ? (
+                <a
+                  href={member.aiUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="absolute top-0 right-0 z-10 bg-brand-red hover:bg-brand-black transition-colors px-4 py-3 flex items-center gap-2"
+                  aria-label={`Ver currículum de ${member.name}`}
+                >
+                  <img src={member.aiLogo} alt="" aria-hidden="true" class="h-5 w-5 brightness-0 invert" />
+                  <span class="text-[10px] font-sans font-900 tracking-[0.2em] uppercase text-white">Ver CV</span>
+                </a>
+              ) : null}
             </div>
-          ) : (
-            /* Agents: full photo + content */
-            <div class="flex flex-col">
-              <div class="relative w-full overflow-hidden bg-brand-black">
-                <ImageWithSkeleton
-                  src={member.img}
-                  alt={member.name}
-                  imgClassName="w-full object-top grayscale"
-                  widths={[400, 700]}
-                  sizes="100vw"
-                />
-                <div class="absolute top-0 left-0 z-10 bg-brand-black px-2 py-1">
-                  <span class="font-sans font-900 text-xs tracking-[0.2em] text-brand-gray">
-                    {member.ref}
-                  </span>
-                </div>
-              </div>
-              <div class="flex flex-col p-6 border-t border-brand-black">
-                <div class="flex items-center gap-2 mb-3">
-                  <span class="block w-2 h-2 bg-brand-black" />
-                  <span class="text-[10px] font-sans font-bold tracking-[0.25em] uppercase text-brand-black">
-                    {member.type}
-                  </span>
-                </div>
-                <h3 class="font-sans font-900 text-[clamp(2rem,10vw,3rem)] leading-[0.9] text-brand-black mb-1 uppercase tracking-tight">
-                  {member.name}
-                </h3>
-                <span class="text-[10px] font-sans font-bold tracking-[0.25em] text-brand-red uppercase mb-4">
-                  {member.role}
+
+            <div class="flex flex-col p-6 border-t border-brand-black">
+              <div class="flex items-center gap-2 mb-3">
+                <span class={`block w-2 h-2 shrink-0 ${member.isLeader ? "bg-brand-red" : "bg-brand-black"}`} />
+                <span class={`text-[10px] font-sans font-bold tracking-[0.3em] uppercase ${member.isLeader ? "text-brand-red" : "text-brand-black"}`}>
+                  {member.isLeader ? "Humanoide" : agentLabel(idx)}
                 </span>
-                <div class="w-full h-px bg-brand-black/20 mb-4" />
-                <p class="text-sm font-sans text-brand-black font-medium leading-snug">
-                  {member.desc}
-                </p>
-                {member.aiLogo && (
-                  <div class="mt-6 flex items-center justify-end">
-                    <img
-                      src={member.aiLogo}
-                      alt=""
-                      aria-hidden="true"
-                      class="h-5 w-auto opacity-20 grayscale invert"
-                    />
-                  </div>
-                )}
               </div>
+              <h3 class="font-sans font-900 text-[clamp(2rem,10vw,3rem)] leading-[0.9] text-brand-black mb-1 uppercase tracking-tight">{member.name}</h3>
+              <span class="text-[10px] font-sans font-bold tracking-[0.25em] text-brand-red uppercase mb-4">{member.role}</span>
+              <div class="w-full h-px bg-brand-black/20 mb-4" />
+              <p class="text-sm font-sans text-brand-black font-medium leading-snug">{member.desc}</p>
             </div>
-          )}
-        </article>
-      ))}
+          </article>
+        );
+      })}
     </div>
 
-    <!-- Mobile nav bar -->
     <div class="flex justify-between items-center px-6 py-4 border-t border-brand-black">
-      <span
-        id="ops-label"
-        class="text-[10px] font-sans font-bold tracking-[0.3em] uppercase text-brand-black"
-        >HUMANO</span
-      >
+      <span id="ops-label" class="text-[10px] font-sans font-bold tracking-[0.3em] uppercase text-brand-black">HUMANOIDE</span>
       <div class="flex gap-1.5" id="ops-dots">
         {allMembers.map((_: any, i: number) => (
-          <div
-            class={`h-1 transition-all duration-300 ${i === 0 ? "bg-brand-red w-8" : "bg-brand-black/30 w-4"}`}
-          />
+          <div class={`h-1 transition-all duration-300 ${i === 0 ? "bg-brand-red w-8" : "bg-brand-black/30 w-4"}`} />
         ))}
       </div>
     </div>
@@ -284,7 +231,6 @@ const allMembers = [...(leader ? [leader] : []), ...agents];
 </section>
 
 <script>
-  // ── Intersection Observer: reveal animations ──────────────────────────────
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const divider = document.querySelector<HTMLElement>(".ops-divider");
@@ -293,92 +239,52 @@ const allMembers = [...(leader ? [leader] : []), ...agents];
       divider.style.transform = "scaleX(0)";
       divider.style.transition = "transform 0.8s cubic-bezier(0.16,1,0.3,1)";
     }
-    new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) (e.target as HTMLElement).style.transform = "scaleX(1)";
-        });
-      },
-      { threshold: 0.5 }
-    ).observe(divider);
+    new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) (e.target as HTMLElement).style.transform = "scaleX(1)"; });
+    }, { threshold: 0.5 }).observe(divider);
   }
 
-  const cards = document.querySelectorAll<HTMLElement>(".ops-card");
-  cards.forEach((card, idx) => {
-    const reveal = card.querySelector<HTMLElement>(".ops-img-reveal");
+  document.querySelectorAll<HTMLElement>(".ops-card").forEach((card, idx) => {
+    const reveal   = card.querySelector<HTMLElement>(".ops-img-reveal");
     const descLine = card.querySelector<HTMLElement>(".ops-desc-line");
-
-    if (reveal && !prefersReduced) {
-      reveal.style.transition = `transform 0.9s cubic-bezier(0.16,1,0.3,1) ${idx * 0.1}s`;
-    }
+    if (reveal && !prefersReduced)   reveal.style.transition   = `transform 0.9s cubic-bezier(0.16,1,0.3,1) ${idx * 0.1}s`;
     if (descLine && !prefersReduced) {
-      descLine.style.transform = "scaleX(0)";
+      descLine.style.transform  = "scaleX(0)";
       descLine.style.transition = `transform 0.7s cubic-bezier(0.16,1,0.3,1) ${idx * 0.1 + 0.35}s`;
     }
-
-    new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            if (reveal) reveal.style.transform = "scaleY(0)";
-            if (descLine) descLine.style.transform = "scaleX(1)";
-          }
-        });
-      },
-      { threshold: 0.15 }
-    ).observe(card);
+    new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          if (reveal)   reveal.style.transform   = "scaleY(0)";
+          if (descLine) descLine.style.transform = "scaleX(1)";
+        }
+      });
+    }, { threshold: 0.15 }).observe(card);
   });
 
   if (!prefersReduced) {
-    const style = document.createElement("style");
-    style.textContent = `
-      @keyframes ops-blink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.25; }
-      }
-      .ops-pulse { animation: ops-blink 2s ease-in-out infinite; }
-      .ops-pulse-human { animation: ops-blink 1.4s ease-in-out infinite; }
-    `;
-    document.head.appendChild(style);
+    const s = document.createElement("style");
+    s.textContent = `@keyframes ops-blink{0%,100%{opacity:1}50%{opacity:0.25}}.ops-pulse{animation:ops-blink 2s ease-in-out infinite}.ops-pulse-human{animation:ops-blink 1.4s ease-in-out infinite}`;
+    document.head.appendChild(s);
   }
 
-  // ── Mobile Carousel ───────────────────────────────────────────────────────
   const carousel = document.getElementById("ops-carousel");
-  const label = document.getElementById("ops-label");
-  const dots = document.querySelectorAll<HTMLElement>("#ops-dots div");
+  const dots     = document.querySelectorAll<HTMLElement>("#ops-dots div");
   const progress = document.getElementById("ops-progress") as HTMLElement | null;
   const articles = carousel?.querySelectorAll("article");
 
-  if (carousel && articles && articles.length > 0) {
+  if (carousel && articles?.length) {
     const total = articles.length;
-
-    const updateState = () => {
+    const update = () => {
       const idx = Math.round(carousel.scrollLeft / carousel.clientWidth);
-      const active = articles[idx] as HTMLElement | undefined;
-
-      if (label && active) {
-        const typeEl = active.querySelector<HTMLElement>("[class*='tracking-\\[0.25em\\]']");
-        if (typeEl) label.textContent = typeEl.textContent?.trim() ?? "";
-      }
-
-      dots.forEach((dot, i) => {
-        if (i === idx) {
-          dot.style.width = "2rem";
-          dot.classList.remove("bg-brand-black/30");
-          dot.classList.add("bg-brand-red");
-        } else {
-          dot.style.width = "1rem";
-          dot.classList.remove("bg-brand-red");
-          dot.classList.add("bg-brand-black/30");
-        }
+      dots.forEach((d, i) => {
+        d.style.width = i === idx ? "2rem" : "1rem";
+        d.classList.toggle("bg-brand-red",      i === idx);
+        d.classList.toggle("bg-brand-black/30", i !== idx);
       });
-
-      if (progress) {
-        progress.style.transform = `scaleX(${(idx + 1) / total})`;
-      }
+      if (progress) progress.style.transform = `scaleX(${(idx + 1) / total})`;
     };
-
-    carousel.addEventListener("scroll", updateState, { passive: true });
-    updateState();
+    carousel.addEventListener("scroll", update, { passive: true });
+    update();
   }
 </script>

@@ -7,5 +7,6 @@
     "availability": "SYNCED",
     "img": "photo.png",
     "aiLogo": "/ai-logos/openai.svg",
+    "aiUrl": "https://chatgpt.com",
     "desc": "Copywriter corporativo. Produce manifiestos, slogans y discursos con rapidez inhumana. No tiene alma, pero escribe como si le importara."
 }

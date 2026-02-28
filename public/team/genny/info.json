@@ -6,5 +6,6 @@
     "role": "Systemic Operations Director",
     "img": "photo.png",
     "aiLogo": "/ai-logos/gemini.svg",
+    "aiUrl": "https://gemini.google.com",
     "desc": "Orquesta flujos de trabajo conectándose sin pudor a calendarios, documentos y dispositivos. Nunca duerme, siempre sincroniza."
 }

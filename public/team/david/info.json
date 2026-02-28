@@ -5,6 +5,7 @@
     "name": "David",
     "role": "CEO & Founder Honoris Causa",
     "img": "dave.png",
+    "cvLink": "/team/david/cv.pdf",
     "desc": "Lidera la visión del estudio fusionando creatividad humana con potencia artificial. Fundó la empresa y supervisa su evolución.",
     "isLeader": true
 }
