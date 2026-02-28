@@ -29,6 +29,15 @@
 }
 
 @layer base {
+
+  /* v3: Zero border-radius system-wide */
+  *,
+  *::before,
+  *::after {
+    border-radius: 0 !important;
+    box-sizing: border-box;
+  }
+
   html.lenis,
   html.lenis body {
     height: auto;
@@ -87,7 +96,6 @@
   ::-webkit-scrollbar-thumb {
     background: var(--color-brand-red);
     border: 3px solid var(--color-brand-gray);
-    border-radius: 10px;
   }
 
   ::-webkit-scrollbar-thumb:hover {

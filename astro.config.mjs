@@ -8,6 +8,8 @@ import sitemap from '@astrojs/sitemap';
 
 import vercel from '@astrojs/vercel';
 
+import mdx from '@astrojs/mdx';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://humanoidesyasociados.com',
@@ -24,7 +26,8 @@ export default defineConfig({
       changefreq: 'monthly',
       priority: 0.7,
       lastmod: new Date('2026-02-09')
-    })
+    }),
+    mdx()
   ],
 
   vite: {

@@ -1,0 +1,86 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+import type { CollectionEntry } from "astro:content";
+
+const posts = (await getCollection("blog")).sort(
+    (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
+        b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+console.log("Posts found:", posts);
+
+const title = "Archivo de Humanoides";
+---
+
+<Layout title={title}>
+    <main
+        class="w-full min-h-screen bg-brand-gray text-brand-black pt-32 pb-24 font-sans"
+    >
+        <div class="max-w-[1440px] mx-auto px-6">
+            <header class="mb-16 border-b-2 border-brand-black pb-4">
+                <h1 class="text-4xl md:text-6xl font-bold text-brand-red">
+                    {title}
+                </h1>
+                <p
+                    class="text-xs uppercase tracking-[0.2em] mt-2 text-brand-black opacity-70"
+                >
+                    /// Internal Logs
+                </p>
+            </header>
+
+            <div class="border-t border-brand-black">
+                <!-- Table Header -->
+                <div
+                    class="hidden md:grid grid-cols-12 gap-4 py-3 border-b border-brand-black text-xs uppercase font-bold tracking-widest bg-transparent text-brand-red"
+                >
+                    <div class="col-span-2">Fecha</div>
+                    <div class="col-span-8">Asunto</div>
+                    <div class="col-span-2 text-right">Autor</div>
+                </div>
+
+                <!-- Posts List -->
+                <div class="flex flex-col">
+                    {
+                        posts.map((post) => (
+                            <a href={`/blog/${post.slug}`} class="group block">
+                                <div class="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-4 py-6 md:py-4 border-b border-brand-black group-hover:bg-brand-salmon group-hover:text-brand-black transition-colors duration-0 ease-linear items-baseline">
+                                    <div class="col-span-12 md:col-span-2 text-sm md:text-xs uppercase tracking-widest opacity-60 group-hover:opacity-100">
+                                        <time
+                                            datetime={post.data.pubDate.toISOString()}
+                                        >
+                                            {post.data.pubDate.toLocaleDateString(
+                                                "es-ES",
+                                                {
+                                                    year: "numeric",
+                                                    month: "2-digit",
+                                                    day: "2-digit",
+                                                },
+                                            )}
+                                        </time>
+                                    </div>
+
+                                    <div class="col-span-12 md:col-span-8">
+                                        <h2 class="text-2xl md:text-xl font-bold leading-none group-hover:translate-x-2 transition-transform duration-0">
+                                            {post.data.title}
+                                        </h2>
+                                        {post.data.description && (
+                                            <p class="text-sm mt-1 opacity-60 font-sans group-hover:opacity-80">
+                                                {post.data.description}
+                                            </p>
+                                        )}
+                                    </div>
+
+                                    <div class="col-span-12 md:col-span-2 text-xs uppercase tracking-widest text-right opacity-60 group-hover:opacity-100 hidden md:block">
+                                        {post.data.author}
+                                    </div>
+                                </div>
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+    </main>
+</Layout>

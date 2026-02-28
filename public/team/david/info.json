@@ -2,9 +2,9 @@
     "order": 4,
     "ref": "H1",
     "type": "HUMANO",
-    "name": "Israel",
+    "name": "David",
     "role": "CEO & Founder Honoris Causa",
-    "img": "photo.png",
+    "img": "dave.png",
     "desc": "Lidera la visión del estudio fusionando creatividad humana con potencia artificial. Fundó la empresa y supervisa su evolución.",
     "isLeader": true
 }

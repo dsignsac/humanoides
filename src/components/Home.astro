@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import heroImage from "../assets/hero_studio.png";
 import Portfolio from "../components/Portfolio.astro";
-import Pricing from "../components/Pricing.astro";
+
 import Operations from "../components/Operations.astro";
 import Contact from "../components/Contact.astro";
 
@@ -44,7 +44,7 @@ const logos = rawLogos.map((l) => ({
       <div
         class="relative z-10 flex-1 flex flex-col justify-center items-center pt-20 md:pt-24 lg:pt-32 pb-32 md:pb-48"
       >
-        <div class="max-w-[1440px] w-full text-center md:text-right px-6">
+        <div class="max-w-[1440px] w-full text-left md:text-right px-6">
           <h1
             class="font-sans font-900 text-brand-red mb-6 md:mb-12"
             style="font-size: clamp(3.5rem, 12vw, 180px); line-height: .9; letter-spacing: -0.04em;"
@@ -52,17 +52,19 @@ const logos = rawLogos.map((l) => ({
             Make Internet <br />Work Again
           </h1>
           <p
-            class="text-xl md:text-3xl lg:text-4xl lg:leading-[1.1] font-500 max-w-md md:max-w-3xl mx-auto md:mx-0 md:ml-auto text-brand-gray mb-6 md:mb-8"
+            class="font-500 max-w-md md:max-w-3xl md:ml-auto text-brand-gray mb-6 md:mb-8"
+            style="font-size: clamp(1.1rem, 2.5vw, 2rem); line-height: 1.1;"
           >
             Diseñamos y lanzamos productos digitales con criterio lógico,
             estético y narrativo.
           </p>
-          <div class="flex justify-center md:justify-end mb-12 md:mb-0">
+          <div class="flex justify-start md:justify-end mb-12 md:mb-0">
             <a
               href="https://calendly.com/humanoidesyasociados/sync"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-3 px-12 py-6 bg-brand-red text-brand-gray text-xl font-bold tracking-normal hover:bg-brand-black hover:text-white transition-all duration-300 rounded-full group"
+              class="inline-flex items-center gap-3 px-12 py-6 bg-brand-red text-brand-gray font-bold tracking-normal hover:bg-brand-black hover:text-white min-h-[44px]"
+              style="font-size: clamp(0.875rem, 1.2vw, 1.125rem); transition: background 0.08s linear, color 0.08s linear;"
             >
               <span>Empezar Proyecto</span>
             </a>
@@ -73,44 +75,64 @@ const logos = rawLogos.map((l) => ({
       <div
         class="absolute bottom-0 left-0 w-full bg-brand-red py-6 md:py-10 z-20 overflow-hidden"
       >
-        <div class="flex animate-marquee whitespace-nowrap">
-          {
-            [1, 2].map(() => (
-              <div class="flex items-center shrink-0">
-                {logos.map((logo) => (
-                  <div class="h-8 md:h-12 w-24 md:w-32 shrink-0 flex items-center justify-center mx-6 md:mx-12">
-                    {logo.href ? (
-                      <a
-                        href={logo.href}
-                        class="w-full h-full block"
-                        aria-label={`Visitar sitio web de ${logo.alt}`}
-                      >
-                        <div
-                          class="w-full h-full bg-[#D4DAD3]"
-                          style={`
-                            mask: url(${logo.src}) no-repeat center;
-                            -webkit-mask: url(${logo.src}) no-repeat center;
-                            mask-size: contain;
-                            -webkit-mask-size: contain;
-                          `}
-                        />
-                      </a>
-                    ) : (
+        <!-- Two copies of the strip side-by-side, each animates independently at same speed -->
+        <div class="marquee-track flex items-center">
+          <!-- Strip A -->
+          <div class="marquee-strip flex items-center shrink-0">
+            {
+              logos.map((logo) => (
+                <div class="h-8 md:h-12 w-24 md:w-32 shrink-0 flex items-center justify-center mx-6 md:mx-12">
+                  {logo.href ? (
+                    <a
+                      href={logo.href}
+                      class="w-full h-full block"
+                      aria-label={`Visitar sitio web de ${logo.alt}`}
+                    >
                       <div
                         class="w-full h-full bg-[#D4DAD3]"
-                        style={`
-                          mask: url(${logo.src}) no-repeat center;
-                          -webkit-mask: url(${logo.src}) no-repeat center;
-                          mask-size: contain;
-                          -webkit-mask-size: contain;
-                        `}
+                        style={`mask: url(${logo.src}) no-repeat center / contain; -webkit-mask: url(${logo.src}) no-repeat center / contain;`}
                       />
-                    )}
-                  </div>
-                ))}
-              </div>
-            ))
-          }
+                    </a>
+                  ) : (
+                    <div
+                      class="w-full h-full bg-[#D4DAD3]"
+                      style={`mask: url(${logo.src}) no-repeat center / contain; -webkit-mask: url(${logo.src}) no-repeat center / contain;`}
+                    />
+                  )}
+                </div>
+              ))
+            }
+          </div>
+          <!-- Strip B (identical clone — ensures gapless loop) -->
+          <div
+            class="marquee-strip flex items-center shrink-0"
+            aria-hidden="true"
+          >
+            {
+              logos.map((logo) => (
+                <div class="h-8 md:h-12 w-24 md:w-32 shrink-0 flex items-center justify-center mx-6 md:mx-12">
+                  {logo.href ? (
+                    <a
+                      href={logo.href}
+                      class="w-full h-full block"
+                      tabindex="-1"
+                      aria-label={`Visitar sitio web de ${logo.alt}`}
+                    >
+                      <div
+                        class="w-full h-full bg-[#D4DAD3]"
+                        style={`mask: url(${logo.src}) no-repeat center / contain; -webkit-mask: url(${logo.src}) no-repeat center / contain;`}
+                      />
+                    </a>
+                  ) : (
+                    <div
+                      class="w-full h-full bg-[#D4DAD3]"
+                      style={`mask: url(${logo.src}) no-repeat center / contain; -webkit-mask: url(${logo.src}) no-repeat center / contain;`}
+                    />
+                  )}
+                </div>
+              ))
+            }
+          </div>
         </div>
       </div>
     </section>
@@ -121,18 +143,12 @@ const logos = rawLogos.map((l) => ({
     <!-- TEAM / OPERATIONS SECTION -->
     <Operations />
 
-    <!-- PRICING / RATES SECTION -->
-    <Pricing />
-
     <!-- SYNC / CONTACT SECTION -->
     <Contact />
   </main>
 
   <style is:global>
-    /* Marquee Animation */
-    .marquee-container {
-      /* Mask linear gradients removed for brand compliance */
-    }
+    /* Seamless Marquee — animates the whole track by exactly one strip width (-50%) */
     @keyframes marquee {
       0% {
         transform: translateX(0);
@@ -141,9 +157,15 @@ const logos = rawLogos.map((l) => ({
         transform: translateX(-50%);
       }
     }
-    .animate-marquee {
-      animation: marquee 25s linear infinite;
+    .marquee-track {
+      /* width: two strips side by side — wider than the viewport */
+      width: max-content;
+      animation: marquee 28s linear infinite;
       will-change: transform;
+    }
+    .marquee-strip {
+      /* Each strip is 50% of the track — so -50% = exactly one strip width */
+      flex-shrink: 0;
     }
   </style>
 </Layout>

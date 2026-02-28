@@ -7,102 +7,139 @@ import SyncForm from "./SyncForm.astro";
   id="contacto"
   class="relative w-full bg-brand-gray text-brand-black pt-12 md:pt-24 mb-12 md:mb-16 overflow-hidden"
 >
-  <div
-    class="max-w-[1440px] mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
-  >
-    <!-- Full Width Header Area (Header + Social Strip) -->
-    <div class="col-span-1 md:col-span-2 w-full">
-      <!-- Decorative Strip / Social Links (Double Line visuals) -->
-      <div
-        class="w-full border-y border-brand-black py-3 flex justify-between items-center text-xs font-sans font-bold tracking-normal text-brand-black mb-6 md:mb-12"
-      >
-        <span class="opacity-100 uppercase">Canales Oficiales</span>
-        <div class="flex gap-8">
+  <div class="max-w-[1440px] mx-auto px-6 relative z-10">
+    <!-- Section Header — ghost number pattern -->
+    <div class="flex flex-col mb-8 md:mb-12">
+      <div class="flex items-center gap-4 mb-4">
+        <span
+          class="font-sans font-900 text-[clamp(3rem,8vw,7rem)] leading-none text-brand-black/10 select-none tabular-nums"
+          aria-hidden="true">03</span
+        >
+        <div class="flex flex-col">
+          <span
+            class="text-[10px] font-bold tracking-[0.3em] uppercase text-brand-red font-sans"
+            >Canales Oficiales</span
+          >
+          <h2
+            class="font-sans font-900 text-[clamp(1.4rem,3.5vw,3rem)] leading-none tracking-tight text-brand-black uppercase"
+          >
+            Sync
+          </h2>
+        </div>
+      </div>
+      <!-- Animated divider -->
+      <div class="contact-divider w-full h-px bg-brand-black origin-left"></div>
+    </div>
+
+    <!-- Content Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <!-- Left Column: Main Visual/Text -->
+      <div class="hidden md:block text-left relative z-20">
+        <div class="max-w-xl mx-auto md:mx-0">
+          <h3
+            class="font-sans font-900 leading-[0.9] text-brand-black mb-8"
+            style="font-size: clamp(2.5rem, 8vw, 80px); letter-spacing: -0.04em;"
+          >
+            Agendar una cita
+          </h3>
+          <p
+            class="text-lg md:text-xl font-sans font-medium text-brand-black mb-6 max-w-xl leading-tight"
+          >
+            Inicie contacto con la oficina de operaciones de Humanoides &
+            Asociados. Asignamos un equipo especializado para evaluar y ejecutar
+            su proyecto digital.
+          </p>
+          <!-- Social links -->
+          <div class="flex gap-8 mb-8">
+            <a
+              href="https://www.instagram.com/humanoide.ia/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex items-center gap-1 text-xs font-bold tracking-[0.2em] uppercase hover:text-brand-red transition-colors"
+              aria-label="Seguir en Instagram"
+            >
+              Instagram
+              <svg
+                class="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M7 17L17 7M17 7H7M17 7V17"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg>
+            </a>
+            <a
+              href="https://www.linkedin.com/company/humanoidesyasociados/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex items-center gap-1 text-xs font-bold tracking-[0.2em] uppercase hover:text-brand-red transition-colors"
+              aria-label="Seguir en LinkedIn"
+            >
+              LinkedIn
+              <svg
+                class="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M7 17L17 7M17 7H7M17 7V17"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg>
+            </a>
+          </div>
           <a
-            href="https://instagram.com"
+            href="https://calendly.com/humanoidesyasociados/sync"
             target="_blank"
             rel="noopener noreferrer"
-            class="group flex items-center gap-1 hover:text-brand-red transition-colors"
-            aria-label="Seguir en Instagram"
+            class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-black text-brand-gray text-sm font-bold tracking-normal hover:bg-brand-red hover:text-white w-full md:w-fit min-h-[44px]"
+            style="transition: background 0.08s linear, color 0.08s linear;"
           >
-            Instagram
-            <svg
-              class="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <path
-                d="M7 17L17 7M17 7H7M17 7V17"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"></path>
-            </svg>
-          </a>
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group flex items-center gap-1 hover:text-brand-red transition-colors"
-            aria-label="Seguir en LinkedIn"
-          >
-            LinkedIn
-            <svg
-              class="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <path
-                d="M7 17L17 7M17 7H7M17 7V17"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"></path>
-            </svg>
+            <span>Agendar Una Cita</span>
           </a>
         </div>
       </div>
-    </div>
 
-    <!-- Left Column: Main Visual/Text -->
-    <div class="hidden md:block text-left relative z-20">
-      <div class="max-w-xl mx-auto md:mx-0">
-        <h2
-          class="font-sans font-900 leading-[0.9] text-brand-black mb-8"
-          style="font-size: clamp(2.5rem, 8vw, 80px); letter-spacing: -0.04em;"
-        >
-          Agendar una cita
-        </h2>
-        <p
-          class="text-lg md:text-xl font-sans font-medium text-brand-black mb-6 max-w-xl leading-tight"
-        >
-          Inicie contacto con la oficina de operaciones de Humanoides &
-          Asociados. Asignamos un equipo especializado para evaluar y ejecutar
-          su proyecto digital.
-        </p>
-        <a
-          href="https://calendly.com/humanoidesyasociados/sync"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-black text-brand-gray text-sm font-bold tracking-normal hover:bg-brand-red hover:text-white transition-all duration-300 rounded-full group w-full md:w-fit"
-        >
-          <span>Agendar Una Cita</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Right Column: Visual + Form -->
-    <div
-      class="relative w-full flex items-center justify-center md:justify-end"
-    >
-      <!-- Form Container (No border, clean) -->
-      <div class="relative z-20 w-full max-w-md">
-        <SyncForm />
+      <!-- Right Column: Form -->
+      <div
+        class="relative w-full flex items-center justify-center md:justify-end"
+      >
+        <div class="relative z-20 w-full max-w-md">
+          <SyncForm />
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  const prefersReduced = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+  const contactDivider =
+    document.querySelector<HTMLElement>(".contact-divider");
+  if (contactDivider && !prefersReduced) {
+    contactDivider.style.transform = "scaleX(0)";
+    contactDivider.style.transition =
+      "transform 0.8s cubic-bezier(0.16,1,0.3,1)";
+    new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting)
+            (e.target as HTMLElement).style.transform = "scaleX(1)";
+        });
+      },
+      { threshold: 0.5 },
+    ).observe(contactDivider);
+  }
+</script>

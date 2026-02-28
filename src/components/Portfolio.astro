@@ -70,27 +70,28 @@ const projects = await Promise.all(
 
 <section id="portafolio" class="w-full bg-brand-gray text-brand-black mb-12 md:mb-16">
   <div class="w-full max-w-[1440px] mx-auto px-6 pt-16 md:pt-24">
-    <!-- Big Headline -->
-    <div
-      class="flex flex-col md:flex-row justify-between items-start md:items-end mb-6 md:mb-8"
-    >
-      <div>
-        <h2
-          class="text-sm font-sans tracking-normal text-brand-red block font-bold uppercase"
+    <!-- Section Header — ghost number pattern -->
+    <div class="flex flex-col mb-0">
+      <div class="flex items-center gap-4 mb-4">
+        <span
+          class="font-sans font-900 text-[clamp(3rem,8vw,7rem)] leading-none text-brand-black/10 select-none tabular-nums"
+          aria-hidden="true">01</span
         >
-          Casos De Estudio
-        </h2>
-        <div class="hidden lg:block mb-4">
-          <h3
-            class="text-xl md:text-2xl font-sans font-900 text-brand-black tracking-tight uppercase"
+        <div class="flex flex-col">
+          <span
+            class="text-[10px] font-bold tracking-[0.3em] uppercase text-brand-red font-sans"
+            >Casos de Estudio</span
+          >
+          <h2
+            class="font-sans font-900 text-[clamp(1.4rem,3.5vw,3rem)] leading-none tracking-tight text-brand-black uppercase"
           >
             Portfolio
-          </h3>
+          </h2>
         </div>
       </div>
-      
+      <!-- Animated divider -->
+      <div class="port-divider w-full h-px bg-brand-black origin-left mb-0"></div>
     </div>
-    
   </div>
 
   <!-- Projects Grid / List -->
@@ -116,7 +117,7 @@ const projects = await Promise.all(
         {
           projects.map((_, i) => (
             <div
-              class={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${i === 0 ? "bg-brand-red" : "bg-brand-black"}`}
+              class={`w-1.5 h-1.5 transition-colors duration-300 ${i === 0 ? "bg-brand-red" : "bg-brand-black"}`}
             />
           ))
         }
@@ -131,7 +132,7 @@ const projects = await Promise.all(
       {projects.length > 0 && (
         <article 
           data-country={projects[projects.length - 1].country}
-          class="shrink-0 w-[85vw] snap-center relative flex flex-col aspect-4/5 border border-brand-black rounded-2xl overflow-hidden mr-4 group"
+          class="shrink-0 w-[85vw] snap-center relative flex flex-col aspect-4/5 border border-brand-black overflow-hidden mr-4 group"
         >
           <div class="absolute inset-0 z-0">
               <ImageWithSkeleton
@@ -146,7 +147,7 @@ const projects = await Promise.all(
                   <h3 class="text-3xl font-sans font-900 capitalize tracking-tighter leading-none text-white mb-1">{projects[projects.length - 1].client}</h3>
                   <p class="text-lg font-sans font-normal leading-tight text-white/90">{projects[projects.length - 1].service}</p>
               </div>
-              <a href={projects[projects.length - 1].url} class="w-full py-4 bg-white text-brand-black border border-white rounded-full flex items-center justify-center gap-2 text-sm font-bold tracking-normal hover:bg-brand-red hover:text-white hover:border-brand-red transition-colors">
+              <a href={projects[projects.length - 1].url} class="w-full py-4 bg-white text-brand-black border border-white flex items-center justify-center gap-2 text-sm font-bold tracking-normal hover:bg-brand-red hover:text-white hover:border-brand-red transition-colors" style="transition: background 0.08s linear, color 0.08s linear, border-color 0.08s linear;">
                 Ver Proyecto <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
               </a>
           </div>
@@ -158,7 +159,7 @@ const projects = await Promise.all(
         projects.map((project, index) => (
           <article 
             data-country={project.country}
-            class="shrink-0 w-[85vw] snap-center relative flex flex-col aspect-4/5 border border-brand-black rounded-2xl overflow-hidden mr-4 group"
+            class="shrink-0 w-[85vw] snap-center relative flex flex-col aspect-4/5 border border-brand-black overflow-hidden mr-4 group"
           >
             <!-- Project Thumbnail (Full Cover) -->
             <div class="absolute inset-0 z-0">
@@ -182,7 +183,8 @@ const projects = await Promise.all(
 
                 <a
                   href={project.url}
-                  class="inline-flex items-center gap-2 px-6 py-3 bg-white text-brand-black text-xs font-bold rounded-full hover:bg-brand-red hover:text-white transition-colors duration-300"
+                  class="inline-flex items-center gap-2 px-6 py-3 bg-white text-brand-black text-xs font-bold hover:bg-brand-red hover:text-white"
+                  style="transition: background 0.08s linear, color 0.08s linear;"
                   aria-label={`Ver proyecto: ${project.client}`}
                 >
                   Ver Proyecto
@@ -205,7 +207,7 @@ const projects = await Promise.all(
       {projects.length > 0 && (
         <article 
           data-country={projects[0].country}
-          class="shrink-0 w-[85vw] snap-center relative flex flex-col aspect-4/5 border border-brand-black rounded-2xl overflow-hidden mr-4 group"
+          class="shrink-0 w-[85vw] snap-center relative flex flex-col aspect-4/5 border border-brand-black overflow-hidden mr-4 group"
         >
           <div class="absolute inset-0 z-0">
               <ImageWithSkeleton
@@ -222,7 +224,8 @@ const projects = await Promise.all(
               </div>
               <a
                 href={projects[0].url}
-                class="inline-flex items-center gap-2 px-6 py-3 bg-white text-brand-black text-xs font-bold rounded-full hover:bg-brand-red hover:text-white transition-colors duration-300"
+                class="inline-flex items-center gap-2 px-6 py-3 bg-white text-brand-black text-xs font-bold hover:bg-brand-red hover:text-white"
+                style="transition: background 0.08s linear, color 0.08s linear;"
                 aria-label={`Ver proyecto: ${projects[0].client}`}
               >
                 Ver Proyecto <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
@@ -246,7 +249,8 @@ const projects = await Promise.all(
             href={project.url}
             data-image={project.image}
             aria-label={`Ver caso de estudio: ${project.client}`}
-            class="project-row group relative block w-full border-t last:border-b border-brand-black py-10 md:py-12 transition-all duration-500 hover:bg-brand-salmon px-0 hover:px-8 hover:rounded-[2.5rem] hover:border-transparent cursor-none"
+            class="project-row group relative block w-full border-t last:border-b border-brand-black py-10 md:py-12 transition-all duration-500 hover:bg-brand-salmon px-0 hover:px-8 hover:border-transparent cursor-none"
+            style="transition: background 0.08s linear, padding 0.15s ease;"
           >
             <div class="grid grid-cols-12 gap-4 items-center">
               <!-- Año -->
@@ -275,7 +279,7 @@ const projects = await Promise.all(
 
               <!-- Acción -->
               <div class="col-span-1 flex justify-end">
-                <div class="w-10 h-10 rounded-full border border-brand-black flex items-center justify-center group-hover:bg-brand-black group-hover:text-white transition-all duration-300">
+                <div class="w-10 h-10 border border-brand-black flex items-center justify-center group-hover:bg-brand-black group-hover:text-white" style="transition: background 0.08s linear, color 0.08s linear;">
                   <svg
                     class="w-4 h-4 transform rotate-45"
                     viewBox="0 0 24 24"
@@ -480,4 +484,17 @@ const projects = await Promise.all(
 
   // Run on load
   setupCursorFollower();
+
+  // Portfolio divider animation
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const portDivider = document.querySelector<HTMLElement>(".port-divider");
+  if (portDivider && !prefersReduced) {
+    portDivider.style.transform = "scaleX(0)";
+    portDivider.style.transition = "transform 0.8s cubic-bezier(0.16,1,0.3,1)";
+    new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) (e.target as HTMLElement).style.transform = "scaleX(1)";
+      });
+    }, { threshold: 0.5 }).observe(portDivider);
+  }
 </script>

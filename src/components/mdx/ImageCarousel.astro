@@ -1,0 +1,43 @@
+---
+interface Props {
+    images: string[];
+    alt?: string;
+}
+
+const { images, alt = "Galería de imágenes" } = Astro.props;
+---
+
+<div class="relative w-full my-12 border border-brand-black">
+    <div class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+        {
+            images.map((img, index) => (
+                <div class="flex-shrink-0 w-full snap-center">
+                    <img
+                        src={img}
+                        alt={`${alt} - ${index + 1}`}
+                        class="w-full h-auto object-cover aspect-video grayscale hover:grayscale-0 transition-all duration-300"
+                        loading="lazy"
+                    />
+                </div>
+            ))
+        }
+    </div>
+    <div
+        class="flex justify-between px-2 py-1 text-xs font-sans uppercase border-t border-brand-black text-brand-black"
+    >
+        <span>Navegar: Deslizar</span>
+        <span>{images.length} Archivos</span>
+    </div>
+</div>
+
+<style>
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .scrollbar-hide {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+</style>

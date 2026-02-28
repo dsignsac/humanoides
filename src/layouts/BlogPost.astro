@@ -1,0 +1,163 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Layout from "./Layout.astro";
+import Navbar from "../components/Navbar.astro"; // We might want to force navbar/footer visibility
+import Footer from "../components/Footer.astro"; // Import explicitly if Layout is flexible
+
+interface Props {
+    post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, author } =
+    post.data;
+---
+
+<Layout title={title} showNavbar={true} showFooter={true}>
+    <main
+        class="w-full bg-brand-gray text-brand-black min-h-screen pt-32 pb-24"
+    >
+        <article class="w-full max-w-[1440px] mx-auto px-6">
+            <!-- Post Header: Brutalist / Report Style -->
+            <header class="border-b border-brand-black mb-12 pb-12">
+                <div
+                    class="flex flex-col md:flex-row md:items-end justify-between gap-6"
+                >
+                    <div class="w-full md:w-3/4">
+                        <h1
+                            class="font-sans text-brand-red text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-none mb-6"
+                        >
+                            {title}
+                        </h1>
+                        <p
+                            class="text-xl md:text-2xl font-sans text-brand-black opacity-80 max-w-2xl"
+                        >
+                            {description}
+                        </p>
+                    </div>
+
+                    <div
+                        class="w-full md:w-1/4 flex flex-col items-start md:items-end font-sans text-sm uppercase tracking-widest gap-2 text-brand-black"
+                    >
+                        <time datetime={pubDate.toISOString()}>
+                            {
+                                pubDate.toLocaleDateString("en-us", {
+                                    year: "numeric",
+                                    month: "short",
+                                    day: "numeric",
+                                })
+                            }
+                        </time>
+                        <div class="border-t border-brand-black w-12 my-2">
+                        </div>
+                        <div>{author}</div>
+                    </div>
+                </div>
+
+                {
+                    heroImage && (
+                        <div class="mt-12 w-full border border-brand-black p-1">
+                            <img
+                                src={heroImage}
+                                alt={title}
+                                class="w-full h-auto grayscale contrast-125 block"
+                            />
+                        </div>
+                    )
+                }
+            </header>
+
+            <!-- Post Content: Raw & Structured -->
+            <div
+                class="mdx-content max-w-4xl font-sans text-lg leading-relaxed text-brand-black"
+            >
+                <slot />
+            </div>
+        </article>
+    </main>
+</Layout>
+
+<style is:global>
+    /* Manual Brutalist Styling for Markdown Content */
+    .mdx-content h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-top: 4rem;
+        margin-bottom: 2rem;
+        border-bottom: 1px solid var(--color-brand-black);
+        padding-bottom: 0.5rem;
+        letter-spacing: -0.05em;
+        color: var(--color-brand-red);
+    }
+
+    .mdx-content h3 {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-top: 3rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .mdx-content p {
+        margin-bottom: 1.5rem;
+    }
+
+    .mdx-content ul {
+        list-style-type: square;
+        padding-left: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .mdx-content li {
+        margin-bottom: 0.5rem;
+    }
+
+    .mdx-content a {
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 4px;
+        color: var(--color-brand-red);
+        font-weight: 600;
+    }
+
+    .mdx-content a:hover {
+        background-color: var(--color-brand-red);
+        color: var(--color-brand-gray);
+        text-decoration: none;
+    }
+
+    .mdx-content blockquote {
+        border-left: 4px solid var(--color-brand-red);
+        padding-left: 1.5rem;
+        margin: 2rem 0;
+        font-style: italic;
+        font-size: 1.25rem;
+        background-color: transparent;
+        padding: 1rem;
+        color: var(--color-brand-black);
+    }
+
+    .mdx-content pre {
+        background-color: var(--color-brand-black) !important;
+        color: #00ff00 !important;
+        padding: 1.5rem;
+        border: 1px solid var(--color-brand-red);
+        overflow-x: auto;
+        margin: 2rem 0;
+        border-radius: 0 !important;
+    }
+
+    .mdx-content strong {
+        font-weight: 800;
+        color: var(--color-brand-red);
+    }
+
+    .mdx-content img {
+        border: 1px solid var(--color-brand-black);
+        margin: 2rem 0;
+        filter: grayscale(100%);
+    }
+
+    .mdx-content img:hover {
+        filter: grayscale(0%);
+    }
+</style>
