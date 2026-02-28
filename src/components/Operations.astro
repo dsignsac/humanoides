@@ -49,10 +49,9 @@ const agentLabel = (i: number) => `Agente ${String(i + 1).padStart(2, "0")}`;
   <div class="hidden md:block max-w-[1440px] mx-auto w-full px-6">
     <div class="grid grid-cols-4 gap-px bg-brand-black mt-0">
 
-      {/* ── DAVID — full color ── */}
+      {/* ── DAVID — full color, CV button top-right ── */}
       {leader && (
         <article class="ops-card col-span-1 bg-brand-gray flex flex-col overflow-hidden" data-index={0}>
-          <!-- Photo: no overlay labels, CV button top-right in red -->
           <div class="relative w-full overflow-hidden bg-brand-black">
             <div class="ops-img-reveal absolute inset-0 bg-brand-gray z-10 origin-bottom" />
             <ImageWithSkeleton
@@ -62,7 +61,6 @@ const agentLabel = (i: number) => `Agente ${String(i + 1).padStart(2, "0")}`;
               widths={[400, 700]}
               sizes="(max-width: 1440px) 25vw, 360px"
             />
-            <!-- CV button: top-right, red, big -->
             {leader.cvLink && (
               <a
                 href={leader.cvLink}
@@ -83,7 +81,6 @@ const agentLabel = (i: number) => `Agente ${String(i + 1).padStart(2, "0")}`;
             )}
           </div>
 
-          <!-- Content: HUMANOIDE label replaces old HUMANO type badge -->
           <div class="flex flex-col flex-1 p-6 border-t border-brand-black">
             <div class="flex items-center gap-2 mb-3">
               <span class="ops-pulse-human block w-2 h-2 bg-brand-red shrink-0" />
@@ -97,10 +94,10 @@ const agentLabel = (i: number) => `Agente ${String(i + 1).padStart(2, "0")}`;
         </article>
       )}
 
-      {/* ── AGENTS AI — grayscale, AI logo button top-right in red ── */}
+      {/* ── AGENTS AI — grayscale, NO button, AI logo as faded watermark bottom-right ── */}
       {agents.map((member: any, i: number) => (
         <article class="ops-card col-span-1 bg-brand-gray flex flex-col overflow-hidden" data-index={i + 1}>
-          <!-- Photo: no overlay labels, AI platform button top-right in red -->
+          <!-- Photo: no button, no overlay text -->
           <div class="relative w-full overflow-hidden bg-brand-black">
             <div class="ops-img-reveal absolute inset-0 bg-brand-gray z-10 origin-bottom" />
             <ImageWithSkeleton
@@ -110,36 +107,32 @@ const agentLabel = (i: number) => `Agente ${String(i + 1).padStart(2, "0")}`;
               widths={[400, 700]}
               sizes="(max-width: 1440px) 25vw, 360px"
             />
-            <!-- AI platform button: top-right, red, big -->
-            {member.aiLogo && member.aiUrl && (
-              <a
-                href={member.aiUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="absolute top-0 right-0 z-20 bg-brand-red hover:bg-brand-black transition-colors duration-150 px-4 py-3 flex items-center gap-2"
-                aria-label={`Ver currículum de ${member.name}`}
+          </div>
+
+          <!-- Content: watermark logo + text -->
+          <div class="relative flex flex-col flex-1 p-6 border-t border-brand-black overflow-hidden">
+            {/* AI logo watermark — large, low opacity, cropped off bottom-right corner */}
+            {member.aiLogo && (
+              <div
+                class="absolute bottom-0 right-0 pointer-events-none translate-x-1/4 translate-y-1/4"
+                aria-hidden="true"
               >
                 <img
                   src={member.aiLogo}
                   alt=""
-                  aria-hidden="true"
-                  class="h-5 w-5 brightness-0 invert shrink-0"
+                  class="w-32 h-32 opacity-[0.12] brightness-0"
                 />
-                <span class="text-[10px] font-sans font-900 tracking-[0.2em] uppercase text-white whitespace-nowrap">Ver CV</span>
-              </a>
+              </div>
             )}
-          </div>
 
-          <!-- Content: Agente 01/02/03 label replaces old AI type badge -->
-          <div class="flex flex-col flex-1 p-6 border-t border-brand-black">
-            <div class="flex items-center gap-2 mb-3">
+            <div class="relative z-10 flex items-center gap-2 mb-3">
               <span class="ops-pulse block w-2 h-2 bg-brand-black shrink-0" />
               <span class="text-[10px] font-sans font-bold tracking-[0.3em] uppercase text-brand-black">{agentLabel(i)}</span>
             </div>
-            <h3 class="font-sans font-900 text-[clamp(1.6rem,2.2vw,2.5rem)] leading-[0.9] text-brand-black mb-2 uppercase tracking-tight">{member.name}</h3>
-            <span class="text-[10px] font-sans font-bold tracking-[0.25em] text-brand-red uppercase mb-4">{member.role}</span>
-            <div class="ops-desc-line w-full h-px bg-brand-black/20 origin-left mb-4" />
-            <p class="text-sm font-sans text-brand-black font-medium leading-snug mt-auto">{member.desc}</p>
+            <h3 class="relative z-10 font-sans font-900 text-[clamp(1.6rem,2.2vw,2.5rem)] leading-[0.9] text-brand-black mb-2 uppercase tracking-tight">{member.name}</h3>
+            <span class="relative z-10 text-[10px] font-sans font-bold tracking-[0.25em] text-brand-red uppercase mb-4">{member.role}</span>
+            <div class="ops-desc-line relative z-10 w-full h-px bg-brand-black/20 origin-left mb-4" />
+            <p class="relative z-10 text-sm font-sans text-brand-black font-medium leading-snug mt-auto">{member.desc}</p>
           </div>
         </article>
       ))}
@@ -159,7 +152,7 @@ const agentLabel = (i: number) => `Agente ${String(i + 1).padStart(2, "0")}`;
 
     <div id="ops-carousel" class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide">
       {allMembers.map((member: any, i: number) => {
-        const idx = member.isLeader ? -1 : agents.findIndex((a: any) => a.ref === member.ref);
+        const agIdx = member.isLeader ? -1 : agents.findIndex((a: any) => a.ref === member.ref);
         return (
           <article class="shrink-0 w-full snap-center flex flex-col bg-brand-gray">
             <div class="relative w-full overflow-hidden bg-brand-black">
@@ -170,8 +163,8 @@ const agentLabel = (i: number) => `Agente ${String(i + 1).padStart(2, "0")}`;
                 widths={[400, 700]}
                 sizes="100vw"
               />
-              <!-- CV / AI button top-right red -->
-              {member.isLeader && member.cvLink ? (
+              {/* CV button only for David */}
+              {member.isLeader && member.cvLink && (
                 <a
                   href={member.cvLink}
                   download
@@ -188,31 +181,27 @@ const agentLabel = (i: number) => `Agente ${String(i + 1).padStart(2, "0")}`;
                   </svg>
                   <span class="text-[10px] font-sans font-900 tracking-[0.2em] uppercase text-white">Ver CV</span>
                 </a>
-              ) : !member.isLeader && member.aiLogo && member.aiUrl ? (
-                <a
-                  href={member.aiUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="absolute top-0 right-0 z-10 bg-brand-red hover:bg-brand-black transition-colors px-4 py-3 flex items-center gap-2"
-                  aria-label={`Ver currículum de ${member.name}`}
-                >
-                  <img src={member.aiLogo} alt="" aria-hidden="true" class="h-5 w-5 brightness-0 invert" />
-                  <span class="text-[10px] font-sans font-900 tracking-[0.2em] uppercase text-white">Ver CV</span>
-                </a>
-              ) : null}
+              )}
             </div>
 
-            <div class="flex flex-col p-6 border-t border-brand-black">
-              <div class="flex items-center gap-2 mb-3">
+            <div class="relative flex flex-col p-6 border-t border-brand-black overflow-hidden">
+              {/* Watermark for agents only */}
+              {!member.isLeader && member.aiLogo && (
+                <div class="absolute bottom-0 right-0 pointer-events-none translate-x-1/4 translate-y-1/4" aria-hidden="true">
+                  <img src={member.aiLogo} alt="" class="w-28 h-28 opacity-[0.12] brightness-0" />
+                </div>
+              )}
+
+              <div class="relative z-10 flex items-center gap-2 mb-3">
                 <span class={`block w-2 h-2 shrink-0 ${member.isLeader ? "bg-brand-red" : "bg-brand-black"}`} />
                 <span class={`text-[10px] font-sans font-bold tracking-[0.3em] uppercase ${member.isLeader ? "text-brand-red" : "text-brand-black"}`}>
-                  {member.isLeader ? "Humanoide" : agentLabel(idx)}
+                  {member.isLeader ? "Humanoide" : agentLabel(agIdx)}
                 </span>
               </div>
-              <h3 class="font-sans font-900 text-[clamp(2rem,10vw,3rem)] leading-[0.9] text-brand-black mb-1 uppercase tracking-tight">{member.name}</h3>
-              <span class="text-[10px] font-sans font-bold tracking-[0.25em] text-brand-red uppercase mb-4">{member.role}</span>
-              <div class="w-full h-px bg-brand-black/20 mb-4" />
-              <p class="text-sm font-sans text-brand-black font-medium leading-snug">{member.desc}</p>
+              <h3 class="relative z-10 font-sans font-900 text-[clamp(2rem,10vw,3rem)] leading-[0.9] text-brand-black mb-1 uppercase tracking-tight">{member.name}</h3>
+              <span class="relative z-10 text-[10px] font-sans font-bold tracking-[0.25em] text-brand-red uppercase mb-4">{member.role}</span>
+              <div class="relative z-10 w-full h-px bg-brand-black/20 mb-4" />
+              <p class="relative z-10 text-sm font-sans text-brand-black font-medium leading-snug">{member.desc}</p>
             </div>
           </article>
         );
