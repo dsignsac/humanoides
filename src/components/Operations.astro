@@ -14,7 +14,7 @@ const agents = team.filter((m: any) => !m.isLeader);
 const leader = team.find((m: any) => m.isLeader);
 const allMembers = [...(leader ? [leader] : []), ...agents];
 
-const agentLabel = (i: number) => `Agente ${String(i + 1).padStart(2, "0")}`;
+const agentLabel = (i: number) => `Asociado ${String(i + 1).padStart(2, "0")}`;
 ---
 
 <!-- OPERATIONS / AGENTS SECTION -->
@@ -209,7 +209,7 @@ const agentLabel = (i: number) => `Agente ${String(i + 1).padStart(2, "0")}`;
     </div>
 
     <div class="flex justify-between items-center px-6 py-4 border-t border-brand-black">
-      <span id="ops-label" class="text-[10px] font-sans font-bold tracking-[0.3em] uppercase text-brand-black">HUMANOIDE</span>
+      <span id="ops-label" class="text-[10px] font-sans font-bold tracking-[0.3em] uppercase text-brand-black"></span>
       <div class="flex gap-1.5" id="ops-dots">
         {allMembers.map((_: any, i: number) => (
           <div class={`h-1 transition-all duration-300 ${i === 0 ? "bg-brand-red w-8" : "bg-brand-black/30 w-4"}`} />
@@ -264,6 +264,12 @@ const agentLabel = (i: number) => `Agente ${String(i + 1).padStart(2, "0")}`;
 
   if (carousel && articles?.length) {
     const total = articles.length;
+    // Build labels for each slide from the rendered article data attrs
+    const slideLabels = Array.from(articles).map((art, i) => {
+      const labelEl = art.querySelector<HTMLElement>("[data-slide-label]");
+      return labelEl?.dataset.slideLabel ?? (i === 0 ? "HUMANOIDE" : `ASOCIADO ${String(i).padStart(2, "0")}`);
+    });
+    const labelEl = document.getElementById("ops-label");
     const update = () => {
       const idx = Math.round(carousel.scrollLeft / carousel.clientWidth);
       dots.forEach((d, i) => {
@@ -272,6 +278,7 @@ const agentLabel = (i: number) => `Agente ${String(i + 1).padStart(2, "0")}`;
         d.classList.toggle("bg-brand-black/30", i !== idx);
       });
       if (progress) progress.style.transform = `scaleX(${(idx + 1) / total})`;
+      if (labelEl) labelEl.textContent = slideLabels[idx] ?? "";
     };
     carousel.addEventListener("scroll", update, { passive: true });
     update();
