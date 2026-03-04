@@ -4,63 +4,54 @@
 
 <div
   id="preloader"
-  class="fixed inset-0 z-[10000] flex items-center justify-center overflow-hidden pointer-events-none"
+  class="fixed inset-0 z-[10000] bg-brand-black flex flex-col justify-start p-6 md:p-12"
+  aria-hidden="true"
 >
-  <!-- Top Half Mask -->
+  <!-- Terminal output -->
   <div
-    id="panel-top"
-    class="absolute top-0 left-0 w-full h-[50vh] bg-brand-gray z-10 pointer-events-auto"
+    id="terminal-output"
+    class="font-sans font-400 text-brand-red uppercase text-[11px] leading-snug tracking-wider whitespace-pre-wrap break-all"
   >
-    <!-- Leading edge line -->
-    <div id="bar-top" class="absolute bottom-0 left-0 h-[1px] bg-brand-red w-0">
-    </div>
   </div>
 
-  <!-- Bottom Half Mask -->
+  <!-- Prompt line: C:\> with blinking cursor -->
   <div
-    id="panel-bottom"
-    class="absolute bottom-0 left-0 w-full h-[50vh] bg-brand-gray z-10 pointer-events-auto"
+    id="terminal-prompt"
+    class="font-sans font-400 text-brand-red uppercase text-[11px] leading-snug tracking-wider flex items-center gap-0 opacity-0"
   >
-    <!-- Leading edge line -->
-    <div id="bar-bottom" class="absolute top-0 left-0 h-[1px] bg-brand-red w-0">
-    </div>
+    <span>C:\&gt;&nbsp;</span><span
+      id="terminal-cursor"
+      class="cursor-blink inline-block w-[0.55em] h-[1.1em] bg-brand-red align-middle"
+    ></span>
   </div>
 </div>
 
 <style>
-  #preloader {
-    touch-action: none;
+  @keyframes blink {
+    0%,
+    49% {
+      opacity: 1;
+    }
+    50%,
+    100% {
+      opacity: 0;
+    }
   }
-
+  .cursor-blink {
+    animation: blink 0.75s step-end infinite;
+  }
   :global(.preloader-hidden) #preloader {
     display: none !important;
-    visibility: hidden !important;
-  }
-
-  #panel-top,
-  #panel-bottom {
-    will-change: transform;
-  }
-
-  /* Initial state to ensure they touch perfectly */
-  #bar-top,
-  #bar-bottom {
-    will-change: width;
   }
 </style>
 
 <script>
-  import { gsap } from "gsap";
-
   function startPreloader() {
     const preloader = document.getElementById("preloader");
-    const barTop = document.getElementById("bar-top");
-    const barBottom = document.getElementById("bar-bottom");
-    const topPanel = document.getElementById("panel-top");
-    const bottomPanel = document.getElementById("panel-bottom");
+    const output = document.getElementById("terminal-output");
+    const promptEl = document.getElementById("terminal-prompt");
 
-    if (!preloader || !topPanel || !bottomPanel || !barTop || !barBottom)
-      return;
+    if (!preloader || !output || !promptEl) return;
 
     const isFirstVisit = !sessionStorage.getItem("ha-preloader-shown");
     const isLanding =
@@ -72,63 +63,77 @@
       return;
     }
 
+    // Lock scroll while preloader is visible
     document.body.style.overflow = "hidden";
 
-    let progress = 0;
-    let isLoaded = false;
+    // ─── PHASE 1: C:\> prompt, 1.2s de tensión ───
+    promptEl.style.opacity = "1";
 
-    const interval = setInterval(() => {
-      if (!isLoaded) {
-        if (progress < 85) progress += Math.random() * 3.5;
-        else if (progress < 98) progress += 0.5;
-      } else {
-        progress += 8;
-      }
+    // ─── PHASE 2: Avalancha rápida de texto, ~1s ───
+    const CHARS =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()<>?/\\|[]{}=+-_:;.,~`";
+    const KEYWORDS = [
+      "LOADING SYSTEM... ",
+      "BOOT SEQUENCE INIT ",
+      "HUMANOIDES & ASOCIADOS ",
+      "KERNEL PANIC: NONE ",
+      "OPERACIONES CREATIVAS ",
+      "MODULE: DESIGN.DLL ",
+      "PROCESS ID: 0XFA2A2A ",
+      "EXEC: IMAGINATION.EXE ",
+      "CHECKSUM: OK ",
+      "BIOS VER: H&A-2025 ",
+      "FATAL ERROR: BOREDOM ",
+      "NET START CREATIVE ",
+    ];
 
-      const currentWidth = `${Math.min(progress, 100)}%`;
-      barTop.style.width = currentWidth;
-      barBottom.style.width = currentWidth;
+    let avalancheInterval: ReturnType<typeof setInterval> | null = null;
 
-      if (progress >= 100) {
-        clearInterval(interval);
-        handleComplete();
-      }
-    }, 15);
+    const startAvalanche = () => {
+      promptEl.style.opacity = "0";
+      output.textContent = "";
 
-    function handleComplete() {
-      const tl = gsap.timeline({
-        delay: 0.1,
-        onComplete: () => {
-          preloader.style.display = "none";
-          document.body.style.overflow = "";
-          sessionStorage.setItem("ha-preloader-shown", "true");
-        },
-      });
+      let tick = 0;
+      const totalTicks = 50; // ~1s at 20ms per tick
 
-      // The Split: The panels move apart, carrying their leading edge lines with them
-      tl.to(topPanel, {
-        yPercent: -100,
-        duration: 0.8,
-        ease: "expo.inOut",
-      }).to(
-        bottomPanel,
-        {
-          yPercent: 100,
-          duration: 0.8,
-          ease: "expo.inOut",
-        },
-        "<",
-      );
-    }
+      avalancheInterval = setInterval(() => {
+        tick++;
 
-    window.addEventListener("load", () => {
-      isLoaded = true;
-    });
+        const lineLength = Math.floor(Math.random() * 55) + 25;
+        let line =
+          tick % 7 === 0
+            ? KEYWORDS[Math.floor(Math.random() * KEYWORDS.length)].padEnd(
+                lineLength,
+                CHARS[Math.floor(Math.random() * CHARS.length)],
+              )
+            : Array.from(
+                { length: lineLength },
+                () => CHARS[Math.floor(Math.random() * CHARS.length)],
+              ).join("");
 
-    // Safety timeout
-    setTimeout(() => {
-      isLoaded = true;
-    }, 3000);
+        output.textContent += line + "\n";
+
+        // Only keep last 8 lines visible — concise, not overwhelming
+        const lines = output.textContent.split("\n");
+        if (lines.length > 9) {
+          output.textContent = lines.slice(-9).join("\n");
+        }
+
+        if (tick >= totalTicks) {
+          if (avalancheInterval) clearInterval(avalancheInterval);
+          finalize();
+        }
+      }, 20);
+    };
+
+    // ─── PHASE 3: Corte en seco — sin ease, sin fade ───
+    const finalize = () => {
+      preloader.style.display = "none";
+      document.body.style.overflow = "";
+      sessionStorage.setItem("ha-preloader-shown", "true");
+    };
+
+    setTimeout(startAvalanche, 1200);
   }
 
   document.addEventListener("astro:page-load", startPreloader);

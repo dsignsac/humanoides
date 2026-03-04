@@ -3,22 +3,15 @@ import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
-import Preloader from "../components/Preloader.astro";
 import CookieConsent from "../components/CookieConsent.astro";
 
 interface Props {
   title?: string;
   showNavbar?: boolean;
   showFooter?: boolean;
-  showPreloader?: boolean;
 }
 
-const {
-  title = "HA",
-  showNavbar = true,
-  showFooter = true,
-  showPreloader = true,
-} = Astro.props;
+const { title = "HA", showNavbar = true, showFooter = true } = Astro.props;
 ---
 
 <!doctype html>
@@ -145,18 +138,6 @@ const {
     />
 
     <ClientRouter />
-    <script is:inline>
-      // Instant check to prevent preloader flash on subsequent visits or internal pages
-      (function () {
-        const isLanding =
-          window.location.pathname === "/" ||
-          window.location.pathname === "/index.html";
-        const hasShown = sessionStorage.getItem("ha-preloader-shown");
-        if (hasShown || !isLanding) {
-          document.documentElement.classList.add("preloader-hidden");
-        }
-      })();
-    </script>
   </head>
   <body class="min-h-screen flex flex-col font-sans">
     <!-- Google Tag Manager (noscript) -->
@@ -168,7 +149,6 @@ const {
         style="display:none;visibility:hidden"></iframe></noscript
     >
     <!-- End Google Tag Manager (noscript) -->
-    {showPreloader && <Preloader />}
     {showNavbar && <Navbar />}
     <slot />
     {showFooter && <Footer />}

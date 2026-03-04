@@ -405,6 +405,8 @@ const projects = await Promise.all(
 
   // Cursor Follower Logic (Desktop)
   import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
 
   const setupCursorFollower = () => {
     const follower = document.getElementById("project-cursor-follower");
@@ -480,7 +482,7 @@ const projects = await Promise.all(
             });
         });
     });
-  };
+  }
 
   // Run on load
   setupCursorFollower();
@@ -496,5 +498,52 @@ const projects = await Promise.all(
         if (e.isIntersecting) (e.target as HTMLElement).style.transform = "scaleX(1)";
       });
     }, { threshold: 0.5 }).observe(portDivider);
+  }
+
+  // ── GSAP ScrollTrigger: row/card reveal ──────────────────────────────────
+
+  if (!prefersReduced) {
+    // DESKTOP: stagger each .project-row sliding up into place
+    const desktopRows = gsap.utils.toArray<HTMLElement>(".project-row");
+    if (desktopRows.length) {
+      // Set initial state (invisible, shifted down) without triggering layout shift
+      gsap.set(desktopRows, { autoAlpha: 0, y: 32 });
+
+      ScrollTrigger.batch(desktopRows, {
+        start: "top 92%",
+        onEnter: (batch) => {
+          gsap.to(batch, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.6,
+            ease: "power3.out",
+            stagger: 0.08,
+            overwrite: true,
+          });
+        },
+        once: true,
+      });
+    }
+
+    // MOBILE: each carousel card slides in from y offset on scroll
+    const mobileCards = gsap.utils.toArray<HTMLElement>(".projects-carousel article");
+    if (mobileCards.length) {
+      gsap.set(mobileCards, { autoAlpha: 0, y: 40 });
+
+      ScrollTrigger.batch(mobileCards, {
+        start: "top 95%",
+        onEnter: (batch) => {
+          gsap.to(batch, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.55,
+            ease: "power3.out",
+            stagger: 0.06,
+            overwrite: true,
+          });
+        },
+        once: true,
+      });
+    }
   }
 </script>
