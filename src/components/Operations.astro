@@ -229,67 +229,68 @@ const agentLabel = (i: number) => `Asociado ${String(i + 1).padStart(2, "0")}`;
 </section>
 
 <script>
-  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.addEventListener("astro:page-load", () => {
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const divider = document.querySelector<HTMLElement>(".ops-divider");
-  if (divider) {
-    if (!prefersReduced) {
-      divider.style.transform = "scaleX(0)";
-      divider.style.transition = "transform 0.8s cubic-bezier(0.16,1,0.3,1)";
+    const divider = document.querySelector<HTMLElement>(".ops-divider");
+    if (divider) {
+      if (!prefersReduced) {
+        divider.style.transform = "scaleX(0)";
+        divider.style.transition = "transform 0.8s cubic-bezier(0.16,1,0.3,1)";
+      }
+      new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) (e.target as HTMLElement).style.transform = "scaleX(1)"; });
+      }, { threshold: 0.5 }).observe(divider);
     }
-    new IntersectionObserver((entries) => {
-      entries.forEach((e) => { if (e.isIntersecting) (e.target as HTMLElement).style.transform = "scaleX(1)"; });
-    }, { threshold: 0.5 }).observe(divider);
-  }
 
-  document.querySelectorAll<HTMLElement>(".ops-card").forEach((card, idx) => {
-    const reveal   = card.querySelector<HTMLElement>(".ops-img-reveal");
-    const descLine = card.querySelector<HTMLElement>(".ops-desc-line");
-    if (reveal && !prefersReduced)   reveal.style.transition   = `transform 0.9s cubic-bezier(0.16,1,0.3,1) ${idx * 0.1}s`;
-    if (descLine && !prefersReduced) {
-      descLine.style.transform  = "scaleX(0)";
-      descLine.style.transition = `transform 0.7s cubic-bezier(0.16,1,0.3,1) ${idx * 0.1 + 0.35}s`;
-    }
-    new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          if (reveal)   reveal.style.transform   = "scaleY(0)";
-          if (descLine) descLine.style.transform = "scaleX(1)";
-        }
-      });
-    }, { threshold: 0.15 }).observe(card);
-  });
-
-  if (!prefersReduced) {
-    const s = document.createElement("style");
-    s.textContent = `@keyframes ops-blink{0%,100%{opacity:1}50%{opacity:0.25}}.ops-pulse{animation:ops-blink 2s ease-in-out infinite}.ops-pulse-human{animation:ops-blink 1.4s ease-in-out infinite}`;
-    document.head.appendChild(s);
-  }
-
-  const carousel = document.getElementById("ops-carousel");
-  const dots     = document.querySelectorAll<HTMLElement>("#ops-dots div");
-  const progress = document.getElementById("ops-progress") as HTMLElement | null;
-  const articles = carousel?.querySelectorAll("article");
-
-  if (carousel && articles?.length) {
-    const total = articles.length;
-    // Build labels for each slide from the rendered article data attrs
-    const slideLabels = Array.from(articles).map((art, i) => {
-      const labelEl = art.querySelector<HTMLElement>("[data-slide-label]");
-      return labelEl?.dataset.slideLabel ?? (i === 0 ? "HUMANOIDE" : `ASOCIADO ${String(i).padStart(2, "0")}`);
+    document.querySelectorAll<HTMLElement>(".ops-card").forEach((card, idx) => {
+      const reveal   = card.querySelector<HTMLElement>(".ops-img-reveal");
+      const descLine = card.querySelector<HTMLElement>(".ops-desc-line");
+      if (reveal && !prefersReduced)   reveal.style.transition   = `transform 0.9s cubic-bezier(0.16,1,0.3,1) ${idx * 0.1}s`;
+      if (descLine && !prefersReduced) {
+        descLine.style.transform  = "scaleX(0)";
+        descLine.style.transition = `transform 0.7s cubic-bezier(0.16,1,0.3,1) ${idx * 0.1 + 0.35}s`;
+      }
+      new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            if (reveal)   reveal.style.transform   = "scaleY(0)";
+            if (descLine) descLine.style.transform = "scaleX(1)";
+          }
+        });
+      }, { threshold: 0.15 }).observe(card);
     });
-    const labelEl = document.getElementById("ops-label");
-    const update = () => {
-      const idx = Math.round(carousel.scrollLeft / carousel.clientWidth);
-      dots.forEach((d, i) => {
-        d.style.width = i === idx ? "2rem" : "1rem";
-        d.classList.toggle("bg-brand-red",      i === idx);
-        d.classList.toggle("bg-brand-black/30", i !== idx);
+
+    if (!prefersReduced) {
+      const s = document.createElement("style");
+      s.textContent = `@keyframes ops-blink{0%,100%{opacity:1}50%{opacity:0.25}}.ops-pulse{animation:ops-blink 2s ease-in-out infinite}.ops-pulse-human{animation:ops-blink 1.4s ease-in-out infinite}`;
+      document.head.appendChild(s);
+    }
+
+    const carousel = document.getElementById("ops-carousel");
+    const dots     = document.querySelectorAll<HTMLElement>("#ops-dots div");
+    const progress = document.getElementById("ops-progress") as HTMLElement | null;
+    const articles = carousel?.querySelectorAll("article");
+
+    if (carousel && articles?.length) {
+      const total = articles.length;
+      const slideLabels = Array.from(articles).map((art, i) => {
+        const labelEl = art.querySelector<HTMLElement>("[data-slide-label]");
+        return labelEl?.dataset.slideLabel ?? (i === 0 ? "HUMANOIDE" : `ASOCIADO ${String(i).padStart(2, "0")}`);
       });
-      if (progress) progress.style.transform = `scaleX(${(idx + 1) / total})`;
-      if (labelEl) labelEl.textContent = slideLabels[idx] ?? "";
-    };
-    carousel.addEventListener("scroll", update, { passive: true });
-    update();
-  }
+      const labelEl = document.getElementById("ops-label");
+      const update = () => {
+        const idx = Math.round(carousel.scrollLeft / carousel.clientWidth);
+        dots.forEach((d, i) => {
+          d.style.width = i === idx ? "2rem" : "1rem";
+          d.classList.toggle("bg-brand-red",      i === idx);
+          d.classList.toggle("bg-brand-black/30", i !== idx);
+        });
+        if (progress) progress.style.transform = `scaleX(${(idx + 1) / total})`;
+        if (labelEl) labelEl.textContent = slideLabels[idx] ?? "";
+      };
+      carousel.addEventListener("scroll", update, { passive: true });
+      update();
+    }
+  });
 </script>

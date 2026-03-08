@@ -329,226 +329,202 @@ const projects = await Promise.all(
 </section>
 
 <script>
-  const carousel = document.querySelector(".projects-carousel");
-  const dots = document.querySelectorAll("#projects-dots div");
-
-  if (carousel instanceof HTMLElement && dots.length > 0) {
-    const countryLabel = document.getElementById("mobile-project-country");
-    const realCount = dots.length;
-    
-    // Initial Position (Skip first clone)
-    const initPos = () => {
-        const articles = carousel.querySelectorAll("article");
-        if (articles[1]) {
-            // Find the center of the viewport and align the center of the first real card
-            const rect = articles[1].getBoundingClientRect();
-            const centerOffset = (carousel.offsetWidth - articles[1].offsetWidth) / 2;
-            carousel.scrollLeft = articles[1].offsetLeft - centerOffset;
-        }
-    };
-    
-    // Wait for layout
-    setTimeout(initPos, 100);
-
-    let isJumping = false;
-
-    carousel.addEventListener("scroll", () => {
-      if (isJumping) return;
-
-      const scrollPos = carousel.scrollLeft;
-      const visibleWidth = carousel.offsetWidth;
-      const articles = carousel.querySelectorAll("article");
-      const lastRealIndex = realCount;
-      const firstRealIndex = 1;
-      const centerOffset = (visibleWidth - articles[0].offsetWidth) / 2;
-
-      // Infinite Jump Logic
-      if (scrollPos >= articles[lastRealIndex + 1].offsetLeft - centerOffset - 10) {
-        isJumping = true;
-        carousel.scrollTo({ left: articles[firstRealIndex].offsetLeft - centerOffset, behavior: 'auto' });
-        setTimeout(() => isJumping = false, 50);
-        return;
-      }
-      if (scrollPos <= 10) {
-        isJumping = true;
-        carousel.scrollTo({ left: articles[lastRealIndex].offsetLeft - centerOffset, behavior: 'auto' });
-        setTimeout(() => isJumping = false, 50);
-        return;
-      }
-
-      // Find active index based on proximity to center of viewport
-      const viewportCenter = scrollPos + (visibleWidth / 2);
-      let activeIndex = 0;
-      let minDiff = Infinity;
-      articles.forEach((art, i) => {
-        const artCenter = art.offsetLeft + (art.offsetWidth / 2);
-        const diff = Math.abs(artCenter - viewportCenter);
-        if (diff < minDiff) {
-            minDiff = diff;
-            activeIndex = i;
-        }
-      });
-
-      // Map activeIndex to dotIndex
-      let dotIndex = activeIndex - 1;
-      if (dotIndex < 0) dotIndex = realCount - 1;
-      if (dotIndex >= realCount) dotIndex = 0;
-
-      // Update Dots
-      dots.forEach((dot, i) => {
-        dot.classList.remove("bg-brand-red", "bg-brand-black");
-        dot.classList.add(i === dotIndex ? "bg-brand-red" : "bg-brand-black");
-      });
-
-      // Update Country
-      if (articles[activeIndex] && countryLabel) {
-        countryLabel.textContent = articles[activeIndex].getAttribute("data-country") || "GLOBAL";
-      }
-    });
-  }
-
-
-  // Cursor Follower Logic (Desktop)
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   gsap.registerPlugin(ScrollTrigger);
 
-  const setupCursorFollower = () => {
-    const follower = document.getElementById("project-cursor-follower");
-    const followerImg = document.getElementById("follower-image") as HTMLImageElement;
-    const projectRows = document.querySelectorAll(".project-row");
+  document.addEventListener("astro:page-load", () => {
+    const carousel = document.querySelector(".projects-carousel");
+    const dots = document.querySelectorAll("#projects-dots div");
 
-    if (!follower || !followerImg || projectRows.length === 0) return;
+    if (carousel instanceof HTMLElement && dots.length > 0) {
+      const countryLabel = document.getElementById("mobile-project-country");
+      const realCount = dots.length;
+      
+      // Initial Position (Skip first clone)
+      const initPos = () => {
+          const articles = carousel.querySelectorAll("article");
+          if (articles[1]) {
+              const centerOffset = (carousel.offsetWidth - articles[1].offsetWidth) / 2;
+              carousel.scrollLeft = articles[1].offsetLeft - centerOffset;
+          }
+      };
+      
+      setTimeout(initPos, 100);
 
-    // Use GSAP x/y for better performance than top/left
-    gsap.set(follower, { xPercent: -50, yPercent: -50 }); // Center on cursor
+      let isJumping = false;
 
-    // Shared mouse move listener for the window to track cursor
-    // Only active when a row is hovered to save resources ideally, 
-    // but tracking globally is smoother if we want entrance animations from cursor position.
-    // For now, let's track on the rows to keep it scoped.
-    
-    let isHovering = false;
+      carousel.addEventListener("scroll", () => {
+        if (isJumping) return;
 
-    projectRows.forEach((row) => {
-        row.addEventListener("mouseenter", (e) => {
-            const mouseEvent = e as MouseEvent;
-            const imgUrl = row.getAttribute("data-image");
-            if (imgUrl) followerImg.src = imgUrl;
+        const scrollPos = carousel.scrollLeft;
+        const visibleWidth = carousel.offsetWidth;
+        const articles = carousel.querySelectorAll("article");
+        const lastRealIndex = realCount;
+        const firstRealIndex = 1;
+        const centerOffset = (visibleWidth - articles[0].offsetWidth) / 2;
 
-            isHovering = true;
-            
-            // Kill ANY existing hide/show animations to prevent conflicts
-            gsap.killTweensOf(follower);
+        if (scrollPos >= articles[lastRealIndex + 1].offsetLeft - centerOffset - 10) {
+          isJumping = true;
+          carousel.scrollTo({ left: articles[firstRealIndex].offsetLeft - centerOffset, behavior: 'auto' });
+          setTimeout(() => isJumping = false, 50);
+          return;
+        }
+        if (scrollPos <= 10) {
+          isJumping = true;
+          carousel.scrollTo({ left: articles[lastRealIndex].offsetLeft - centerOffset, behavior: 'auto' });
+          setTimeout(() => isJumping = false, 50);
+          return;
+        }
 
-            // Instant position and show before animating
-            gsap.set(follower, {
-                x: mouseEvent.clientX,
-                y: mouseEvent.clientY,
-                display: "flex",
-                visibility: "visible",
-                opacity: 0,
-                scale: 0.8
-            });
-
-            gsap.to(follower, {
-                opacity: 1,
-                scale: 1,
-                duration: 0.3,
-                ease: "power2.out"
-            });
+        const viewportCenter = scrollPos + (visibleWidth / 2);
+        let activeIndex = 0;
+        let minDiff = Infinity;
+        articles.forEach((art, i) => {
+          const artCenter = art.offsetLeft + (art.offsetWidth / 2);
+          const diff = Math.abs(artCenter - viewportCenter);
+          if (diff < minDiff) {
+              minDiff = diff;
+              activeIndex = i;
+          }
         });
 
-        row.addEventListener("mouseleave", () => {
-            isHovering = false;
-            
-            gsap.to(follower, {
-                opacity: 0,
-                scale: 0.8,
-                duration: 0.3,
-                ease: "power2.out",
-                onComplete: () => {
-                    // ONLY hide if we are not hovering ANOTHER row
-                    if (!isHovering) {
-                        gsap.set(follower, { display: "none", visibility: "hidden" });
-                    }
-                }
-            });
+        let dotIndex = activeIndex - 1;
+        if (dotIndex < 0) dotIndex = realCount - 1;
+        if (dotIndex >= realCount) dotIndex = 0;
+
+        dots.forEach((dot, i) => {
+          dot.classList.remove("bg-brand-red", "bg-brand-black");
+          dot.classList.add(i === dotIndex ? "bg-brand-red" : "bg-brand-black");
         });
 
-        row.addEventListener("mousemove", (e) => {
-            const mouseEvent = e as MouseEvent;
-            gsap.to(follower, {
-                x: mouseEvent.clientX,
-                y: mouseEvent.clientY,
-                duration: 0.1,
-                ease: "power1.out",
-                overwrite: "auto"
-            });
-        });
-    });
-  }
-
-  // Run on load
-  setupCursorFollower();
-
-  // Portfolio divider animation
-  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const portDivider = document.querySelector<HTMLElement>(".port-divider");
-  if (portDivider && !prefersReduced) {
-    portDivider.style.transform = "scaleX(0)";
-    portDivider.style.transition = "transform 0.8s cubic-bezier(0.16,1,0.3,1)";
-    new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) (e.target as HTMLElement).style.transform = "scaleX(1)";
-      });
-    }, { threshold: 0.5 }).observe(portDivider);
-  }
-
-  // ── GSAP ScrollTrigger: row/card reveal ──────────────────────────────────
-
-  if (!prefersReduced) {
-    // DESKTOP: stagger each .project-row sliding up into place
-    const desktopRows = gsap.utils.toArray<HTMLElement>(".project-row");
-    if (desktopRows.length) {
-      // Set initial state (invisible, shifted down) without triggering layout shift
-      gsap.set(desktopRows, { autoAlpha: 0, y: 32 });
-
-      ScrollTrigger.batch(desktopRows, {
-        start: "top 92%",
-        onEnter: (batch) => {
-          gsap.to(batch, {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.6,
-            ease: "power3.out",
-            stagger: 0.08,
-            overwrite: true,
-          });
-        },
-        once: true,
+        if (articles[activeIndex] && countryLabel) {
+          countryLabel.textContent = articles[activeIndex].getAttribute("data-country") || "GLOBAL";
+        }
       });
     }
 
-    // MOBILE: each carousel card slides in from y offset on scroll
-    const mobileCards = gsap.utils.toArray<HTMLElement>(".projects-carousel article");
-    if (mobileCards.length) {
-      gsap.set(mobileCards, { autoAlpha: 0, y: 40 });
+    // Cursor Follower Logic (Desktop)
+    const setupCursorFollower = () => {
+      const follower = document.getElementById("project-cursor-follower");
+      const followerImg = document.getElementById("follower-image") as HTMLImageElement;
+      const projectRows = document.querySelectorAll(".project-row");
 
-      ScrollTrigger.batch(mobileCards, {
-        start: "top 95%",
-        onEnter: (batch) => {
-          gsap.to(batch, {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.55,
-            ease: "power3.out",
-            stagger: 0.06,
-            overwrite: true,
+      if (!follower || !followerImg || projectRows.length === 0) return;
+
+      gsap.set(follower, { xPercent: -50, yPercent: -50 });
+      
+      let isHovering = false;
+
+      projectRows.forEach((row) => {
+          row.addEventListener("mouseenter", (e) => {
+              const mouseEvent = e as MouseEvent;
+              const imgUrl = row.getAttribute("data-image");
+              if (imgUrl) followerImg.src = imgUrl;
+
+              isHovering = true;
+              gsap.killTweensOf(follower);
+
+              gsap.set(follower, {
+                  x: mouseEvent.clientX,
+                  y: mouseEvent.clientY,
+                  display: "flex",
+                  visibility: "visible",
+                  opacity: 0,
+                  scale: 0.8
+              });
+
+              gsap.to(follower, {
+                  opacity: 1,
+                  scale: 1,
+                  duration: 0.3,
+                  ease: "power2.out"
+              });
           });
-        },
-        once: true,
+
+          row.addEventListener("mouseleave", () => {
+              isHovering = false;
+              gsap.to(follower, {
+                  opacity: 0,
+                  scale: 0.8,
+                  duration: 0.3,
+                  ease: "power2.out",
+                  onComplete: () => {
+                      if (!isHovering) {
+                          gsap.set(follower, { display: "none", visibility: "hidden" });
+                      }
+                  }
+              });
+          });
+
+          row.addEventListener("mousemove", (e) => {
+              const mouseEvent = e as MouseEvent;
+              gsap.to(follower, {
+                  x: mouseEvent.clientX,
+                  y: mouseEvent.clientY,
+                  duration: 0.1,
+                  ease: "power1.out",
+                  overwrite: "auto"
+              });
+          });
       });
     }
-  }
+
+    setupCursorFollower();
+
+    // Portfolio divider animation
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const portDivider = document.querySelector<HTMLElement>(".port-divider");
+    if (portDivider && !prefersReduced) {
+      portDivider.style.transform = "scaleX(0)";
+      portDivider.style.transition = "transform 0.8s cubic-bezier(0.16,1,0.3,1)";
+      new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) (e.target as HTMLElement).style.transform = "scaleX(1)";
+        });
+      }, { threshold: 0.5 }).observe(portDivider);
+    }
+
+    if (!prefersReduced) {
+      const desktopRows = gsap.utils.toArray<HTMLElement>(".project-row");
+      if (desktopRows.length) {
+        gsap.set(desktopRows, { autoAlpha: 0, y: 32 });
+
+        ScrollTrigger.batch(desktopRows, {
+          start: "top 92%",
+          onEnter: (batch) => {
+            gsap.to(batch, {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.6,
+              ease: "power3.out",
+              stagger: 0.08,
+              overwrite: true,
+            });
+          },
+          once: true,
+        });
+      }
+
+      const mobileCards = gsap.utils.toArray<HTMLElement>(".projects-carousel article");
+      if (mobileCards.length) {
+        gsap.set(mobileCards, { autoAlpha: 0, y: 40 });
+
+        ScrollTrigger.batch(mobileCards, {
+          start: "top 95%",
+          onEnter: (batch) => {
+            gsap.to(batch, {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.55,
+              ease: "power3.out",
+              stagger: 0.06,
+              overwrite: true,
+            });
+          },
+          once: true,
+        });
+      }
+    }
+  });
 </script>

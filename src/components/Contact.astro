@@ -140,23 +140,25 @@ import SyncForm from "./SyncForm.astro";
 </section>
 
 <script>
-  const prefersReduced = window.matchMedia(
-    "(prefers-reduced-motion: reduce)",
-  ).matches;
-  const contactDivider =
-    document.querySelector<HTMLElement>(".contact-divider");
-  if (contactDivider && !prefersReduced) {
-    contactDivider.style.transform = "scaleX(0)";
-    contactDivider.style.transition =
-      "transform 0.8s cubic-bezier(0.16,1,0.3,1)";
-    new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting)
-            (e.target as HTMLElement).style.transform = "scaleX(1)";
-        });
-      },
-      { threshold: 0.5 },
-    ).observe(contactDivider);
-  }
+  document.addEventListener("astro:page-load", () => {
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const contactDivider =
+      document.querySelector<HTMLElement>(".contact-divider");
+    if (contactDivider && !prefersReduced) {
+      contactDivider.style.transform = "scaleX(0)";
+      contactDivider.style.transition =
+        "transform 0.8s cubic-bezier(0.16,1,0.3,1)";
+      new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting)
+              (e.target as HTMLElement).style.transform = "scaleX(1)";
+          });
+        },
+        { threshold: 0.5 },
+      ).observe(contactDivider);
+    }
+  });
 </script>

@@ -44,29 +44,27 @@ const imageAsset =
     <Skeleton />
   </div>
 
-  {
-    imageAsset ? (
-      <Image
-        src={imageAsset()}
-        alt={alt}
-        widths={widths}
-        sizes={sizes}
-        class={`w-full h-full object-cover transition-opacity duration-700 opacity-0 ${imgClassName}`}
-        loading={loading}
-        draggable={draggable}
-        onload="this.parentElement.querySelector('.skeleton-wrapper').style.opacity = '0'; this.style.opacity = '1'; setTimeout(() => this.parentElement.querySelector('.skeleton-wrapper').style.display = 'none', 500);"
-      />
-    ) : (
-      <img
-        src={src}
-        alt={alt}
-        class={`w-full h-full object-cover transition-opacity duration-700 opacity-0 ${imgClassName}`}
-        loading={loading}
-        draggable={draggable}
-        onload="this.parentElement.querySelector('.skeleton-wrapper').style.opacity = '0'; this.style.opacity = '1'; setTimeout(() => this.parentElement.querySelector('.skeleton-wrapper').style.display = 'none', 500);"
-      />
-    )
-  }
+  imageAsset ? (
+  <Image
+    src={imageAsset()}
+    alt={alt}
+    widths={widths}
+    sizes={sizes}
+    class={`w-full h-full object-cover transition-opacity duration-700 opacity-0 ${imgClassName}`}
+    loading={loading}
+    draggable={draggable}
+    data-transition-img
+  />
+  ) : (
+  <img
+    src={src}
+    alt={alt}
+    class={`w-full h-full object-cover transition-opacity duration-700 opacity-0 ${imgClassName}`}
+    loading={loading}
+    draggable={draggable}
+    data-transition-img
+  />
+  )
 </div>
 
 <style>
