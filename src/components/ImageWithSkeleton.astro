@@ -44,27 +44,29 @@ const imageAsset =
     <Skeleton />
   </div>
 
-  imageAsset ? (
-  <Image
-    src={imageAsset()}
-    alt={alt}
-    widths={widths}
-    sizes={sizes}
-    class={`w-full h-full object-cover transition-opacity duration-700 opacity-0 ${imgClassName}`}
-    loading={loading}
-    draggable={draggable}
-    data-transition-img
-  />
-  ) : (
-  <img
-    src={src}
-    alt={alt}
-    class={`w-full h-full object-cover transition-opacity duration-700 opacity-0 ${imgClassName}`}
-    loading={loading}
-    draggable={draggable}
-    data-transition-img
-  />
-  )
+  {
+    imageAsset ? (
+      <Image
+        src={imageAsset()}
+        alt={alt}
+        widths={widths}
+        sizes={sizes}
+        class={`w-full h-full object-cover transition-opacity duration-700 opacity-0 ${imgClassName}`}
+        loading={loading}
+        draggable={draggable}
+        data-transition-img
+      />
+    ) : (
+      <img
+        src={src}
+        alt={alt}
+        class={`w-full h-full object-cover transition-opacity duration-700 opacity-0 ${imgClassName}`}
+        loading={loading}
+        draggable={draggable}
+        data-transition-img
+      />
+    )
+  }
 </div>
 
 <style>
