@@ -204,8 +204,17 @@ const { title = "HA", showNavbar = true, showFooter = true } = Astro.props;
         initLenis();
         setupGlobalImageHandler();
 
-        // Kill all previous ScrollTrigger instances to prevent stale state
-        ScrollTrigger.getAll().forEach((t) => t.kill());
+        // Kill only the section-reveal ScrollTriggers, not page-specific ones
+        ScrollTrigger.getAll()
+          .filter((t) => {
+            const el = t.trigger as HTMLElement | null;
+            return (
+              !el ||
+              el.classList.contains("gsap-reveal-section") ||
+              !el.closest("#desktop-showcase-container")
+            );
+          })
+          .forEach((t) => t.kill());
 
         const sections = document.querySelectorAll<HTMLElement>(
           ".gsap-reveal-section",

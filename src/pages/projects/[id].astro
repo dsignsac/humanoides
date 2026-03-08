@@ -523,53 +523,53 @@ const hasContent = (slide: any) => {
 
       gsap.registerPlugin(ScrollTrigger);
 
-      let ctx: any;
+      let ctx: any = null;
 
       const initBrutalistCase = () => {
-        // Cleanup previous context and triggers
-        if (ctx) ctx.revert();
-        ScrollTrigger.getAll().forEach(t => t.kill());
+        // Cleanup only this page's context, NOT all ScrollTriggers
+        // (Layout.astro manages the global ones)
+        if (ctx) {
+          ctx.revert();
+          ctx = null;
+        }
 
         const scrollContainer = document.getElementById("data-scroll-container");
         const slidesWrapper = document.getElementById("slides-wrapper");
         const showcaseContainer = document.getElementById("desktop-showcase-container");
-        
+
         if (!scrollContainer || !slidesWrapper || !showcaseContainer) return;
 
         ctx = gsap.context(() => {
           let mm = gsap.matchMedia();
 
           mm.add("(min-width: 768px)", () => {
-             // Reset initial state
-             gsap.set(slidesWrapper, { x: 0 });
+            gsap.set(slidesWrapper, { x: 0 });
 
-             const sections = slidesWrapper.querySelectorAll("section");
-             const steps = sections.length - 1;
+            const sections = slidesWrapper.querySelectorAll("section");
+            const steps = sections.length - 1;
 
-             ScrollTrigger.create({
-               trigger: "#desktop-showcase-container",
-               start: "top top",
-               end: "bottom bottom",
-               scrub: true,
-               invalidateOnRefresh: true,
-               animation: gsap.to(slidesWrapper, {
-                 x: () => -(slidesWrapper.scrollWidth - scrollContainer.offsetWidth),
-                 ease: `steps(${steps})`
-               })
-             });
+            ScrollTrigger.create({
+              trigger: "#desktop-showcase-container",
+              start: "top top",
+              end: "bottom bottom",
+              scrub: true,
+              invalidateOnRefresh: true,
+              animation: gsap.to(slidesWrapper, {
+                x: () => -(slidesWrapper.scrollWidth - scrollContainer.offsetWidth),
+                ease: `steps(${steps})`
+              })
+            });
           });
         });
 
-        // Forced refresh with multiple checks to handle layout settlement
+        // Multiple refresh passes to handle slow image/font loads
         ScrollTrigger.refresh();
-        setTimeout(() => ScrollTrigger.refresh(), 200);
-        setTimeout(() => ScrollTrigger.refresh(), 1000); // Resilience for slow asset loads
+        setTimeout(() => ScrollTrigger.refresh(), 300);
+        setTimeout(() => ScrollTrigger.refresh(), 1000);
       };
 
-      // Lifecycle hooks for Astro and standard loads
-      document.addEventListener("DOMContentLoaded", initBrutalistCase);
-      document.addEventListener("astro:after-swap", initBrutalistCase);
-      window.addEventListener("load", initBrutalistCase);
+      // astro:page-load fires after the DOM is fully ready and stable
+      document.addEventListener("astro:page-load", initBrutalistCase);
       window.addEventListener("resize", () => ScrollTrigger.refresh());
     </script>
 
