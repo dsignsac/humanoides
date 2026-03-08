@@ -176,9 +176,12 @@ const WA_URL = `https://api.whatsapp.com/send?phone=${WA_PHONE}&text=${WA_MESSAG
                         }
                     });
                 },
-                { threshold: 0.05 },
+                { threshold: 0, rootMargin: "0px 0px -5% 0px" },
             );
-            reveals.forEach((el) => io.observe(el));
+            // Use rAF to ensure layout is settled before observing
+            requestAnimationFrame(() => {
+                reveals.forEach((el) => io.observe(el));
+            });
         } else {
             // No-JS / reduced-motion: make everything visible immediately
             reveals.forEach((el) => el.classList.add("is-visible"));

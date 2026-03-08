@@ -246,6 +246,28 @@ const projects = await Promise.all(
       .project-row:hover + .project-row {
         border-top-color: transparent;
       }
+      /* Scroll reveal — CSS-based to avoid GSAP timing issues on first load */
+      .row-reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.55s cubic-bezier(0.16,1,0.3,1), transform 0.55s cubic-bezier(0.16,1,0.3,1);
+      }
+      .row-reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .card-reveal {
+        opacity: 0;
+        transform: translateY(36px);
+        transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1);
+      }
+      .card-reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .row-reveal, .card-reveal { opacity: 1; transform: none; transition: none; }
+      }
     </style>
     <div class="hidden lg:block px-6 lg:px-0">
       {
@@ -254,7 +276,7 @@ const projects = await Promise.all(
             href={project.url}
             data-image={project.image}
             aria-label={`Ver caso de estudio: ${project.client}`}
-            class="project-row group relative block w-full border-t last:border-b border-brand-black py-10 md:py-12 transition-all duration-500 hover:bg-brand-salmon px-0 hover:px-8 hover:border-transparent cursor-none"
+            class="project-row row-reveal group relative block w-full border-t last:border-b border-brand-black py-10 md:py-12 transition-all duration-500 hover:bg-brand-salmon px-0 hover:px-8 hover:border-transparent cursor-none"
             style="transition: background 0.08s linear, padding 0.15s ease;"
           >
             <div class="grid grid-cols-12 gap-4 items-center">
@@ -485,45 +507,23 @@ const projects = await Promise.all(
       }, { threshold: 0.5 }).observe(portDivider);
     }
 
-    if (!prefersReduced) {
-      const desktopRows = gsap.utils.toArray<HTMLElement>(".project-row");
-      if (desktopRows.length) {
-        gsap.set(desktopRows, { autoAlpha: 0, y: 32 });
+    // CSS-based reveal for rows and cards — immune to GSAP timing race conditions
+    const rowObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            (entry.target as HTMLElement).classList.add("is-visible");
+          }, i * 60);
+          rowObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0, rootMargin: "0px 0px -5% 0px" });
 
-        ScrollTrigger.batch(desktopRows, {
-          start: "top 92%",
-          onEnter: (batch) => {
-            gsap.to(batch, {
-              autoAlpha: 1,
-              y: 0,
-              duration: 0.6,
-              ease: "power3.out",
-              stagger: 0.08,
-              overwrite: true,
-            });
-          },
-        });
-      }
-
-      const mobileCards = gsap.utils.toArray<HTMLElement>(".projects-carousel article");
-      if (mobileCards.length) {
-        gsap.set(mobileCards, { autoAlpha: 0, y: 40 });
-
-        ScrollTrigger.batch(mobileCards, {
-          start: "top 95%",
-          onEnter: (batch) => {
-            gsap.to(batch, {
-              autoAlpha: 1,
-              y: 0,
-              duration: 0.55,
-              ease: "power3.out",
-              stagger: 0.06,
-              overwrite: true,
-            });
-          },
-        });
-      }
-      ScrollTrigger.refresh();
-    }
+    // Use rAF to ensure layout is settled before observing
+    requestAnimationFrame(() => {
+      document.querySelectorAll<HTMLElement>(".project-row").forEach((row) => {
+        rowObserver.observe(row);
+      });
+    });
   });
 </script>
