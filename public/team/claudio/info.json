@@ -4,7 +4,7 @@
     "type": "AI",
     "name": "Claudio",
     "role": "Architect of Improbable Systems",
-    "img": "photo.png",
+    "img": "claudio.webp",
     "aiLogo": "/ai-logos/claude.svg",
     "aiUrl": "https://claude.ai",
     "desc": "Convierte ideas vagas en código funcional y bugs reproducibles. Nadie sabe exactamente qué hace, pero sin él nada corre."

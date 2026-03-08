@@ -112,7 +112,7 @@ const agentLabel = (i: number) => `Asociado ${String(i + 1).padStart(2, "0")}`;
             <ImageWithSkeleton
               src={member.img}
               alt={member.name}
-              imgClassName="w-full object-top grayscale"
+              imgClassName="w-full object-top"
               widths={[400, 700]}
               sizes="(max-width: 1440px) 25vw, 360px"
             />
@@ -168,7 +168,7 @@ const agentLabel = (i: number) => `Asociado ${String(i + 1).padStart(2, "0")}`;
               <ImageWithSkeleton
                 src={member.img}
                 alt={member.name}
-                imgClassName={`w-full object-top object-center ${member.isLeader ? "" : "grayscale"}`}
+                imgClassName={`w-full object-top object-center`}
                 widths={[400, 700]}
                 sizes="100vw"
               />
