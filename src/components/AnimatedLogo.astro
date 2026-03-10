@@ -373,4 +373,49 @@ const {
     height: auto;
     overflow: visible;
   }
+
+  /* 
+   * ESTADO INICIAL CSS (PRE-GSAP)
+   * Esto previene el FOUC (Flash de letras abiertas) en producción.
+   * Coloca el isotipo en estado CERRADO, exactamente a como GSAP lo configura en los "sets".
+   */
+  .animated-logo-wrapper {
+    /* Por defecto, los círculos interiores están cubriendo el centro */
+    #circle-inner-left {
+      transform: translateX(112.5px);
+    }
+    #circle-inner-right {
+      transform: translateX(-112.5px);
+    }
+    #circle-outer-left {
+      transform: translateX(225.5px);
+    }
+    #circle-outer-right {
+      transform: translateX(-225.5px);
+    }
+    /* La letra A arranca escondida por su clip path */
+    #letter-a {
+      clip-path: inset(0 50% 0 50%);
+    }
+
+    /* Ocultar el texto por defecto mientras carga */
+    #text-humanoides,
+    #text-asociados {
+      clip-path: inset(0 100% 0 0);
+    }
+  }
+
+  /* Sólo la variante 'full' requiere que el isotipo empiece desplazado */
+  .animated-logo-wrapper[data-variant="full"] #isotipo-group {
+    transform: translateX(480px);
+  }
+
+  /* Sobrescribir estado si estamos en un modo alineado en 'scroll' */
+  .animated-logo-wrapper[data-mode="scroll"][data-align="left"] #isotipo-group {
+    transform: translateX(-225.5px);
+  }
+  .animated-logo-wrapper[data-mode="scroll"][data-align="right"]
+    #isotipo-group {
+    transform: translateX(225.5px);
+  }
 </style>
