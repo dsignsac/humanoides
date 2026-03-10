@@ -272,6 +272,7 @@ const { title = "HA", showNavbar = true, showFooter = true } = Astro.props;
         // Kill only the section-reveal ScrollTriggers, not page-specific ones
         ScrollTrigger.getAll()
           .filter((t) => {
+            if (t.vars.id === "logo-scroll") return false;
             const el = t.trigger as HTMLElement | null;
             return (
               !el ||

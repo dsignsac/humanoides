@@ -1,6 +1,6 @@
 ---
 interface Props {
-  mode?: "once" | "loop" | "retractable" | "static";
+  mode?: "once" | "loop" | "retractable" | "static" | "scroll";
   variant?: "full" | "iso";
   class?: string;
   color?: string;
@@ -42,7 +42,13 @@ const {
         d="M601 0C683.843 0 751 67.1573 751 150C751 232.843 683.843 300 601 300V0Z"
         fill="currentColor"></path>
 
-      <!-- Semicírculos interiores -->
+      <!-- Letra A central (Atrás para ser tapada, sin usar clip-path intrincados) -->
+      <path
+        id="letter-a"
+        d="M303.878 300H242.928L329.638 6.05997H421.408L507.888 300H446.938L378.398 45.85H372.878L303.878 300ZM441.648 225.02H308.708V176.95H441.648V225.02Z"
+        fill="currentColor"></path>
+
+      <!-- Semicírculos interiores (Grises, ahora tapan a la A) -->
       <path
         id="circle-inner-left"
         d="M113 150C113 67.1573 180.157 0 263 0V300C180.157 300 113 232.843 113 150Z"
@@ -50,12 +56,6 @@ const {
       <path
         id="circle-inner-right"
         d="M488 0C570.843 0 638 67.1573 638 150C638 232.843 570.843 300 488 300V0Z"
-        fill="currentColor"></path>
-
-      <!-- Letra A central -->
-      <path
-        id="letter-a"
-        d="M303.878 300H242.928L329.638 6.05997H421.408L507.888 300H446.938L378.398 45.85H372.878L303.878 300ZM441.648 225.02H308.708V176.95H441.648V225.02Z"
         fill="currentColor"></path>
     </g>
 
@@ -81,6 +81,9 @@ const {
 
 <script>
   import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
 
   document.addEventListener("astro:page-load", () => {
     const wrappers = document.querySelectorAll(".animated-logo-wrapper");
@@ -112,11 +115,6 @@ const {
         gsap.set(circleOuterRight, { x: 0 });
         gsap.set(circleInnerLeft, { x: 0 });
         gsap.set(circleInnerRight, { x: 0 });
-        gsap.set(letterA, {
-          clipPath: "inset(0 7.5% 0 7.5%)",
-          scale: 1,
-          transformOrigin: "center",
-        });
         gsap.set(isotipoGroup, { x: 0 });
         if (variant === "full") {
           gsap.set(logotipoGroup, { x: 0 });
@@ -130,6 +128,67 @@ const {
 
       if (mode === "static" || (mode === "once" && hasAnimatedThisSession)) {
         setFinalState();
+      } else if (mode === "scroll") {
+        let alignShift = 0;
+        if (align === "left") alignShift = -225.5;
+        else if (align === "right") alignShift = 225.5;
+
+        // Establecer el estado inicial "cerrado" usando solo GSAP, SIN escalar la A para no romper la proporción
+        gsap.set(isotipoGroup, { x: alignShift });
+        gsap.set(circleOuterLeft, { x: 225.5 });
+        gsap.set(circleOuterRight, { x: -225.5 });
+        gsap.set(circleInnerLeft, { x: 112.5 });
+        gsap.set(circleInnerRight, { x: -112.5 });
+
+        // Ocultamos la letra A completamente al inicio (al 50% del inset, el ancho visible es cero)
+        gsap.set(letterA, {
+          clipPath: "inset(0 50% 0 50%)",
+        });
+
+        if (variant === "full") {
+          gsap.set(logotipoGroup, { x: -225.5 + alignShift });
+          // Aseguramos que los textos siempre empiecen visibles
+          gsap.set(textHumanoides, { clipPath: "inset(0 0% 0 0)" });
+          gsap.set(textAsociados, { clipPath: "inset(0 0% 0 0)" });
+        }
+        if (variant === "iso" && mobileTitle) {
+          gsap.set(mobileTitle, { opacity: 1, y: 0 });
+        }
+
+        // Timeline de apertura (no es un scrub, simplemente se reproduce con duraciones normales)
+        const scrollTl = gsap.timeline({
+          paused: true,
+          defaults: { ease: "power3.inOut" },
+        });
+
+        // Sincronización Matemática: Para que el recorte de la "A" siga exactamente
+        // el movimiento de los círculos (112.5 unidades de SVG), el porcentaje de inset
+        // debe viajar de 50% al 7.5% durante el MISMO tiempo y con el mismo easing.
+        scrollTl
+          .to(isotipoGroup, { x: 0, duration: 0.8 }, 0)
+          .to(circleOuterLeft, { x: 0, duration: 0.8 }, 0)
+          .to(circleOuterRight, { x: 0, duration: 0.8 }, 0)
+          .to(circleInnerLeft, { x: 0, duration: 0.8 }, 0)
+          .to(circleInnerRight, { x: 0, duration: 0.8 }, 0)
+          .fromTo(
+            letterA,
+            { clipPath: "inset(0 50% 0 50%)" },
+            { clipPath: "inset(0 7.5% 0 7.5%)", duration: 0.8 },
+            0,
+          );
+
+        if (variant === "full") {
+          scrollTl.to(logotipoGroup, { x: 0, duration: 0.7 }, 0);
+        }
+
+        // Creamos el disparador que ejecuta la animación en lugar de restregarla (scrub) al scroll
+        ScrollTrigger.create({
+          id: "logo-scroll",
+          trigger: document.body,
+          start: "top -50", // Se dispara al hacer el primer scroll down (50px más abajo)
+          onEnter: () => scrollTl.play(), // Ejecuta animación de apertura
+          onLeaveBack: () => scrollTl.reverse(), // Ejecuta animación de cierre si volvemos a tope de página
+        });
       } else {
         // Intro Timeline
         const tl = gsap.timeline({
@@ -185,10 +244,10 @@ const {
             { clipPath: "inset(0 50% 0 50%)" },
             {
               clipPath: "inset(0 7.5% 0 7.5%)",
-              duration: 0.4,
+              duration: 0.5, // MISMA DURACION ESTRICTA QUE EL CIRCULO
               ease: "power2.out",
             },
-            "<+=0.1",
+            "<", // SIN RETRASOS PARA SINCRONIZACIÓN PERFECTA
           )
           .to({}, { duration: 0.1 });
 
@@ -277,15 +336,13 @@ const {
           letterA,
           {
             clipPath: "inset(0 50% 0 50%)",
-            scale: 0,
-            transformOrigin: "center",
-            duration: 0.3,
-            ease: "power3.in",
+            duration: 0.4, // MISMA DURACION QUE LOS CÍRCULOS
+            ease: "power3.inOut", // MISMO CURVE DE ACELERACIÓN QUE LOS CÍRCULOS
           },
-          "<",
+          0, // INICIO EXACTO CON LOS CÍRCULOS
         );
 
-      if (mode !== "static") {
+      if (mode !== "static" && mode !== "scroll") {
         wrapper.addEventListener("mouseenter", () => {
           hoverTl.play();
         });
