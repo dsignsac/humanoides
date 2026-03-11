@@ -88,9 +88,16 @@
     e.preventDefault();
 
     const formData = new FormData(form);
-    const name = formData.get("name") || "";
-    const email = formData.get("email") || "";
-    const description = formData.get("description") || "";
+    const name = formData.get("name")?.toString() || "";
+    const email = formData.get("email")?.toString() || "";
+    const description = formData.get("description")?.toString() || "";
+
+    // Save lead in the background
+    fetch('/api/leads', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, description })
+    }).catch(err => console.error("Error guardando el lead:", err));
 
     const text = `hola humanoides & asociados me llamo ${name} y quiero trabajar con ustedes, mi email es:${email}. El proyecto consiste en: ${description}. Saludos!`;
     const encodedText = encodeURIComponent(text);
