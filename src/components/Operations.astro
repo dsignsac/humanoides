@@ -1,17 +1,24 @@
 ---
-import { getDataFromFolders } from "../lib/data";
 import ImageWithSkeleton from "./ImageWithSkeleton.astro";
 
-const rawTeam = getDataFromFolders("./public/team");
-const team = rawTeam
-  .map((t: any) => ({
-    ...t,
-    img: `/team/${t.folder}/${t.img}`,
-  }))
+// Use import.meta.glob to statically analyze and bundle the data within Astro/Vite
+// This prevents Vercel Serverless from losing access to the public folder during runtime
+const teamDataRaw = import.meta.glob("../../public/team/**/info.json", { eager: true });
+
+const team = Object.entries(teamDataRaw)
+  .map(([path, data]: [string, any]) => {
+    // Extract the folder name (e.g. "../../public/team/david/info.json" -> "david")
+    const folder = path.split("/").slice(-2, -1)[0];
+    return {
+      ...data,
+      folder,
+      img: `/team/${folder}/${data.img}`,
+    };
+  })
   .sort((a: any, b: any) => {
     if (a.isLeader && !b.isLeader) return -1;
     if (!a.isLeader && b.isLeader) return 1;
-    return a.order - b.order;
+    return (a.order || 99) - (b.order || 99);
   });
 
 const agents = team.filter((m: any) => !m.isLeader);
